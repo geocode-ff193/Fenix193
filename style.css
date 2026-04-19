@@ -347,8 +347,8 @@ h1, h2, h3, h4, h5 {
 }
 .qs-emblem {
     position: relative;
-    width: 480px;
-    height: 480px;
+    width: 450px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
