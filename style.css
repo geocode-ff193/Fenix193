@@ -316,23 +316,6 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Hero Text */
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: rgba(198,40,40,.35);
-    border: 1px solid rgba(198,40,40,.5);
-    color: #ffcdd2;
-    font-size: .78rem;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 40px;
-    margin-bottom: 22px;
-}
-.hero-badge i { color: var(--amber); }
-
 .hero-text h1 {
     font-size: clamp(1.8rem, 3.6vw, 3rem);
     color: var(--white);
