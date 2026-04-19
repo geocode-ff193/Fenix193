@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundação Fênix 193 | Apoio ao CBMSE</title>
+    <meta name="description" content="Fundação de apoio ao Corpo de Bombeiros Militar de Sergipe. Transparência, Educação e Memória.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontes e Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script> 
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="https://via.placeholder.com/180x60?text=Fundação+Fênix+193" alt="Logo Fundação Fênix 193">
+                </a>
+            </div>
+            
+            <nav id="nav-menu">
+                <button id="btn-mobile" aria-label="Abrir Menu">
+                    <span id="hamburger"></span>
+                </button>
+                <ul id="menu">
+                    <li class="dropdown">
+                        <a href="#fundacao">A Fundação</a>
+                        <ul class="submenu">
+                            <li><a href="#quem-somos">Quem Somos</a></li>
+                            <li><a href="#transparencia">Transparência</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#educacao">Educação Pública</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#memoria">Memória</a></li>
+                    <li><a href="#colaborar" class="btn-cta-small">Como Colaborar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="container hero-content">
+                <h1>Preservando Vidas, Construindo Cidadania</h1>
+                <p>Apoio estratégico ao Corpo de Bombeiros Militar de Sergipe e à comunidade.</p>
+                <a href="#colaborar" class="btn-primary">Seja um Apoiador</a>
+            </div>
+        </section>
+
+        <!-- A Fundação & Transparência -->
+        <section id="fundacao" class="container section-padding">
+            <div class="grid-2">
+                <div class="text-content">
+                    <h2>Nossa Missão</h2>
+                    <p>A Fundação Fênix 193 atua como braço de apoio técnico e social ao CBMSE, promovendo cursos, gestão de recursos e projetos que fortalecem a segurança pública em Sergipe.</p>
+                    <a href="#" class="link-red">Conheça nosso estatuto →</a>
+                </div>
+                <div class="portal-transparencia">
+                    <div class="card-transp">
+                        <i class="fas fa-file-contract"></i>
+                        <h3>Portal da Transparência</h3>
+                        <p>Acesse editais, balanços e prestações de contas.</p>
+                        <a href="#" class="btn-outline">Acessar Documentos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Áreas de Atuação -->
+        <section id="atuacao" class="bg-light section-padding">
+            <div class="container">
+                <h2 class="text-center">Nossos Pilares</h2>
+                <div class="grid-3">
+                    <article class="card-service">
+                        <h3>Cursos e Treinamentos</h3>
+                        <p>Especialização em Suporte Básico de Vida e Prevenção de Incêndios.</p>
+                    </article>
+                    <article class="card-service">
+                        <h3>Educação Pública</h3>
+                        <p>Manuais e dicas de prevenção para escolas e empresas.</p>
+                    </article>
+                    <article class="card-service">
+                        <h3>Preservação da Memória</h3>
+                        <p>Gestão do acervo histórico e museu do Corpo de Bombeiros.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notícias e Eventos (Firebase) -->
+        <section id="news" class="container section-padding">
+            <h2>Notícias e Eventos</h2>
+            <div id="news-container" class="grid-3">
+                <!-- Conteúdo gerado dinamicamente pelo JS -->
+                <p class="loading">Carregando notícias...</p>
+            </div>
+        </section>
+
+        <!-- Como Colaborar -->
+        <section id="colaborar" class="section-padding bg-navy text-white">
+            <div class="container text-center">
+                <h2>Como Colaborar</h2>
+                <p>Sua doação ajuda a manter projetos educacionais e de salvamento.</p>
+                <div class="pix-box">
+                    <p>Chave PIX (CNPJ): <strong>00.000.000/0001-00</strong></p>
+                </div>
+                <button class="btn-primary">Quero ser voluntário</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botão WhatsApp -->
+    <a href="https://wa.me/5579999999999" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container grid-4">
+            <div>
+                <h4>Fundação Fênix 193</h4>
+                <p>Aracaju, Sergipe - Brasil</p>
+            </div>
+            <div>
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="#">Editais</a></li>
+                    <li><a href="#">Privacidade</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <p>contato@fundacao193.org.br</p>
+            </div>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="text-center copyright">
+            &copy; 2023 Fundação Fênix 193. Desenvolvido para o CBMSE.
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (v9 Modular) -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
