@@ -5,197 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundação Fênix 193 | Apoio ao CBMSE</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <header id="main-header">
         <div class="container nav-wrapper">
-            <div class="logo">
-                <img src="logo-fenix-193.png" alt="Logo Fundação Fênix 193">
+            <div class="logo-area">
+                <!-- Espaço para a animação da Fênix descrita no PDF -->
+                <div id="fenix-animation-container">
+                    <img src="logo-final.png" alt="Logo Fundação Fênix 193" class="main-logo">
+                </div>
             </div>
             <nav id="nav-menu">
+                <button id="btn-mobile" aria-label="Menu"><span id="hamburger"></span></button>
                 <ul id="menu">
-                    <li><a href="#quem-somos">A Fundação</a></li>
+                    <li><a href="#quem-somos">Quem Somos</a></li>
                     <li><a href="#atuacao">Áreas de Atuação</a></li>
                     <li><a href="#projetos">Projetos</a></li>
                     <li><a href="#transparencia">Transparência</a></li>
                     <li><a href="#contato">Contato</a></li>
-                    <li><a href="#colaborar" class="btn-highlight">Quero Ajudar</a></li>
+                    <li><a href="#colaborar" class="btn-cta-small">Quero Ajudar</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section id="hero">
-        <div class="hero-video-overlay"></div>
-        <!-- Placeholder para a animação da Fênix -->
-        <div id="fenix-animation-container">
-            <video autoplay muted loop playsinline id="fenix-video">
-                <source src="animacao-fenix.mp4" type="video/mp4">
-            </video>
-        </div>
-        
-        <div class="container hero-content">
-            <h1>Apoiar quem arrisca sua vida para salvar vidas e riquezas alheias é proteger a sociedade.</h1>
-            <p>A Fundação Fênix 193 fortalece a proteção da sociedade sergipana por meio do apoio ao trabalho do Corpo de Bombeiros Militar de Sergipe...</p>
-            
-            <div class="hero-buttons">
-                <a href="#quem-somos" class="btn-hero">Conheça a Fundação</a>
-                <a href="#projetos" class="btn-hero">Apoie nossos projetos</a>
-                <a href="#colaborar" class="btn-hero btn-red">Faça uma doação</a>
-                <a href="#" class="btn-hero">Instituidores</a>
-                <a href="#" class="btn-hero">Apoiadores</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUEM SOMOS -->
-    <section id="quem-somos" class="section-padding">
-        <div class="container">
-            <div class="intro-text">
-                <h2>Quem Somos</h2>
-                <p>A Fundação Fênix 193 é uma organização sem fins lucrativos criada com o propósito de apoiar, valorizar e fortalecer as ações do Corpo de Bombeiros Militar de Sergipe e da Proteção e Defesa Civil.</p>
-                <p>Atuamos promovendo iniciativas que contribuem para a melhoria da estrutura operacional e qualificação profissional.</p>
-            </div>
-
-            <div class="conselhos-grid">
-                <div class="conselho-card">
-                    <h3>Conselhos e Presidente de Honra</h3>
-                    <button id="open-conselhos" class="btn-outline">Ver Membros e Fotos</button>
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <h1>Apoiar quem arrisca sua vida para salvar vidas e riquezas alheias é proteger a sociedade.</h1>
+                    <p>A Fundação Fênix 193 fortalece a proteção da sociedade sergipana por meio do apoio ao trabalho do Corpo de Bombeiros Militar de Sergipe e das ações de Proteção e Defesa Civil.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#quem-somos" class="btn-hero">Conheça a Fundação</a>
+                        <a href="#colaborar" class="btn-hero">Apoie nossos projetos</a>
+                        <a href="#colaborar" class="btn-hero btn-highlight">Faça uma doação</a>
+                        <a href="#instituidores" class="btn-hero">Instituidores</a>
+                        <a href="#apoiadores" class="btn-hero">Apoiadores</a>
+                        <a href="#" class="btn-hero social-btn"><i class="fab fa-instagram"></i> Redes Sociais</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- NÚMEROS QUE IMPACTAM -->
-    <section id="stats" class="bg-navy text-white">
-        <div class="container grid-4">
-            <div class="stat-item">
-                <span class="number" data-target="1000">0</span>
-                <p>Pessoas beneficiadas</p>
-            </div>
-            <div class="stat-item">
-                <span class="number" data-target="15">0</span>
-                <p>Projetos realizados</p>
-            </div>
-            <div class="stat-item">
-                <span class="number" data-target="500">0</span>
-                <p>Bombeiros apoiados</p>
-            </div>
-            <div class="stat-item">
-                <span class="number" data-target="50">0</span>
-                <p>Ações educativas</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ÁREAS DE ATUAÇÃO -->
-    <section id="atuacao" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="text-center">Áreas de Atuação</h2>
-            <div class="grid-4">
-                <div class="card-atuacao">
-                    <i class="fas fa-truck-extinguisher"></i>
-                    <h4>Apoio Operacional</h4>
-                    <p>Captação de recursos para equipamentos e infraestrutura.</p>
-                </div>
-                <div class="card-atuacao">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h4>Capacitação e Treinamento</h4>
-                    <p>Promoção de cursos e especializações contínuas.</p>
-                </div>
-                <div class="card-atuacao">
-                    <i class="fas fa-hands-helping"></i>
-                    <h4>Projetos Sociais</h4>
-                    <p>Ações educativas que impactam a comunidade.</p>
-                </div>
-                <div class="card-atuacao">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Prevenção e Conscientização</h4>
-                    <p>Campanhas voltadas à segurança e proteção à vida.</p>
+        <!-- QUEM SOMOS -->
+        <section id="quem-somos" class="section-padding">
+            <div class="container">
+                <div class="content-box">
+                    <h2>Quem Somos</h2>
+                    <p>A Fundação Fênix 193 é uma organização sem fins lucrativos criada com o propósito de apoiar, valorizar e fortalecer as ações do Corpo de Bombeiros Militar de Sergipe e da Proteção e Defesa Civil. Atuamos promovendo iniciativas que contribuem para a melhoria da estrutura operacional, qualificação profissional e desenvolvimento de projetos sociais.</p>
+                    <p><strong>Nosso compromisso é com a proteção da vida, com a sociedade e com aqueles que dedicam suas vidas a salvar outras.</strong></p>
+                    <button class="btn-outline" onclick="toggleDiretoria()">Conselhos e Presidente de Honra</button>
+                    
+                    <!-- Div oculta para Detalhes da Diretoria -->
+                    <div id="diretoria-info" class="hidden-info">
+                        <h3>Estrutura Organizacional</h3>
+                        <p>Presidente de Honra: Cel Carlos Magno de Oliveira</p>
+                        <p>Conselho de Curadores: Presidido pelo Cel Reginaldo Moura</p>
+                        <a href="#" class="link-red">Saiba mais sobre nossa equipe →</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROJETOS EM DESTAQUE -->
-    <section id="projetos" class="section-padding">
-        <div class="container">
-            <h2>Projetos em Destaque</h2>
-            <div class="grid-3" id="projetos-list">
-                <!-- Projeto 1 -->
-                <article class="project-card">
-                    <div class="tag">Em Planejamento</div>
-                    <h4>Bombeiro Mirim</h4>
-                    <p>Formação cidadã para crianças e adolescentes com foco em disciplina e primeiros socorros.</p>
-                </article>
-                <!-- Projeto 2 -->
-                <article class="project-card">
-                    <div class="tag">Em Planejamento</div>
-                    <h4>Apoio ao Projeto SOS Abelhas</h4>
-                    <p>Aquisição de equipamentos e insumos específicos para o projeto.</p>
-                </article>
-                <!-- Projeto 3 -->
-                <article class="project-card">
-                    <div class="tag">Em Planejamento</div>
-                    <h4>Curso de Brigada de Incêndio</h4>
-                    <p>Capacitação especializada para o público civil e brigadistas.</p>
-                </article>
+        <!-- NÚMEROS QUE IMPACTAM -->
+        <section class="section-padding bg-navy text-white">
+            <div class="container">
+                <h2 class="text-center">Números que Impactam</h2>
+                <p class="text-center">Resultados que refletem nosso compromisso com a sociedade:</p>
+                <div class="grid-4 stats-container">
+                    <div class="stat-item">
+                        <span class="counter" data-target="5000">0</span>
+                        <p>Pessoas Beneficiadas</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="counter" data-target="15">0</span>
+                        <p>Projetos Realizados</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="counter" data-target="800">0</span>
+                        <p>Bombeiros Apoiados</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="counter" data-target="45">0</span>
+                        <p>Ações Educativas</p>
+                    </div>
+                </div>
             </div>
-            <div class="text-center mt-20">
-                <a href="#" class="btn-outline">Ver todos os projetos</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- TRANSPARÊNCIA -->
-    <section id="transparencia" class="section-padding bg-light">
-        <div class="container grid-2">
-            <div>
+        <!-- ÁREAS DE ATUAÇÃO -->
+        <section id="atuacao" class="section-padding bg-light">
+            <div class="container">
+                <h2 class="text-center">Áreas de Atuação</h2>
+                <div class="grid-4">
+                    <div class="card-simple">
+                        <h3>1. Apoio Operacional</h3>
+                        <p>Captação de recursos para equipamentos e infraestrutura de resposta a desastres.</p>
+                    </div>
+                    <div class="card-simple">
+                        <h3>2. Capacitação</h3>
+                        <p>Promoção de cursos e treinamentos contínuos para excelência profissional.</p>
+                    </div>
+                    <div class="card-simple">
+                        <h3>3. Projetos Sociais</h3>
+                        <p>Ações educativas que impactam a comunidade, promovendo cidadania.</p>
+                    </div>
+                    <div class="card-simple">
+                        <h3>4. Prevenção</h3>
+                        <p>Campanhas de conscientização sobre segurança e proteção à vida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETOS EM DESTAQUE -->
+        <section id="projetos" class="section-padding">
+            <div class="container">
+                <div class="flex-header">
+                    <h2>Projetos em Destaque</h2>
+                    <a href="#" class="btn-outline-small">Ver todos os projetos</a>
+                </div>
+                <div class="grid-3">
+                    <div class="project-item">
+                        <h4>Bombeiro Mirim</h4>
+                        <span class="tag">Em Planejamento</span>
+                        <p>Formação cidadã de crianças com foco em disciplina e primeiros socorros.</p>
+                    </div>
+                    <div class="project-item">
+                        <h4>SOS Abelhas</h4>
+                        <span class="tag">Em Planejamento</span>
+                        <p>Aquisição de equipamentos e insumos para o projeto SOS Abelhas.</p>
+                    </div>
+                    <div class="project-item">
+                        <h4>Brigada de Incêndio</h4>
+                        <span class="tag">Curso</span>
+                        <p>Capacitação especializada para o público civil e brigadistas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSPARÊNCIA -->
+        <section id="transparencia" class="section-padding bg-light">
+            <div class="container">
                 <h2>Transparência</h2>
-                <p>A Fundação Fênix 193 atua com responsabilidade e ética. Disponibilizamos informações completas sobre nossa gestão.</p>
+                <p>Informações completas sobre nossas atividades e prestação de contas.</p>
+                <div class="transparency-links">
+                    <a href="#"><i class="fas fa-file-pdf"></i> Prestação de Contas</a>
+                    <a href="#"><i class="fas fa-file-pdf"></i> Estatuto Social</a>
+                    <a href="#"><i class="fas fa-file-pdf"></i> Editais</a>
+                    <a href="#"><i class="fas fa-file-pdf"></i> Relatórios Institucionais</a>
+                    <a href="#"><i class="fas fa-file-pdf"></i> Atas e Certidões</a>
+                </div>
             </div>
-            <ul class="transparencia-links">
-                <li><a href="#"><i class="fas fa-file-pdf"></i> Prestação de Contas</a></li>
-                <li><a href="#"><i class="fas fa-file-pdf"></i> Relatórios Institucionais</a></li>
-                <li><a href="#"><i class="fas fa-file-pdf"></i> Estatuto Social</a></li>
-                <li><a href="#"><i class="fas fa-file-pdf"></i> Editais e Atas</a></li>
-            </ul>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER COM CONTATO -->
-    <footer class="section-padding bg-navy text-white">
+        <!-- CONTATO -->
+        <section id="contato" class="section-padding">
+            <div class="container grid-2">
+                <div>
+                    <h2>Entre em contato</h2>
+                    <p>Tem dúvidas ou deseja colaborar? Fale conosco.</p>
+                    <ul class="contact-list">
+                        <li><strong>Telefone:</strong> (79) XXXX-XXXX</li>
+                        <li><strong>E-mail:</strong> contato@fundacaofenix193.org.br</li>
+                        <li><strong>Endereço:</strong> Aracaju/SE</li>
+                    </ul>
+                </div>
+                <form id="contact-form" class="form-style">
+                    <input type="text" placeholder="Seu Nome" required>
+                    <input type="email" placeholder="Seu E-mail" required>
+                    <textarea placeholder="Sua Mensagem" rows="5"></textarea>
+                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-navy text-white section-padding">
         <div class="container grid-3">
-            <div id="contato">
-                <h3>Entre em contato</h3>
-                <p><i class="fas fa-phone"></i> (XX) XXXX-XXXX</p>
-                <p><i class="fas fa-envelope"></i> contato@fundacaofenix193.org.br</p>
-                <p><i class="fas fa-map-marker-alt"></i> Aracaju, Sergipe</p>
+            <div>
+                <h4>Fundação Fênix 193</h4>
+                <p>CNPJ: [Inserir aqui]</p>
+                <p>&copy; Todos os direitos reservados.</p>
             </div>
             <div>
-                <h3>Links Rápidos</h3>
+                <h4>Links Rápidos</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Quem Somos</a></li>
-                    <li><a href="#">Projetos</a></li>
-                    <li><a href="#">Transparência</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
+                    <li><a href="#quem-somos">Quem Somos</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#transparencia">Transparência</a></li>
                 </ul>
             </div>
-            <div>
-                <h3>Siga-nos</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                </div>
-                <p class="mt-20">CNPJ: 00.000.000/0001-00</p>
+            <div class="social-footer">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Política de Privacidade</a>
             </div>
-        </div>
-        <div class="text-center copyright">
-            &copy; 2024 Fundação Fênix 193. Todos os direitos reservados.
         </div>
     </footer>
 
