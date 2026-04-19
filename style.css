@@ -209,7 +209,7 @@ h1, h2, h3, h4, h5 {
     background:
         /* Atualizado com os valores RGB do Cinza Chumbo (49,51,50) e Vermelho Vivo (225,34,23) */
         linear-gradient(135deg, rgba(49,51,50,.92) 0%, rgba(225,34,23,.55) 100%),
-        url('hero-bombeiros.jpg') center/cover no-repeat;
+        url('img/hero-bombeiros.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     overflow: hidden;
