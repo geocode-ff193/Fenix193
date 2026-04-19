@@ -691,17 +691,6 @@ h1, h2, h3, h4, h5 {
     transition: var(--transition);
 }
 .help-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.help-card-featured {
-    background: linear-gradient(160deg, var(--navy), var(--navy-mid));
-    color: var(--white);
-    border-color: transparent;
-    box-shadow: var(--shadow-lg);
-    transform: scale(1.03);
-}
-.help-card-featured h3,
-.help-card-featured p { color: var(--white); }
-.help-card-featured .help-list li { color: rgba(255,255,255,.8); }
-.help-card-featured .help-list i { color: var(--amber); }
 
 .help-icon {
     width: 72px; height: 72px;
@@ -714,9 +703,6 @@ h1, h2, h3, h4, h5 {
     color: var(--white);
     box-shadow: 0 6px 20px rgba(198,40,40,.35);
     margin-bottom: 6px;
-}
-.help-card-featured .help-icon {
-    background: linear-gradient(135deg, var(--amber), var(--fire));
 }
 .help-card h3 { font-size: 1.5rem; color: var(--navy); }
 .help-card p { color: var(--text-muted); font-size: .93rem; }
@@ -1203,9 +1189,6 @@ h1, h2, h3, h4, h5 {
     .news-layout { grid-template-columns: 1fr; }
     .news-card.featured { grid-row: auto; grid-column: auto; }
     .featured-skeleton { grid-row: auto; grid-column: auto; }
-
-    /* Help */
-    .help-card-featured { transform: none; }
 
     /* Footer */
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
