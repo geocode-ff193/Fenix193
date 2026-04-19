@@ -77,3 +77,47 @@ document.querySelectorAll('section').forEach(section => {
 document.addEventListener('DOMContentLoaded', () => {
     fetchNews();
 });
+
+// Funções de Interface
+window.toggleDiretoria = function() {
+    const info = document.getElementById('diretoria-info');
+    info.style.display = info.style.display === 'block' ? 'none' : 'block';
+}
+
+// Animação de Números (Counter)
+const animateCounters = () => {
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / 100;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(animateCounters, 20);
+        } else {
+            counter.innerText = target + "+";
+        }
+    });
+};
+
+// Intersection Observer para disparar a animação ao rolar
+const observer = new IntersectionObserver((entries) => {
+    if(entries[0].isIntersecting) animateCounters();
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.stats-container');
+if(statsSection) observer.observe(statsSection);
+
+// SIMULAÇÃO INTEGRAÇÃO FIREBASE (Notícias Dinâmicas do CBMSE)
+/*
+   No PDF você mencionou automatizar com o site do CBMSE. 
+   Como o site oficial deles não fornece uma API pública direta, 
+   o padrão sênior é usar um Cloud Function ou um Crawler que popula o Firestore.
+*/
+async function loadCBMSEnews() {
+    console.log("Conectando ao Firestore para buscar feed CBMSE...");
+    // Aqui viria a lógica: db.collection('noticias_bombeiros').limit(3).get()...
+}
+
+document.addEventListener('DOMContentLoaded', loadCBMSEnews);
