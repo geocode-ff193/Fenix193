@@ -734,12 +734,6 @@ h1, h2, h3, h4, h5 {
     margin-top: 6px;
 }
 .btn-help:hover { background: var(--red-dark); border-color: var(--red-dark); }
-.btn-help-light {
-    background: transparent;
-    border-color: rgba(255,255,255,.5);
-    color: var(--white);
-}
-.btn-help-light:hover { background: rgba(255,255,255,.15); border-color: var(--white); }
 
 .help-cta-wrap { text-align: center; margin-top: 52px; }
 .btn-primary {
