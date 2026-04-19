@@ -1,26 +1,24 @@
-/* ==========================================================
-   FUNDAÇÃO FÊNIX 193 — style.css
-   Paleta: Vermelho Bombeiro · Navy Profundo · Âmbar · Branco
-   Tipografia: Barlow Condensed (títulos) + Barlow (corpo)
-   ========================================================== */
-
-/* ── CSS Custom Properties ── */
 :root {
-    --red:         #C62828;
-    --red-dark:    #8B0000;
-    --red-light:   #EF5350;
-    --fire:        #FF6F00;
-    --amber:       #FF8F00;
-    --navy:        #0A1628;
-    --navy-mid:    #112244;
-    --navy-light:  #1A3A6E;
+    /* ── Nova Paleta de Cores ── */
+    --red:         #E12217; /* Vermelho Vivo */
+    --red-dark:    #872020; /* Vermelho Escuro / Vinho */
+    --red-light:   #ED4C43; /* Tom de apoio um pouco mais claro */
+    --fire:        #F27613; /* Laranja */
+    --amber:       #F8BA25; /* Amarelo Dourado */
+    
+    --navy:        #313332; /* Cinza Chumbo (Substitui o Navy) */
+    --navy-mid:    #404241; /* Cinza Chumbo Intermediário */
+    --navy-light:  #505251; /* Cinza Chumbo Claro */
+    
     --white:       #FFFFFF;
-    --off-white:   #F5F5F5;
-    --gray-light:  #ECEFF1;
-    --gray:        #90A4AE;
-    --text:        #1C2331;
-    --text-muted:  #546E7A;
+    --off-white:   #F4F3F0; /* Fundo super claro inspirado no Bege */
+    --gray-light:  #E8E5DE; /* Bege Claro / Creme */
+    --gray:        #9CA3AF;
+    
+    --text:        #313332; /* Texto principal em Cinza Chumbo */
+    --text-muted:  #636665; /* Texto secundário */
 
+    /* ── Variáveis de Layout ── */
     --radius:      6px;
     --radius-lg:   14px;
     --shadow-sm:   0 2px 8px rgba(0,0,0,.08);
@@ -209,7 +207,8 @@ h1, h2, h3, h4, h5 {
     position: relative;
     min-height: 94vh;
     background:
-        linear-gradient(135deg, rgba(10,22,40,.92) 0%, rgba(198,40,40,.55) 100%),
+        /* Atualizado com os valores RGB do Cinza Chumbo (49,51,50) e Vermelho Vivo (225,34,23) */
+        linear-gradient(135deg, rgba(49,51,50,.92) 0%, rgba(225,34,23,.55) 100%),
         url('hero-bombeiros.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
@@ -221,7 +220,8 @@ h1, h2, h3, h4, h5 {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(255,111,0,.12) 0%, transparent 70%);
+        /* Atualizado com o RGB do Laranja (242,118,19) */
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(242,118,19,.12) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -258,7 +258,7 @@ h1, h2, h3, h4, h5 {
 }
 .flame-wrap {
     width: 130px;
-    filter: drop-shadow(0 0 24px rgba(255,111,0,.7));
+    filter: drop-shadow(0 0 24px rgba(242,118,19,.7)); /* Laranja */
     animation: fenixFloat 3.5s ease-in-out infinite;
 }
 .flame-svg { width: 100%; }
@@ -303,8 +303,6 @@ h1, h2, h3, h4, h5 {
     60%, 90% { opacity: 1; stroke-dashoffset: 0; }
     100%     { opacity: 0; }
 }
-
-/* add gradient defs via CSS can't — they're in SVG. The SVG above declares them. */
 
 .fenix-label {
     font-family: var(--font-display);
@@ -408,12 +406,12 @@ h1, h2, h3, h4, h5 {
 }
 .emblem-ring-1 {
     width: 220px; height: 220px;
-    border-color: rgba(198,40,40,.15);
+    border-color: rgba(225,34,23,.15); /* RGB Vermelho Vivo */
     animation-delay: 0s;
 }
 .emblem-ring-2 {
     width: 170px; height: 170px;
-    border-color: rgba(198,40,40,.25);
+    border-color: rgba(225,34,23,.25); /* RGB Vermelho Vivo */
     animation-delay: .5s;
 }
 .emblem-center {
@@ -425,7 +423,7 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     justify-content: center;
     color: var(--white);
-    box-shadow: 0 8px 32px rgba(198,40,40,.4);
+    box-shadow: 0 8px 32px rgba(225,34,23,.4); /* RGB Vermelho Vivo */
     z-index: 1;
 }
 .emblem-center i { font-size: 1.8rem; margin-bottom: 4px; }
@@ -591,7 +589,7 @@ h1, h2, h3, h4, h5 {
     font-size: 1.4rem;
     color: var(--white);
     margin-bottom: 18px;
-    box-shadow: 0 4px 12px rgba(198,40,40,.3);
+    box-shadow: 0 4px 12px rgba(225,34,23,.3); /* RGB Vermelho Vivo */
 }
 .card-atuacao h3 {
     font-size: 1.15rem;
@@ -701,7 +699,7 @@ h1, h2, h3, h4, h5 {
     justify-content: center;
     font-size: 1.8rem;
     color: var(--white);
-    box-shadow: 0 6px 20px rgba(198,40,40,.35);
+    box-shadow: 0 6px 20px rgba(225,34,23,.35); /* RGB Vermelho Vivo */
     margin-bottom: 6px;
 }
 .help-card h3 { font-size: 1.5rem; color: var(--navy); }
@@ -751,9 +749,9 @@ h1, h2, h3, h4, h5 {
     letter-spacing: .05em;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 6px 24px rgba(198,40,40,.35);
+    box-shadow: 0 6px 24px rgba(225,34,23,.35); /* RGB Vermelho Vivo */
 }
-.btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(198,40,40,.45); }
+.btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(225,34,23,.45); }
 
 /* ==========================================================
    NOTÍCIAS
@@ -996,7 +994,7 @@ h1, h2, h3, h4, h5 {
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(198,40,40,.1);
+    box-shadow: 0 0 0 3px rgba(225,34,23,.1); /* RGB Vermelho Vivo */
     background: var(--white);
 }
 .form-group textarea { resize: vertical; min-height: 120px; }
@@ -1106,7 +1104,7 @@ h1, h2, h3, h4, h5 {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(198,40,40,.5);
+    box-shadow: 0 4px 16px rgba(225,34,23,.5); /* RGB Vermelho Vivo */
     transition: var(--transition);
     opacity: 0;
     pointer-events: none;
