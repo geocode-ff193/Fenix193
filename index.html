@@ -4,211 +4,651 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundação Fênix 193 | Apoio ao CBMSE</title>
+    <meta name="description" content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- ===================== HEADER ===================== -->
     <header id="main-header">
         <div class="container nav-wrapper">
-            <div class="logo-area">
-                <!-- Espaço para a animação da Fênix descrita no PDF -->
-                <div id="fenix-animation-container">
-                    <img src="logo-final.png" alt="Logo Fundação Fênix 193" class="main-logo">
+            <a href="#" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <div class="logo-icon" aria-hidden="true">
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                        <path d="M22 4 C14 4 8 10 10 18 C12 24 8 28 6 34 C10 30 14 32 18 36 C20 38 22 40 22 40 C22 40 24 38 26 36 C30 32 34 30 38 34 C36 28 32 24 34 18 C36 10 30 4 22 4Z" fill="url(#fireGrad)" />
+                        <defs>
+                            <linearGradient id="fireGrad" x1="22" y1="4" x2="22" y2="40" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#FF8C00"/>
+                                <stop offset="50%" stop-color="#D32F2F"/>
+                                <stop offset="100%" stop-color="#8B0000"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
                 </div>
-            </div>
-            <nav id="nav-menu">
-                <button id="btn-mobile" aria-label="Menu"><span id="hamburger"></span></button>
-                <ul id="menu">
+                <div class="logo-text">
+                    <span class="logo-title">FUNDAÇÃO FÊNIX</span>
+                    <span class="logo-sub">193 · CBMSE</span>
+                </div>
+            </a>
+
+            <nav id="nav-menu" aria-label="Navegação principal">
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul id="menu" role="list">
                     <li><a href="#quem-somos">Quem Somos</a></li>
-                    <li><a href="#atuacao">Áreas de Atuação</a></li>
+                    <li><a href="#atuacao">Atuação</a></li>
                     <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#como-ajudar">Como Ajudar</a></li>
                     <li><a href="#transparencia">Transparência</a></li>
                     <li><a href="#contato">Contato</a></li>
-                    <li><a href="#colaborar" class="btn-cta-small">Quero Ajudar</a></li>
+                    <li><a href="#como-ajudar" class="btn-cta-nav"><i class="fas fa-heart"></i> Quero Ajudar</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- HERO SECTION -->
-        <section id="hero">
+
+        <!-- ===================== 1. HERO ===================== -->
+        <section id="hero" aria-label="Banner principal">
+            <div class="hero-overlay"></div>
             <div class="container hero-grid">
+
+                <!-- Animação da Fênix (chama → ave) -->
+                <div class="fenix-animation" aria-hidden="true">
+                    <div class="flame-wrap">
+                        <svg class="flame-svg" viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Chama externa -->
+                            <path class="flame-outer" d="M60 10 C30 30 15 60 20 90 C10 80 8 100 15 115 C5 105 2 130 15 145 C5 140 5 165 25 175 C20 185 35 195 60 195 C85 195 100 185 95 175 C115 165 115 140 105 145 C118 130 115 105 105 115 C112 100 110 80 100 90 C105 60 90 30 60 10Z"/>
+                            <!-- Chama interna -->
+                            <path class="flame-inner" d="M60 40 C45 55 38 75 42 95 C35 90 33 108 40 118 C32 115 30 132 42 140 C35 145 38 162 60 168 C82 162 85 145 78 140 C90 132 88 115 80 118 C87 108 85 90 78 95 C82 75 75 55 60 40Z"/>
+                            <!-- Núcleo dourado -->
+                            <ellipse class="flame-core" cx="60" cy="130" rx="15" ry="22"/>
+                            <!-- Asas da Fênix (surgem com animação) -->
+                            <path class="fenix-wing-left" d="M35 100 C10 80 2 60 15 40 C20 60 28 75 40 85"/>
+                            <path class="fenix-wing-right" d="M85 100 C110 80 118 60 105 40 C100 60 92 75 80 85"/>
+                        </svg>
+                    </div>
+                    <p class="fenix-label">FÊNIX 193</p>
+                </div>
+
                 <div class="hero-text">
+                    <div class="hero-badge"><i class="fas fa-fire"></i> Corpo de Bombeiros · Sergipe</div>
                     <h1>Apoiar quem arrisca sua vida para salvar vidas e riquezas alheias é proteger a sociedade.</h1>
                     <p>A Fundação Fênix 193 fortalece a proteção da sociedade sergipana por meio do apoio ao trabalho do Corpo de Bombeiros Militar de Sergipe e das ações de Proteção e Defesa Civil.</p>
-                    
+
                     <div class="hero-buttons">
                         <a href="#quem-somos" class="btn-hero">Conheça a Fundação</a>
-                        <a href="#colaborar" class="btn-hero">Apoie nossos projetos</a>
-                        <a href="#colaborar" class="btn-hero btn-highlight">Faça uma doação</a>
-                        <a href="#instituidores" class="btn-hero">Instituidores</a>
-                        <a href="#apoiadores" class="btn-hero">Apoiadores</a>
-                        <a href="#" class="btn-hero social-btn"><i class="fab fa-instagram"></i> Redes Sociais</a>
+                        <a href="#projetos"   class="btn-hero">Apoie nossos projetos</a>
+                        <a href="#como-ajudar" class="btn-hero btn-fire">
+                            <i class="fas fa-hand-holding-heart"></i> Faça uma Doação
+                        </a>
+                        <a href="#instituidores" class="btn-hero" id="link-instituidores">Instituidores</a>
+                        <a href="#apoiadores"    class="btn-hero" id="link-apoiadores">Apoiadores</a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="btn-hero btn-social">
+                            <i class="fab fa-instagram"></i> Redes Sociais
+                        </a>
                     </div>
                 </div>
+
+            </div>
+            <div class="hero-scroll-hint" aria-hidden="true">
+                <span>Role para explorar</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </section>
 
-        <!-- QUEM SOMOS -->
-        <section id="quem-somos" class="section-padding">
+        <!-- ===================== 2. QUEM SOMOS ===================== -->
+        <section id="quem-somos" class="section-padding reveal">
             <div class="container">
-                <div class="content-box">
+                <div class="section-header">
+                    <span class="section-label">A Organização</span>
                     <h2>Quem Somos</h2>
-                    <p>A Fundação Fênix 193 é uma organização sem fins lucrativos criada com o propósito de apoiar, valorizar e fortalecer as ações do Corpo de Bombeiros Militar de Sergipe e da Proteção e Defesa Civil. Atuamos promovendo iniciativas que contribuem para a melhoria da estrutura operacional, qualificação profissional e desenvolvimento de projetos sociais.</p>
-                    <p><strong>Nosso compromisso é com a proteção da vida, com a sociedade e com aqueles que dedicam suas vidas a salvar outras.</strong></p>
-                    <button class="btn-outline" onclick="toggleDiretoria()">Conselhos e Presidente de Honra</button>
-                    
-                    <!-- Div oculta para Detalhes da Diretoria -->
-                    <div id="diretoria-info" class="hidden-info">
-                        <h3>Estrutura Organizacional</h3>
-                        <p>Presidente de Honra: Cel Carlos Magno de Oliveira</p>
-                        <p>Conselho de Curadores: Presidido pelo Cel Reginaldo Moura</p>
-                        <a href="#" class="link-red">Saiba mais sobre nossa equipe →</a>
+                    <div class="section-bar"></div>
+                </div>
+
+                <div class="grid-2 quem-somos-grid">
+                    <div class="qs-text">
+                        <p>A <strong>Fundação Fênix 193</strong> é uma organização sem fins lucrativos criada com o propósito de apoiar, valorizar e fortalecer as ações do Corpo de Bombeiros Militar de Sergipe e da Proteção e Defesa Civil.</p>
+                        <p>Atuamos promovendo iniciativas que contribuem para a melhoria da estrutura operacional, qualificação profissional e desenvolvimento de projetos sociais que impactam diretamente a comunidade sergipana.</p>
+                        <p><strong>Nosso compromisso é com a proteção da vida, com a sociedade e com aqueles que dedicam suas vidas a salvar outras.</strong></p>
+                        <button class="btn-outline toggle-diretoria-btn" aria-expanded="false" aria-controls="diretoria-info">
+                            <i class="fas fa-users"></i> Conselhos e Presidente de Honra
+                            <i class="fas fa-chevron-down toggle-icon"></i>
+                        </button>
+                    </div>
+                    <div class="qs-visual" aria-hidden="true">
+                        <div class="qs-emblem">
+                            <div class="emblem-ring emblem-ring-1"></div>
+                            <div class="emblem-ring emblem-ring-2"></div>
+                            <div class="emblem-center">
+                                <i class="fas fa-fire-flame-curved"></i>
+                                <span>193</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Diretoria — expandível -->
+                <div id="diretoria-info" class="diretoria-panel" hidden aria-live="polite">
+                    <h3><i class="fas fa-star"></i> Estrutura Organizacional</h3>
+                    <div class="grid-4 cards-diretoria">
+                        <!-- Presidente de Honra -->
+                        <div class="card-membro">
+                            <div class="membro-avatar" aria-label="Foto">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="membro-info">
+                                <span class="membro-cargo">Presidente de Honra</span>
+                                <strong class="membro-nome">Cel Carlos Magno de Oliveira</strong>
+                            </div>
+                        </div>
+                        <!-- Conselho de Curadores -->
+                        <div class="card-membro">
+                            <div class="membro-avatar" aria-label="Foto">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="membro-info">
+                                <span class="membro-cargo">Conselho de Curadores</span>
+                                <strong class="membro-nome">Cel Reginaldo Moura</strong>
+                                <small>Presidente do Conselho</small>
+                            </div>
+                        </div>
+                        <!-- Conselho Executivo -->
+                        <div class="card-membro">
+                            <div class="membro-avatar" aria-label="Foto">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="membro-info">
+                                <span class="membro-cargo">Conselho Executivo</span>
+                                <strong class="membro-nome">[A Definir]</strong>
+                                <small>Presidente Executivo</small>
+                            </div>
+                        </div>
+                        <!-- Conselho Fiscal -->
+                        <div class="card-membro">
+                            <div class="membro-avatar" aria-label="Foto">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="membro-info">
+                                <span class="membro-cargo">Conselho Fiscal</span>
+                                <strong class="membro-nome">[A Definir]</strong>
+                                <small>Presidente Fiscal</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- NÚMEROS QUE IMPACTAM -->
-        <section class="section-padding bg-navy text-white">
+        <!-- ===================== 3. NÚMEROS QUE IMPACTAM ===================== -->
+        <section id="stats" class="section-padding stats-section reveal" aria-label="Estatísticas de impacto">
             <div class="container">
-                <h2 class="text-center">Números que Impactam</h2>
-                <p class="text-center">Resultados que refletem nosso compromisso com a sociedade:</p>
+                <div class="section-header light">
+                    <span class="section-label">Resultados</span>
+                    <h2>Números que Impactam</h2>
+                    <div class="section-bar"></div>
+                </div>
                 <div class="grid-4 stats-container">
-                    <div class="stat-item">
-                        <span class="counter" data-target="5000">0</span>
+                    <div class="stat-item" data-target="5000">
+                        <div class="stat-icon"><i class="fas fa-people-group"></i></div>
+                        <span class="counter" aria-live="polite">0</span>
                         <p>Pessoas Beneficiadas</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="counter" data-target="15">0</span>
+                    <div class="stat-item" data-target="15">
+                        <div class="stat-icon"><i class="fas fa-clipboard-list"></i></div>
+                        <span class="counter" aria-live="polite">0</span>
                         <p>Projetos Realizados</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="counter" data-target="800">0</span>
+                    <div class="stat-item" data-target="800">
+                        <div class="stat-icon"><i class="fas fa-helmet-safety"></i></div>
+                        <span class="counter" aria-live="polite">0</span>
                         <p>Bombeiros Apoiados</p>
                     </div>
-                    <div class="stat-item">
-                        <span class="counter" data-target="45">0</span>
+                    <div class="stat-item" data-target="45">
+                        <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <span class="counter" aria-live="polite">0</span>
                         <p>Ações Educativas</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ÁREAS DE ATUAÇÃO -->
-        <section id="atuacao" class="section-padding bg-light">
+        <!-- ===================== 4. ÁREAS DE ATUAÇÃO ===================== -->
+        <section id="atuacao" class="section-padding reveal">
             <div class="container">
-                <h2 class="text-center">Áreas de Atuação</h2>
-                <div class="grid-4">
-                    <div class="card-simple">
-                        <h3>1. Apoio Operacional</h3>
-                        <p>Captação de recursos para equipamentos e infraestrutura de resposta a desastres.</p>
+                <div class="section-header">
+                    <span class="section-label">O que fazemos</span>
+                    <h2>Áreas de Atuação</h2>
+                    <div class="section-bar"></div>
+                </div>
+                <div class="grid-4 atuacao-grid">
+                    <div class="card-atuacao">
+                        <div class="card-icon-wrap">
+                            <i class="fas fa-truck-medical"></i>
+                        </div>
+                        <h3>Apoio Operacional</h3>
+                        <p>Captação de recursos para equipamentos, viaturas e infraestrutura de resposta a desastres e emergências.</p>
                     </div>
-                    <div class="card-simple">
-                        <h3>2. Capacitação</h3>
-                        <p>Promoção de cursos e treinamentos contínuos para excelência profissional.</p>
+                    <div class="card-atuacao">
+                        <div class="card-icon-wrap">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Capacitação e Treinamento</h3>
+                        <p>Promoção de cursos e treinamentos contínuos para excelência profissional dos bombeiros e da sociedade.</p>
                     </div>
-                    <div class="card-simple">
-                        <h3>3. Projetos Sociais</h3>
-                        <p>Ações educativas que impactam a comunidade, promovendo cidadania.</p>
+                    <div class="card-atuacao">
+                        <div class="card-icon-wrap">
+                            <i class="fas fa-hands-holding-child"></i>
+                        </div>
+                        <h3>Projetos Sociais</h3>
+                        <p>Ações educativas e formativas que impactam a comunidade, promovendo cidadania, disciplina e saúde.</p>
                     </div>
-                    <div class="card-simple">
-                        <h3>4. Prevenção</h3>
-                        <p>Campanhas de conscientização sobre segurança e proteção à vida.</p>
+                    <div class="card-atuacao">
+                        <div class="card-icon-wrap">
+                            <i class="fas fa-shield-halved"></i>
+                        </div>
+                        <h3>Prevenção e Conscientização</h3>
+                        <p>Campanhas de conscientização sobre segurança, prevenção de incêndios e proteção à vida em toda Sergipe.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROJETOS EM DESTAQUE -->
-        <section id="projetos" class="section-padding">
+        <!-- ===================== 5. PROJETOS ===================== -->
+        <section id="projetos" class="section-padding bg-light reveal">
             <div class="container">
-                <div class="flex-header">
+                <div class="section-header">
+                    <span class="section-label">Iniciativas</span>
                     <h2>Projetos em Destaque</h2>
-                    <a href="#" class="btn-outline-small">Ver todos os projetos</a>
+                    <div class="section-bar"></div>
                 </div>
-                <div class="grid-3">
-                    <div class="project-item">
-                        <h4>Bombeiro Mirim</h4>
-                        <span class="tag">Em Planejamento</span>
-                        <p>Formação cidadã de crianças com foco em disciplina e primeiros socorros.</p>
+
+                <div class="grid-3 projects-grid" id="projects-grid">
+                    <!-- Principais (sempre visíveis) -->
+                    <div class="project-card featured">
+                        <div class="project-img-area">
+                            <i class="fas fa-child-reaching"></i>
+                        </div>
+                        <div class="project-body">
+                            <span class="tag tag-planning">Em Planejamento</span>
+                            <h4>Bombeiro Mirim</h4>
+                            <p>Formação cidadã de crianças e adolescentes com foco em disciplina, valores cívicos e primeiros socorros.</p>
+                            <a href="#" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <div class="project-item">
-                        <h4>SOS Abelhas</h4>
-                        <span class="tag">Em Planejamento</span>
-                        <p>Aquisição de equipamentos e insumos para o projeto SOS Abelhas.</p>
+
+                    <div class="project-card featured">
+                        <div class="project-img-area">
+                            <i class="fas fa-truck-medical"></i>
+                        </div>
+                        <div class="project-body">
+                            <span class="tag tag-active">Em Andamento</span>
+                            <h4>Apoio Operacional</h4>
+                            <p>Captação e doação de equipamentos, EPIs, viaturas e itens essenciais para as operações do CBMSE.</p>
+                            <a href="#" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <div class="project-item">
-                        <h4>Brigada de Incêndio</h4>
-                        <span class="tag">Curso</span>
-                        <p>Capacitação especializada para o público civil e brigadistas.</p>
+
+                    <div class="project-card featured">
+                        <div class="project-img-area">
+                            <i class="fas fa-bee"></i>
+                        </div>
+                        <div class="project-body">
+                            <span class="tag tag-planning">Em Planejamento</span>
+                            <h4>SOS Abelhas</h4>
+                            <p>Aquisição de equipamentos especializados e insumos para o projeto de manejo e resgate de enxames do CBMSE.</p>
+                            <a href="#" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
+
+                    <!-- Extras (ocultos por padrão) -->
+                    <div class="project-card extra hidden">
+                        <div class="project-img-area">
+                            <i class="fas fa-kit-medical"></i>
+                        </div>
+                        <div class="project-body">
+                            <span class="tag tag-course">Curso</span>
+                            <h4>Primeiros Socorros</h4>
+                            <p>Cursos de primeiros socorros para a população civil, capacitando agentes multiplicadores de segurança.</p>
+                            <a href="#" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card extra hidden">
+                        <div class="project-img-area">
+                            <i class="fas fa-fire-extinguisher"></i>
+                        </div>
+                        <div class="project-body">
+                            <span class="tag tag-course">Curso</span>
+                            <h4>Brigada de Incêndio</h4>
+                            <p>Capacitação especializada para brigadistas civis e empresariais com formação técnica de excelência.</p>
+                            <a href="#" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card extra hidden">
+                        <div class="project-img-area">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="project-body">
+                            <span class="tag tag-planning">Em Planejamento</span>
+                            <h4>Defesa Civil Comunitária</h4>
+                            <p>Criação e capacitação de núcleos comunitários de proteção e defesa civil em bairros vulneráveis de Sergipe.</p>
+                            <a href="#" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects-toggle-wrap">
+                    <button id="btn-toggle-projects" class="btn-outline" aria-expanded="false">
+                        <i class="fas fa-plus-circle" id="toggle-icon"></i>
+                        <span id="toggle-label">Ver todos os projetos</span>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- TRANSPARÊNCIA -->
-        <section id="transparencia" class="section-padding bg-light">
+        <!-- ===================== 6. COMO AJUDAR ===================== -->
+        <section id="como-ajudar" class="section-padding reveal">
             <div class="container">
-                <h2>Transparência</h2>
-                <p>Informações completas sobre nossas atividades e prestação de contas.</p>
-                <div class="transparency-links">
-                    <a href="#"><i class="fas fa-file-pdf"></i> Prestação de Contas</a>
-                    <a href="#"><i class="fas fa-file-pdf"></i> Estatuto Social</a>
-                    <a href="#"><i class="fas fa-file-pdf"></i> Editais</a>
-                    <a href="#"><i class="fas fa-file-pdf"></i> Relatórios Institucionais</a>
-                    <a href="#"><i class="fas fa-file-pdf"></i> Atas e Certidões</a>
+                <div class="section-header">
+                    <span class="section-label">Participe</span>
+                    <h2>Como Ajudar</h2>
+                    <div class="section-bar"></div>
+                </div>
+                <div class="grid-3 help-grid">
+                    <div class="help-card">
+                        <div class="help-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                        <h3>Doações</h3>
+                        <p>Contribua financeiramente com qualquer valor. Cada real faz a diferença no suporte aos bombeiros e nas ações sociais da Fundação.</p>
+                        <ul class="help-list">
+                            <li><i class="fas fa-check"></i> PIX disponível</li>
+                            <li><i class="fas fa-check"></i> Boleto bancário</li>
+                            <li><i class="fas fa-check"></i> Transferência TED/DOC</li>
+                        </ul>
+                        <a href="#" class="btn-help">Fazer Doação</a>
+                    </div>
+                    <div class="help-card help-card-featured">
+                        <div class="help-icon"><i class="fas fa-handshake"></i></div>
+                        <h3>Parcerias</h3>
+                        <p>Sua empresa pode fazer parte desta missão. Formalize uma parceria e contribua com recursos, equipamentos ou serviços para a causa.</p>
+                        <ul class="help-list">
+                            <li><i class="fas fa-check"></i> Patrocínio de projetos</li>
+                            <li><i class="fas fa-check"></i> Doação de equipamentos</li>
+                            <li><i class="fas fa-check"></i> Apoio institucional</li>
+                        </ul>
+                        <a href="#contato" class="btn-help btn-help-light">Ser Parceiro</a>
+                    </div>
+                    <div class="help-card">
+                        <div class="help-icon"><i class="fas fa-people-carry-box"></i></div>
+                        <h3>Voluntariado</h3>
+                        <p>Doe seu tempo e talento. Profissionais de diversas áreas podem contribuir com ações da Fundação e multiplicar o impacto social.</p>
+                        <ul class="help-list">
+                            <li><i class="fas fa-check"></i> Ações educativas</li>
+                            <li><i class="fas fa-check"></i> Suporte administrativo</li>
+                            <li><i class="fas fa-check"></i> Comunicação e marketing</li>
+                        </ul>
+                        <a href="#contato" class="btn-help">Ser Voluntário</a>
+                    </div>
+                </div>
+                <div class="help-cta-wrap">
+                    <a href="#contato" class="btn-primary btn-large">
+                        <i class="fas fa-heart"></i> Quero Ajudar Agora
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- CONTATO -->
-        <section id="contato" class="section-padding">
-            <div class="container grid-2">
-                <div>
-                    <h2>Entre em contato</h2>
-                    <p>Tem dúvidas ou deseja colaborar? Fale conosco.</p>
-                    <ul class="contact-list">
-                        <li><strong>Telefone:</strong> (79) XXXX-XXXX</li>
-                        <li><strong>E-mail:</strong> contato@fundacaofenix193.org.br</li>
-                        <li><strong>Endereço:</strong> Aracaju/SE</li>
-                    </ul>
+        <!-- ===================== 7. NOTÍCIAS ===================== -->
+        <section id="noticias" class="section-padding bg-light reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Acontecimentos</span>
+                    <h2>Últimas Notícias</h2>
+                    <div class="section-bar"></div>
+                    <p class="section-desc">Acompanhe as ações da Fundação e do Corpo de Bombeiros de Sergipe.</p>
                 </div>
-                <form id="contact-form" class="form-style">
-                    <input type="text" placeholder="Seu Nome" required>
-                    <input type="email" placeholder="Seu E-mail" required>
-                    <textarea placeholder="Sua Mensagem" rows="5"></textarea>
-                    <button type="submit" class="btn-primary">Enviar Mensagem</button>
-                </form>
+
+                <!--
+                    LÓGICA JS: Feed Automático (futura integração)
+                    -----------------------------------------------
+                    Para automatizar com notícias do CBMSE e Defesa Civil, utilize uma
+                    das abordagens abaixo:
+
+                    OPÇÃO A — Cloud Function + RSS Scraper:
+                      1. Crie um Cloud Function (Firebase) que roda em cron (a cada 6h)
+                      2. Acesse: https://www.cbm.se.gov.br/index.php/noticias/feed
+                      3. Faça o parse do XML RSS com xml2js ou fast-xml-parser
+                      4. Salve cada item em Firestore: collection("noticias") com campos
+                         { titulo, resumo, imagem, data, link, fonte }
+
+                    OPÇÃO B — Vercel Edge Function (sem Cloud Functions):
+                      1. Crie /api/noticias.js na Vercel
+                      2. Faça fetch do RSS e retorne JSON
+                      3. Chame o endpoint no front-end:
+                         fetch('/api/noticias').then(r => r.json())
+
+                    OPÇÃO C — Notícias manuais (curadoria):
+                      Cadastre manualmente no Firestore via painel Admin.
+                      A função fetchNews() abaixo já suporta esta abordagem.
+                -->
+
+                <div id="news-container" class="news-layout">
+                    <!-- Placeholder de carregamento -->
+                    <div class="news-skeleton featured-skeleton"></div>
+                    <div class="news-skeleton"></div>
+                    <div class="news-skeleton"></div>
+                </div>
+
+                <div class="news-footer-link">
+                    <a href="#" class="btn-outline">Ver todas as notícias <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </section>
+
+        <!-- ===================== 8. TRANSPARÊNCIA ===================== -->
+        <section id="transparencia" class="section-padding reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Ética e Responsabilidade</span>
+                    <h2>Transparência</h2>
+                    <div class="section-bar"></div>
+                </div>
+                <div class="transparency-intro">
+                    <p>A Fundação Fênix 193 é regida por princípios sólidos de ética, transparência e responsabilidade. Disponibilizamos todos os documentos institucionais para acesso público, garantindo a confiança de nossos apoiadores, parceiros e da sociedade sergipana.</p>
+                </div>
+                <div class="transparency-grid">
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Prestação de Contas</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-scroll"></i>
+                        <span>Estatuto Social</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Contratos</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Editais</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Relatórios Institucionais</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-file-circle-check"></i>
+                        <span>Atas e Certidões</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificações</span>
+                    </a>
+                    <a href="#" class="transp-btn">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>Política de Compliance</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 9. CONTATO ===================== -->
+        <section id="contato" class="section-padding bg-light reveal">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Fale Conosco</span>
+                    <h2>Entre em Contato</h2>
+                    <div class="section-bar"></div>
+                </div>
+                <div class="grid-2 contact-grid">
+                    <div class="contact-info">
+                        <p>Tem dúvidas, deseja colaborar ou propor uma parceria? Fale com a Fundação Fênix 193. Estamos prontos para atendê-lo.</p>
+                        <ul class="contact-list">
+                            <li>
+                                <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <strong>Telefone</strong>
+                                    <span>(79) XXXX-XXXX</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <strong>E-mail</strong>
+                                    <span>contato@fundacaofenix193.org.br</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
+                                <div>
+                                    <strong>Endereço</strong>
+                                    <span>Aracaju — Sergipe, Brasil</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="nome">Seu Nome</label>
+                            <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Seu E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="joao@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assunto">Assunto</label>
+                            <select id="assunto" name="assunto">
+                                <option value="">Selecione um assunto</option>
+                                <option value="doacao">Doação</option>
+                                <option value="parceria">Parceria Empresarial</option>
+                                <option value="voluntariado">Voluntariado</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary btn-submit">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                        </button>
+                        <p id="form-status" class="form-status" aria-live="polite" hidden></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="bg-navy text-white section-padding">
-        <div class="container grid-3">
-            <div>
-                <h4>Fundação Fênix 193</h4>
-                <p>CNPJ: [Inserir aqui]</p>
-                <p>&copy; Todos os direitos reservados.</p>
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-area footer-logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
+                                <path d="M22 4 C14 4 8 10 10 18 C12 24 8 28 6 34 C10 30 14 32 18 36 C20 38 22 40 22 40 C22 40 24 38 26 36 C30 32 34 30 38 34 C36 28 32 24 34 18 C36 10 30 4 22 4Z" fill="url(#fireGrad2)" />
+                                <defs>
+                                    <linearGradient id="fireGrad2" x1="22" y1="4" x2="22" y2="40" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#FF8C00"/>
+                                        <stop offset="100%" stop-color="#D32F2F"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-title">FUNDAÇÃO FÊNIX</span>
+                            <span class="logo-sub">193 · CBMSE</span>
+                        </div>
+                    </div>
+                    <p>Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: [Inserir aqui]</p>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#quem-somos">Quem Somos</a></li>
+                        <li><a href="#atuacao">Áreas de Atuação</a></li>
+                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#como-ajudar">Como Ajudar</a></li>
+                        <li><a href="#transparencia">Transparência</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#">Estatuto Social</a></li>
+                        <li><a href="#">Prestação de Contas</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Política de Cookies</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-social-col">
+                    <h4>Redes Sociais</h4>
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h4>Links Rápidos</h4>
-                <ul class="footer-links">
-                    <li><a href="#quem-somos">Quem Somos</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#transparencia">Transparência</a></li>
-                </ul>
-            </div>
-            <div class="social-footer">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Política de Privacidade</a>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="footer-year"></span> Fundação Fênix 193. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart" aria-label="amor" style="color:var(--red)"></i> por <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a></p>
             </div>
         </div>
     </footer>
+
+    <!-- Botão Voltar ao Topo -->
+    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script type="module" src="app.js"></script>
 </body>
