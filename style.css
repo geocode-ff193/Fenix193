@@ -353,41 +353,7 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     justify-content: center;
 }
-.emblem-ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 2px solid;
-    animation: ringPulse 3s ease-in-out infinite;
-}
-.emblem-ring-1 {
-    width: 220px; height: 220px;
-    border-color: rgba(225,34,23,.15);
-    animation-delay: 0s;
-}
-.emblem-ring-2 {
-    width: 170px; height: 170px;
-    border-color: rgba(225,34,23,.25);
-    animation-delay: .5s;
-}
-.emblem-center {
-    width: 120px; height: 120px;
-    background: linear-gradient(135deg, var(--red), var(--red-dark));
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    box-shadow: 0 8px 32px rgba(225,34,23,.4);
-    z-index: 1;
-}
-.emblem-center i { font-size: 1.8rem; margin-bottom: 4px; }
-.emblem-center span {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: .05em;
-}
+
 @keyframes ringPulse {
     0%, 100% { transform: scale(1); opacity: 1; }
     50%       { transform: scale(1.04); opacity: .6; }
