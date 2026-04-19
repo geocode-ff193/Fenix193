@@ -1,12 +1,11 @@
 :root {
-    /* ── Nova Paleta de Cores ── */
     --red:         #E12217; /* Vermelho Vivo */
     --red-dark:    #872020; /* Vermelho Escuro / Vinho */
     --red-light:   #ED4C43; /* Tom de apoio um pouco mais claro */
     --fire:        #F27613; /* Laranja */
     --amber:       #F8BA25; /* Amarelo Dourado */
     
-    --navy:        #313332; /* Cinza Chumbo (Substitui o Navy) */
+    --navy:        #313332; /* Cinza Chumbo */
     --navy-mid:    #404241; /* Cinza Chumbo Intermediário */
     --navy-light:  #505251; /* Cinza Chumbo Claro */
     
@@ -18,7 +17,6 @@
     --text:        #313332; /* Texto principal em Cinza Chumbo */
     --text-muted:  #636665; /* Texto secundário */
 
-    /* ── Variáveis de Layout ── */
     --radius:      6px;
     --radius-lg:   14px;
     --shadow-sm:   0 2px 8px rgba(0,0,0,.08);
@@ -207,7 +205,6 @@ h1, h2, h3, h4, h5 {
     position: relative;
     min-height: 94vh;
     background:
-        /* Atualizado com os valores RGB do Cinza Chumbo (49,51,50) e Vermelho Vivo (225,34,23) */
         linear-gradient(135deg, rgba(49,51,50,.92) 0%, rgba(225,34,23,.55) 100%),
         url('img/hero-bombeiros.png') center/cover no-repeat;
     display: flex;
@@ -220,7 +217,6 @@ h1, h2, h3, h4, h5 {
     position: absolute;
     inset: 0;
     background:
-        /* Atualizado com o RGB do Laranja (242,118,19) */
         radial-gradient(ellipse 60% 80% at 70% 50%, rgba(242,118,19,.12) 0%, transparent 70%);
     pointer-events: none;
 }
@@ -258,7 +254,7 @@ h1, h2, h3, h4, h5 {
 }
 .flame-wrap {
     width: 130px;
-    filter: drop-shadow(0 0 24px rgba(242,118,19,.7)); /* Laranja */
+    filter: drop-shadow(0 0 24px rgba(242,118,19,.7));
     animation: fenixFloat 3.5s ease-in-out infinite;
 }
 .flame-svg { width: 100%; }
@@ -406,12 +402,12 @@ h1, h2, h3, h4, h5 {
 }
 .emblem-ring-1 {
     width: 220px; height: 220px;
-    border-color: rgba(225,34,23,.15); /* RGB Vermelho Vivo */
+    border-color: rgba(225,34,23,.15);
     animation-delay: 0s;
 }
 .emblem-ring-2 {
     width: 170px; height: 170px;
-    border-color: rgba(225,34,23,.25); /* RGB Vermelho Vivo */
+    border-color: rgba(225,34,23,.25);
     animation-delay: .5s;
 }
 .emblem-center {
@@ -423,7 +419,7 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     justify-content: center;
     color: var(--white);
-    box-shadow: 0 8px 32px rgba(225,34,23,.4); /* RGB Vermelho Vivo */
+    box-shadow: 0 8px 32px rgba(225,34,23,.4);
     z-index: 1;
 }
 .emblem-center i { font-size: 1.8rem; margin-bottom: 4px; }
@@ -589,7 +585,7 @@ h1, h2, h3, h4, h5 {
     font-size: 1.4rem;
     color: var(--white);
     margin-bottom: 18px;
-    box-shadow: 0 4px 12px rgba(225,34,23,.3); /* RGB Vermelho Vivo */
+    box-shadow: 0 4px 12px rgba(225,34,23,.3);
 }
 .card-atuacao h3 {
     font-size: 1.15rem;
@@ -699,7 +695,7 @@ h1, h2, h3, h4, h5 {
     justify-content: center;
     font-size: 1.8rem;
     color: var(--white);
-    box-shadow: 0 6px 20px rgba(225,34,23,.35); /* RGB Vermelho Vivo */
+    box-shadow: 0 6px 20px rgba(225,34,23,.35);
     margin-bottom: 6px;
 }
 .help-card h3 { font-size: 1.5rem; color: var(--navy); }
@@ -749,7 +745,7 @@ h1, h2, h3, h4, h5 {
     letter-spacing: .05em;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: 0 6px 24px rgba(225,34,23,.35); /* RGB Vermelho Vivo */
+    box-shadow: 0 6px 24px rgba(225,34,23,.35);
 }
 .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(225,34,23,.45); }
 
@@ -994,7 +990,7 @@ h1, h2, h3, h4, h5 {
 .form-group select:focus,
 .form-group textarea:focus {
     border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(225,34,23,.1); /* RGB Vermelho Vivo */
+    box-shadow: 0 0 0 3px rgba(225,34,23,.1);
     background: var(--white);
 }
 .form-group textarea { resize: vertical; min-height: 120px; }
@@ -1104,7 +1100,7 @@ h1, h2, h3, h4, h5 {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(225,34,23,.5); /* RGB Vermelho Vivo */
+    box-shadow: 0 4px 16px rgba(225,34,23,.5);
     transition: var(--transition);
     opacity: 0;
     pointer-events: none;
