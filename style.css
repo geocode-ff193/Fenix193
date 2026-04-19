@@ -245,43 +245,6 @@ h1, h2, h3, h4, h5 {
     padding: 100px 0 80px;
 }
 
-/* Fênix Animation */
-.fenix-animation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-.flame-wrap {
-    width: 130px;
-    filter: drop-shadow(0 0 24px rgba(242,118,19,.7));
-    animation: fenixFloat 3.5s ease-in-out infinite;
-}
-.flame-svg { width: 100%; }
-
-.flame-outer {
-    fill: url(#flameOuterGrad);
-    animation: flamePulse 2.5s ease-in-out infinite;
-}
-.flame-inner {
-    fill: url(#flameInnerGrad);
-    animation: flamePulse 2s ease-in-out infinite .3s;
-}
-.flame-core {
-    fill: #FFE57F;
-    opacity: .9;
-    animation: coreGlow 1.8s ease-in-out infinite;
-}
-.fenix-wing-left, .fenix-wing-right {
-    stroke: var(--amber);
-    stroke-width: 3;
-    fill: none;
-    stroke-linecap: round;
-    opacity: 0;
-    animation: wingsAppear 3s ease-in-out infinite 1s;
-}
-.fenix-wing-right { animation-delay: 1.15s; }
-
 @keyframes fenixFloat {
     0%, 100% { transform: translateY(0); }
     50%       { transform: translateY(-12px); }
@@ -300,13 +263,9 @@ h1, h2, h3, h4, h5 {
     100%     { opacity: 0; }
 }
 
-.fenix-label {
-    font-family: var(--font-display);
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .22em;
-    color: var(--amber);
-    text-transform: uppercase;
+.hero-img img{
+    max-width: 100%;
+    display:grid
 }
 
 /* Hero Text */
@@ -1148,7 +1107,6 @@ h1, h2, h3, h4, h5 {
 
     /* Hero */
     .hero-grid { grid-template-columns: 1fr; gap: 28px; padding: 80px 0 60px; text-align: center; }
-    .fenix-animation { display: none; }
     .hero-text p { max-width: 100%; }
 
     /* Diretoria */
