@@ -735,7 +735,6 @@ h1, h2, h3, h4, h5 {
 }
 .btn-help:hover { background: var(--red-dark); border-color: var(--red-dark); }
 
-.help-cta-wrap { text-align: center; margin-top: 52px; }
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -755,7 +754,6 @@ h1, h2, h3, h4, h5 {
     box-shadow: 0 6px 24px rgba(198,40,40,.35);
 }
 .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(198,40,40,.45); }
-.btn-large { padding: 18px 52px; font-size: 1.1rem; }
 
 /* ==========================================================
    NOTÍCIAS
