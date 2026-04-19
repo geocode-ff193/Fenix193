@@ -959,23 +959,6 @@ h1, h2, h3, h4, h5 {
 .contact-list span { color: var(--text); font-size: .97rem; }
 
 .social-links { display: flex; gap: 12px; margin-top: 8px; }
-.social-link {
-    width: 42px; height: 42px;
-    border-radius: 50%;
-    border: 2px solid rgba(0,0,0,.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--navy);
-    font-size: 1rem;
-    transition: var(--transition);
-}
-.social-link:hover {
-    background: var(--red);
-    border-color: var(--red);
-    color: var(--white);
-    transform: translateY(-3px);
-}
 
 /* Contact Form */
 .contact-form {
