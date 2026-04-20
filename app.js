@@ -211,71 +211,7 @@ const analytics = getAnalytics(firebaseApp);
 /* =============================================================
    7. NOTÍCIAS — Plano B: Vercel Edge Function
    ============================================================= */
-async function fetchNews() {
-    const container = document.getElementById('news-container');
-    if (!container) return;
 
-    try {
-        // Chamada para a sua nova API na Vercel
-        const response = await fetch('/api/noticias');
-        
-        if (!response.ok) throw new Error('Falha na resposta da rede');
-        
-        const noticias = await response.json();
-
-        container.innerHTML = '';
-
-        if (!noticias || noticias.length === 0) {
-            container.innerHTML = `
-                <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
-                    <i class="fas fa-newspaper" style="font-size:2.5rem;opacity:.3;margin-bottom:12px;display:block"></i>
-                    <p>Nenhuma notícia disponível no momento.</p>
-                </div>`;
-            return;
-        }
-
-        noticias.forEach((item, index) => {
-            const isFirst = index === 0;
-            
-            // Formatação da data vinda do RSS
-            const data = new Date(item.data);
-            const dataFmt = data.toLocaleDateString('pt-BR', { 
-                day: '2-digit', 
-                month: 'short', 
-                year: 'numeric' 
-            });
-
-            // Lógica de Imagem: RSS do CBMSE pode não ter imagem, 
-            // então usamos o logo da fundação como fallback
-            const imgHtml = item.imagem 
-                ? `<img src="${item.imagem}" alt="${item.titulo}" class="news-img" loading="lazy">`
-                : `<div class="news-img-placeholder" style="background: var(--red-dark); display: flex; align-items: center; justify-content: center; height: 200px; color: white;">
-                    <img src="img/ff193_transp.png" alt="Fênix 193" style="width: 80px; opacity: 0.6;">
-                   </div>`;
-
-            container.innerHTML += `
-                <article class="news-card ${isFirst ? 'featured' : ''}">
-                    ${imgHtml}
-                    <div class="news-info">
-                        <span class="news-date"><i class="fas fa-calendar-alt"></i> ${dataFmt}</span>
-                        <h3>${item.titulo ?? 'Sem título'}</h3>
-                        <p>${item.resumo ? item.resumo.substring(0, 150) + '...' : ''}</p>
-                        <a href="${item.link}" target="_blank" class="news-link">
-                            Ler mais <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>`;
-        });
-
-    } catch (err) {
-        console.error('[Fênix 193] Erro ao buscar notícias via API:', err);
-        container.innerHTML = `
-            <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
-                <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:#EF5350;display:block;margin-bottom:10px"></i>
-                <p>Erro ao carregar notícias automatizadas. Tente novamente mais tarde.</p>
-            </div>`;
-    }
-}
 
 /* =============================================================
    8. FORMULÁRIO DE CONTATO
