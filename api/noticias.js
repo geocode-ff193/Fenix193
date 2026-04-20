@@ -5,7 +5,7 @@ const parser = new Parser();
 export default async function handler(req, res) {
   try {
     // Feed oficial do CBMSE (ajuste a URL se necessário)
-    const FEED_URL = 'https://www.cbm.se.gov.br/index.php/noticias/feed';
+    const FEED_URL = 'https://sedurbi.se.gov.br/noticias/feed/';
     const feed = await parser.parseURL(FEED_URL);
 
     // Retorna apenas os 3 ou 4 últimos para o layout do site
