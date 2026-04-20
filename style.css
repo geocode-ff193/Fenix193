@@ -96,11 +96,6 @@ h1, h2, h3, h4, h5 {
     border-radius: 2px;
     margin-bottom: 16px;
 }
-.section-desc {
-    color: var(--text-muted);
-    max-width: 540px;
-    margin-top: 8px;
-}
 
 /* ── Scroll Reveal ── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
