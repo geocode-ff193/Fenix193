@@ -19,27 +19,32 @@ import {
     limit,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import {
+    getAnalytics
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
 
 // ── Configuração Firebase ─────────────────────────────────────
 // Substitua pelos dados reais do seu projeto Firebase
 const firebaseConfig = {
-    apiKey:            "SUA_API_KEY",
-    authDomain:        "fundacao193.firebaseapp.com",
-    projectId:         "fundacao193",
-    storageBucket:     "fundacao193.appspot.com",
-    messagingSenderId: "000000000000",
-    appId:             "1:000000000000:web:000000000000"
+    apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+    authDomain: "fundacaofenix193.firebaseapp.com",
+    projectId: "fundacaofenix193",
+    storageBucket: "fundacaofenix193.firebasestorage.app",
+    messagingSenderId: "263835472373",
+    appId: "1:263835472373:web:492921e00e51a1e74750bc",
+    measurementId: "G-RLZ4YRBC6K"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const db          = getFirestore(firebaseApp);
+const db = getFirestore(firebaseApp);
+const analytics = getAnalytics(firebaseApp);
 
 /* =============================================================
    1. MENU MOBILE
    ============================================================= */
 (function initMobileMenu() {
     const btnMobile = document.getElementById('btn-mobile');
-    const menu      = document.getElementById('menu');
+    const menu = document.getElementById('menu');
     if (!btnMobile || !menu) return;
 
     btnMobile.addEventListener('click', () => {
@@ -112,13 +117,13 @@ const db          = getFirestore(firebaseApp);
     let started = false;
 
     const animateCounter = (el, target, duration = 1800) => {
-        const start     = performance.now();
-        const easeOut   = t => 1 - Math.pow(1 - t, 3);
+        const start = performance.now();
+        const easeOut = t => 1 - Math.pow(1 - t, 3);
 
         const step = (now) => {
-            const elapsed  = now - start;
+            const elapsed = now - start;
             const progress = Math.min(elapsed / duration, 1);
-            const value    = Math.floor(easeOut(progress) * target);
+            const value = Math.floor(easeOut(progress) * target);
 
             el.textContent = value.toLocaleString('pt-BR') + (progress === 1 ? '+' : '');
 
@@ -132,7 +137,7 @@ const db          = getFirestore(firebaseApp);
         if (entries[0].isIntersecting && !started) {
             started = true;
             document.querySelectorAll('.stat-item').forEach((item) => {
-                const target  = parseInt(item.getAttribute('data-target'), 10) || 0;
+                const target = parseInt(item.getAttribute('data-target'), 10) || 0;
                 const counter = item.querySelector('.counter');
                 if (counter) animateCounter(counter, target);
             });
@@ -146,7 +151,7 @@ const db          = getFirestore(firebaseApp);
    5. TOGGLE — DIRETORIA
    ============================================================= */
 (function initDiretoriaToggle() {
-    const btn  = document.querySelector('.toggle-diretoria-btn');
+    const btn = document.querySelector('.toggle-diretoria-btn');
     const info = document.getElementById('diretoria-info');
     if (!btn || !info) return;
 
@@ -167,10 +172,10 @@ const db          = getFirestore(firebaseApp);
    6. TOGGLE — VER MAIS PROJETOS
    ============================================================= */
 (function initProjectsToggle() {
-    const btn          = document.getElementById('btn-toggle-projects');
-    const extraCards   = document.querySelectorAll('.project-card.extra');
-    const toggleLabel  = document.getElementById('toggle-label');
-    const toggleIcon   = document.getElementById('toggle-icon');
+    const btn = document.getElementById('btn-toggle-projects');
+    const extraCards = document.querySelectorAll('.project-card.extra');
+    const toggleLabel = document.getElementById('toggle-label');
+    const toggleIcon = document.getElementById('toggle-icon');
 
     if (!btn || !extraCards.length) return;
 
@@ -199,62 +204,28 @@ const db          = getFirestore(firebaseApp);
         });
 
         toggleLabel.textContent = expanded ? 'Mostrar menos projetos' : 'Ver todos os projetos';
-        toggleIcon.className    = expanded ? 'fas fa-minus-circle' : 'fas fa-plus-circle';
+        toggleIcon.className = expanded ? 'fas fa-minus-circle' : 'fas fa-plus-circle';
     });
 })();
 
 /* =============================================================
-   7. NOTÍCIAS DO FIRESTORE
+   7. NOTÍCIAS — Plano B: Vercel Edge Function
    ============================================================= */
-
-/**
- * fetchNews()
- * Busca as 3 últimas notícias da collection "noticias" no Firestore,
- * ordenadas por data decrescente.
- *
- * Estrutura esperada do documento Firestore:
- * {
- *   titulo:  string,
- *   resumo:  string,
- *   imagem:  string (URL),
- *   data:    Timestamp,
- *   link:    string (URL externo ou página interna),
- *   fonte:   string ('cbmse' | 'defesaCivil' | 'fundacao' | etc.)
- * }
- *
- * ------------------------------------------------------------
- * FUTURA INTEGRAÇÃO AUTOMÁTICA (Feed CBMSE / Defesa Civil)
- * ------------------------------------------------------------
- * OPÇÃO A — Vercel Edge Function (sem Cloud Functions):
- *   1. Crie /api/noticias.js na Vercel
- *   2. Nessa função: fetch('https://www.cbm.se.gov.br/index.php/noticias/feed')
- *      e retorne os itens como JSON
- *   3. Aqui, substitua a query Firestore por:
- *      fetch('/api/noticias').then(r => r.json())
- *
- * OPÇÃO B — Firebase Cloud Function com Agendamento (cron):
- *   1. Crie uma função Cloud Function (functions/index.js)
- *   2. Use o scheduler do Firebase (firebase-functions/v2/scheduler)
- *   3. Acesse o RSS, faça parse com 'fast-xml-parser' (npm)
- *   4. Salve cada item em db.collection('noticias')
- *   5. O front já lê o Firestore automaticamente
- *
- * OPÇÃO C — Curadoria Manual (padrão atual):
- *   Acesse o console do Firebase → Firestore → collection "noticias"
- *   e adicione documentos manualmente com os campos acima.
- * ------------------------------------------------------------
- */
 async function fetchNews() {
     const container = document.getElementById('news-container');
     if (!container) return;
 
     try {
-        const q             = query(collection(db, 'noticias'), orderBy('data', 'desc'), limit(3));
-        const snapshot      = await getDocs(q);
+        // Chamada para a sua nova API na Vercel
+        const response = await fetch('/api/noticias');
+        
+        if (!response.ok) throw new Error('Falha na resposta da rede');
+        
+        const noticias = await response.json();
 
         container.innerHTML = '';
 
-        if (snapshot.empty) {
+        if (!noticias || noticias.length === 0) {
             container.innerHTML = `
                 <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
                     <i class="fas fa-newspaper" style="font-size:2.5rem;opacity:.3;margin-bottom:12px;display:block"></i>
@@ -263,24 +234,33 @@ async function fetchNews() {
             return;
         }
 
-        snapshot.forEach((doc, index) => {
-            const d       = doc.data();
+        noticias.forEach((item, index) => {
             const isFirst = index === 0;
-            const data    = d.data?.toDate?.() ?? new Date();
-            const dataFmt = data.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
+            
+            // Formatação da data vinda do RSS
+            const data = new Date(item.data);
+            const dataFmt = data.toLocaleDateString('pt-BR', { 
+                day: '2-digit', 
+                month: 'short', 
+                year: 'numeric' 
+            });
 
-            const imgHtml = d.imagem
-                ? `<img src="${d.imagem}" alt="${d.titulo}" class="news-img" loading="lazy">`
-                : `<div class="news-img-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`;
+            // Lógica de Imagem: RSS do CBMSE pode não ter imagem, 
+            // então usamos o logo da fundação como fallback
+            const imgHtml = item.imagem 
+                ? `<img src="${item.imagem}" alt="${item.titulo}" class="news-img" loading="lazy">`
+                : `<div class="news-img-placeholder" style="background: var(--red-dark); display: flex; align-items: center; justify-content: center; height: 200px; color: white;">
+                    <img src="img/ff193_transp.png" alt="Fênix 193" style="width: 80px; opacity: 0.6;">
+                   </div>`;
 
             container.innerHTML += `
                 <article class="news-card ${isFirst ? 'featured' : ''}">
                     ${imgHtml}
                     <div class="news-info">
                         <span class="news-date"><i class="fas fa-calendar-alt"></i> ${dataFmt}</span>
-                        <h3>${d.titulo ?? 'Sem título'}</h3>
-                        <p>${d.resumo ?? ''}</p>
-                        <a href="${d.link ?? `noticia.html?id=${doc.id}`}" class="news-link">
+                        <h3>${item.titulo ?? 'Sem título'}</h3>
+                        <p>${item.resumo ? item.resumo.substring(0, 150) + '...' : ''}</p>
+                        <a href="${item.link}" target="_blank" class="news-link">
                             Ler mais <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
@@ -288,11 +268,11 @@ async function fetchNews() {
         });
 
     } catch (err) {
-        console.error('[Fênix 193] Erro ao buscar notícias:', err);
+        console.error('[Fênix 193] Erro ao buscar notícias via API:', err);
         container.innerHTML = `
             <div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted)">
                 <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:#EF5350;display:block;margin-bottom:10px"></i>
-                <p>Erro ao carregar notícias. Tente novamente mais tarde.</p>
+                <p>Erro ao carregar notícias automatizadas. Tente novamente mais tarde.</p>
             </div>`;
     }
 }
@@ -301,7 +281,7 @@ async function fetchNews() {
    8. FORMULÁRIO DE CONTATO
    ============================================================= */
 (function initContactForm() {
-    const form   = document.getElementById('contact-form');
+    const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (!form || !status) return;
 
@@ -309,13 +289,13 @@ async function fetchNews() {
         e.preventDefault();
 
         const btn = form.querySelector('.btn-submit');
-        btn.disabled    = true;
-        btn.innerHTML   = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
 
         const payload = {
-            nome:     form.nome.value.trim(),
-            email:    form.email.value.trim(),
-            assunto:  form.assunto.value,
+            nome: form.nome.value.trim(),
+            email: form.email.value.trim(),
+            assunto: form.assunto.value,
             mensagem: form.mensagem.value.trim(),
             createdAt: serverTimestamp()
         };
@@ -324,18 +304,18 @@ async function fetchNews() {
             await addDoc(collection(db, 'contatos'), payload);
 
             status.textContent = '✔ Mensagem enviada com sucesso! Em breve entraremos em contato.';
-            status.className   = 'form-status success';
-            status.hidden      = false;
+            status.className = 'form-status success';
+            status.hidden = false;
             form.reset();
 
         } catch (err) {
             console.error('[Fênix 193] Erro ao enviar contato:', err);
             status.textContent = '✖ Falha ao enviar a mensagem. Por favor, tente novamente.';
-            status.className   = 'form-status error';
-            status.hidden      = false;
+            status.className = 'form-status error';
+            status.hidden = false;
 
         } finally {
-            btn.disabled  = false;
+            btn.disabled = false;
             btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
             setTimeout(() => { status.hidden = true; }, 6000);
         }
