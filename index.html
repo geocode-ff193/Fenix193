@@ -510,31 +510,6 @@
                     <div class="section-bar"></div>
                     <p class="section-desc">Acompanhe as ações da Fundação e do Corpo de Bombeiros de Sergipe.</p>
                 </div>
-
-                <!--
-                    LÓGICA JS: Feed Automático (futura integração)
-                    -----------------------------------------------
-                    Para automatizar com notícias do CBMSE e Defesa Civil, utilize uma
-                    das abordagens abaixo:
-
-                    OPÇÃO A — Cloud Function + RSS Scraper:
-                      1. Crie um Cloud Function (Firebase) que roda em cron (a cada 6h)
-                      2. Acesse: https://www.cbm.se.gov.br/index.php/noticias/feed
-                      3. Faça o parse do XML RSS com xml2js ou fast-xml-parser
-                      4. Salve cada item em Firestore: collection("noticias") com campos
-                         { titulo, resumo, imagem, data, link, fonte }
-
-                    OPÇÃO B — Vercel Edge Function (sem Cloud Functions):
-                      1. Crie /api/noticias.js na Vercel
-                      2. Faça fetch do RSS e retorne JSON
-                      3. Chame o endpoint no front-end:
-                         fetch('/api/noticias').then(r => r.json())
-
-                    OPÇÃO C — Notícias manuais (curadoria):
-                      Cadastre manualmente no Firestore via painel Admin.
-                      A função fetchNews() abaixo já suporta esta abordagem.
-                -->
-
                 <div id="news-container" class="news-layout">
                     <div class="news-skeleton featured-skeleton"></div>
                     <div class="news-skeleton"></div>
@@ -542,7 +517,10 @@
                 </div>
 
                 <div class="news-footer-link">
-                    <a href="#" class="btn-outline">Ver todas as notícias <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://www.cbm.se.gov.br/index.php/noticias" target="_blank" rel="noopener"
+                        class="btn-outline">
+                        Ver todas as notícias <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -663,7 +641,8 @@
             </div>
         </section>
 
-        <div data-tf-live="01KPNZKY4XY0D3CWEXY4T3YP8N"></div><script src="//embed.typeform.com/next/embed.js"></script>
+        <div data-tf-live="01KPNZKY4XY0D3CWEXY4T3YP8N"></div>
+        <script src="//embed.typeform.com/next/embed.js"></script>
 
     </main>
 
@@ -725,7 +704,8 @@
                 <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
                     <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
                     Sistema seguro e em conformidade com a <a href="https://eusougeovani.vercel.app/lgpd"
-                        target="_blank" rel="noopener">LGPD</a></p>
+                        target="_blank" rel="noopener">LGPD</a>
+                </p>
             </div>
         </div>
     </footer>
