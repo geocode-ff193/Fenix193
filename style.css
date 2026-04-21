@@ -803,7 +803,8 @@ h1, h2, h3, h4, h5 {
 .news-rss-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 75%; /* aspect ratio ~3:4 — altura proporcional à coluna */
+    height: 500px; 
+    padding-top: 0; 
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
