@@ -795,15 +795,15 @@ h1, h2, h3, h4, h5 {
 /* RSS Imageboard Grid */
 .news-rss-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
     align-items: start;
 }
 
 .news-rss-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 130%; /* aspect ratio ~3:4 — altura proporcional à coluna */
+    padding-top: 75%; /* aspect ratio ~3:4 — altura proporcional à coluna */
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
@@ -822,18 +822,17 @@ h1, h2, h3, h4, h5 {
 
 @media (max-width: 768px) {
     .news-rss-grid {
-        grid-template-columns: 1fr;
         gap: 20px;
     }
 
     .news-rss-wrapper {
-        padding-top: 150%; /* um pouco mais alto em mobile portrait */
+        padding-top: 110%;
     }
 }
 
 @media (max-width: 480px) {
     .news-rss-wrapper {
-        padding-top: 170%;
+        padding-top: 140%;
     }
 }
 /* Skeletons */
