@@ -1,0 +1,94 @@
+rules_version = '2';
+
+// ============================================================
+//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules
+//  Padrão: coleção `admins/{uid}` como fonte de verdade.
+//  Para adicionar um admin: crie um documento em `admins`
+//  cujo ID seja o UID do utilizador no Firebase Auth.
+//  Exemplo (Console Firebase):
+//    admins/ABC123UID → { email: "admin@fenix.org", name: "Admin" }
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Função auxiliar: verifica se o utilizador autenticado é admin ──
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // ── Validação básica de campos de contacto ──
+    function isValidContact() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['nome', 'email', 'mensagem'])
+          && data.nome is string  && data.nome.size() > 0
+          && data.email is string && data.email.matches('.*@.*\\..*')
+          && data.mensagem is string && data.mensagem.size() > 0;
+    }
+
+    // ── Validação de documento de transparência ──
+    function isValidTransparencyDoc() {
+      let data = request.resource.data;
+      let validCategories = [
+        'Prestação de Contas', 'Relatórios Institucionais',
+        'Estatuto Social', 'Certidões', 'Contratos', 'Editais', 'Atas'
+      ];
+      return data.keys().hasAll(['nome', 'link', 'categoria', 'createdAt'])
+          && data.nome is string && data.nome.size() > 0
+          && data.link is string && data.link.size() > 0
+          && data.categoria in validCategories;
+    }
+
+    // ── Validação de notícia ──
+    function isValidNews() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['titulo', 'autor', 'corpo', 'createdAt'])
+          && data.titulo is string && data.titulo.size() > 0
+          && data.autor  is string && data.autor.size()  > 0
+          && data.corpo  is string && data.corpo.size()  > 0;
+    }
+
+    // ==========================================================
+    // ADMINS — leitura só pelo próprio uid; escrita só via Console
+    // ==========================================================
+    match /admins/{uid} {
+      allow read:  if isSignedIn() && request.auth.uid == uid;
+      allow write: if false; // Gerenciado exclusivamente pelo Firebase Console
+    }
+
+    // ==========================================================
+    // CONTACTS — criação pública; leitura/update/delete só admin
+    // ==========================================================
+    match /contacts/{docId} {
+      allow create: if isValidContact();
+      allow read:   if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ==========================================================
+    // TRANSPARENCY_DOCS — leitura pública; escrita só admin
+    // ==========================================================
+    match /transparency_docs/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidTransparencyDoc();
+      allow update: if isAdmin() && isValidTransparencyDoc();
+      allow delete: if isAdmin();
+    }
+
+    // ==========================================================
+    // NEWS — leitura pública; escrita só admin
+    // ==========================================================
+    match /news/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidNews();
+      allow update: if isAdmin() && isValidNews();
+      allow delete: if isAdmin();
+    }
+  }
+}
