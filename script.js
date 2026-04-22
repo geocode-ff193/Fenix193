@@ -190,13 +190,75 @@ const analytics = getAnalytics(firebaseApp);
 /* =============================================================
    7. NOTÍCIAS — Plano B: Vercel Edge Function
    ============================================================= */
+(function initHomeNews() {
+    const grid = document.getElementById('home-news-grid');
+    if (!grid) return;
 
+    function fmtDate(ts) {
+        if (!ts) return '';
+        const d = ts.toDate ? ts.toDate() : new Date(ts);
+        return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function escHtml(s) {
+        return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    async function fetchHomeNews() {
+        try {
+            const q    = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(2));
+            const snap = await getDocs(q);
+
+            grid.innerHTML = '';
+
+            if (snap.empty) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:48px 24px;color:var(--text-muted);">
+                        <i class="fas fa-newspaper" style="font-size:2rem;opacity:.2;display:block;margin-bottom:12px;"></i>
+                        <p>Nenhuma notícia publicada ainda. Fique atento!</p>
+                    </div>`;
+                return;
+            }
+
+            snap.forEach(d => {
+                const n = d.data();
+                const card = document.createElement('a');
+                card.className = 'news-home-card';
+                card.href      = `news.html?noticia=${d.id}`;
+                card.setAttribute('aria-label', `Ler notícia: ${escHtml(n.titulo)}`);
+                card.innerHTML = `
+                    <div style="overflow:hidden;">
+                        ${n.imagemUrl
+                            ? `<img class="news-home-img" src="${escHtml(n.imagemUrl)}" alt="${escHtml(n.titulo)}" loading="lazy">`
+                            : `<div class="news-home-img-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`}
+                    </div>
+                    <div class="news-home-body">
+                        <div class="news-home-meta">
+                            <span><i class="fas fa-calendar-days"></i> ${fmtDate(n.createdAt)}</span>
+                            <span><i class="fas fa-user"></i> ${escHtml(n.autor)}</span>
+                        </div>
+                        <h3 class="news-home-title">${escHtml(n.titulo)}</h3>
+                        <p class="news-home-excerpt">${escHtml(n.corpo)}</p>
+                        <span class="news-home-link">Ler mais <i class="fas fa-arrow-right"></i></span>
+                    </div>`;
+                grid.appendChild(card);
+            });
+
+        } catch (e) {
+            console.error('[Fênix 193] Erro ao carregar notícias home:', e);
+            grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">
+                <p>Não foi possível carregar as notícias.</p></div>`;
+        }
+    }
+
+    fetchHomeNews();
+})();
 
 /* =============================================================
    8. FORMULÁRIO DE CONTATO
    ============================================================= */
 (function initContactForm() {
-    const form = document.getElementById('contact-form');
+    const form   = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (!form || !status) return;
 
@@ -205,18 +267,32 @@ const analytics = getAnalytics(firebaseApp);
 
         const btn = form.querySelector('.btn-submit');
         btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando…';
+
+        const telefoneEl = form.querySelector('#telefone');
 
         const payload = {
-            nome: form.nome.value.trim(),
-            email: form.email.value.trim(),
-            assunto: form.assunto.value,
+            nome:     form.nome.value.trim(),
+            email:    form.email.value.trim(),
+            assunto:  form.assunto?.value  || '',
             mensagem: form.mensagem.value.trim(),
+            ...(telefoneEl && { telefone: telefoneEl.value.trim() }),
+            read:     false,           // flag para admin saber se já leu
             createdAt: serverTimestamp()
         };
 
+        // Basic validation
+        if (!payload.nome || !payload.email || !payload.mensagem) {
+            status.textContent = '⚠ Preencha todos os campos obrigatórios.';
+            status.className = 'form-status error';
+            status.hidden = false;
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
+            return;
+        }
+
         try {
-            await addDoc(collection(db, 'contatos'), payload);
+            await addDoc(collection(db, 'contacts'), payload);
 
             status.textContent = '✔ Mensagem enviada com sucesso! Em breve entraremos em contato.';
             status.className = 'form-status success';
@@ -225,7 +301,7 @@ const analytics = getAnalytics(firebaseApp);
 
         } catch (err) {
             console.error('[Fênix 193] Erro ao enviar contato:', err);
-            status.textContent = '✖ Falha ao enviar a mensagem. Por favor, tente novamente.';
+            status.textContent = '✖ Falha ao enviar. Por favor, tente novamente.';
             status.className = 'form-status error';
             status.hidden = false;
 
@@ -281,6 +357,7 @@ const analytics = getAnalytics(firebaseApp);
    INICIALIZAÇÃO
    ============================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-    fetchNews();
+    initHomeNews();
+    initContactForm();
     console.log('%c🔥 Fundação Fênix 193 — Sistema iniciado', 'color:#FF6F00;font-weight:bold;font-size:13px');
 });

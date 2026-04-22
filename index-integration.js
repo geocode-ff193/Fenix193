@@ -4,7 +4,7 @@
  *
  *  Substitui o script.js (ou acrescenta ao final) com:
  *  1. Notícias: exibe as 2 mais recentes da coleção `news`
- *  2. Formulário: envia contactos para a coleção `contacts`
+ *  2. Formulário: envia contatos para a coleção `contacts`
  *
  *  NOTA: Esta integração substitui o bloco RSS iframes e o
  *  envio para `contatos`. Veja as instruções de HTML abaixo.
@@ -147,7 +147,7 @@ import {
 })();
 
 /* =============================================================
-   FORMULÁRIO DE CONTACTO
+   FORMULÁRIO DE CONTATO
    ─────────────────────────────────────────────────────────────
    IMPORTANTE: O formulário em index.html usa o id `contact-form`.
    Este módulo SUBSTITUI o bloco de formulário existente em script.js
@@ -195,13 +195,13 @@ import {
         try {
             await addDoc(collection(db, 'contacts'), payload);
 
-            status.textContent = '✔ Mensagem enviada com sucesso! Em breve entraremos em contacto.';
+            status.textContent = '✔ Mensagem enviada com sucesso! Em breve entraremos em contato.';
             status.className = 'form-status success';
             status.hidden = false;
             form.reset();
 
         } catch (err) {
-            console.error('[Fênix 193] Erro ao enviar contacto:', err);
+            console.error('[Fênix 193] Erro ao enviar contato:', err);
             status.textContent = '✖ Falha ao enviar. Por favor, tente novamente.';
             status.className = 'form-status error';
             status.hidden = false;

@@ -1,171 +1,377 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/img/favicon-96x96.png" sizes="96x96" />
     <title>Painel Admin — Fundação Fênix 193</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         :root {
-            --red:        #E12217;
-            --red-dark:   #872020;
-            --fire:       #F27613;
-            --amber:      #F8BA25;
-            --navy:       #313332;
-            --navy-mid:   #404241;
+            --red: #E12217;
+            --red-dark: #872020;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
             --navy-light: #505251;
-            --white:      #FFFFFF;
-            --off-white:  #F4F3F0;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
             --gray-light: #E8E5DE;
-            --gray:       #9CA3AF;
-            --text:       #313332;
+            --gray: #9CA3AF;
+            --text: #313332;
             --text-muted: #636665;
-            --radius:     6px;
-            --radius-lg:  14px;
-            --shadow-sm:  0 2px 8px rgba(0,0,0,.08);
-            --shadow-md:  0 6px 24px rgba(0,0,0,.12);
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
             --transition: 0.25s ease;
             --font-display: 'Barlow Condensed', sans-serif;
-            --font-body:    'Barlow', sans-serif;
+            --font-body: 'Barlow', sans-serif;
 
             /* App-specific */
             --sidebar-w: 260px;
-            --header-h:  64px;
-            --green:     #22C55E;
-            --green-bg:  #F0FDF4;
+            --header-h: 64px;
+            --green: #22C55E;
+            --green-bg: #F0FDF4;
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); color: var(--text); background: var(--off-white); }
-        img  { max-width: 100%; display: block; }
-        a    { color: inherit; text-decoration: none; }
-        ul   { list-style: none; }
-        h1,h2,h3,h4 { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .03em; }
-        button { cursor: pointer; font-family: var(--font-body); }
-        input, textarea, select { font-family: var(--font-body); }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: var(--off-white);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: .03em;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        input,
+        textarea,
+        select {
+            font-family: var(--font-body);
+        }
 
         /* ── TOAST ── */
         #toast-container {
-            position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-            display: flex; flex-direction: column; gap: 10px;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
+
         .toast {
-            padding: 14px 20px; border-radius: var(--radius-lg);
-            background: var(--navy); color: var(--white);
-            font-size: .9rem; font-weight: 500;
+            padding: 14px 20px;
+            border-radius: var(--radius-lg);
+            background: var(--navy);
+            color: var(--white);
+            font-size: .9rem;
+            font-weight: 500;
             box-shadow: var(--shadow-md);
-            display: flex; align-items: center; gap: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             animation: toastIn .3s ease;
             max-width: 340px;
         }
-        .toast.success { background: #15803D; }
-        .toast.error   { background: var(--red-dark); }
-        @keyframes toastIn { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+
+        .toast.success {
+            background: #15803D;
+        }
+
+        .toast.error {
+            background: var(--red-dark);
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
 
         /* =============================================
            LOGIN SCREEN
         ============================================= */
         #login-screen {
             min-height: 100vh;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background:
-                linear-gradient(135deg, rgba(49,51,50,.96) 0%, rgba(135,32,32,.8) 100%),
+                linear-gradient(135deg, rgba(49, 51, 50, .96) 0%, rgba(135, 32, 32, .8) 100%),
                 url('img/hero-bombeiros.png') center/cover no-repeat;
             padding: 24px;
         }
+
         .login-card {
             background: var(--white);
             border-radius: 20px;
             padding: 52px 44px;
-            width: 100%; max-width: 420px;
-            box-shadow: 0 24px 80px rgba(0,0,0,.35);
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
             text-align: center;
         }
+
         .login-logo {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 32px;
         }
-        .login-logo img { width: 60px; height: 60px; }
-        .login-logo-text { text-align: left; }
-        .login-logo-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--navy); display: block; }
-        .login-logo-sub   { font-size: .7rem; letter-spacing: .12em; color: var(--red); text-transform: uppercase; font-weight: 600; }
-        .login-card h2 { font-size: 1.6rem; color: var(--navy); margin-bottom: 8px; }
-        .login-card p  { color: var(--text-muted); font-size: .93rem; margin-bottom: 36px; line-height: 1.6; }
+
+        .login-logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .login-logo-text {
+            text-align: left;
+        }
+
+        .login-logo-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            display: block;
+        }
+
+        .login-logo-sub {
+            font-size: .7rem;
+            letter-spacing: .12em;
+            color: var(--red);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .login-card h2 {
+            font-size: 1.6rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .login-card p {
+            color: var(--text-muted);
+            font-size: .93rem;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
         .login-divider {
-            display: flex; align-items: center; gap: 12px;
-            color: var(--gray); font-size: .8rem; margin: 28px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--gray);
+            font-size: .8rem;
+            margin: 28px 0;
         }
-        .login-divider::before, .login-divider::after {
-            content: ''; flex: 1; height: 1px; background: var(--gray-light);
+
+        .login-divider::before,
+        .login-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--gray-light);
         }
+
         .btn-google {
-            width: 100%; padding: 14px 20px;
+            width: 100%;
+            padding: 14px 20px;
             border: 1.5px solid var(--gray-light);
             border-radius: var(--radius-lg);
             background: var(--white);
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            font-size: 1rem; font-weight: 600; color: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
         }
-        .btn-google:hover { border-color: var(--red); box-shadow: var(--shadow-md); }
-        .btn-google svg  { width: 22px; height: 22px; flex-shrink: 0; }
+
+        .btn-google:hover {
+            border-color: var(--red);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-google svg {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
         #login-error {
-            margin-top: 18px; padding: 12px 16px;
-            background: #FFF5F5; border: 1px solid #FECACA;
-            border-radius: var(--radius); color: var(--red-dark);
-            font-size: .88rem; display: none;
+            margin-top: 18px;
+            padding: 12px 16px;
+            background: #FFF5F5;
+            border: 1px solid #FECACA;
+            border-radius: var(--radius);
+            color: var(--red-dark);
+            font-size: .88rem;
+            display: none;
         }
 
         /* =============================================
            APP SHELL (visible after login)
         ============================================= */
-        #app-shell { display: none; min-height: 100vh; }
+        #app-shell {
+            display: none;
+            min-height: 100vh;
+        }
 
         /* Top bar */
         .app-topbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            height: var(--header-h); z-index: 500;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            z-index: 500;
             background: var(--navy);
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding: 0 24px;
-            box-shadow: 0 2px 16px rgba(0,0,0,.3);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
         }
+
         .topbar-brand {
-            display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
-        .topbar-brand img { width: 36px; height: 36px; }
-        .topbar-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-        .topbar-brand-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--white); letter-spacing: .04em; }
-        .topbar-brand-sub   { font-size: .62rem; color: var(--amber); letter-spacing: .12em; font-weight: 500; text-transform: uppercase; }
+
+        .topbar-brand img {
+            width: 36px;
+            height: 36px;
+        }
+
+        .topbar-brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .topbar-brand-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: .04em;
+        }
+
+        .topbar-brand-sub {
+            font-size: .62rem;
+            color: var(--amber);
+            letter-spacing: .12em;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
         .topbar-badge {
-            font-size: .68rem; padding: 3px 10px;
-            background: rgba(225,34,23,.25); color: var(--amber);
-            border: 1px solid rgba(248,186,37,.3);
-            border-radius: 20px; font-weight: 700;
-            letter-spacing: .1em; text-transform: uppercase;
+            font-size: .68rem;
+            padding: 3px 10px;
+            background: rgba(225, 34, 23, .25);
+            color: var(--amber);
+            border: 1px solid rgba(248, 186, 37, .3);
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
         }
+
         .topbar-user {
-            display: flex; align-items: center; gap: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
+
         .topbar-avatar {
-            width: 36px; height: 36px; border-radius: 50%;
-            object-fit: cover; border: 2px solid rgba(255,255,255,.2);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, .2);
         }
-        .topbar-username { font-size: .88rem; color: rgba(255,255,255,.8); font-weight: 500; }
+
+        .topbar-username {
+            font-size: .88rem;
+            color: rgba(255, 255, 255, .8);
+            font-weight: 500;
+        }
+
         .btn-logout {
-            padding: 7px 14px; border-radius: var(--radius);
-            border: 1px solid rgba(255,255,255,.2);
-            background: transparent; color: rgba(255,255,255,.7);
-            font-size: .82rem; font-weight: 600;
+            padding: 7px 14px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: transparent;
+            color: rgba(255, 255, 255, .7);
+            font-size: .82rem;
+            font-weight: 600;
             transition: var(--transition);
         }
-        .btn-logout:hover { background: rgba(225,34,23,.3); border-color: var(--red); color: var(--white); }
+
+        .btn-logout:hover {
+            background: rgba(225, 34, 23, .3);
+            border-color: var(--red);
+            color: var(--white);
+        }
 
         /* Layout */
         .app-layout {
@@ -178,52 +384,90 @@
         .app-sidebar {
             width: var(--sidebar-w);
             background: var(--white);
-            border-right: 1px solid rgba(0,0,0,.06);
+            border-right: 1px solid rgba(0, 0, 0, .06);
             position: fixed;
             top: var(--header-h);
-            left: 0; bottom: 0;
+            left: 0;
+            bottom: 0;
             overflow-y: auto;
             padding: 28px 0;
-            box-shadow: 2px 0 12px rgba(0,0,0,.04);
+            box-shadow: 2px 0 12px rgba(0, 0, 0, .04);
             z-index: 100;
         }
+
         .sidebar-section-label {
-            font-size: .68rem; font-weight: 700;
-            letter-spacing: .14em; text-transform: uppercase;
-            color: var(--gray); padding: 0 20px 10px;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--gray);
+            padding: 0 20px 10px;
         }
-        .sidebar-nav { margin-bottom: 28px; }
+
+        .sidebar-nav {
+            margin-bottom: 28px;
+        }
+
         .sidebar-link {
-            display: flex; align-items: center; gap: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 11px 20px;
-            font-size: .93rem; font-weight: 500;
+            font-size: .93rem;
+            font-weight: 500;
             color: var(--text-muted);
             border-radius: 0;
             transition: var(--transition);
             border-left: 3px solid transparent;
             cursor: pointer;
         }
-        .sidebar-link:hover { color: var(--navy); background: var(--off-white); }
+
+        .sidebar-link:hover {
+            color: var(--navy);
+            background: var(--off-white);
+        }
+
         .sidebar-link.active {
-            color: var(--red); background: rgba(225,34,23,.06);
-            border-left-color: var(--red); font-weight: 600;
+            color: var(--red);
+            background: rgba(225, 34, 23, .06);
+            border-left-color: var(--red);
+            font-weight: 600;
         }
-        .sidebar-link i { width: 18px; text-align: center; font-size: .95rem; }
+
+        .sidebar-link i {
+            width: 18px;
+            text-align: center;
+            font-size: .95rem;
+        }
+
         .sidebar-badge {
-            margin-left: auto; background: var(--red); color: var(--white);
-            font-size: .65rem; font-weight: 700; border-radius: 20px;
-            padding: 2px 7px; display: none;
+            margin-left: auto;
+            background: var(--red);
+            color: var(--white);
+            font-size: .65rem;
+            font-weight: 700;
+            border-radius: 20px;
+            padding: 2px 7px;
+            display: none;
         }
+
         .sidebar-back {
             margin: 20px 14px 0;
-            display: flex; align-items: center; gap: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             padding: 10px 14px;
             border: 1px solid var(--gray-light);
             border-radius: var(--radius);
-            font-size: .85rem; color: var(--text-muted);
+            font-size: .85rem;
+            color: var(--text-muted);
             transition: var(--transition);
         }
-        .sidebar-back:hover { border-color: var(--navy); color: var(--navy); }
+
+        .sidebar-back:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
 
         /* Main content */
         .app-main {
@@ -237,126 +481,347 @@
         .page-header {
             margin-bottom: 32px;
             padding-bottom: 24px;
-            border-bottom: 1px solid rgba(0,0,0,.07);
-            display: flex; align-items: flex-start; justify-content: space-between;
-            gap: 16px; flex-wrap: wrap;
+            border-bottom: 1px solid rgba(0, 0, 0, .07);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
         }
-        .page-header-title { font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--navy); }
-        .page-header-sub   { color: var(--text-muted); font-size: .93rem; margin-top: 4px; font-family: var(--font-body); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+        .page-header-title {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--navy);
+        }
+
+        .page-header-sub {
+            color: var(--text-muted);
+            font-size: .93rem;
+            margin-top: 4px;
+            font-family: var(--font-body);
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+        }
 
         /* ── Sections ── */
-        .app-section { display: none; }
-        .app-section.active { display: block; }
+        .app-section {
+            display: none;
+        }
+
+        .app-section.active {
+            display: block;
+        }
 
         /* ── Dashboard cards ── */
         .dashboard-stats {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             margin-bottom: 36px;
         }
+
         .stat-card {
-            background: var(--white); border-radius: var(--radius-lg);
-            padding: 24px 22px; box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0,0,0,.05);
-            display: flex; align-items: center; gap: 16px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px 22px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, .05);
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
+
         .stat-card-icon {
-            width: 52px; height: 52px; border-radius: var(--radius);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
-        .stat-card-icon.red    { background: rgba(225,34,23,.1); color: var(--red); }
-        .stat-card-icon.amber  { background: rgba(248,186,37,.15); color: #D97706; }
-        .stat-card-icon.navy   { background: rgba(49,51,50,.08); color: var(--navy); }
-        .stat-card-icon.green  { background: var(--green-bg); color: #16A34A; }
-        .stat-card-val { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--navy); line-height: 1; }
-        .stat-card-label { font-size: .8rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; margin-top: 3px; }
+
+        .stat-card-icon.red {
+            background: rgba(225, 34, 23, .1);
+            color: var(--red);
+        }
+
+        .stat-card-icon.amber {
+            background: rgba(248, 186, 37, .15);
+            color: #D97706;
+        }
+
+        .stat-card-icon.navy {
+            background: rgba(49, 51, 50, .08);
+            color: var(--navy);
+        }
+
+        .stat-card-icon.green {
+            background: var(--green-bg);
+            color: #16A34A;
+        }
+
+        .stat-card-val {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .stat-card-label {
+            font-size: .8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-top: 3px;
+        }
 
         /* ── Panel / Card ── */
         .panel {
-            background: var(--white); border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,.05);
-            overflow: hidden; margin-bottom: 24px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, .05);
+            overflow: hidden;
+            margin-bottom: 24px;
         }
+
         .panel-header {
-            padding: 20px 24px; border-bottom: 1px solid rgba(0,0,0,.06);
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 12px; flex-wrap: wrap;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(0, 0, 0, .06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
         }
+
         .panel-title {
-            font-family: var(--font-display); font-size: 1.1rem; color: var(--navy);
-            display: flex; align-items: center; gap: 8px;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .panel-title i { color: var(--red); }
-        .panel-body { padding: 24px; }
+
+        .panel-title i {
+            color: var(--red);
+        }
+
+        .panel-body {
+            padding: 24px;
+        }
 
         /* ── Table ── */
-        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
         .data-table th {
-            text-align: left; font-size: .72rem; font-weight: 700;
-            letter-spacing: .1em; text-transform: uppercase;
-            color: var(--text-muted); padding: 10px 14px;
+            text-align: left;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 10px 14px;
             border-bottom: 2px solid var(--gray-light);
         }
+
         .data-table td {
-            padding: 14px; border-bottom: 1px solid rgba(0,0,0,.04);
-            font-size: .9rem; color: var(--text); vertical-align: top;
+            padding: 14px;
+            border-bottom: 1px solid rgba(0, 0, 0, .04);
+            font-size: .9rem;
+            color: var(--text);
+            vertical-align: top;
         }
-        .data-table tr:hover td { background: var(--off-white); }
-        .data-table .td-name  { font-weight: 600; }
-        .data-table .td-msg   { color: var(--text-muted); max-width: 280px; }
-        .td-msg-text { 
-            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; 
-            overflow: hidden; line-clamp: 2;
+
+        .data-table tr:hover td {
+            background: var(--off-white);
         }
-        .td-date { font-size: .8rem; color: var(--gray); white-space: nowrap; }
-        .td-actions { display: flex; gap: 6px; align-items: center; white-space: nowrap; }
+
+        .data-table .td-name {
+            font-weight: 600;
+        }
+
+        .data-table .td-msg {
+            color: var(--text-muted);
+            max-width: 280px;
+        }
+
+        .td-msg-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-clamp: 2;
+        }
+
+        .td-date {
+            font-size: .8rem;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
+        .td-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            white-space: nowrap;
+        }
 
         /* ── Buttons ── */
-        .btn { 
-            display: inline-flex; align-items: center; gap: 7px;
-            padding: 10px 18px; border-radius: var(--radius);
-            font-size: .87rem; font-weight: 600; border: none;
-            transition: var(--transition); letter-spacing: .02em;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 10px 18px;
+            border-radius: var(--radius);
+            font-size: .87rem;
+            font-weight: 600;
+            border: none;
+            transition: var(--transition);
+            letter-spacing: .02em;
         }
-        .btn-sm { padding: 7px 12px; font-size: .8rem; }
-        .btn-primary { background: var(--red); color: var(--white); }
-        .btn-primary:hover { background: var(--red-dark); }
-        .btn-outline { background: transparent; border: 1.5px solid var(--gray-light); color: var(--navy); }
-        .btn-outline:hover { border-color: var(--navy); }
-        .btn-green  { background: #16A34A; color: var(--white); }
-        .btn-green:hover { background: #15803D; }
-        .btn-amber  { background: #D97706; color: var(--white); }
-        .btn-amber:hover { background: #B45309; }
-        .btn-ghost  { background: transparent; border: none; color: var(--text-muted); padding: 7px 10px; }
-        .btn-ghost:hover { color: var(--red); background: rgba(225,34,23,.06); }
-        .btn-danger { background: transparent; border: 1.5px solid #FECACA; color: var(--red); }
-        .btn-danger:hover { background: var(--red); color: var(--white); border-color: var(--red); }
-        .btn:disabled { opacity: .55; pointer-events: none; }
+
+        .btn-sm {
+            padding: 7px 12px;
+            font-size: .8rem;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--gray-light);
+            color: var(--navy);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--navy);
+        }
+
+        .btn-green {
+            background: #16A34A;
+            color: var(--white);
+        }
+
+        .btn-green:hover {
+            background: #15803D;
+        }
+
+        .btn-amber {
+            background: #D97706;
+            color: var(--white);
+        }
+
+        .btn-amber:hover {
+            background: #B45309;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 7px 10px;
+        }
+
+        .btn-ghost:hover {
+            color: var(--red);
+            background: rgba(225, 34, 23, .06);
+        }
+
+        .btn-danger {
+            background: transparent;
+            border: 1.5px solid #FECACA;
+            color: var(--red);
+        }
+
+        .btn-danger:hover {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        .btn:disabled {
+            opacity: .55;
+            pointer-events: none;
+        }
 
         /* ── Forms ── */
-        .form-grid { display: grid; gap: 18px; }
-        .form-grid-2 { grid-template-columns: 1fr 1fr; }
-        .form-row { display: flex; flex-direction: column; gap: 6px; }
-        .form-label {
-            font-size: .78rem; font-weight: 700; letter-spacing: .08em;
-            text-transform: uppercase; color: var(--navy);
+        .form-grid {
+            display: grid;
+            gap: 18px;
         }
-        .form-label span { color: var(--red); }
-        .form-input, .form-select, .form-textarea {
-            width: 100%; padding: 11px 14px;
+
+        .form-grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--navy);
+        }
+
+        .form-label span {
+            color: var(--red);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 11px 14px;
             border: 1.5px solid var(--gray-light);
             border-radius: var(--radius);
-            font-family: var(--font-body); font-size: .95rem;
-            color: var(--text); background: var(--off-white);
+            font-family: var(--font-body);
+            font-size: .95rem;
+            color: var(--text);
+            background: var(--off-white);
             transition: border-color var(--transition), box-shadow var(--transition);
             outline: none;
         }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            border-color: var(--red); background: var(--white);
-            box-shadow: 0 0 0 3px rgba(225,34,23,.08);
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--red);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(225, 34, 23, .08);
         }
-        .form-textarea { resize: vertical; min-height: 140px; }
-        .form-hint { font-size: .78rem; color: var(--gray); margin-top: 3px; }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-hint {
+            font-size: .78rem;
+            color: var(--gray);
+            margin-top: 3px;
+        }
 
         /* Image upload */
         .upload-zone {
@@ -368,601 +833,872 @@
             transition: var(--transition);
             background: var(--off-white);
         }
-        .upload-zone:hover, .upload-zone.dragover {
-            border-color: var(--red); background: rgba(225,34,23,.03);
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--red);
+            background: rgba(225, 34, 23, .03);
         }
-        .upload-zone i { font-size: 2rem; color: var(--gray); margin-bottom: 10px; }
-        .upload-zone p { font-size: .9rem; color: var(--text-muted); }
-        .upload-zone p strong { color: var(--red); }
+
+        .upload-zone i {
+            font-size: 2rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .upload-zone p {
+            font-size: .9rem;
+            color: var(--text-muted);
+        }
+
+        .upload-zone p strong {
+            color: var(--red);
+        }
+
         #img-preview {
-            margin-top: 16px; border-radius: var(--radius);
-            max-height: 200px; object-fit: cover; width: 100%;
+            margin-top: 16px;
+            border-radius: var(--radius);
+            max-height: 200px;
+            object-fit: cover;
+            width: 100%;
             display: none;
         }
+
         .upload-progress {
-            margin-top: 12px; height: 4px; border-radius: 2px;
-            background: var(--gray-light); overflow: hidden; display: none;
+            margin-top: 12px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--gray-light);
+            overflow: hidden;
+            display: none;
         }
+
         .upload-progress-bar {
-            height: 100%; background: linear-gradient(90deg, var(--red), var(--fire));
-            transition: width .3s ease; width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--red), var(--fire));
+            transition: width .3s ease;
+            width: 0;
         }
 
         /* ── Tag / badge ── */
         .tag {
-            display: inline-block; padding: 3px 10px;
-            border-radius: 20px; font-size: .7rem; font-weight: 700;
-            letter-spacing: .06em; text-transform: uppercase;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
         }
-        .tag-new      { background: rgba(248,186,37,.2); color: #B45309; }
-        .tag-read     { background: var(--gray-light); color: var(--text-muted); }
-        .tag-category { background: rgba(49,51,50,.08); color: var(--navy-light); }
+
+        .tag-new {
+            background: rgba(248, 186, 37, .2);
+            color: #B45309;
+        }
+
+        .tag-read {
+            background: var(--gray-light);
+            color: var(--text-muted);
+        }
+
+        .tag-category {
+            background: rgba(49, 51, 50, .08);
+            color: var(--navy-light);
+        }
 
         /* ── Transparency list ── */
-        .transp-list { display: flex; flex-direction: column; gap: 10px; }
+        .transp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
         .transp-item {
-            display: flex; align-items: center; gap: 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
             padding: 14px 18px;
-            background: var(--off-white); border-radius: var(--radius);
-            border: 1px solid rgba(0,0,0,.06);
+            background: var(--off-white);
+            border-radius: var(--radius);
+            border: 1px solid rgba(0, 0, 0, .06);
             transition: var(--transition);
         }
-        .transp-item:hover { border-color: var(--gray); }
-        .transp-item i { color: var(--red); font-size: 1rem; flex-shrink: 0; }
-        .transp-item-name { flex: 1; font-weight: 600; font-size: .93rem; }
-        .transp-item-cat  { font-size: .78rem; color: var(--text-muted); }
-        .transp-item-date { font-size: .78rem; color: var(--gray); white-space: nowrap; }
+
+        .transp-item:hover {
+            border-color: var(--gray);
+        }
+
+        .transp-item i {
+            color: var(--red);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .transp-item-name {
+            flex: 1;
+            font-weight: 600;
+            font-size: .93rem;
+        }
+
+        .transp-item-cat {
+            font-size: .78rem;
+            color: var(--text-muted);
+        }
+
+        .transp-item-date {
+            font-size: .78rem;
+            color: var(--gray);
+            white-space: nowrap;
+        }
 
         /* ── News list ── */
-        .news-admin-list { display: flex; flex-direction: column; gap: 12px; }
-        .news-admin-item {
-            display: flex; gap: 16px; align-items: flex-start;
-            padding: 16px 18px;
-            background: var(--off-white); border-radius: var(--radius);
-            border: 1px solid rgba(0,0,0,.06);
+        .news-admin-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
+
+        .news-admin-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px 18px;
+            background: var(--off-white);
+            border-radius: var(--radius);
+            border: 1px solid rgba(0, 0, 0, .06);
+        }
+
         .news-admin-thumb {
-            width: 70px; height: 70px; flex-shrink: 0;
-            border-radius: var(--radius); object-fit: cover;
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            border-radius: var(--radius);
+            object-fit: cover;
             background: var(--gray-light);
         }
+
         .news-admin-thumb-placeholder {
-            width: 70px; height: 70px; flex-shrink: 0;
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
             border-radius: var(--radius);
             background: linear-gradient(135deg, var(--navy-mid), var(--red-dark));
-            display: flex; align-items: center; justify-content: center;
-            color: rgba(255,255,255,.3); font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .3);
+            font-size: 1.4rem;
         }
-        .news-admin-body { flex: 1; }
-        .news-admin-title { font-family: var(--font-display); font-size: 1rem; color: var(--navy); margin-bottom: 4px; }
-        .news-admin-meta  { font-size: .8rem; color: var(--gray); display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .news-admin-body {
+            flex: 1;
+        }
+
+        .news-admin-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .news-admin-meta {
+            font-size: .8rem;
+            color: var(--gray);
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
 
         /* ── Empty state ── */
         .empty-state {
-            text-align: center; padding: 60px 24px;
+            text-align: center;
+            padding: 60px 24px;
             color: var(--text-muted);
         }
-        .empty-state i { font-size: 2.8rem; opacity: .25; margin-bottom: 14px; display: block; }
-        .empty-state p  { font-size: .95rem; }
+
+        .empty-state i {
+            font-size: 2.8rem;
+            opacity: .25;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .empty-state p {
+            font-size: .95rem;
+        }
 
         /* ── Loading spinner ── */
         .spinner {
-            display: inline-block; width: 20px; height: 20px;
-            border: 2px solid rgba(0,0,0,.1); border-top-color: var(--red);
-            border-radius: 50%; animation: spin .7s linear infinite;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, .1);
+            border-top-color: var(--red);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
 
         /* ── Modal ── */
         .modal-overlay {
-            position: fixed; inset: 0; z-index: 800;
-            background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
-            display: flex; align-items: center; justify-content: center;
-            padding: 24px; opacity: 0; pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(0, 0, 0, .5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
             transition: opacity .25s ease;
         }
-        .modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .modal {
-            background: var(--white); border-radius: var(--radius-lg);
-            padding: 32px 28px; width: 100%; max-width: 560px;
-            max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 24px 80px rgba(0,0,0,.3);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            width: 100%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .3);
             transform: translateY(20px);
             transition: transform .25s ease;
         }
-        .modal-overlay.open .modal { transform: none; }
+
+        .modal-overlay.open .modal {
+            transform: none;
+        }
+
         .modal-header {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 24px;
         }
-        .modal-title { font-size: 1.3rem; color: var(--navy); }
+
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--navy);
+        }
+
         .modal-close {
-            background: none; border: none; font-size: 1.1rem;
-            color: var(--gray); cursor: pointer; padding: 4px 8px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 4px 8px;
             transition: color var(--transition);
         }
-        .modal-close:hover { color: var(--red); }
+
+        .modal-close:hover {
+            color: var(--red);
+        }
 
         /* ── Confirm modal ── */
-        #confirm-modal .modal { max-width: 400px; text-align: center; padding: 40px 32px; }
-        #confirm-modal .modal-icon { font-size: 2.8rem; color: var(--red); margin-bottom: 16px; }
-        #confirm-modal .modal-msg  { color: var(--text-muted); font-size: .95rem; line-height: 1.6; margin-bottom: 28px; }
-        #confirm-modal .modal-actions { display: flex; gap: 12px; justify-content: center; }
+        #confirm-modal .modal {
+            max-width: 400px;
+            text-align: center;
+            padding: 40px 32px;
+        }
+
+        #confirm-modal .modal-icon {
+            font-size: 2.8rem;
+            color: var(--red);
+            margin-bottom: 16px;
+        }
+
+        #confirm-modal .modal-msg {
+            color: var(--text-muted);
+            font-size: .95rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        #confirm-modal .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
 
         /* ── Contact detail ── */
-        .contact-detail-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 18px; }
-        .contact-detail-label { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
-        .contact-detail-value { font-size: .95rem; color: var(--text); line-height: 1.6; }
-        .contact-detail-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+        .contact-detail-row {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 18px;
+        }
+
+        .contact-detail-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        .contact-detail-value {
+            font-size: .95rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .contact-detail-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
 
         /* ── Responsive ── */
         @media (max-width: 1024px) {
-            .app-sidebar { width: 220px; }
-            .app-main { margin-left: 220px; padding: 28px 28px; }
+            .app-sidebar {
+                width: 220px;
+            }
+
+            .app-main {
+                margin-left: 220px;
+                padding: 28px 28px;
+            }
         }
+
         @media (max-width: 768px) {
-            .app-sidebar { transform: translateX(-100%); width: 260px; transition: transform .3s ease; }
-            .app-sidebar.open { transform: none; }
-            .app-main { margin-left: 0; padding: 20px 16px; max-width: 100vw; }
-            .form-grid-2 { grid-template-columns: 1fr; }
-            .data-table .td-msg, .data-table .td-date { display: none; }
-            .topbar-username { display: none; }
+            .app-sidebar {
+                transform: translateX(-100%);
+                width: 260px;
+                transition: transform .3s ease;
+            }
+
+            .app-sidebar.open {
+                transform: none;
+            }
+
+            .app-main {
+                margin-left: 0;
+                padding: 20px 16px;
+                max-width: 100vw;
+            }
+
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .data-table .td-msg,
+            .data-table .td-date {
+                display: none;
+            }
+
+            .topbar-username {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<!-- ======================== LOGIN SCREEN ======================== -->
-<div id="login-screen">
-    <div class="login-card">
-        <div class="login-logo">
-            <img src="img/ff193_transp.png" alt="Logo Fênix 193">
-            <div class="login-logo-text">
-                <span class="login-logo-title">FUNDAÇÃO FÊNIX 193</span>
-                <span class="login-logo-sub">Painel Administrativo</span>
+    <!-- ======================== LOGIN SCREEN ======================== -->
+    <div id="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="img/ff193_transp.png" alt="Logo Fênix 193">
+                <div class="login-logo-text">
+                    <span class="login-logo-title">FUNDAÇÃO FÊNIX 193</span>
+                    <span class="login-logo-sub">Painel Administrativo</span>
+                </div>
             </div>
-        </div>
-        <h2>Acesso Restrito</h2>
-        <p>Área exclusiva para administradores da Fundação. Faça login com sua conta Google autorizada para continuar.</p>
-        <button id="btn-google-login" class="btn-google">
-            <!-- Google G SVG -->
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#EA4335" d="M24 9.5c3.5 0 6.3 1.3 8.3 3.4l6.2-6.1C34.9 3.2 29.8 1 24 1 14.8 1 7 6.7 3.7 14.7l7.2 5.6C12.6 14.2 17.8 9.5 24 9.5z"/>
-                <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.4-4 6.9-9.9 6.9-16.9z" />
-                <path fill="#FBBC05" d="M10.9 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.1.8-4.6l-7.2-5.6A23.9 23.9 0 0 0 .5 24c0 3.9.9 7.5 2.6 10.8l7.8-6.2z"/>
-                <path fill="#34A853" d="M24 47c5.8 0 10.7-1.9 14.2-5.1l-7.4-5.7c-2 1.3-4.5 2.1-6.8 2.1-6.2 0-11.4-4.7-13.2-11l-7.8 6.1C7 40.3 14.8 47 24 47z"/>
-            </svg>
-            Entrar com Google
-        </button>
-        <div id="login-error"><i class="fas fa-shield-halved"></i> <span id="login-error-msg">Acesso não autorizado.</span></div>
-    </div>
-</div>
-
-<!-- ======================== APP SHELL ======================== -->
-<div id="app-shell">
-
-    <!-- Top bar -->
-    <header class="app-topbar">
-        <div style="display:flex;align-items:center;gap:16px;">
-            <button id="btn-sidebar-toggle" class="btn-ghost" style="display:none;padding:8px;" aria-label="Menu">
-                <i class="fas fa-bars" style="color:var(--white);font-size:1.1rem;"></i>
+            <h2>Acesso Restrito</h2>
+            <p>Área exclusiva para administradores da Fundação. Faça login com sua conta Google autorizada para
+                continuar.</p>
+            <button id="btn-google-login" class="btn-google">
+                <!-- Google G SVG -->
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#EA4335"
+                        d="M24 9.5c3.5 0 6.3 1.3 8.3 3.4l6.2-6.1C34.9 3.2 29.8 1 24 1 14.8 1 7 6.7 3.7 14.7l7.2 5.6C12.6 14.2 17.8 9.5 24 9.5z" />
+                    <path fill="#4285F4"
+                        d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.4-4 6.9-9.9 6.9-16.9z" />
+                    <path fill="#FBBC05"
+                        d="M10.9 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.1.8-4.6l-7.2-5.6A23.9 23.9 0 0 0 .5 24c0 3.9.9 7.5 2.6 10.8l7.8-6.2z" />
+                    <path fill="#34A853"
+                        d="M24 47c5.8 0 10.7-1.9 14.2-5.1l-7.4-5.7c-2 1.3-4.5 2.1-6.8 2.1-6.2 0-11.4-4.7-13.2-11l-7.8 6.1C7 40.3 14.8 47 24 47z" />
+                </svg>
+                Entrar com Google
             </button>
-            <div class="topbar-brand">
-                <img src="img/ff193_transp.png" alt="Logo">
-                <div class="topbar-brand-text">
-                    <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
-                    <span class="topbar-brand-sub">Admin Panel</span>
-                </div>
-            </div>
-            <span class="topbar-badge"><i class="fas fa-shield-halved"></i> Admin</span>
+            <div id="login-error"><i class="fas fa-shield-halved"></i> <span id="login-error-msg">Acesso não
+                    autorizado.</span></div>
         </div>
-        <div class="topbar-user">
-            <img id="user-avatar" class="topbar-avatar" src="" alt="Avatar" style="display:none;">
-            <span id="user-name" class="topbar-username"></span>
-            <button id="btn-logout" class="btn-logout"><i class="fas fa-right-from-bracket"></i> Sair</button>
-        </div>
-    </header>
+    </div>
 
-    <div class="app-layout">
+    <!-- ======================== APP SHELL ======================== -->
+    <div id="app-shell">
 
-        <!-- Sidebar -->
-        <aside class="app-sidebar" id="app-sidebar">
-            <div class="sidebar-nav">
-                <p class="sidebar-section-label">Painel</p>
-                <a class="sidebar-link active" data-section="dashboard" tabindex="0">
-                    <i class="fas fa-gauge-high"></i> Dashboard
-                </a>
+        <!-- Top bar -->
+        <header class="app-topbar">
+            <div style="display:flex;align-items:center;gap:16px;">
+                <button id="btn-sidebar-toggle" class="btn-ghost" style="display:none;padding:8px;" aria-label="Menu">
+                    <i class="fas fa-bars" style="color:var(--white);font-size:1.1rem;"></i>
+                </button>
+                <div class="topbar-brand">
+                    <img src="img/ff193_transp.png" alt="Logo">
+                    <div class="topbar-brand-text">
+                        <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
+                        <span class="topbar-brand-sub">Admin Panel</span>
+                    </div>
+                </div>
+                <span class="topbar-badge"><i class="fas fa-shield-halved"></i> Admin</span>
             </div>
-            <div class="sidebar-nav">
-                <p class="sidebar-section-label">Gestão</p>
-                <a class="sidebar-link" data-section="contacts" tabindex="0">
-                    <i class="fas fa-envelope"></i> Contactos
-                    <span class="sidebar-badge" id="badge-contacts">0</span>
-                </a>
-                <a class="sidebar-link" data-section="transparency" tabindex="0">
-                    <i class="fas fa-folder-open"></i> Transparência
-                </a>
-                <a class="sidebar-link" data-section="news" tabindex="0">
-                    <i class="fas fa-newspaper"></i> Notícias
-                </a>
+            <div class="topbar-user">
+                <img id="user-avatar" class="topbar-avatar" src="" alt="Avatar" style="display:none;">
+                <span id="user-name" class="topbar-username"></span>
+                <button id="btn-logout" class="btn-logout"><i class="fas fa-right-from-bracket"></i> Sair</button>
             </div>
-            <a href="index.html" class="sidebar-back">
-                <i class="fas fa-arrow-left"></i> Ver site
-            </a>
-        </aside>
+        </header>
 
-        <!-- Main -->
-        <main class="app-main">
+        <div class="app-layout">
 
-            <!-- ══ DASHBOARD ══ -->
-            <section id="section-dashboard" class="app-section active">
-                <div class="page-header">
-                    <div>
-                        <h2 class="page-header-title">Dashboard</h2>
-                        <p class="page-header-sub">Visão geral do ecossistema digital da Fundação Fênix 193</p>
-                    </div>
+            <!-- Sidebar -->
+            <aside class="app-sidebar" id="app-sidebar">
+                <div class="sidebar-nav">
+                    <p class="sidebar-section-label">Painel</p>
+                    <a class="sidebar-link active" data-section="dashboard" tabindex="0">
+                        <i class="fas fa-gauge-high"></i> Dashboard
+                    </a>
                 </div>
-                <div class="dashboard-stats">
-                    <div class="stat-card">
-                        <div class="stat-card-icon red"><i class="fas fa-envelope"></i></div>
-                        <div><div class="stat-card-val" id="stat-contacts">—</div><div class="stat-card-label">Mensagens</div></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card-icon navy"><i class="fas fa-folder-open"></i></div>
-                        <div><div class="stat-card-val" id="stat-transp">—</div><div class="stat-card-label">Docs. Transparência</div></div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-card-icon amber"><i class="fas fa-newspaper"></i></div>
-                        <div><div class="stat-card-val" id="stat-news">—</div><div class="stat-card-label">Notícias</div></div>
-                    </div>
+                <div class="sidebar-nav">
+                    <p class="sidebar-section-label">Gestão</p>
+                    <a class="sidebar-link" data-section="contacts" tabindex="0">
+                        <i class="fas fa-envelope"></i> Contatos
+                        <span class="sidebar-badge" id="badge-contacts">0</span>
+                    </a>
+                    <a class="sidebar-link" data-section="transparency" tabindex="0">
+                        <i class="fas fa-folder-open"></i> Transparência
+                    </a>
+                    <a class="sidebar-link" data-section="news" tabindex="0">
+                        <i class="fas fa-newspaper"></i> Notícias
+                    </a>
                 </div>
-                <div class="panel">
-                    <div class="panel-header">
-                        <span class="panel-title"><i class="fas fa-bolt"></i> Acesso Rápido</span>
-                    </div>
-                    <div class="panel-body" style="display:flex;gap:12px;flex-wrap:wrap;">
-                        <button class="btn btn-primary" onclick="navigate('contacts')"><i class="fas fa-envelope"></i> Ver Mensagens</button>
-                        <button class="btn btn-outline" onclick="navigate('transparency')"><i class="fas fa-plus"></i> Novo Documento</button>
-                        <button class="btn btn-outline" onclick="navigate('news')"><i class="fas fa-plus"></i> Nova Notícia</button>
-                    </div>
-                </div>
-            </section>
+                <a href="index.html" class="sidebar-back">
+                    <i class="fas fa-arrow-left"></i> Ver site
+                </a>
+            </aside>
 
-            <!-- ══ CONTACTS ══ -->
-            <section id="section-contacts" class="app-section">
-                <div class="page-header">
-                    <div>
-                        <h2 class="page-header-title">Contactos</h2>
-                        <p class="page-header-sub">Mensagens recebidas pelo formulário público do site</p>
-                    </div>
-                </div>
-                <div class="panel">
-                    <div class="panel-header">
-                        <span class="panel-title"><i class="fas fa-inbox"></i> Caixa de Mensagens</span>
-                        <button class="btn btn-outline btn-sm" id="btn-refresh-contacts"><i class="fas fa-rotate-right"></i> Atualizar</button>
-                    </div>
-                    <div id="contacts-table-wrap" style="overflow-x:auto;">
-                        <div class="empty-state"><span class="spinner"></span></div>
-                    </div>
-                </div>
-            </section>
+            <!-- Main -->
+            <main class="app-main">
 
-            <!-- ══ TRANSPARENCY ══ -->
-            <section id="section-transparency" class="app-section">
-                <div class="page-header">
-                    <div>
-                        <h2 class="page-header-title">Transparência</h2>
-                        <p class="page-header-sub">Gerencie os documentos públicos da Fundação</p>
+                <!-- ══ DASHBOARD ══ -->
+                <section id="section-dashboard" class="app-section active">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Dashboard</h2>
+                            <p class="page-header-sub">Visão geral do ecossistema digital da Fundação Fênix 193</p>
+                        </div>
                     </div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
-                    <!-- Form -->
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-card-icon red"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="stat-card-val" id="stat-contacts">—</div>
+                                <div class="stat-card-label">Mensagens</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon navy"><i class="fas fa-folder-open"></i></div>
+                            <div>
+                                <div class="stat-card-val" id="stat-transp">—</div>
+                                <div class="stat-card-label">Docs. Transparência</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon amber"><i class="fas fa-newspaper"></i></div>
+                            <div>
+                                <div class="stat-card-val" id="stat-news">—</div>
+                                <div class="stat-card-label">Notícias</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel">
                         <div class="panel-header">
-                            <span class="panel-title"><i class="fas fa-plus-circle"></i> Novo Documento</span>
+                            <span class="panel-title"><i class="fas fa-bolt"></i> Acesso Rápido</span>
                         </div>
-                        <div class="panel-body">
-                            <form id="form-transp" class="form-grid">
-                                <div class="form-row">
-                                    <label class="form-label" for="transp-nome">Nome do Arquivo <span>*</span></label>
-                                    <input class="form-input" id="transp-nome" type="text" placeholder="Ex: Prestação de Contas 2024" required>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-label" for="transp-link">Link (Google Drive) <span>*</span></label>
-                                    <input class="form-input" id="transp-link" type="url" placeholder="https://drive.google.com/…" required>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-label" for="transp-cat">Categoria <span>*</span></label>
-                                    <select class="form-select" id="transp-cat" required>
-                                        <option value="">Selecione…</option>
-                                        <option>Prestação de Contas</option>
-                                        <option>Relatórios Institucionais</option>
-                                        <option>Estatuto Social</option>
-                                        <option>Certidões</option>
-                                        <option>Contratos</option>
-                                        <option>Editais</option>
-                                        <option>Atas</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary" id="btn-submit-transp">
-                                    <i class="fas fa-cloud-arrow-up"></i> Publicar Documento
-                                </button>
-                            </form>
+                        <div class="panel-body" style="display:flex;gap:12px;flex-wrap:wrap;">
+                            <button class="btn btn-primary" onclick="navigate('contacts')"><i
+                                    class="fas fa-envelope"></i> Ver Mensagens</button>
+                            <button class="btn btn-outline" onclick="navigate('transparency')"><i
+                                    class="fas fa-plus"></i> Novo Documento</button>
+                            <button class="btn btn-outline" onclick="navigate('news')"><i class="fas fa-plus"></i> Nova
+                                Notícia</button>
                         </div>
                     </div>
-                    <!-- List -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <span class="panel-title"><i class="fas fa-list"></i> Documentos Publicados</span>
-                        </div>
-                        <div class="panel-body">
-                            <div id="transp-list-wrap"><div class="empty-state"><span class="spinner"></span></div></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- ══ NEWS ══ -->
-            <section id="section-news" class="app-section">
-                <div class="page-header">
-                    <div>
-                        <h2 class="page-header-title">Notícias</h2>
-                        <p class="page-header-sub">Publique e gerencie as notícias do site</p>
+                <!-- ══ CONTACTS ══ -->
+                <section id="section-contacts" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Contatos</h2>
+                            <p class="page-header-sub">Mensagens recebidas pelo formulário público do site</p>
+                        </div>
                     </div>
-                </div>
-                <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
-                    <!-- Form -->
                     <div class="panel">
                         <div class="panel-header">
-                            <span class="panel-title" id="news-form-title"><i class="fas fa-feather-pointed"></i> Nova Notícia</span>
+                            <span class="panel-title"><i class="fas fa-inbox"></i> Caixa de Mensagens</span>
+                            <button class="btn btn-outline btn-sm" id="btn-refresh-contacts"><i
+                                    class="fas fa-rotate-right"></i> Atualizar</button>
                         </div>
-                        <div class="panel-body">
-                            <form id="form-news" class="form-grid">
-                                <input type="hidden" id="news-edit-id" value="">
-                                <div class="form-row">
-                                    <label class="form-label" for="news-titulo">Título <span>*</span></label>
-                                    <input class="form-input" id="news-titulo" type="text" placeholder="Título da notícia" required>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-label" for="news-autor">Autor <span>*</span></label>
-                                    <input class="form-input" id="news-autor" type="text" placeholder="Nome do autor" required>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-label" for="news-corpo">Texto <span>*</span></label>
-                                    <textarea class="form-textarea" id="news-corpo" placeholder="Conteúdo da notícia…" required></textarea>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-label">Imagem de Capa</label>
-                                    <div class="upload-zone" id="upload-zone" role="button" tabindex="0" aria-label="Área de upload de imagem">
-                                        <i class="fas fa-cloud-arrow-up"></i>
-                                        <p>Arraste ou <strong>clique para selecionar</strong></p>
-                                        <p style="font-size:.78rem;margin-top:4px;">JPG, PNG, WebP — máx. 5 MB</p>
-                                        <input type="file" id="img-file" accept="image/*" style="display:none;">
+                        <div id="contacts-table-wrap" style="overflow-x:auto;">
+                            <div class="empty-state"><span class="spinner"></span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ══ TRANSPARENCY ══ -->
+                <section id="section-transparency" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Transparência</h2>
+                            <p class="page-header-sub">Gerencie os documentos públicos da Fundação</p>
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                        <!-- Form -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-plus-circle"></i> Novo Documento</span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-transp" class="form-grid">
+                                    <div class="form-row">
+                                        <label class="form-label" for="transp-nome">Nome do Arquivo
+                                            <span>*</span></label>
+                                        <input class="form-input" id="transp-nome" type="text"
+                                            placeholder="Ex: Prestação de Contas 2024" required>
                                     </div>
-                                    <img id="img-preview" src="" alt="Preview">
-                                    <div class="upload-progress" id="upload-progress"><div class="upload-progress-bar" id="upload-bar"></div></div>
-                                    <input type="hidden" id="news-img-url" value="">
-                                    <p class="form-hint"><i class="fas fa-circle-info"></i> Imagem enviada para o Cloudinary</p>
-                                </div>
-                                <div style="display:flex;gap:10px;">
-                                    <button type="submit" class="btn btn-primary" id="btn-submit-news" style="flex:1;">
-                                        <i class="fas fa-paper-plane"></i> <span id="news-submit-label">Publicar</span>
+                                    <div class="form-row">
+                                        <label class="form-label" for="transp-link">Link (Google Drive)
+                                            <span>*</span></label>
+                                        <input class="form-input" id="transp-link" type="url"
+                                            placeholder="https://drive.google.com/…" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="form-label" for="transp-cat">Categoria <span>*</span></label>
+                                        <select class="form-select" id="transp-cat" required>
+                                            <option value="">Selecione…</option>
+                                            <option>Prestação de Contas</option>
+                                            <option>Relatórios Institucionais</option>
+                                            <option>Estatuto Social</option>
+                                            <option>Certidões</option>
+                                            <option>Contratos</option>
+                                            <option>Editais</option>
+                                            <option>Atas</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="btn-submit-transp">
+                                        <i class="fas fa-cloud-arrow-up"></i> Publicar Documento
                                     </button>
-                                    <button type="button" class="btn btn-outline" id="btn-cancel-news" style="display:none;">
-                                        Cancelar
-                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- List -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-list"></i> Documentos Publicados</span>
+                            </div>
+                            <div class="panel-body">
+                                <div id="transp-list-wrap">
+                                    <div class="empty-state"><span class="spinner"></span></div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                    <!-- List -->
-                    <div class="panel">
-                        <div class="panel-header">
-                            <span class="panel-title"><i class="fas fa-list"></i> Notícias Publicadas</span>
-                        </div>
-                        <div class="panel-body">
-                            <div id="news-list-wrap"><div class="empty-state"><span class="spinner"></span></div></div>
+                </section>
+
+                <!-- ══ NEWS ══ -->
+                <section id="section-news" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Notícias</h2>
+                            <p class="page-header-sub">Publique e gerencie as notícias do site</p>
                         </div>
                     </div>
-                </div>
-            </section>
+                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                        <!-- Form -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title" id="news-form-title"><i class="fas fa-feather-pointed"></i>
+                                    Nova Notícia</span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-news" class="form-grid">
+                                    <input type="hidden" id="news-edit-id" value="">
+                                    <div class="form-row">
+                                        <label class="form-label" for="news-titulo">Título <span>*</span></label>
+                                        <input class="form-input" id="news-titulo" type="text"
+                                            placeholder="Título da notícia" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="form-label" for="news-autor">Autor <span>*</span></label>
+                                        <input class="form-input" id="news-autor" type="text"
+                                            placeholder="Nome do autor" required>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="form-label" for="news-corpo">Texto <span>*</span></label>
+                                        <textarea class="form-textarea" id="news-corpo"
+                                            placeholder="Conteúdo da notícia…" required></textarea>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="form-label">Imagem de Capa</label>
+                                        <div class="upload-zone" id="upload-zone" role="button" tabindex="0"
+                                            aria-label="Área de upload de imagem">
+                                            <i class="fas fa-cloud-arrow-up"></i>
+                                            <p>Arraste ou <strong>clique para selecionar</strong></p>
+                                            <p style="font-size:.78rem;margin-top:4px;">JPG, PNG, WebP — máx. 5 MB</p>
+                                            <input type="file" id="img-file" accept="image/*" style="display:none;">
+                                        </div>
+                                        <img id="img-preview" src="" alt="Preview">
+                                        <div class="upload-progress" id="upload-progress">
+                                            <div class="upload-progress-bar" id="upload-bar"></div>
+                                        </div>
+                                        <input type="hidden" id="news-img-url" value="">
+                                        <p class="form-hint"><i class="fas fa-circle-info"></i> Imagem enviada para o
+                                            Cloudinary</p>
+                                    </div>
+                                    <div style="display:flex;gap:10px;">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-news"
+                                            style="flex:1;">
+                                            <i class="fas fa-paper-plane"></i> <span
+                                                id="news-submit-label">Publicar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline" id="btn-cancel-news"
+                                            style="display:none;">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- List -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-list"></i> Notícias Publicadas</span>
+                            </div>
+                            <div class="panel-body">
+                                <div id="news-list-wrap">
+                                    <div class="empty-state"><span class="spinner"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-        </main>
-    </div>
-</div>
-
-<!-- ════ MODAL: Contact Detail ════ -->
-<div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
-    <div class="modal">
-        <div class="modal-header">
-            <h3 class="modal-title" id="contact-modal-title">Detalhe da Mensagem</h3>
-            <button class="modal-close" onclick="closeModal('contact-modal')" aria-label="Fechar"><i class="fas fa-times"></i></button>
+            </main>
         </div>
-        <div id="contact-modal-body"></div>
     </div>
-</div>
 
-<!-- ════ MODAL: Confirm Delete ════ -->
-<div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true">
-    <div class="modal">
-        <div class="modal-icon"><i class="fas fa-triangle-exclamation"></i></div>
-        <h3 style="font-size:1.4rem;color:var(--navy);margin-bottom:10px;">Confirmar exclusão</h3>
-        <p class="modal-msg" id="confirm-msg">Esta ação não pode ser desfeita.</p>
-        <div class="modal-actions">
-            <button class="btn btn-outline" onclick="closeModal('confirm-modal')">Cancelar</button>
-            <button class="btn btn-primary" id="btn-confirm-delete">Confirmar</button>
+    <!-- ════ MODAL: Contact Detail ════ -->
+    <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="contact-modal-title">Detalhe da Mensagem</h3>
+                <button class="modal-close" onclick="closeModal('contact-modal')" aria-label="Fechar"><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <div id="contact-modal-body"></div>
         </div>
     </div>
-</div>
 
-<!-- Toast container -->
-<div id="toast-container" role="status" aria-live="polite"></div>
+    <!-- ════ MODAL: Confirm Delete ════ -->
+    <div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true">
+        <div class="modal">
+            <div class="modal-icon"><i class="fas fa-triangle-exclamation"></i></div>
+            <h3 style="font-size:1.4rem;color:var(--navy);margin-bottom:10px;">Confirmar exclusão</h3>
+            <p class="modal-msg" id="confirm-msg">Esta ação não pode ser desfeita.</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal('confirm-modal')">Cancelar</button>
+                <button class="btn btn-primary" id="btn-confirm-delete">Confirmar</button>
+            </div>
+        </div>
+    </div>
 
-<!-- ══════════════════════════════════════════════════════════
+    <!-- Toast container -->
+    <div id="toast-container" role="status" aria-live="polite"></div>
+
+    <!-- ══════════════════════════════════════════════════════════
      FIREBASE SDK v9 + APP LOGIC
 ══════════════════════════════════════════════════════════ -->
-<script type="module">
-import { initializeApp }           from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
-                                   from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
-                                   from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
-// ── CONFIG ────────────────────────────────────────────────────
-const FIREBASE_CONFIG = {
-    apiKey:            "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
-    authDomain:        "fundacaofenix193.firebaseapp.com",
-    projectId:         "fundacaofenix193",
-    storageBucket:     "fundacaofenix193.firebasestorage.app",
-    messagingSenderId: "263835472373",
-    appId:             "1:263835472373:web:492921e00e51a1e74750bc"
-};
+        // ── CONFIG ────────────────────────────────────────────────────
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
 
-// ── CLOUDINARY ── substitua com seus dados ──────────────────
-const CLOUDINARY_CLOUD = "YOUR_CLOUD_NAME";        // ex: "fenix193"
-const CLOUDINARY_PRESET = "YOUR_UNSIGNED_PRESET";  // ex: "ml_default"
+        // ── CLOUDINARY ── substitua com seus dados ──────────────────
+        const CLOUDINARY_CLOUD = "darq3foje";        // ex: "fenix193"
+        const CLOUDINARY_PRESET = "ffenix193";  // ex: "ml_default"
 
-// ── INIT ──────────────────────────────────────────────────────
-const app  = initializeApp(FIREBASE_CONFIG);
-const db   = getFirestore(app);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+        // ── INIT ──────────────────────────────────────────────────────
+        const app = initializeApp(FIREBASE_CONFIG);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-// ── HELPERS ──────────────────────────────────────────────────
-function toast(msg, type = 'default') {
-    const el = document.createElement('div');
-    el.className = `toast ${type}`;
-    el.innerHTML = `<i class="fas fa-${type === 'success' ? 'circle-check' : type === 'error' ? 'circle-xmark' : 'circle-info'}"></i> ${msg}`;
-    document.getElementById('toast-container').appendChild(el);
-    setTimeout(() => el.remove(), 4000);
-}
-
-function fmtDate(ts) {
-    if (!ts) return '—';
-    const d = ts.toDate ? ts.toDate() : new Date(ts);
-    return d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' });
-}
-
-function openModal(id)  { document.getElementById(id).classList.add('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-window.closeModal = closeModal;
-
-let confirmCallback = null;
-document.getElementById('btn-confirm-delete').addEventListener('click', () => {
-    if (confirmCallback) { confirmCallback(); confirmCallback = null; }
-    closeModal('confirm-modal');
-});
-
-function confirmDelete(msg, cb) {
-    document.getElementById('confirm-msg').textContent = msg;
-    confirmCallback = cb;
-    openModal('confirm-modal');
-}
-
-// ── AUTH FLOW ─────────────────────────────────────────────────
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        // Verify against admins collection
-        try {
-            const adminDoc = await getDocs(query(collection(db, 'admins')));
-            const isAdmin = adminDoc.docs.some(d => d.id === user.uid);
-            if (!isAdmin) {
-                showLoginError('Conta não autorizada como administrador. Contacte o gestor do sistema.');
-                await signOut(auth);
-                return;
-            }
-        } catch (e) {
-            // If admins collection doesn't exist yet, allow first access (setup mode)
-            console.warn('[FF193] admins collection inaccessible:', e.message);
+        // ── HELPERS ──────────────────────────────────────────────────
+        function toast(msg, type = 'default') {
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.innerHTML = `<i class="fas fa-${type === 'success' ? 'circle-check' : type === 'error' ? 'circle-xmark' : 'circle-info'}"></i> ${msg}`;
+            document.getElementById('toast-container').appendChild(el);
+            setTimeout(() => el.remove(), 4000);
         }
-        showApp(user);
-    } else {
-        showLoginScreen();
-    }
-});
 
-document.getElementById('btn-google-login').addEventListener('click', async () => {
-    document.getElementById('login-error').style.display = 'none';
-    try {
-        await signInWithPopup(auth, provider);
-    } catch (e) {
-        showLoginError('Erro ao autenticar. Tente novamente.');
-    }
-});
+        function fmtDate(ts) {
+            if (!ts) return '—';
+            const d = ts.toDate ? ts.toDate() : new Date(ts);
+            return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
 
-document.getElementById('btn-logout').addEventListener('click', async () => {
-    await signOut(auth);
-    toast('Sessão encerrada.');
-});
+        function openModal(id) { document.getElementById(id).classList.add('open'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+        window.closeModal = closeModal;
 
-function showLoginScreen() {
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('app-shell').style.display = 'none';
-}
+        let confirmCallback = null;
+        document.getElementById('btn-confirm-delete').addEventListener('click', () => {
+            if (confirmCallback) { confirmCallback(); confirmCallback = null; }
+            closeModal('confirm-modal');
+        });
 
-function showLoginError(msg) {
-    const el = document.getElementById('login-error');
-    document.getElementById('login-error-msg').textContent = msg;
-    el.style.display = 'block';
-}
+        function confirmDelete(msg, cb) {
+            document.getElementById('confirm-msg').textContent = msg;
+            confirmCallback = cb;
+            openModal('confirm-modal');
+        }
 
-function showApp(user) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app-shell').style.display = 'block';
-    document.getElementById('user-name').textContent = user.displayName?.split(' ')[0] || user.email;
-    const av = document.getElementById('user-avatar');
-    if (user.photoURL) { av.src = user.photoURL; av.style.display = 'block'; }
-    loadAllData();
-}
+        // ── AUTH FLOW ─────────────────────────────────────────────────
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Verify against admins collection
+                try {
+                    const adminDoc = await getDocs(query(collection(db, 'admins')));
+                    const isAdmin = adminDoc.docs.some(d => d.id === user.uid);
+                    if (!isAdmin) {
+                        showLoginError('Conta não autorizada como administrador. Contacte o gestor do sistema.');
+                        await signOut(auth);
+                        return;
+                    }
+                } catch (e) {
+                    // If admins collection doesn't exist yet, allow first access (setup mode)
+                    console.warn('[FF193] admins collection inaccessible:', e.message);
+                }
+                showApp(user);
+            } else {
+                showLoginScreen();
+            }
+        });
 
-// ── NAVIGATION ───────────────────────────────────────────────
-window.navigate = function(section) {
-    document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-    document.getElementById(`section-${section}`)?.classList.add('active');
-    document.querySelector(`.sidebar-link[data-section="${section}"]`)?.classList.add('active');
-    document.getElementById('app-sidebar').classList.remove('open');
-};
+        document.getElementById('btn-google-login').addEventListener('click', async () => {
+            document.getElementById('login-error').style.display = 'none';
+            try {
+                await signInWithPopup(auth, provider);
+            } catch (e) {
+                showLoginError('Erro ao autenticar. Tente novamente.');
+            }
+        });
 
-document.querySelectorAll('.sidebar-link').forEach(link => {
-    link.addEventListener('click', () => navigate(link.dataset.section));
-    link.addEventListener('keydown', e => { if (e.key === 'Enter') navigate(link.dataset.section); });
-});
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            await signOut(auth);
+            toast('Sessão encerrada.');
+        });
 
-// Mobile sidebar toggle
-const sidebarToggle = document.getElementById('btn-sidebar-toggle');
-sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
-window.addEventListener('resize', () => {
-    sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
-});
-sidebarToggle.addEventListener('click', () => {
-    document.getElementById('app-sidebar').classList.toggle('open');
-});
+        function showLoginScreen() {
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('app-shell').style.display = 'none';
+        }
 
-// ── LOAD ALL ─────────────────────────────────────────────────
-async function loadAllData() {
-    await Promise.all([ loadContacts(), loadTransparency(), loadNews() ]);
-}
+        function showLoginError(msg) {
+            const el = document.getElementById('login-error');
+            document.getElementById('login-error-msg').textContent = msg;
+            el.style.display = 'block';
+        }
 
-// ══════════════════════════════════════════════════════════════
-//  CONTACTS
-// ══════════════════════════════════════════════════════════════
-async function loadContacts() {
-    const wrap = document.getElementById('contacts-table-wrap');
-    try {
-        const q = query(collection(db, 'contacts'), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        document.getElementById('stat-contacts').textContent = snap.size;
+        function showApp(user) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app-shell').style.display = 'block';
+            document.getElementById('user-name').textContent = user.displayName?.split(' ')[0] || user.email;
+            const av = document.getElementById('user-avatar');
+            if (user.photoURL) { av.src = user.photoURL; av.style.display = 'block'; }
+            loadAllData();
+        }
 
-        const newCount = snap.docs.filter(d => !d.data().read).length;
-        const badge = document.getElementById('badge-contacts');
-        if (newCount > 0) { badge.textContent = newCount; badge.style.display = 'inline-block'; }
-        else badge.style.display = 'none';
+        // ── NAVIGATION ───────────────────────────────────────────────
+        window.navigate = function (section) {
+            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(`section-${section}`)?.classList.add('active');
+            document.querySelector(`.sidebar-link[data-section="${section}"]`)?.classList.add('active');
+            document.getElementById('app-sidebar').classList.remove('open');
+        };
 
-        if (snap.empty) { wrap.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma mensagem recebida.</p></div>`; return; }
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => navigate(link.dataset.section));
+            link.addEventListener('keydown', e => { if (e.key === 'Enter') navigate(link.dataset.section); });
+        });
 
-        wrap.innerHTML = `
+        // Mobile sidebar toggle
+        const sidebarToggle = document.getElementById('btn-sidebar-toggle');
+        sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
+        window.addEventListener('resize', () => {
+            sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
+        });
+        sidebarToggle.addEventListener('click', () => {
+            document.getElementById('app-sidebar').classList.toggle('open');
+        });
+
+        // ── LOAD ALL ─────────────────────────────────────────────────
+        async function loadAllData() {
+            await Promise.all([loadContacts(), loadTransparency(), loadNews()]);
+        }
+
+        // ══════════════════════════════════════════════════════════════
+        //  CONTACTS
+        // ══════════════════════════════════════════════════════════════
+        async function loadContacts() {
+            const wrap = document.getElementById('contacts-table-wrap');
+            try {
+                const q = query(collection(db, 'contacts'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                document.getElementById('stat-contacts').textContent = snap.size;
+
+                const newCount = snap.docs.filter(d => !d.data().read).length;
+                const badge = document.getElementById('badge-contacts');
+                if (newCount > 0) { badge.textContent = newCount; badge.style.display = 'inline-block'; }
+                else badge.style.display = 'none';
+
+                if (snap.empty) { wrap.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma mensagem recebida.</p></div>`; return; }
+
+                wrap.innerHTML = `
             <table class="data-table">
                 <thead><tr>
                     <th>Nome</th><th>E-mail</th><th>Assunto</th>
@@ -972,11 +1708,11 @@ async function loadContacts() {
                 </tr></thead>
                 <tbody id="contacts-tbody"></tbody>
             </table>`;
-        const tbody = document.getElementById('contacts-tbody');
-        snap.forEach(d => {
-            const c = d.data();
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
+                const tbody = document.getElementById('contacts-tbody');
+                snap.forEach(d => {
+                    const c = d.data();
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
                 <td class="td-name">${escHtml(c.nome || '—')}</td>
                 <td>${escHtml(c.email || '—')}</td>
                 <td>${c.assunto ? `<span class="tag tag-category">${escHtml(c.assunto)}</span>` : '—'}</td>
@@ -988,22 +1724,22 @@ async function loadContacts() {
                     <button class="btn btn-amber btn-sm" title="E-mail" onclick="openEmail('${escHtml(c.email || '')}','${escHtml(c.assunto || 'Contato Fênix 193')}')"><i class="fas fa-envelope"></i></button>
                     <button class="btn btn-danger btn-sm" title="Eliminar" onclick="deleteContact('${d.id}')"><i class="fas fa-trash"></i></button>
                 </td>`;
-            tbody.appendChild(tr);
-        });
-        // Cache for modal
-        window._contactsCache = {};
-        snap.forEach(d => { window._contactsCache[d.id] = d.data(); });
-    } catch (e) {
-        wrap.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><p>Erro ao carregar: ${e.message}</p></div>`;
-    }
-}
+                    tbody.appendChild(tr);
+                });
+                // Cache for modal
+                window._contactsCache = {};
+                snap.forEach(d => { window._contactsCache[d.id] = d.data(); });
+            } catch (e) {
+                wrap.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><p>Erro ao carregar: ${e.message}</p></div>`;
+            }
+        }
 
-document.getElementById('btn-refresh-contacts').addEventListener('click', loadContacts);
+        document.getElementById('btn-refresh-contacts').addEventListener('click', loadContacts);
 
-window.viewContact = function(id) {
-    const c = window._contactsCache?.[id];
-    if (!c) return;
-    document.getElementById('contact-modal-body').innerHTML = `
+        window.viewContact = function (id) {
+            const c = window._contactsCache?.[id];
+            if (!c) return;
+            document.getElementById('contact-modal-body').innerHTML = `
         <div class="contact-detail-row"><span class="contact-detail-label">Nome</span><span class="contact-detail-value">${escHtml(c.nome)}</span></div>
         <div class="contact-detail-row"><span class="contact-detail-label">E-mail</span><span class="contact-detail-value">${escHtml(c.email)}</span></div>
         ${c.telefone ? `<div class="contact-detail-row"><span class="contact-detail-label">Telefone</span><span class="contact-detail-value">${escHtml(c.telefone)}</span></div>` : ''}
@@ -1011,58 +1747,58 @@ window.viewContact = function(id) {
         <div class="contact-detail-row"><span class="contact-detail-label">Data</span><span class="contact-detail-value">${fmtDate(c.createdAt)}</span></div>
         <div class="contact-detail-row"><span class="contact-detail-label">Mensagem</span><span class="contact-detail-value">${escHtml(c.mensagem)}</span></div>
         <div class="contact-detail-actions">
-            <button class="btn btn-green" onclick="openWhatsApp('${escHtml(c.telefone||'')}','${escHtml(c.nome||'')}')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-            <button class="btn btn-outline" onclick="openEmail('${escHtml(c.email||'')}','${escHtml(c.assunto||'Contato Fênix 193')}')"><i class="fas fa-envelope"></i> Responder</button>
+            <button class="btn btn-green" onclick="openWhatsApp('${escHtml(c.telefone || '')}','${escHtml(c.nome || '')}')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            <button class="btn btn-outline" onclick="openEmail('${escHtml(c.email || '')}','${escHtml(c.assunto || 'Contato Fênix 193')}')"><i class="fas fa-envelope"></i> Responder</button>
         </div>`;
-    openModal('contact-modal');
-};
-
-window.openWhatsApp = function(tel, nome) {
-    const num = tel.replace(/\D/g, '');
-    if (!num) { toast('Número de telefone não disponível.', 'error'); return; }
-    const msg = encodeURIComponent(`Olá ${nome}, sou da Fundação Fênix 193. Recebemos sua mensagem e gostaríamos de dar um retorno.`);
-    window.open(`https://wa.me/55${num}?text=${msg}`, '_blank');
-};
-
-window.openEmail = function(email, assunto) {
-    window.location.href = `mailto:${email}?subject=Re: ${encodeURIComponent(assunto)}&body=${encodeURIComponent('Olá,\n\nObrigado pelo contato com a Fundação Fênix 193.\n\n')}`;
-};
-
-window.deleteContact = function(id) {
-    confirmDelete('Deseja eliminar esta mensagem permanentemente?', async () => {
-        try {
-            await deleteDoc(doc(db, 'contacts', id));
-            toast('Mensagem eliminada.', 'success');
-            loadContacts();
-        } catch (e) { toast('Erro ao eliminar: ' + e.message, 'error'); }
-    });
-};
-
-// ══════════════════════════════════════════════════════════════
-//  TRANSPARENCY
-// ══════════════════════════════════════════════════════════════
-async function loadTransparency() {
-    const wrap = document.getElementById('transp-list-wrap');
-    try {
-        const q = query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        document.getElementById('stat-transp').textContent = snap.size;
-
-        if (snap.empty) { wrap.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i><p>Nenhum documento publicado.</p></div>`; return; }
-
-        const catIcons = {
-            'Prestação de Contas': 'fa-file-invoice', 'Relatórios Institucionais': 'fa-chart-line',
-            'Estatuto Social': 'fa-scroll', 'Certidões': 'fa-certificate',
-            'Contratos': 'fa-file-contract', 'Editais': 'fa-bullhorn', 'Atas': 'fa-file-circle-check'
+            openModal('contact-modal');
         };
-        const list = document.createElement('div');
-        list.className = 'transp-list';
-        snap.forEach(d => {
-            const t = d.data();
-            const icon = catIcons[t.categoria] || 'fa-file';
-            const item = document.createElement('div');
-            item.className = 'transp-item';
-            item.innerHTML = `
+
+        window.openWhatsApp = function (tel, nome) {
+            const num = tel.replace(/\D/g, '');
+            if (!num) { toast('Número de telefone não disponível.', 'error'); return; }
+            const msg = encodeURIComponent(`Olá ${nome}, sou da Fundação Fênix 193. Recebemos sua mensagem e gostaríamos de dar um retorno.`);
+            window.open(`https://wa.me/55${num}?text=${msg}`, '_blank');
+        };
+
+        window.openEmail = function (email, assunto) {
+            window.location.href = `mailto:${email}?subject=Re: ${encodeURIComponent(assunto)}&body=${encodeURIComponent('Olá,\n\nObrigado pelo contato com a Fundação Fênix 193.\n\n')}`;
+        };
+
+        window.deleteContact = function (id) {
+            confirmDelete('Deseja eliminar esta mensagem permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'contacts', id));
+                    toast('Mensagem eliminada.', 'success');
+                    loadContacts();
+                } catch (e) { toast('Erro ao eliminar: ' + e.message, 'error'); }
+            });
+        };
+
+        // ══════════════════════════════════════════════════════════════
+        //  TRANSPARENCY
+        // ══════════════════════════════════════════════════════════════
+        async function loadTransparency() {
+            const wrap = document.getElementById('transp-list-wrap');
+            try {
+                const q = query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                document.getElementById('stat-transp').textContent = snap.size;
+
+                if (snap.empty) { wrap.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i><p>Nenhum documento publicado.</p></div>`; return; }
+
+                const catIcons = {
+                    'Prestação de Contas': 'fa-file-invoice', 'Relatórios Institucionais': 'fa-chart-line',
+                    'Estatuto Social': 'fa-scroll', 'Certidões': 'fa-certificate',
+                    'Contratos': 'fa-file-contract', 'Editais': 'fa-bullhorn', 'Atas': 'fa-file-circle-check'
+                };
+                const list = document.createElement('div');
+                list.className = 'transp-list';
+                snap.forEach(d => {
+                    const t = d.data();
+                    const icon = catIcons[t.categoria] || 'fa-file';
+                    const item = document.createElement('div');
+                    item.className = 'transp-item';
+                    item.innerHTML = `
                 <i class="fas ${icon}"></i>
                 <div style="flex:1;min-width:0;">
                     <div class="transp-item-name">${escHtml(t.nome)}</div>
@@ -1071,65 +1807,65 @@ async function loadTransparency() {
                 <span class="transp-item-date">${fmtDate(t.createdAt)}</span>
                 <a href="${escHtml(t.link)}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm" title="Abrir"><i class="fas fa-external-link"></i></a>
                 <button class="btn btn-danger btn-sm" title="Eliminar" onclick="deleteTransp('${d.id}')"><i class="fas fa-trash"></i></button>`;
-            list.appendChild(item);
+                    list.appendChild(item);
+                });
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+            } catch (e) {
+                wrap.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><p>Erro ao carregar.</p></div>`;
+            }
+        }
+
+        document.getElementById('form-transp').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-transp');
+            btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Publicando…';
+            try {
+                await addDoc(collection(db, 'transparency_docs'), {
+                    nome: document.getElementById('transp-nome').value.trim(),
+                    link: document.getElementById('transp-link').value.trim(),
+                    categoria: document.getElementById('transp-cat').value,
+                    createdAt: serverTimestamp()
+                });
+                toast('Documento publicado com sucesso!', 'success');
+                e.target.reset();
+                loadTransparency();
+            } catch (err) {
+                toast('Erro ao publicar: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false; btn.innerHTML = '<i class="fas fa-cloud-arrow-up"></i> Publicar Documento';
+            }
         });
-        wrap.innerHTML = '';
-        wrap.appendChild(list);
-    } catch (e) {
-        wrap.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><p>Erro ao carregar.</p></div>`;
-    }
-}
 
-document.getElementById('form-transp').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('btn-submit-transp');
-    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Publicando…';
-    try {
-        await addDoc(collection(db, 'transparency_docs'), {
-            nome:      document.getElementById('transp-nome').value.trim(),
-            link:      document.getElementById('transp-link').value.trim(),
-            categoria: document.getElementById('transp-cat').value,
-            createdAt: serverTimestamp()
-        });
-        toast('Documento publicado com sucesso!', 'success');
-        e.target.reset();
-        loadTransparency();
-    } catch (err) {
-        toast('Erro ao publicar: ' + err.message, 'error');
-    } finally {
-        btn.disabled = false; btn.innerHTML = '<i class="fas fa-cloud-arrow-up"></i> Publicar Documento';
-    }
-});
+        window.deleteTransp = function (id) {
+            confirmDelete('Deseja eliminar este documento?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'transparency_docs', id));
+                    toast('Documento eliminado.', 'success');
+                    loadTransparency();
+                } catch (e) { toast('Erro: ' + e.message, 'error'); }
+            });
+        };
 
-window.deleteTransp = function(id) {
-    confirmDelete('Deseja eliminar este documento?', async () => {
-        try {
-            await deleteDoc(doc(db, 'transparency_docs', id));
-            toast('Documento eliminado.', 'success');
-            loadTransparency();
-        } catch (e) { toast('Erro: ' + e.message, 'error'); }
-    });
-};
+        // ══════════════════════════════════════════════════════════════
+        //  NEWS
+        // ══════════════════════════════════════════════════════════════
+        async function loadNews() {
+            const wrap = document.getElementById('news-list-wrap');
+            try {
+                const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+                document.getElementById('stat-news').textContent = snap.size;
 
-// ══════════════════════════════════════════════════════════════
-//  NEWS
-// ══════════════════════════════════════════════════════════════
-async function loadNews() {
-    const wrap = document.getElementById('news-list-wrap');
-    try {
-        const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        document.getElementById('stat-news').textContent = snap.size;
+                if (snap.empty) { wrap.innerHTML = `<div class="empty-state"><i class="fas fa-newspaper"></i><p>Nenhuma notícia publicada.</p></div>`; return; }
 
-        if (snap.empty) { wrap.innerHTML = `<div class="empty-state"><i class="fas fa-newspaper"></i><p>Nenhuma notícia publicada.</p></div>`; return; }
-
-        const list = document.createElement('div');
-        list.className = 'news-admin-list';
-        snap.forEach(d => {
-            const n = d.data();
-            const item = document.createElement('div');
-            item.className = 'news-admin-item';
-            item.innerHTML = `
+                const list = document.createElement('div');
+                list.className = 'news-admin-list';
+                snap.forEach(d => {
+                    const n = d.data();
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
                 ${n.imagemUrl ? `<img class="news-admin-thumb" src="${escHtml(n.imagemUrl)}" alt="">` : `<div class="news-admin-thumb-placeholder"><i class="fas fa-newspaper"></i></div>`}
                 <div class="news-admin-body">
                     <div class="news-admin-title">${escHtml(n.titulo)}</div>
@@ -1142,145 +1878,146 @@ async function loadNews() {
                     <button class="btn btn-outline btn-sm" onclick="editNews('${d.id}')" title="Editar"><i class="fas fa-pen"></i></button>
                     <button class="btn btn-danger btn-sm" onclick="deleteNews('${d.id}')" title="Eliminar"><i class="fas fa-trash"></i></button>
                 </div>`;
-            list.appendChild(item);
+                    list.appendChild(item);
+                });
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+                window._newsCache = {};
+                snap.forEach(d => { window._newsCache[d.id] = d.data(); });
+            } catch (e) {
+                wrap.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><p>Erro ao carregar.</p></div>`;
+            }
+        }
+
+        // ── Image upload (Cloudinary) ────────────────────────────────
+        const uploadZone = document.getElementById('upload-zone');
+        const imgFile = document.getElementById('img-file');
+        const imgPreview = document.getElementById('img-preview');
+        const imgUrlInput = document.getElementById('news-img-url');
+        const progressWrap = document.getElementById('upload-progress');
+        const progressBar = document.getElementById('upload-bar');
+
+        uploadZone.addEventListener('click', () => imgFile.click());
+        uploadZone.addEventListener('keydown', e => { if (e.key === 'Enter') imgFile.click(); });
+        uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+        uploadZone.addEventListener('drop', e => {
+            e.preventDefault(); uploadZone.classList.remove('dragover');
+            if (e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
         });
-        wrap.innerHTML = '';
-        wrap.appendChild(list);
-        window._newsCache = {};
-        snap.forEach(d => { window._newsCache[d.id] = d.data(); });
-    } catch (e) {
-        wrap.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i><p>Erro ao carregar.</p></div>`;
-    }
-}
+        imgFile.addEventListener('change', () => { if (imgFile.files[0]) handleImageFile(imgFile.files[0]); });
 
-// ── Image upload (Cloudinary) ────────────────────────────────
-const uploadZone = document.getElementById('upload-zone');
-const imgFile    = document.getElementById('img-file');
-const imgPreview = document.getElementById('img-preview');
-const imgUrlInput = document.getElementById('news-img-url');
-const progressWrap = document.getElementById('upload-progress');
-const progressBar  = document.getElementById('upload-bar');
+        async function handleImageFile(file) {
+            if (!file.type.startsWith('image/')) { toast('Arquivo inválido.', 'error'); return; }
+            if (file.size > 5 * 1024 * 1024) { toast('Imagem superior a 5 MB.', 'error'); return; }
 
-uploadZone.addEventListener('click', () => imgFile.click());
-uploadZone.addEventListener('keydown', e => { if (e.key === 'Enter') imgFile.click(); });
-uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-uploadZone.addEventListener('drop', e => {
-    e.preventDefault(); uploadZone.classList.remove('dragover');
-    if (e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
-});
-imgFile.addEventListener('change', () => { if (imgFile.files[0]) handleImageFile(imgFile.files[0]); });
+            // Preview
+            const reader = new FileReader();
+            reader.onload = e => { imgPreview.src = e.target.result; imgPreview.style.display = 'block'; };
+            reader.readAsDataURL(file);
 
-async function handleImageFile(file) {
-    if (!file.type.startsWith('image/')) { toast('Arquivo inválido.', 'error'); return; }
-    if (file.size > 5 * 1024 * 1024) { toast('Imagem superior a 5 MB.', 'error'); return; }
+            // Upload to Cloudinary
+            progressWrap.style.display = 'block'; progressBar.style.width = '20%';
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('upload_preset', CLOUDINARY_PRESET);
 
-    // Preview
-    const reader = new FileReader();
-    reader.onload = e => { imgPreview.src = e.target.result; imgPreview.style.display = 'block'; };
-    reader.readAsDataURL(file);
+            try {
+                progressBar.style.width = '60%';
+                const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
+                const data = await res.json();
+                if (data.secure_url) {
+                    imgUrlInput.value = data.secure_url;
+                    progressBar.style.width = '100%';
+                    setTimeout(() => { progressWrap.style.display = 'none'; progressBar.style.width = '0'; }, 800);
+                    toast('Imagem enviada com sucesso!', 'success');
+                } else { throw new Error(data.error?.message || 'Upload falhou'); }
+            } catch (e) {
+                progressWrap.style.display = 'none';
+                toast('Erro no upload: ' + e.message, 'error');
+            }
+        }
 
-    // Upload to Cloudinary
-    progressWrap.style.display = 'block'; progressBar.style.width = '20%';
-    const fd = new FormData();
-    fd.append('file', file);
-    fd.append('upload_preset', CLOUDINARY_PRESET);
+        // ── News form submit ─────────────────────────────────────────
+        document.getElementById('form-news').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-news');
+            btn.disabled = true;
+            const editId = document.getElementById('news-edit-id').value;
+            const isEdit = !!editId;
 
-    try {
-        progressBar.style.width = '60%';
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
-        const data = await res.json();
-        if (data.secure_url) {
-            imgUrlInput.value = data.secure_url;
-            progressBar.style.width = '100%';
-            setTimeout(() => { progressWrap.style.display = 'none'; progressBar.style.width = '0'; }, 800);
-            toast('Imagem enviada com sucesso!', 'success');
-        } else { throw new Error(data.error?.message || 'Upload falhou'); }
-    } catch (e) {
-        progressWrap.style.display = 'none';
-        toast('Erro no upload: ' + e.message, 'error');
-    }
-}
+            const payload = {
+                titulo: document.getElementById('news-titulo').value.trim(),
+                autor: document.getElementById('news-autor').value.trim(),
+                corpo: document.getElementById('news-corpo').value.trim(),
+                imagemUrl: document.getElementById('news-img-url').value || null,
+            };
 
-// ── News form submit ─────────────────────────────────────────
-document.getElementById('form-news').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('btn-submit-news');
-    btn.disabled = true;
-    const editId = document.getElementById('news-edit-id').value;
-    const isEdit = !!editId;
+            try {
+                if (isEdit) {
+                    await updateDoc(doc(db, 'news', editId), { ...payload, updatedAt: serverTimestamp() });
+                    toast('Notícia actualizada!', 'success');
+                    cancelEditNews();
+                } else {
+                    payload.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'news'), payload);
+                    toast('Notícia publicada com sucesso!', 'success');
+                    e.target.reset();
+                    imgPreview.style.display = 'none';
+                    imgUrlInput.value = '';
+                }
+                loadNews();
+            } catch (err) {
+                toast('Erro: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        });
 
-    const payload = {
-        titulo:    document.getElementById('news-titulo').value.trim(),
-        autor:     document.getElementById('news-autor').value.trim(),
-        corpo:     document.getElementById('news-corpo').value.trim(),
-        imagemUrl: document.getElementById('news-img-url').value || null,
-    };
+        window.editNews = function (id) {
+            const n = window._newsCache?.[id];
+            if (!n) return;
+            document.getElementById('news-edit-id').value = id;
+            document.getElementById('news-titulo').value = n.titulo;
+            document.getElementById('news-autor').value = n.autor;
+            document.getElementById('news-corpo').value = n.corpo;
+            document.getElementById('news-img-url').value = n.imagemUrl || '';
+            if (n.imagemUrl) { imgPreview.src = n.imagemUrl; imgPreview.style.display = 'block'; }
+            document.getElementById('news-form-title').innerHTML = '<i class="fas fa-pen"></i> Editar Notícia';
+            document.getElementById('news-submit-label').textContent = 'Guardar';
+            document.getElementById('btn-cancel-news').style.display = 'inline-flex';
+            navigate('news');
+            document.getElementById('section-news').scrollIntoView({ behavior: 'smooth' });
+        };
 
-    try {
-        if (isEdit) {
-            await updateDoc(doc(db, 'news', editId), { ...payload, updatedAt: serverTimestamp() });
-            toast('Notícia actualizada!', 'success');
-            cancelEditNews();
-        } else {
-            payload.createdAt = serverTimestamp();
-            await addDoc(collection(db, 'news'), payload);
-            toast('Notícia publicada com sucesso!', 'success');
-            e.target.reset();
+        function cancelEditNews() {
+            document.getElementById('news-edit-id').value = '';
+            document.getElementById('form-news').reset();
             imgPreview.style.display = 'none';
             imgUrlInput.value = '';
+            document.getElementById('news-form-title').innerHTML = '<i class="fas fa-feather-pointed"></i> Nova Notícia';
+            document.getElementById('news-submit-label').textContent = 'Publicar';
+            document.getElementById('btn-cancel-news').style.display = 'none';
         }
-        loadNews();
-    } catch (err) {
-        toast('Erro: ' + err.message, 'error');
-    } finally {
-        btn.disabled = false;
-    }
-});
+        document.getElementById('btn-cancel-news').addEventListener('click', cancelEditNews);
 
-window.editNews = function(id) {
-    const n = window._newsCache?.[id];
-    if (!n) return;
-    document.getElementById('news-edit-id').value = id;
-    document.getElementById('news-titulo').value = n.titulo;
-    document.getElementById('news-autor').value  = n.autor;
-    document.getElementById('news-corpo').value  = n.corpo;
-    document.getElementById('news-img-url').value = n.imagemUrl || '';
-    if (n.imagemUrl) { imgPreview.src = n.imagemUrl; imgPreview.style.display = 'block'; }
-    document.getElementById('news-form-title').innerHTML = '<i class="fas fa-pen"></i> Editar Notícia';
-    document.getElementById('news-submit-label').textContent = 'Guardar';
-    document.getElementById('btn-cancel-news').style.display = 'inline-flex';
-    navigate('news');
-    document.getElementById('section-news').scrollIntoView({ behavior: 'smooth' });
-};
+        window.deleteNews = function (id) {
+            confirmDelete('Deseja eliminar esta notícia permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'news', id));
+                    toast('Notícia eliminada.', 'success');
+                    loadNews();
+                } catch (e) { toast('Erro: ' + e.message, 'error'); }
+            });
+        };
 
-function cancelEditNews() {
-    document.getElementById('news-edit-id').value = '';
-    document.getElementById('form-news').reset();
-    imgPreview.style.display = 'none';
-    imgUrlInput.value = '';
-    document.getElementById('news-form-title').innerHTML = '<i class="fas fa-feather-pointed"></i> Nova Notícia';
-    document.getElementById('news-submit-label').textContent = 'Publicar';
-    document.getElementById('btn-cancel-news').style.display = 'none';
-}
-document.getElementById('btn-cancel-news').addEventListener('click', cancelEditNews);
-
-window.deleteNews = function(id) {
-    confirmDelete('Deseja eliminar esta notícia permanentemente?', async () => {
-        try {
-            await deleteDoc(doc(db, 'news', id));
-            toast('Notícia eliminada.', 'success');
-            loadNews();
-        } catch (e) { toast('Erro: ' + e.message, 'error'); }
-    });
-};
-
-// ── Util ─────────────────────────────────────────────────────
-function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-</script>
+        // ── Util ─────────────────────────────────────────────────────
+        function escHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    </script>
 
 </body>
+
 </html>

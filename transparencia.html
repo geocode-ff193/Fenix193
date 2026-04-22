@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,86 +11,182 @@
     <meta name="apple-mobile-web-app-title" content="Fênix 193" />
     <link rel="manifest" href="site.webmanifest" />
     <title>Transparência — Fundação Fênix 193</title>
-    <meta name="description" content="Portal de transparência da Fundação Fênix 193. Acesse prestações de contas, relatórios, estatutos, certidões e demais documentos institucionais.">
+    <meta name="description"
+        content="Portal de transparência da Fundação Fênix 193. Acesse prestações de contas, relatórios, estatutos, certidões e demais documentos institucionais.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         /* ── Page Hero ── */
         .page-hero {
             background:
-                linear-gradient(135deg, rgba(49,51,50,.95) 0%, rgba(135,32,32,.75) 100%),
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
                 url('img/hero-bombeiros.png') center/cover no-repeat;
             padding: 90px 0 70px;
-            position: relative; overflow: hidden;
+            position: relative;
+            overflow: hidden;
         }
+
         .page-hero::after {
-            content: ''; position: absolute; inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px);
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
             pointer-events: none;
         }
-        .page-hero-content { position: relative; z-index: 1; }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .page-breadcrumb {
-            display: flex; align-items: center; gap: 8px;
-            font-size: .8rem; color: rgba(255,255,255,.5);
-            letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
         }
-        .page-breadcrumb a { color: var(--amber); transition: var(--transition); }
-        .page-breadcrumb a:hover { color: var(--white); }
-        .page-breadcrumb i { font-size: .65rem; }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
         .page-hero h1 {
-            font-size: clamp(2.4rem, 5vw, 4rem); color: var(--white);
-            margin-bottom: 14px; text-shadow: 0 2px 16px rgba(0,0,0,.4);
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
         }
+
         .page-hero p {
-            font-size: 1.05rem; color: rgba(255,255,255,.75);
-            max-width: 560px; font-weight: 300; line-height: 1.7;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
         }
+
         .page-hero-bar {
-            width: 52px; height: 4px; background: var(--red);
-            border-radius: 2px; margin-bottom: 18px;
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
         }
 
         /* ── Intro ── */
         .transp-intro {
-            background: var(--white); border-radius: var(--radius-lg);
+            background: var(--white);
+            border-radius: var(--radius-lg);
             border-left: 4px solid var(--amber);
-            padding: 28px 32px; margin-bottom: 56px;
+            padding: 28px 32px;
+            margin-bottom: 56px;
             box-shadow: var(--shadow-sm);
-            display: flex; align-items: flex-start; gap: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
         }
+
         .transp-intro-icon {
-            width: 52px; height: 52px; flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
             background: linear-gradient(135deg, var(--amber), var(--fire));
-            border-radius: var(--radius); display: flex; align-items: center; justify-content: center;
-            color: var(--white); font-size: 1.3rem;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
         }
-        .transp-intro-text h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 6px; }
-        .transp-intro-text p  { color: var(--text-muted); font-size: .93rem; line-height: 1.7; }
+
+        .transp-intro-text h3 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .transp-intro-text p {
+            color: var(--text-muted);
+            font-size: .93rem;
+            line-height: 1.7;
+        }
 
         /* ── Category section ── */
-        .cat-section { margin-bottom: 52px; }
+        .cat-section {
+            margin-bottom: 52px;
+        }
+
         .cat-header {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 20px; padding-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
             border-bottom: 2px solid var(--gray-light);
         }
+
         .cat-icon {
-            width: 46px; height: 46px; border-radius: var(--radius);
+            width: 46px;
+            height: 46px;
+            border-radius: var(--radius);
             background: linear-gradient(135deg, var(--red), var(--fire));
-            display: flex; align-items: center; justify-content: center;
-            color: var(--white); font-size: 1.1rem; flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(225,34,23,.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(225, 34, 23, .25);
         }
-        .cat-title-group { display: flex; flex-direction: column; gap: 2px; }
-        .cat-label { font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
-        .cat-title { font-size: 1.5rem; color: var(--navy); margin: 0; }
+
+        .cat-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .cat-label {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        .cat-title {
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin: 0;
+        }
+
         .cat-count {
-            margin-left: auto; background: var(--gray-light); color: var(--navy-light);
-            font-size: .72rem; font-weight: 700; letter-spacing: .08em;
-            text-transform: uppercase; border-radius: 20px; padding: 4px 12px;
+            margin-left: auto;
+            background: var(--gray-light);
+            color: var(--navy-light);
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            border-radius: 20px;
+            padding: 4px 12px;
         }
 
         /* ── Document cards grid ── */
@@ -98,85 +195,206 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 16px;
         }
+
         .doc-card {
-            background: var(--white); border-radius: var(--radius-lg);
-            border: 1px solid rgba(0,0,0,.06);
-            padding: 20px 22px; box-shadow: var(--shadow-sm);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(0, 0, 0, .06);
+            padding: 20px 22px;
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
-            display: flex; align-items: center; gap: 16px;
-            text-decoration: none; color: inherit;
-            position: relative; overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
         }
+
         .doc-card::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-            width: 3px; background: linear-gradient(180deg, var(--red), var(--fire));
-            transform: scaleY(0); transform-origin: bottom;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--red), var(--fire));
+            transform: scaleY(0);
+            transform-origin: bottom;
             transition: transform var(--transition);
         }
-        .doc-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: transparent; }
-        .doc-card:hover::before { transform: scaleY(1); }
-        .doc-card-icon {
-            width: 48px; height: 48px; border-radius: var(--radius); flex-shrink: 0;
-            background: rgba(225,34,23,.08); color: var(--red);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; transition: var(--transition);
+
+        .doc-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
         }
-        .doc-card:hover .doc-card-icon { background: var(--red); color: var(--white); }
-        .doc-card-info { flex: 1; min-width: 0; }
+
+        .doc-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .doc-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            flex-shrink: 0;
+            background: rgba(225, 34, 23, .08);
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .doc-card:hover .doc-card-icon {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .doc-card-info {
+            flex: 1;
+            min-width: 0;
+        }
+
         .doc-card-name {
-            font-weight: 600; font-size: .95rem; color: var(--navy);
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            font-weight: 600;
+            font-size: .95rem;
+            color: var(--navy);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             margin-bottom: 4px;
         }
-        .doc-card-date { font-size: .78rem; color: var(--gray); }
-        .doc-card-arrow { color: var(--gray-light); font-size: .85rem; flex-shrink: 0; transition: var(--transition); }
-        .doc-card:hover .doc-card-arrow { color: var(--red); transform: translateX(4px); }
+
+        .doc-card-date {
+            font-size: .78rem;
+            color: var(--gray);
+        }
+
+        .doc-card-arrow {
+            color: var(--gray-light);
+            font-size: .85rem;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+
+        .doc-card:hover .doc-card-arrow {
+            color: var(--red);
+            transform: translateX(4px);
+        }
 
         /* ── Empty / Loading states ── */
         .state-loading {
-            text-align: center; padding: 60px 24px; color: var(--text-muted);
+            text-align: center;
+            padding: 60px 24px;
+            color: var(--text-muted);
         }
+
         .spinner {
-            display: inline-block; width: 36px; height: 36px;
-            border: 3px solid rgba(0,0,0,.08); border-top-color: var(--red);
-            border-radius: 50%; animation: spin .7s linear infinite;
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(0, 0, 0, .08);
+            border-top-color: var(--red);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         .state-empty {
-            text-align: center; padding: 48px 24px;
-            color: var(--text-muted); border: 1px dashed var(--gray-light);
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--text-muted);
+            border: 1px dashed var(--gray-light);
             border-radius: var(--radius-lg);
         }
-        .state-empty i { font-size: 2rem; opacity: .3; margin-bottom: 12px; display: block; }
+
+        .state-empty i {
+            font-size: 2rem;
+            opacity: .3;
+            margin-bottom: 12px;
+            display: block;
+        }
+
         .state-error {
-            background: #FFF5F5; border: 1px solid #FECACA;
-            border-radius: var(--radius-lg); padding: 24px 28px;
-            color: var(--red-dark); display: flex; align-items: center; gap: 12px;
+            background: #FFF5F5;
+            border: 1px solid #FECACA;
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            color: var(--red-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         /* ── CTA Banner ── */
         .transp-cta {
             background: linear-gradient(135deg, var(--navy), var(--navy-mid));
-            border-radius: var(--radius-lg); padding: 40px 40px;
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 24px; flex-wrap: wrap; margin-top: 60px;
+            border-radius: var(--radius-lg);
+            padding: 40px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 60px;
             box-shadow: var(--shadow-md);
         }
-        .transp-cta-text h3 { font-size: 1.6rem; color: var(--white); margin-bottom: 6px; }
-        .transp-cta-text p  { color: rgba(255,255,255,.65); font-size: .93rem; }
-        .btn-amber {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 13px 26px; background: var(--amber);
-            color: var(--navy); border-radius: var(--radius);
-            font-weight: 700; font-size: .9rem; text-transform: uppercase;
-            letter-spacing: .04em; transition: var(--transition); flex-shrink: 0;
+
+        .transp-cta-text h3 {
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 6px;
         }
-        .btn-amber:hover { background: #F0A800; transform: translateY(-2px); }
+
+        .transp-cta-text p {
+            color: rgba(255, 255, 255, .65);
+            font-size: .93rem;
+        }
+
+        .btn-amber {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            background: var(--amber);
+            color: var(--navy);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .btn-amber:hover {
+            background: #F0A800;
+            transform: translateY(-2px);
+        }
 
         @media (max-width: 640px) {
-            .transp-intro { flex-direction: column; gap: 14px; }
-            .cat-count { display: none; }
-            .transp-cta { flex-direction: column; text-align: center; }
+            .transp-intro {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            .cat-count {
+                display: none;
+            }
+
+            .transp-cta {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -208,7 +426,8 @@
                     <li><a href="news.html">Notícias</a></li>
                     <li><a href="transparencia.html" style="color:var(--amber);">Transparência</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
-                    <li><a href="index.html#como-ajudar" class="btn-cta-nav"><i class="fas fa-heart"></i> Quero Ajudar</a></li>
+                    <li><a href="index.html#como-ajudar" class="btn-cta-nav"><i class="fas fa-heart"></i> Quero
+                            Ajudar</a></li>
                 </ul>
             </nav>
         </div>
@@ -226,7 +445,8 @@
                 </nav>
                 <div class="page-hero-bar"></div>
                 <h1>Portal de Transparência</h1>
-                <p>Acesse todos os documentos institucionais da Fundação Fênix 193. Transparência é o pilar da nossa gestão.</p>
+                <p>Acesse todos os documentos institucionais da Fundação Fênix 193. Transparência é o pilar da nossa
+                    gestão.</p>
             </div>
         </section>
 
@@ -239,7 +459,9 @@
                     <div class="transp-intro-icon"><i class="fas fa-shield-halved"></i></div>
                     <div class="transp-intro-text">
                         <h3>Compromisso com a Transparência</h3>
-                        <p>A Fundação Fênix 193 disponibiliza todos os documentos institucionais para consulta pública, em conformidade com os princípios de boa governança e responsabilidade social. Todos os arquivos são hospedados no Google Drive e abertos diretamente para visualização.</p>
+                        <p>A Fundação Fênix 193 disponibiliza todos os documentos institucionais para consulta pública,
+                            em conformidade com os princípios de boa governança e responsabilidade social. Todos os
+                            arquivos são hospedados no Google Drive e abertos diretamente para visualização.</p>
                     </div>
                 </div>
 
@@ -310,17 +532,20 @@
                         <a href="?" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="?" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
-                    <br><h4>Administração</h4>
+                    <br>
+                    <h4>Administração</h4>
                     <a href="app.html" class="btn-cta-nav"><i class="fa-solid fa-user-lock"></i> Acesso Restrito</a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos reservados.</p>
+                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.</p>
                 <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
                     <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
-                    Sistema seguro e em conformidade com a <a href="https://eusougeovani.vercel.app/#lgpd" target="_blank" rel="noopener">LGPD</a>
+                    Sistema seguro e em conformidade com a <a href="https://eusougeovani.vercel.app/#lgpd"
+                        target="_blank" rel="noopener">LGPD</a>
                 </p>
             </div>
         </div>
@@ -332,65 +557,65 @@
 
     <!-- ══ FIREBASE + LOGIC ══ -->
     <script type="module">
-    import { initializeApp }    from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, orderBy }
-                                from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey:            "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
-        authDomain:        "fundacaofenix193.firebaseapp.com",
-        projectId:         "fundacaofenix193",
-        storageBucket:     "fundacaofenix193.firebasestorage.app",
-        messagingSenderId: "263835472373",
-        appId:             "1:263835472373:web:492921e00e51a1e74750bc"
-    };
-    const db = getFirestore(initializeApp(firebaseConfig));
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+        const db = getFirestore(initializeApp(firebaseConfig));
 
-    // Category order + icons
-    const CATEGORIES = [
-        { name: 'Prestação de Contas',      icon: 'fa-file-invoice',      label: 'Finanças' },
-        { name: 'Relatórios Institucionais', icon: 'fa-chart-line',        label: 'Relatórios' },
-        { name: 'Estatuto Social',           icon: 'fa-scroll',            label: 'Documento Base' },
-        { name: 'Certidões',                 icon: 'fa-certificate',       label: 'Documentação' },
-        { name: 'Contratos',                 icon: 'fa-file-contract',     label: 'Jurídico' },
-        { name: 'Editais',                   icon: 'fa-bullhorn',          label: 'Processos' },
-        { name: 'Atas',                      icon: 'fa-file-circle-check', label: 'Assembleias' },
-    ];
+        // Category order + icons
+        const CATEGORIES = [
+            { name: 'Prestação de Contas', icon: 'fa-file-invoice', label: 'Finanças' },
+            { name: 'Relatórios Institucionais', icon: 'fa-chart-line', label: 'Relatórios' },
+            { name: 'Estatuto Social', icon: 'fa-scroll', label: 'Documento Base' },
+            { name: 'Certidões', icon: 'fa-certificate', label: 'Documentação' },
+            { name: 'Contratos', icon: 'fa-file-contract', label: 'Jurídico' },
+            { name: 'Editais', icon: 'fa-bullhorn', label: 'Processos' },
+            { name: 'Atas', icon: 'fa-file-circle-check', label: 'Assembleias' },
+        ];
 
-    function fmtDate(ts) {
-        if (!ts) return '';
-        const d = ts.toDate ? ts.toDate() : new Date(ts);
-        return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-    }
+        function fmtDate(ts) {
+            if (!ts) return '';
+            const d = ts.toDate ? ts.toDate() : new Date(ts);
+            return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        }
 
-    async function loadDocs() {
-        const content = document.getElementById('transp-content');
-        try {
-            const q    = query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'));
-            const snap = await getDocs(q);
+        async function loadDocs() {
+            const content = document.getElementById('transp-content');
+            try {
+                const q = query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
 
-            if (snap.empty) {
-                content.innerHTML = `<div class="state-empty"><i class="fas fa-folder-open"></i><p>Nenhum documento publicado ainda. Volte em breve.</p></div>`;
-                return;
-            }
+                if (snap.empty) {
+                    content.innerHTML = `<div class="state-empty"><i class="fas fa-folder-open"></i><p>Nenhum documento publicado ainda. Volte em breve.</p></div>`;
+                    return;
+                }
 
-            // Group by category
-            const groups = {};
-            CATEGORIES.forEach(c => { groups[c.name] = []; });
-            snap.forEach(d => {
-                const data = d.data();
-                if (!groups[data.categoria]) groups[data.categoria] = [];
-                groups[data.categoria].push({ id: d.id, ...data });
-            });
+                // Group by category
+                const groups = {};
+                CATEGORIES.forEach(c => { groups[c.name] = []; });
+                snap.forEach(d => {
+                    const data = d.data();
+                    if (!groups[data.categoria]) groups[data.categoria] = [];
+                    groups[data.categoria].push({ id: d.id, ...data });
+                });
 
-            content.innerHTML = '';
-            CATEGORIES.forEach(cat => {
-                const docs = groups[cat.name];
-                if (!docs || docs.length === 0) return;
+                content.innerHTML = '';
+                CATEGORIES.forEach(cat => {
+                    const docs = groups[cat.name];
+                    if (!docs || docs.length === 0) return;
 
-                const section = document.createElement('div');
-                section.className = 'cat-section reveal';
-                section.innerHTML = `
+                    const section = document.createElement('div');
+                    section.className = 'cat-section reveal';
+                    section.innerHTML = `
                     <div class="cat-header">
                         <div class="cat-icon"><i class="fas ${cat.icon}"></i></div>
                         <div class="cat-title-group">
@@ -401,43 +626,43 @@
                     </div>
                     <div class="docs-grid"></div>`;
 
-                const grid = section.querySelector('.docs-grid');
-                docs.forEach(doc => {
-                    const card = document.createElement('a');
-                    card.className = 'doc-card';
-                    card.href    = doc.link || '#';
-                    card.target  = '_blank';
-                    card.rel     = 'noopener noreferrer';
-                    card.setAttribute('aria-label', `Abrir ${doc.nome}`);
-                    card.innerHTML = `
+                    const grid = section.querySelector('.docs-grid');
+                    docs.forEach(doc => {
+                        const card = document.createElement('a');
+                        card.className = 'doc-card';
+                        card.href = doc.link || '#';
+                        card.target = '_blank';
+                        card.rel = 'noopener noreferrer';
+                        card.setAttribute('aria-label', `Abrir ${doc.nome}`);
+                        card.innerHTML = `
                         <div class="doc-card-icon"><i class="fas ${cat.icon}"></i></div>
                         <div class="doc-card-info">
                             <div class="doc-card-name" title="${escHtml(doc.nome)}">${escHtml(doc.nome)}</div>
                             <div class="doc-card-date">${fmtDate(doc.createdAt)}</div>
                         </div>
                         <i class="fas fa-external-link doc-card-arrow"></i>`;
-                    grid.appendChild(card);
+                        grid.appendChild(card);
+                    });
+
+                    content.appendChild(section);
                 });
 
-                content.appendChild(section);
-            });
+                // Scroll reveal
+                const obs = new IntersectionObserver(entries => {
+                    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+                }, { threshold: 0.08 });
+                content.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-            // Scroll reveal
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-            }, { threshold: 0.08 });
-            content.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-        } catch (e) {
-            content.innerHTML = `<div class="state-error"><i class="fas fa-triangle-exclamation" style="font-size:1.3rem;flex-shrink:0;"></i> Erro ao carregar documentos: ${e.message}</div>`;
+            } catch (e) {
+                content.innerHTML = `<div class="state-error"><i class="fas fa-triangle-exclamation" style="font-size:1.3rem;flex-shrink:0;"></i> Erro ao carregar documentos: ${e.message}</div>`;
+            }
         }
-    }
 
-    function escHtml(str) {
-        return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
+        function escHtml(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
 
-    loadDocs();
+        loadDocs();
     </script>
 
     <script>
@@ -464,4 +689,5 @@
     </script>
 
 </body>
+
 </html>
