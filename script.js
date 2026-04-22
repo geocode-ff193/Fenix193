@@ -148,27 +148,6 @@ const analytics = getAnalytics(firebaseApp);
 })();
 
 /* =============================================================
-   5. TOGGLE — DIRETORIA
-   ============================================================= */
-(function initDiretoriaToggle() {
-    const btn = document.querySelector('.toggle-diretoria-btn');
-    const info = document.getElementById('diretoria-info');
-    if (!btn || !info) return;
-
-    btn.addEventListener('click', () => {
-        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!isExpanded));
-
-        if (isExpanded) {
-            info.hidden = true;
-        } else {
-            info.hidden = false;
-            info.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-    });
-})();
-
-/* =============================================================
    6. TOGGLE — VER MAIS PROJETOS
    ============================================================= */
 (function initProjectsToggle() {
