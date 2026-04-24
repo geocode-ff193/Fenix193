@@ -652,7 +652,7 @@ h5 {
 }
 
 .stats-section::before {
-    content: '193';
+    content: 'Fênix 193';
     position: absolute;
     right: -20px;
     bottom: -30px;
