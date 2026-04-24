@@ -1524,7 +1524,7 @@
 ══════════════════════════════════════════════════════════ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
+        import { getFirestore, collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
@@ -1583,20 +1583,21 @@
         // ── AUTH FLOW ─────────────────────────────────────────────────
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Verify against admins collection
                 try {
-                    const adminDoc = await getDocs(query(collection(db, 'admins')));
-                    const isAdmin = adminDoc.docs.some(d => d.id === user.uid);
-                    if (!isAdmin) {
-                        showLoginError('Conta não autorizada como administrador. Contacte o gestor do sistema.');
+                    // Lê apenas o documento do próprio uid (permitido pelas Firestore Rules)
+                    const adminSnap = await getDoc(doc(db, 'admins', user.uid));
+                    if (!adminSnap.exists()) {
+                        // Conta fica registrada no Firebase Auth mas sem acesso ao painel
+                        showLoginError('Acesso não autorizado. Sua conta foi registrada e aguarda aprovação do gestor do sistema.');
                         await signOut(auth);
                         return;
                     }
+                    showApp(user);
                 } catch (e) {
-                    // If admins collection doesn't exist yet, allow first access (setup mode)
-                    console.warn('[FF193] admins collection inaccessible:', e.message);
+                    console.error('[FF193] Erro ao verificar permissões:', e.message);
+                    showLoginError('Erro ao verificar permissões. Tente novamente.');
+                    await signOut(auth);
                 }
-                showApp(user);
             } else {
                 showLoginScreen();
             }
