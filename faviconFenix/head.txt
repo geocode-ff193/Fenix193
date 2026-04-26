@@ -1,0 +1,6 @@
+<link rel="icon" type="image/png" href="/assetes/ui/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/assetes/ui/favicon.svg" />
+<link rel="shortcut icon" href="/assetes/ui/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assetes/ui/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Akanni FF193" />
+<link rel="manifest" href="/assetes/ui/site.webmanifest" />
