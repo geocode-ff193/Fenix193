@@ -26,6 +26,7 @@
             --cream: #FFFFFF;
             --text: #313332;
             --accent: #872020;
+            --fire-yellow: #FFD700;
         }
 
         body {
@@ -42,17 +43,40 @@
         }
 
         .container {
-            max-width: 500px;
+            max-width: 550px;
             padding: 2rem;
         }
 
+        /* Animação do fogo no texto */
         .error-code {
             font-family: 'Playfair Display', serif;
-            font-size: 120px;
-            color: var(--ink-soft);
+            font-size: 140px;
+            font-weight: 800;
             line-height: 1;
-            margin-bottom: 10px;
-            opacity: 0.2;
+            margin-bottom: 5px;
+            
+            /* Efeito de Gradiente de Fogo */
+            background-image: linear-gradient(0deg, var(--accent) 0%, var(--ink-soft) 30%, var(--gold) 70%, var(--fire-yellow) 100%);
+            background-size: 100% 200%;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* Brilho quente ao redor */
+            filter: drop-shadow(0px 10px 15px rgba(225, 34, 23, 0.3));
+            animation: burn 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes burn {
+            0% { 
+                background-position: 0% 100%; 
+                filter: drop-shadow(0px 5px 10px rgba(225, 34, 23, 0.2));
+            }
+            100% { 
+                background-position: 0% 0%; 
+                filter: drop-shadow(0px 15px 25px rgba(242, 118, 19, 0.5));
+                transform: scale(1.02); /* Leve pulso de calor */
+            }
         }
 
         h1 {
@@ -66,7 +90,7 @@
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 30px;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         .btn-home {
@@ -93,6 +117,12 @@
             font-size: 50px;
             color: var(--gold);
             margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
@@ -100,12 +130,12 @@
     <div class="container">
         <div class="error-code">404</div>
         <div class="icon-404">
-            <img src="assets/ui/favicon-96x96.png" alt="Ícone">
+            <img src="assets/ui/favicon-96x96.png" alt="Ícone Fênix" width="70">
         </div>
-        <h1>Página não encontrada</h1>
-        <p>Parece que o caminho que você tentou seguir não está disponível no momento.</p>
+        <h1>Acesso Bloqueado</h1>
+        <p>Parece que houve um pequeno incêndio no servidor e esta página virou cinzas. Mas não se preocupe, nossas guarnições já foram acionadas para controlar a situação!</p>
         <a href="index.html" class="btn-home">
-            <i class="fas fa-arrow-left"></i> Voltar ao Início
+            <i class="fas fa-fire-extinguisher"></i> Evacuar para o Início
         </a>
     </div>
 </body>
