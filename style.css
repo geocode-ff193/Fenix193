@@ -194,7 +194,7 @@ h5 {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--navy);
+    background: var(--off-white);
     box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
 }
 
@@ -228,6 +228,14 @@ h5 {
     font-family: var(--font-display);
     font-size: 1.15rem;
     font-weight: 700;
+    color: var(--navy);
+    letter-spacing: .04em;
+}
+
+.logo-title-footer {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--white);
     letter-spacing: .04em;
 }
@@ -242,15 +250,15 @@ h5 {
 #menu a {
     font-size: .875rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, .82);
+    color: var(--amber);
     padding: 8px 12px;
     border-radius: var(--radius);
     transition: var(--transition);
 }
 
 #menu a:hover {
-    color: var(--white);
-    background: rgba(255, 255, 255, .08);
+    color: var(--fire);
+    background: var(--gray-light);
 }
 
 .btn-cta-nav {
@@ -283,7 +291,7 @@ h5 {
     display: block;
     width: 24px;
     height: 2px;
-    background: var(--white);
+    background: var(--amber);
     border-radius: 2px;
     transition: var(--transition);
 }
