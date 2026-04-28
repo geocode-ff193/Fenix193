@@ -250,7 +250,7 @@ h5 {
 #menu a {
     font-size: .875rem;
     font-weight: 500;
-    color: var(--amber);
+    color: var(--navy);
     padding: 8px 12px;
     border-radius: var(--radius);
     transition: var(--transition);
