@@ -232,15 +232,6 @@ h5 {
     letter-spacing: .04em;
 }
 
-.logo-sub {
-    font-family: var(--font-body);
-    font-size: .68rem;
-    color: var(--amber);
-    letter-spacing: .12em;
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
 /* Nav */
 #menu {
     display: flex;
