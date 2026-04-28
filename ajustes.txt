@@ -1,0 +1,24 @@
+[index.html]
+logo-sub REMOVER
+hero ALTERAR PARA BRANCO
+logo principal TROCAR POR ANIMAÇÃO (animação primeira enviada + FOTO FINAL)
+caixa de pesquisa TOPO DO SITE
+Após Projeto em Destaque, ADICIONAR "Instituidores" e "Apoiadores"
+abaixo da Logo, PUSH de notificação de EDITAL com data de término
+
+[conselho.html]
+conselho-intro REMOVER
+remover espaços em branco
+trocar o QUEM SOMOS p/ INSTITUCIONAL
+membro-cargo-page (REMOVER)
+
+MENU DROPDOWN
+QUEM SOMOS
+HISTÓRIA
+VISÃO
+MISSÃO
+VALORES
+
+Nova página (Ouvidoria/Disque Denuncia)
+
+Projetos = Transparência
