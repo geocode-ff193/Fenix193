@@ -1,5 +1,5 @@
 [index.html]
-logo-sub REMOVER
+
 hero ALTERAR PARA BRANCO
 logo principal TROCAR POR ANIMAÇÃO (animação primeira enviada + FOTO FINAL)
 caixa de pesquisa TOPO DO SITE
@@ -18,7 +18,5 @@ HISTÓRIA
 VISÃO
 MISSÃO
 VALORES
-
-Nova página (Ouvidoria/Disque Denuncia)
 
 Projetos = Transparência
