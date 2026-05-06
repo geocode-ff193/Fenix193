@@ -237,128 +237,6 @@
             line-height: 1.65;
         }
 
-        /* ── Princípios (faixa escura) ── */
-        .principios-section {
-            background: linear-gradient(135deg, var(--navy) 0%, #3a1a1a 100%);
-            border-radius: 20px;
-            padding: 64px 52px;
-            margin-bottom: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .principios-section::before {
-            content: '\f7e4';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: -20px;
-            bottom: -30px;
-            font-size: 18rem;
-            color: rgba(255, 255, 255, .025);
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .principios-section .section-header h2 {
-            color: var(--white);
-        }
-
-        .principios-section .section-label {
-            color: var(--amber);
-        }
-
-        .principios-section .section-bar {
-            background: var(--red);
-        }
-
-        .principios-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .principio-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 18px 20px;
-            background: rgba(255, 255, 255, .06);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, .08);
-            transition: var(--transition);
-        }
-
-        .principio-item:hover {
-            background: rgba(255, 255, 255, .1);
-            border-color: rgba(248, 186, 37, .3);
-        }
-
-        .principio-num {
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--amber);
-            opacity: .5;
-            line-height: 1;
-            flex-shrink: 0;
-            min-width: 36px;
-        }
-
-        .principio-text {
-            font-size: .93rem;
-            color: rgba(255, 255, 255, .82);
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* ── Compromisso público ── */
-        .compromisso-box {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 44px 48px;
-            text-align: center;
-            box-shadow: 0 4px 28px rgba(0, 0, 0, .07);
-            border: 1px solid rgba(0, 0, 0, .055);
-            margin-bottom: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .compromisso-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--red), var(--fire), var(--amber));
-        }
-
-        .compromisso-box blockquote {
-            font-family: var(--font-display);
-            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-            color: var(--navy);
-            line-height: 1.45;
-            max-width: 760px;
-            margin: 0 auto 20px;
-            font-style: italic;
-        }
-
-        .compromisso-box cite {
-            font-size: .88rem;
-            color: var(--text-muted);
-            font-style: normal;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-        }
-
-        .compromisso-box cite strong {
-            color: var(--red);
-        }
-
         /* ── CTA ── */
         .mv-cta {
             background: linear-gradient(135deg, var(--red), var(--red-dark));
@@ -433,14 +311,6 @@
 
         /* ── Responsivo ── */
         @media (max-width: 768px) {
-            .principios-section {
-                padding: 44px 24px;
-            }
-
-            .compromisso-box {
-                padding: 36px 24px;
-            }
-
             .mv-cta {
                 padding: 40px 24px;
             }
@@ -548,26 +418,19 @@
                         <span class="mvv-label">Nossa Missão</span>
                         <i class="fas fa-bullseye mvv-icon"></i>
                         <h2>Missão</h2>
-                        <p>Apoiar, valorizar e fortalecer as ações do Corpo de Bombeiros Militar de Sergipe e da
-                            Proteção e Defesa Civil, captando e gerindo recursos para ampliar a capacidade operacional,
-                            promover a qualificação profissional e desenvolver projetos sociais que protejam e
-                            beneficiem a sociedade sergipana.</p>
+                        <p>?</p>
                     </div>
                     <div class="mvv-card visao reveal">
                         <span class="mvv-label">Nossa Visão</span>
                         <i class="fas fa-eye mvv-icon"></i>
                         <h2>Visão</h2>
-                        <p>Ser reconhecida como a principal instituição de apoio ao Corpo de Bombeiros Militar de
-                            Sergipe — referência em transparência, governança e impacto social, construindo uma
-                            sociedade mais segura e resiliente para as gerações futuras.</p>
+                        <p>?</p>
                     </div>
                     <div class="mvv-card valores reveal">
                         <span class="mvv-label">Nossos Valores</span>
                         <i class="fas fa-fire-flame-curved mvv-icon"></i>
                         <h2>Valores</h2>
-                        <p>Compromisso com a vida, transparência na gestão, ética em todas as relações, respeito à
-                            instituição militar, responsabilidade social e dedicação ao bem coletivo são os valores que
-                            sustentam cada passo da nossa atuação.</p>
+                        <p>?</p>
                     </div>
                 </div>
 
@@ -584,121 +447,60 @@
                             <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
                             <div class="valor-body">
                                 <h3>Compromisso com a Vida</h3>
-                                <p>A vida humana é o bem maior que guia toda nossa atuação. Cada recurso captado, cada
-                                    projeto desenvolvido tem como objetivo final a proteção e preservação de vidas.</p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-scale-balanced"></i></div>
                             <div class="valor-body">
                                 <h3>Transparência</h3>
-                                <p>Toda movimentação financeira, decisão institucional e resultado de projeto é
-                                    documentado e disponibilizado publicamente, garantindo confiança plena à sociedade e
-                                    aos parceiros.</p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-shield-halved"></i></div>
                             <div class="valor-body">
                                 <h3>Ética e Integridade</h3>
-                                <p>Agimos com honestidade e probidade em todas as relações — com parceiros, doadores,
-                                    autoridades e com a comunidade — sem aceitar desvios que comprometam nossa
-                                    credibilidade.</p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-medal"></i></div>
                             <div class="valor-body">
                                 <h3>Respeito à Instituição Militar</h3>
-                                <p>Reconhecemos e valorizamos a hierarquia, a disciplina e o sacrifício dos
-                                    profissionais do Corpo de Bombeiros, atuando sempre em parceria e nunca sobrepondo à
-                                    instituição.</p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-hands-holding-circle"></i></div>
                             <div class="valor-body">
                                 <h3>Responsabilidade Social</h3>
-                                <p>Nosso impacto vai além do apoio ao CBMSE. Promovemos educação, cidadania e segurança
-                                    em toda a sociedade sergipana, especialmente nas comunidades mais vulneráveis.</p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-people-group"></i></div>
                             <div class="valor-body">
                                 <h3>União e Colaboração</h3>
-                                <p>Acreditamos que grandes transformações nascem da soma de esforços. Por isso,
-                                    cultivamos parcerias sólidas com empresas, entidades públicas e a sociedade civil.
-                                </p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-rocket"></i></div>
                             <div class="valor-body">
                                 <h3>Inovação e Eficiência</h3>
-                                <p>Buscamos as melhores práticas de gestão e captação de recursos, otimizando cada
-                                    investimento para maximizar o impacto real das nossas ações.</p>
+                                <p>?</p>
                             </div>
                         </div>
                         <div class="valor-item reveal">
                             <div class="valor-icon"><i class="fas fa-seedling"></i></div>
                             <div class="valor-body">
                                 <h3>Legado para o Futuro</h3>
-                                <p>Trabalhamos pensando nas próximas gerações — na Sergipe que queremos legar: mais
-                                    segura, mais preparada e com um Corpo de Bombeiros cada vez mais forte.</p>
+                                <p>?</p>
                             </div>
                         </div>
                     </div>
                 </section>
-
-                <!-- Princípios de Governança -->
-                <div class="principios-section reveal" aria-label="Princípios de Governança">
-                    <div class="section-header">
-                        <span class="section-label">Governança</span>
-                        <h2>Princípios que nos Governam</h2>
-                        <div class="section-bar"></div>
-                    </div>
-                    <div class="principios-list">
-                        <div class="principio-item">
-                            <span class="principio-num">01</span>
-                            <span class="principio-text">Gestão colegiada com separação de poderes entre Curadores,
-                                Executivo e Fiscal</span>
-                        </div>
-                        <div class="principio-item">
-                            <span class="principio-num">02</span>
-                            <span class="principio-text">Prestação de contas pública e periódica de todos os recursos
-                                geridos</span>
-                        </div>
-                        <div class="principio-item">
-                            <span class="principio-num">03</span>
-                            <span class="principio-text">Decisões estratégicas tomadas de forma coletiva e documentada
-                                em atas</span>
-                        </div>
-                        <div class="principio-item">
-                            <span class="principio-num">04</span>
-                            <span class="principio-text">Vedação ao enriquecimento pessoal de dirigentes com recursos da
-                                Fundação</span>
-                        </div>
-                        <div class="principio-item">
-                            <span class="principio-num">05</span>
-                            <span class="principio-text">Conformidade com a legislação para organizações sem fins
-                                lucrativos</span>
-                        </div>
-                        <div class="principio-item">
-                            <span class="principio-num">06</span>
-                            <span class="principio-text">Canal aberto de comunicação e contato para a sociedade e
-                                parceiros</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Compromisso público -->
-                <div class="compromisso-box reveal">
-                    <blockquote>
-                        "Apoiar quem arrisca sua vida para salvar vidas e riquezas alheias é proteger a sociedade."
-                    </blockquote>
-                    <cite>— <strong>Fundação Fênix 193</strong> · Princípio Fundador</cite>
-                </div>
 
                 <!-- CTA -->
                 <div class="mv-cta reveal">
