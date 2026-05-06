@@ -463,6 +463,8 @@
                     </div>
 
                     <form id="contact-form" class="contact-form" novalidate>
+                        <p class="form-instruction">Preencha o formulário abaixo e entraremos em contato com você o mais breve
+                            possível.</p>
                         <div class="form-group">
                             <label for="nome">Seu Nome</label>
                             <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
@@ -476,17 +478,18 @@
                             <input type="tel" id="telefone" name="telefone" placeholder="(79) 9XXXX-XXXX">
                         </div>
                         <div class="form-group">
-                            <label for="assunto">Assunto</label>
+                            <label for="assunto">Assunto*</label>
                             <select id="assunto" name="assunto">
                                 <option value="">Selecione um assunto</option>
                                 <option value="doacao">Doação</option>
                                 <option value="parceria">Parceria Empresarial</option>
                                 <option value="voluntariado">Voluntariado</option>
+                                <option value="denuncia">Denúncia</option>
                                 <option value="outro">Outro</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="mensagem">Mensagem</label>
+                            <label for="mensagem">Mensagem*</label>
                             <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..."
                                 required></textarea>
                         </div>

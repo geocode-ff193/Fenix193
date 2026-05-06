@@ -1176,6 +1176,12 @@ h5 {
 }
 
 /* Contact Form */
+.form-instruction {
+    font-size: .9rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
 .contact-form {
     background: var(--white);
     border-radius: var(--radius-lg);

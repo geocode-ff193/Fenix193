@@ -302,7 +302,7 @@ document.addEventListener('keydown', (e) => {
         };
 
         // Basic validation
-        if (!payload.nome || !payload.email || !payload.mensagem) {
+        if (!payload.mensagem) {
             status.textContent = '⚠ Preencha todos os campos obrigatórios.';
             status.className = 'form-status error';
             status.hidden = false;
