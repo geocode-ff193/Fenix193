@@ -88,7 +88,7 @@ p {
     /* Efeito de Gradiente de Fogo */
     background-image: linear-gradient(0deg, var(--accent) 0%, var(--ink-soft) 30%, var(--gold) 70%, var(--fire-yellow) 100%);
     background-size: 100% 200%;
-    color: transparent;
+    color: var(--ink-soft);
     -webkit-background-clip: text;
     background-clip: text;
     
@@ -105,7 +105,7 @@ p {
     /* Efeito de Gradiente de Fogo */
     background-image: linear-gradient(0deg, var(--accent) 100%, var(--ink-soft) 70%, var(--gold) 30%, var(--fire-yellow) 0%);
     background-size: 100% 200%;
-    color: transparent;
+    color: var(--fire-yellow);
     -webkit-background-clip: text;
     background-clip: text;
     
