@@ -2,530 +2,531 @@
 <html lang="pt-BR">
 
 <head>
+
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
-    <link rel="manifest" href="site.webmanifest" />
-    <title>Notícias · Fundação Fênix 193</title>
-    <meta name="description"
-        content="Acompanhe as últimas notícias e acontecimentos da Fundação Fênix 193 e do Corpo de Bombeiros Militar de Sergipe.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">    
-    <style>
-        /* ── Page Hero ── */
-        .page-hero {
-            background:
-                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-                url('assets/img/fenix-1.jpeg') center/cover no-repeat;
-            padding: 90px 0 70px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
-            pointer-events: none;
-        }
-
-        .page-hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .page-breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: .8rem;
-            color: rgba(255, 255, 255, .5);
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .page-breadcrumb a {
-            color: var(--amber);
-            transition: var(--transition);
-        }
-
-        .page-breadcrumb a:hover {
-            color: var(--white);
-        }
-
-        .page-breadcrumb i {
-            font-size: .65rem;
-        }
-
-        .page-hero h1 {
-            font-size: clamp(2.4rem, 5vw, 4rem);
-            color: var(--white);
-            margin-bottom: 14px;
-            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-        }
-
-        .page-hero p {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, .75);
-            max-width: 560px;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        .page-hero-bar {
-            width: 52px;
-            height: 4px;
-            background: var(--red);
-            border-radius: 2px;
-            margin-bottom: 18px;
-        }
-
-        /* ── Toolbar / filter ── */
-        .news-toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .news-count {
-            font-size: .9rem;
-            color: var(--text-muted);
-        }
-
-        .news-count strong {
-            color: var(--navy);
-        }
-
-        /* ── News grid ── */
-        .news-page-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 28px;
-            margin-bottom: 48px;
-        }
-
-        /* ── News card ── */
-        .np-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(0, 0, 0, .06);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .np-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: transparent;
-        }
-
-        .np-img-wrap {
-            position: relative;
-            overflow: hidden;
-            height: 200px;
-            flex-shrink: 0;
-        }
-
-        .np-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform .5s ease;
-        }
-
-        .np-card:hover .np-img {
-            transform: scale(1.06);
-        }
-
-        .np-img-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--navy), var(--red-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: rgba(255, 255, 255, .15);
-        }
-
-        .np-img-category {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            background: var(--red);
-            color: var(--white);
-            font-size: .68rem;
-            font-weight: 700;
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .np-body {
-            padding: 22px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .np-meta {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            font-size: .78rem;
-            color: var(--gray);
-        }
-
-        .np-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .np-title {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            color: var(--navy);
-            line-height: 1.25;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-clamp: 2;
-        }
-
-        .np-excerpt {
-            font-size: .9rem;
-            color: var(--text-muted);
-            flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            line-clamp: 3;
-            line-height: 1.65;
-        }
-
-        .np-read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--red);
-            font-size: .85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .05em;
-            transition: gap var(--transition);
-            margin-top: 4px;
-            align-self: flex-start;
-        }
-
-        .np-card:hover .np-read-more {
-            gap: 10px;
-        }
-
-        /* ── Featured first card (spans 2 columns) ── */
-        .np-card.featured {
-            grid-column: 1 / -1;
-            flex-direction: row;
-        }
-
-        .np-card.featured .np-img-wrap {
-            height: auto;
-            min-height: 280px;
-            width: 44%;
-            flex-shrink: 0;
-            border-radius: 0;
-        }
-
-        .np-card.featured .np-title {
-            font-size: 1.6rem;
-            -webkit-line-clamp: 3;
-            line-clamp: 3;
-        }
-
-        .np-card.featured .np-excerpt {
-            -webkit-line-clamp: 4;
-            line-clamp: 4;
-        }
-
-        .np-card.featured .np-body {
-            padding: 32px;
-            justify-content: center;
-        }
-
-        /* ── Load more ── */
-        .load-more-wrap {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .btn-load-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            padding: 13px 30px;
-            border: 2px solid var(--red);
-            color: var(--red);
-            background: transparent;
-            border-radius: var(--radius);
-            font-family: var(--font-body);
-            font-size: .93rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .04em;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-load-more:hover {
-            background: var(--red);
-            color: var(--white);
-        }
-
-        .btn-load-more:disabled {
-            opacity: .5;
-            pointer-events: none;
-        }
-
-        /* ── States ── */
-        .state-loading {
-            text-align: center;
-            padding: 80px 24px;
-            color: var(--text-muted);
-        }
-
-        .spinner {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(0, 0, 0, .08);
-            border-top-color: var(--red);
-            border-radius: 50%;
-            animation: spin .7s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+        <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+        <link rel="manifest" href="site.webmanifest" />
+        <title>Notícias · Fundação Fênix 193</title>
+        <meta name="description"
+            content="Acompanhe as últimas notícias e acontecimentos da Fundação Fênix 193 e do Corpo de Bombeiros Militar de Sergipe.">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            /* ── Page Hero ── */
+            .page-hero {
+                background:
+                    linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                    url('assets/img/fenix-1.jpeg') center/cover no-repeat;
+                padding: 90px 0 70px;
+                position: relative;
+                overflow: hidden;
             }
-        }
 
-        .state-empty {
-            text-align: center;
-            padding: 80px 24px;
-            color: var(--text-muted);
-        }
+            .page-hero::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+                pointer-events: none;
+            }
 
-        .state-empty i {
-            font-size: 3rem;
-            opacity: .2;
-            margin-bottom: 16px;
-            display: block;
-        }
+            .page-hero-content {
+                position: relative;
+                z-index: 1;
+            }
 
-        .state-empty h3 {
-            font-size: 1.4rem;
-            color: var(--navy);
-            margin-bottom: 10px;
-        }
+            .page-breadcrumb {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: .8rem;
+                color: rgba(255, 255, 255, .5);
+                letter-spacing: .08em;
+                text-transform: uppercase;
+                margin-bottom: 16px;
+            }
 
-        /* ── Modal ── */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 800;
-            background: rgba(0, 0, 0, .6);
-            backdrop-filter: blur(6px);
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 24px;
-            overflow-y: auto;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .3s ease;
-        }
+            .page-breadcrumb a {
+                color: var(--amber);
+                transition: var(--transition);
+            }
 
-        .modal-overlay.open {
-            opacity: 1;
-            pointer-events: auto;
-        }
+            .page-breadcrumb a:hover {
+                color: var(--white);
+            }
 
-        .news-modal {
-            background: var(--white);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 760px;
-            margin: auto;
-            box-shadow: 0 32px 100px rgba(0, 0, 0, .35);
-            overflow: hidden;
-            transform: translateY(30px);
-            transition: transform .3s ease;
-        }
+            .page-breadcrumb i {
+                font-size: .65rem;
+            }
 
-        .modal-overlay.open .news-modal {
-            transform: none;
-        }
+            .page-hero h1 {
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                color: var(--white);
+                margin-bottom: 14px;
+                text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+            }
 
-        .nm-hero-img {
-            width: 100%;
-            max-height: 380px;
-            object-fit: cover;
-            display: block;
-        }
+            .page-hero p {
+                font-size: 1.05rem;
+                color: rgba(255, 255, 255, .75);
+                max-width: 560px;
+                font-weight: 300;
+                line-height: 1.7;
+            }
 
-        .nm-hero-placeholder {
-            height: 220px;
-            background: linear-gradient(135deg, var(--navy), var(--red-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: rgba(255, 255, 255, .12);
-        }
+            .page-hero-bar {
+                width: 52px;
+                height: 4px;
+                background: var(--red);
+                border-radius: 2px;
+                margin-bottom: 18px;
+            }
 
-        .nm-body {
-            padding: 36px 40px 44px;
-        }
+            /* ── Toolbar / filter ── */
+            .news-toolbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 16px;
+                margin-bottom: 40px;
+            }
 
-        .nm-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            font-size: .82rem;
-            color: var(--gray);
-            margin-bottom: 16px;
-        }
+            .news-count {
+                font-size: .9rem;
+                color: var(--text-muted);
+            }
 
-        .nm-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+            .news-count strong {
+                color: var(--navy);
+            }
 
-        .nm-title {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            color: var(--navy);
-            margin-bottom: 20px;
-            line-height: 1.15;
-        }
+            /* ── News grid ── */
+            .news-page-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 28px;
+                margin-bottom: 48px;
+            }
 
-        .nm-corpo {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.85;
-            white-space: pre-line;
-        }
-
-        .nm-close {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .5);
-            border: none;
-            cursor: pointer;
-            color: var(--white);
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background var(--transition);
-            z-index: 1;
-        }
-
-        .nm-close:hover {
-            background: var(--red);
-        }
-
-        .nm-share {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid var(--gray-light);
-        }
-
-        .nm-share span {
-            font-size: .82rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-            color: var(--text-muted);
-        }
-
-        .nm-share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 8px 16px;
-            border-radius: var(--radius);
-            border: 1.5px solid var(--gray-light);
-            background: transparent;
-            cursor: pointer;
-            font-size: .85rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .nm-share-btn:hover {
-            border-color: var(--navy);
-            background: var(--off-white);
-        }
-
-        .nm-modal-wrap {
-            position: relative;
-        }
-
-        @media (max-width: 768px) {
-            .np-card.featured {
+            /* ── News card ── */
+            .np-card {
+                background: var(--white);
+                border-radius: var(--radius-lg);
+                border: 1px solid rgba(0, 0, 0, .06);
+                overflow: hidden;
+                box-shadow: var(--shadow-sm);
+                transition: var(--transition);
+                display: flex;
                 flex-direction: column;
-                grid-column: 1;
+                cursor: pointer;
+            }
+
+            .np-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-md);
+                border-color: transparent;
+            }
+
+            .np-img-wrap {
+                position: relative;
+                overflow: hidden;
+                height: 200px;
+                flex-shrink: 0;
+            }
+
+            .np-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform .5s ease;
+            }
+
+            .np-card:hover .np-img {
+                transform: scale(1.06);
+            }
+
+            .np-img-placeholder {
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--navy), var(--red-dark));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 3rem;
+                color: rgba(255, 255, 255, .15);
+            }
+
+            .np-img-category {
+                position: absolute;
+                top: 14px;
+                left: 14px;
+                background: var(--red);
+                color: var(--white);
+                font-size: .68rem;
+                font-weight: 700;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+                padding: 4px 12px;
+                border-radius: 20px;
+            }
+
+            .np-body {
+                padding: 22px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .np-meta {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                flex-wrap: wrap;
+                font-size: .78rem;
+                color: var(--gray);
+            }
+
+            .np-meta span {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .np-title {
+                font-family: var(--font-display);
+                font-size: 1.2rem;
+                color: var(--navy);
+                line-height: 1.25;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-clamp: 2;
+            }
+
+            .np-excerpt {
+                font-size: .9rem;
+                color: var(--text-muted);
+                flex: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-clamp: 3;
+                line-height: 1.65;
+            }
+
+            .np-read-more {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                color: var(--red);
+                font-size: .85rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: .05em;
+                transition: gap var(--transition);
+                margin-top: 4px;
+                align-self: flex-start;
+            }
+
+            .np-card:hover .np-read-more {
+                gap: 10px;
+            }
+
+            /* ── Featured first card (spans 2 columns) ── */
+            .np-card.featured {
+                grid-column: 1 / -1;
+                flex-direction: row;
             }
 
             .np-card.featured .np-img-wrap {
+                height: auto;
+                min-height: 280px;
+                width: 44%;
+                flex-shrink: 0;
+                border-radius: 0;
+            }
+
+            .np-card.featured .np-title {
+                font-size: 1.6rem;
+                -webkit-line-clamp: 3;
+                line-clamp: 3;
+            }
+
+            .np-card.featured .np-excerpt {
+                -webkit-line-clamp: 4;
+                line-clamp: 4;
+            }
+
+            .np-card.featured .np-body {
+                padding: 32px;
+                justify-content: center;
+            }
+
+            /* ── Load more ── */
+            .load-more-wrap {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .btn-load-more {
+                display: inline-flex;
+                align-items: center;
+                gap: 9px;
+                padding: 13px 30px;
+                border: 2px solid var(--red);
+                color: var(--red);
+                background: transparent;
+                border-radius: var(--radius);
+                font-family: var(--font-body);
+                font-size: .93rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: .04em;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .btn-load-more:hover {
+                background: var(--red);
+                color: var(--white);
+            }
+
+            .btn-load-more:disabled {
+                opacity: .5;
+                pointer-events: none;
+            }
+
+            /* ── States ── */
+            .state-loading {
+                text-align: center;
+                padding: 80px 24px;
+                color: var(--text-muted);
+            }
+
+            .spinner {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                border: 3px solid rgba(0, 0, 0, .08);
+                border-top-color: var(--red);
+                border-radius: 50%;
+                animation: spin .7s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .state-empty {
+                text-align: center;
+                padding: 80px 24px;
+                color: var(--text-muted);
+            }
+
+            .state-empty i {
+                font-size: 3rem;
+                opacity: .2;
+                margin-bottom: 16px;
+                display: block;
+            }
+
+            .state-empty h3 {
+                font-size: 1.4rem;
+                color: var(--navy);
+                margin-bottom: 10px;
+            }
+
+            /* ── Modal ── */
+            .modal-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 800;
+                background: rgba(0, 0, 0, .6);
+                backdrop-filter: blur(6px);
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 24px;
+                overflow-y: auto;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .3s ease;
+            }
+
+            .modal-overlay.open {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .news-modal {
+                background: var(--white);
+                border-radius: 20px;
                 width: 100%;
+                max-width: 760px;
+                margin: auto;
+                box-shadow: 0 32px 100px rgba(0, 0, 0, .35);
+                overflow: hidden;
+                transform: translateY(30px);
+                transition: transform .3s ease;
+            }
+
+            .modal-overlay.open .news-modal {
+                transform: none;
+            }
+
+            .nm-hero-img {
+                width: 100%;
+                max-height: 380px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .nm-hero-placeholder {
                 height: 220px;
+                background: linear-gradient(135deg, var(--navy), var(--red-dark));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 4rem;
+                color: rgba(255, 255, 255, .12);
             }
 
             .nm-body {
-                padding: 24px 20px 32px;
+                padding: 36px 40px 44px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .news-page-grid {
-                grid-template-columns: 1fr;
+            .nm-meta {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                flex-wrap: wrap;
+                font-size: .82rem;
+                color: var(--gray);
+                margin-bottom: 16px;
             }
-        }
-    </style>
-</head>
+
+            .nm-meta span {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .nm-title {
+                font-size: clamp(1.6rem, 3vw, 2.2rem);
+                color: var(--navy);
+                margin-bottom: 20px;
+                line-height: 1.15;
+            }
+
+            .nm-corpo {
+                font-size: 1rem;
+                color: var(--text-muted);
+                line-height: 1.85;
+                white-space: pre-line;
+            }
+
+            .nm-close {
+                position: absolute;
+                top: 18px;
+                right: 18px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, .5);
+                border: none;
+                cursor: pointer;
+                color: var(--white);
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background var(--transition);
+                z-index: 1;
+            }
+
+            .nm-close:hover {
+                background: var(--red);
+            }
+
+            .nm-share {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-top: 32px;
+                padding-top: 24px;
+                border-top: 1px solid var(--gray-light);
+            }
+
+            .nm-share span {
+                font-size: .82rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: .08em;
+                color: var(--text-muted);
+            }
+
+            .nm-share-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 7px;
+                padding: 8px 16px;
+                border-radius: var(--radius);
+                border: 1.5px solid var(--gray-light);
+                background: transparent;
+                cursor: pointer;
+                font-size: .85rem;
+                font-weight: 600;
+                transition: var(--transition);
+            }
+
+            .nm-share-btn:hover {
+                border-color: var(--navy);
+                background: var(--off-white);
+            }
+
+            .nm-modal-wrap {
+                position: relative;
+            }
+
+            @media (max-width: 768px) {
+                .np-card.featured {
+                    flex-direction: column;
+                    grid-column: 1;
+                }
+
+                .np-card.featured .np-img-wrap {
+                    width: 100%;
+                    height: 220px;
+                }
+
+                .nm-body {
+                    padding: 24px 20px 32px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .news-page-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
 
 <body>
 
@@ -548,12 +549,51 @@
                 </button>
                 <ul id="menu" role="list">
                     <li><a href="index.html#hero">Início</a></li>
-                    <li><a href="conselho.html">Quem Somos</a></li>
-                    <li><a href="index.html#projetos">Projetos</a></li>
-                    <li><a href="index.html#atuacao">Atuação</a></li>
+
+                    <!-- DROPDOWN: Quem Somos -->
+                    <li class="has-dropdown">
+                        <a href="institucional/nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="institucional/nossa-historia.html" role="menuitem">
+                                    <i class="fas fa-book-open"></i> Nossa História
+                                </a></li>
+                            <li><a href="institucional/missao-valores.html" role="menuitem">
+                                    <i class="fas fa-bullseye"></i> Missão e Valores
+                                </a></li>
+                            <li><a href="institucional/equipe.html" role="menuitem">
+                                    <i class="fas fa-users"></i> Conselho
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <!-- DROPDOWN: Atuação -->
+                    <li class="has-dropdown">
+                        <a href="atuacao/projetos.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="atuacao/projetos.html" role="menuitem">
+                                    <i class="fas fa-clipboard-list"></i> Projetos
+                                </a></li>
+                            <li><a href="atuacao/capacitacao.html" role="menuitem">
+                                    <i class="fas fa-graduation-cap"></i> Capacitação
+                                </a></li>
+                            <li><a href="atuacao/eventos.html" role="menuitem">
+                                    <i class="fas fa-calendar-days"></i> Eventos
+                                </a></li>
+                            <li><a href="atuacao/parcerias.html" role="menuitem">
+                                    <i class="fas fa-handshake"></i> Parcerias
+                                </a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="transparencia.html">Transparência</a></li>
                     <li><a href="index.html#stats">Impacto</a></li>
-                    <li><a href="news.html" style="color:var(--amber);">Notícias</a></li>
+                    <li><a href="noticias.html" style="color:var(--amber);">Notícias</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
                     <li><a href="index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
                 </ul>
@@ -877,12 +917,47 @@
         const btnTop = document.getElementById('btn-top');
         window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
         btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        // ── Menu hamburger ──────────────────────────────────────
         const btnMobile = document.getElementById('btn-mobile');
         const menu = document.getElementById('menu');
+
         btnMobile.addEventListener('click', () => {
             const open = menu.classList.toggle('active');
             btnMobile.classList.toggle('open', open);
             btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        // ── Dropdowns ───────────────────────────────────────────
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
         });
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').style.boxShadow = window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';

@@ -419,12 +419,48 @@
                 </button>
                 <ul id="menu" role="list">
                     <li><a href="index.html#hero">Início</a></li>
-                    <li><a href="conselho.html">Quem Somos</a></li>
-                    <li><a href="index.html#projetos">Projetos</a></li>
-                    <li><a href="index.html#atuacao">Atuação</a></li>
+                    <!-- DROPDOWN: Quem Somos -->
+                    <li class="has-dropdown">
+                        <a href="institucional/nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="institucional/nossa-historia.html" role="menuitem">
+                                    <i class="fas fa-book-open"></i> Nossa História
+                                </a></li>
+                            <li><a href="institucional/missao-valores.html" role="menuitem">
+                                    <i class="fas fa-bullseye"></i> Missão e Valores
+                                </a></li>
+                            <li><a href="institucional/equipe.html" role="menuitem">
+                                    <i class="fas fa-users"></i> Conselho
+                                </a></li>
+                        </ul>
+                    </li>
+                    <!-- DROPDOWN: Atuação -->
+                    <li class="has-dropdown">
+                        <a href="atuacao/projetos.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="atuacao/projetos.html" role="menuitem">
+                                    <i class="fas fa-clipboard-list"></i> Projetos
+                                </a></li>
+                            <li><a href="atuacao/capacitacao.html" role="menuitem">
+                                    <i class="fas fa-graduation-cap"></i> Capacitação
+                                </a></li>
+                            <li><a href="atuacao/eventos.html" role="menuitem">
+                                    <i class="fas fa-calendar-days"></i> Eventos
+                                </a></li>
+                            <li><a href="atuacao/parcerias.html" role="menuitem">
+                                    <i class="fas fa-handshake"></i> Parcerias
+                                </a></li>
+                        </ul>
+                    </li>
                     <li><a href="transparencia.html" style="color:var(--amber);">Transparência</a></li>
                     <li><a href="index.html#stats">Impacto</a></li>
-                    <li><a href="news.html">Notícias</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
                     <li><a href="index.html#contato">Contato</a></li>
                     <li><a href="index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
                 </ul>
@@ -674,12 +710,47 @@
         const btnTop = document.getElementById('btn-top');
         window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
         btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        // ── Menu hamburger ──────────────────────────────────────
         const btnMobile = document.getElementById('btn-mobile');
         const menu = document.getElementById('menu');
+
         btnMobile.addEventListener('click', () => {
             const open = menu.classList.toggle('active');
             btnMobile.classList.toggle('open', open);
             btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        // ── Dropdowns ───────────────────────────────────────────
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
         });
         // Reveal for static elements
         const obs = new IntersectionObserver(entries => {
