@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <title>Nossa História · Fundação Fênix 193</title>
+    <meta name="description"
+        content="Conheça a trajetória da Fundação Fênix 193, criada para apoiar e fortalecer o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* ── Page Hero ── */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/fenix-3.jpeg') center/cover no-repeat;
+            padding: 90px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        /* ── Intro ── */
+        .historia-intro {
+            max-width: 780px;
+            margin: 0 auto 64px;
+            text-align: center;
+        }
+
+        .historia-intro p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .historia-intro p strong {
+            color: var(--navy);
+        }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto 80px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--red) 0%, var(--fire) 50%, var(--amber) 100%);
+            transform: translateX(-50%);
+            opacity: .3;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 56px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-side {
+            flex: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-side {
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-side {
+            text-align: left;
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+            opacity: .18;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .timeline-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            flex-shrink: 0;
+            width: 60px;
+            padding-top: 6px;
+        }
+
+        .timeline-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--fire));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: .95rem;
+            box-shadow: 0 4px 16px rgba(225, 34, 23, .3);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-card {
+            flex: 1;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 24px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .07);
+            border: 1px solid rgba(0, 0, 0, .055);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .12);
+            transform: translateY(-3px);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-card::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            right: -8px;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid var(--white);
+            filter: drop-shadow(2px 0 2px rgba(0, 0, 0, .04));
+        }
+
+        .timeline-item:nth-child(even) .timeline-card::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: -8px;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid var(--white);
+            filter: drop-shadow(-2px 0 2px rgba(0, 0, 0, .04));
+        }
+
+        .timeline-tag {
+            display: inline-block;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--red);
+            background: rgba(225, 34, 23, .08);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.2rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .timeline-card p {
+            font-size: .93rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── Valores Fundadores ── */
+        .fundadores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .fundador-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 28px 24px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+            border: 1px solid rgba(0, 0, 0, .055);
+            transition: var(--transition);
+        }
+
+        .fundador-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .1);
+        }
+
+        .fundador-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--fire));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            margin: 0 auto 18px;
+            box-shadow: 0 4px 16px rgba(225, 34, 23, .25);
+        }
+
+        .fundador-card h3 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .fundador-card p {
+            font-size: .9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ── CTA ── */
+        .historia-cta {
+            background: linear-gradient(135deg, var(--navy), #4a1b0c);
+            border-radius: 16px;
+            padding: 52px 44px;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, .18);
+            margin-bottom: 20px;
+        }
+
+        .historia-cta h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .historia-cta p {
+            color: rgba(255, 255, 255, .7);
+            font-size: 1rem;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-amber-solid {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: var(--amber);
+            color: var(--navy);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-amber-solid:hover {
+            background: #F0A800;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border: 1.5px solid rgba(255, 255, 255, .35);
+            color: rgba(255, 255, 255, .85);
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(255, 255, 255, .08);
+        }
+
+        /* ── Responsivo ── */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 22px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                gap: 0;
+                padding-left: 60px;
+            }
+
+            .timeline-side {
+                display: none;
+            }
+
+            .timeline-center {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 44px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-card::after,
+            .timeline-item:nth-child(even) .timeline-card::after {
+                top: 14px;
+                left: -8px;
+                right: auto;
+                border-left: none;
+                border-right: 8px solid var(--white);
+            }
+
+            .historia-cta {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <header id="main-header">
+        <div class="container nav-wrapper">
+            <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <div class="logo-icon" aria-hidden="true">
+                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                </div>
+            </a>
+
+            <nav id="nav-menu" aria-label="Navegação principal">
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul id="menu" role="list">
+                    <li><a href="../index.html#hero">Início</a></li>
+
+                    <li class="has-dropdown">
+                        <a href="nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false" style="color:var(--amber);">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="nossa-historia.html" role="menuitem">
+                                    <i class="fas fa-book-open"></i> Nossa História
+                                </a></li>
+                            <li><a href="missao-valores.html" role="menuitem">
+                                    <i class="fas fa-bullseye"></i> Missão e Valores
+                                </a></li>
+                            <li><a href="equipe.html" role="menuitem">
+                                    <i class="fas fa-users"></i> Conselho
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-dropdown">
+                        <a href="../atuacao/projetos.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../atuacao/projetos.html" role="menuitem">
+                                    <i class="fas fa-clipboard-list"></i> Projetos
+                                </a></li>
+                            <li><a href="../atuacao/capacitacao.html" role="menuitem">
+                                    <i class="fas fa-graduation-cap"></i> Capacitação
+                                </a></li>
+                            <li><a href="../atuacao/eventos.html" role="menuitem">
+                                    <i class="fas fa-calendar-days"></i> Eventos
+                                </a></li>
+                            <li><a href="../atuacao/parcerias.html" role="menuitem">
+                                    <i class="fas fa-handshake"></i> Parcerias
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../transparencia.html">Transparência</a></li>
+                    <li><a href="../index.html#stats">Impacto</a></li>
+                    <li><a href="../noticias.html">Notícias</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                    <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===================== PAGE HERO ===================== -->
+        <section class="page-hero" aria-label="Nossa História">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="../index.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="nossa-historia.html">Quem Somos</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Nossa História</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Nossa História</h1>
+                <p>Conheça a trajetória da Fundação Fênix 193 e o propósito que nos une em defesa da vida e do Corpo de
+                    Bombeiros Militar de Sergipe.</p>
+            </div>
+        </section>
+
+        <!-- ===================== CONTEÚDO ===================== -->
+        <div class="section-padding">
+            <div class="container">
+
+                <!-- Intro -->
+                <div class="historia-intro reveal">
+                    <p>A <strong>Fundação Fênix 193</strong> nasceu do reconhecimento de que os homens e mulheres que
+                        dedicam suas vidas a salvar outras merecem todo o suporte que a sociedade pode oferecer.</p>
+                    <p>Criada como organização sem fins lucrativos, a Fundação surgiu para preencher lacunas
+                        estruturais, ampliar a capacidade operacional do <strong>Corpo de Bombeiros Militar de
+                            Sergipe</strong> e promover ações de proteção e defesa civil que beneficiem toda a
+                        comunidade sergipana.</p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="section-header reveal">
+                    <span class="section-label">Trajetória</span>
+                    <h2>Linha do Tempo</h2>
+                    <div class="section-bar"></div>
+                </div>
+
+                <div class="timeline">
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-side">
+                            <span class="timeline-year">2024</span>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
+                        </div>
+                        <div class="timeline-card">
+                            <span class="timeline-tag">Fundação</span>
+                            <h3>Criação da Fundação Fênix 193</h3>
+                            <p>A Fundação Fênix 193 foi oficialmente constituída com o propósito de apoiar o Corpo de
+                                Bombeiros Militar de Sergipe e as ações de Proteção e Defesa Civil, reunindo lideranças
+                                militares e civis comprometidas com a segurança pública.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-side">
+                            <span class="timeline-year">2024</span>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"><i class="fas fa-users"></i></div>
+                        </div>
+                        <div class="timeline-card">
+                            <span class="timeline-tag">Estrutura</span>
+                            <h3>Formação dos Conselhos</h3>
+                            <p>Foram constituídos o Conselho de Curadores, o Conselho Executivo e o Conselho Fiscal, com
+                                membros de reconhecida trajetória nas forças de segurança e na sociedade civil
+                                sergipana.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-side">
+                            <span class="timeline-year">2025</span>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"><i class="fas fa-rocket"></i></div>
+                        </div>
+                        <div class="timeline-card">
+                            <span class="timeline-tag">Lançamento</span>
+                            <h3>Início das Atividades Institucionais</h3>
+                            <p>A Fundação iniciou suas atividades formais, com o planejamento dos primeiros projetos
+                                sociais, ações de capacitação e o desenvolvimento da identidade e presença digital
+                                institucional.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-side">
+                            <span class="timeline-year">2025</span>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"><i class="fas fa-globe"></i></div>
+                        </div>
+                        <div class="timeline-card">
+                            <span class="timeline-tag">Digital</span>
+                            <h3>Lançamento do Ecossistema Digital</h3>
+                            <p>Publicação do site institucional e do painel administrativo AkanniHub, consolidando a
+                                presença digital da Fundação com portal de transparência, notícias e canal de contato
+                                público.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item reveal">
+                        <div class="timeline-side">
+                            <span class="timeline-year">2026</span>
+                        </div>
+                        <div class="timeline-center">
+                            <div class="timeline-dot"><i class="fas fa-star"></i></div>
+                        </div>
+                        <div class="timeline-card">
+                            <span class="timeline-tag">Em andamento</span>
+                            <h3>Expansão de Projetos e Parcerias</h3>
+                            <p>A Fundação avança no desenvolvimento dos projetos Bombeiro Mirim, SOS Abelhas e nos
+                                cursos de capacitação, além de construir parcerias com empresas e entidades que
+                                compartilham do compromisso com a segurança e a vida.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pilares Fundadores -->
+                <div class="section-header reveal">
+                    <span class="section-label">Alicerces</span>
+                    <h2>Pilares que nos Fundamentam</h2>
+                    <div class="section-bar"></div>
+                </div>
+
+                <div class="fundadores-grid">
+                    <div class="fundador-card reveal">
+                        <div class="fundador-icon"><i class="fas fa-heart-pulse"></i></div>
+                        <h3>Compromisso com a Vida</h3>
+                        <p>A defesa da vida é o valor central de toda ação da Fundação — dos projetos sociais às
+                            iniciativas de capacitação e suporte operacional.</p>
+                    </div>
+                    <div class="fundador-card reveal">
+                        <div class="fundador-icon"><i class="fas fa-scale-balanced"></i></div>
+                        <h3>Transparência e Ética</h3>
+                        <p>Toda movimentação de recursos e decisão institucional é registrada e disponibilizada
+                            publicamente, garantindo confiança à sociedade e aos parceiros.</p>
+                    </div>
+                    <div class="fundador-card reveal">
+                        <div class="fundador-icon"><i class="fas fa-people-group"></i></div>
+                        <h3>União entre Instituição e Sociedade</h3>
+                        <p>A Fundação é a ponte entre a sociedade civil e o Corpo de Bombeiros, mobilizando recursos
+                            humanos, técnicos e financeiros em prol do bem comum.</p>
+                    </div>
+                    <div class="fundador-card reveal">
+                        <div class="fundador-icon"><i class="fas fa-seedling"></i></div>
+                        <h3>Impacto Duradouro</h3>
+                        <p>Cada projeto é pensado para gerar transformação real e permanente — na estrutura do CBMSE, na
+                            formação de pessoas e na segurança da comunidade sergipana.</p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="historia-cta reveal">
+                    <h2>Faça Parte Desta História</h2>
+                    <p>A Fundação Fênix 193 cresce com o apoio de pessoas e empresas que acreditam que proteger quem nos
+                        protege é um dever de todos.</p>
+                    <div class="cta-btns">
+                        <a href="../index.html#como-ajudar" class="btn-amber-solid">
+                            <i class="fas fa-hand-holding-heart"></i> Como Ajudar
+                        </a>
+                        <a href="equipe.html" class="btn-outline-white">
+                            <i class="fas fa-users"></i> Conheça o Conselho
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-area footer-logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" height="33" width="33">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                        </div>
+                    </div>
+                    <p>Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: ?</p><br>
+                    <div class="footer-social-col">
+                        <h4>Redes Sociais</h4>
+                        <div class="footer-social-links">
+                            <a href="?" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="?" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="?" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="?" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="nossa-historia.html">Nossa História</a></li>
+                        <li><a href="missao-valores.html">Missão e Valores</a></li>
+                        <li><a href="equipe.html">Membros do Conselho</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Atuação e Transparência</h4>
+                    <ul>
+                        <li><a href="../atuacao/projetos.html">Projetos</a></li>
+                        <li><a href="../atuacao/capacitacao.html">Capacitação</a></li>
+                        <li><a href="../noticias.html">Notícias</a></li>
+                        <li><a href="../transparencia.html">Transparência</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/privacidade.html">Privacidade</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Administração</h4>
+                    <a href="../akannihub.html" class="btn-cta-nav">
+                        <i class="fa-solid fa-user-lock"></i> Acesso Restrito
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.</p>
+                <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank"
+                        rel="noopener">Privacidade</a>
+                    · <a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const btnTop = document.getElementById('btn-top');
+        window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
+        btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        // ── Scroll Reveal ────────────────────────────────────
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── Menu hamburger ───────────────────────────────────
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        // ── Dropdowns ────────────────────────────────────────
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+</body>
+
+</html>
