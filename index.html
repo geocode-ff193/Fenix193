@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
-    <link rel="manifest" href="site.webmanifest" />
-    <title>Fundação Fênix 193</title>
+    <meta name="author" content="GeoCODE Programmer · Geovani Santos">
+    <meta name="theme-color" content="#313332">
     <meta name="description"
         content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta name="apple-mobile-web-app-title" content="FF193" />
+    <title>Fundação Fênix 193</title>
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/x-icon" href="assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -46,8 +48,7 @@
                     <li><a href="index.html#hero" style="color:var(--amber);">Início</a></li>
                     <!-- DROPDOWN: Quem Somos -->
                     <li class="has-dropdown">
-                        <a class="dropdown-trigger" aria-haspopup="true"
-                            aria-expanded="false">
+                        <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
                             Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -67,8 +68,7 @@
                     </li>
                     <!-- DROPDOWN: Atuação -->
                     <li class="has-dropdown">
-                        <a class="dropdown-trigger" aria-haspopup="true"
-                            aria-expanded="false">
+                        <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
                             Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -435,7 +435,8 @@
                 </div>
                 <div class="grid-2 contact-grid">
                     <div class="contact-info">
-                        <p>Tem dúvidas, deseja colaborar ou propor uma parceria? Fale com a <strong>Fundação Fênix
+                        <p>Tem dúvidas, denúncia, deseja colaborar ou propor uma parceria?<br>Fale com a
+                            <strong>Fundação Fênix
                                 193</strong>. Estamos prontos para atendê-lo.</p>
                         <ul class="contact-list">
                             <li>
@@ -463,27 +464,31 @@
                     </div>
 
                     <form id="contact-form" class="contact-form" novalidate>
-                        <p class="form-instruction">Preencha o formulário abaixo e entraremos em contato com você o mais breve possível.<br>(*obrigatório)</p>
+                        <p class="form-instruction">Preencha o formulário abaixo e entraremos em contato com você o mais
+                            breve possível.<br>(*obrigatório)</p>
                         <div class="form-group">
                             <label for="nome">Seu Nome</label>
-                            <input type="text" id="nome" name="nome" placeholder="Ex: João da Silva" required>
+                            <input type="text" id="nome" name="nome" placeholder="Ex: Deixe Vazio em caso de anonimato"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="email">Seu E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="joao@email.com" required>
+                            <input type="email" id="email" name="email" placeholder="Deixe Vazio em caso de anonimato"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="telefone">Seu WhatsApp</label>
-                            <input type="tel" id="telefone" name="telefone" placeholder="(79) 9XXXX-XXXX">
+                            <input type="tel" id="telefone" name="telefone"
+                                placeholder="Deixe Vazio em caso de anonimato">
                         </div>
                         <div class="form-group">
                             <label for="assunto">Assunto*</label>
                             <select id="assunto" name="assunto">
                                 <option value="">Selecione um assunto</option>
+                                <option value="denuncia">Denúncia</option>
                                 <option value="doacao">Doação</option>
                                 <option value="parceria">Parceria Empresarial</option>
                                 <option value="voluntariado">Voluntariado</option>
-                                <option value="denuncia">Denúncia</option>
                                 <option value="outro">Outro</option>
                             </select>
                         </div>
@@ -545,7 +550,8 @@
                         <li><a href="atuacao/projetos.html">Projetos</a></li>
                         <li><a href="atuacao/capacitacao.html">Capacitação</a></li>
                         <li><a href="atuacao/eventos.html">Eventos</a></li>
-                        <li><a href="atuacao/parcerias.html">Parcerias</a></li><li><a href="noticias.html">Notícias</a></li>
+                        <li><a href="atuacao/parcerias.html">Parcerias</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
                     </ul>
                 </div>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -19,113 +20,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap">
-    <style>
-        :root {
-            --ink-soft: #E12217;
-            --gold: #F27613;
-            --cream: #FFFFFF;
-            --text: #313332;
-            --accent: #872020;
-            --fire-yellow: #FFD700;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: var(--cream);
-            font-family: 'Lato', sans-serif;
-            color: var(--text);
-            text-align: center;
-        }
-
-        .container {
-            max-width: 550px;
-            padding: 2rem;
-        }
-
-        /* Animação do fogo no texto */
-        .error-code {
-            font-family: 'Playfair Display', serif;
-            font-size: 140px;
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 5px;
-            
-            /* Efeito de Gradiente de Fogo */
-            background-image: linear-gradient(0deg, var(--accent) 0%, var(--ink-soft) 30%, var(--gold) 70%, var(--fire-yellow) 100%);
-            background-size: 100% 200%;
-            color: transparent;
-            -webkit-background-clip: text;
-            background-clip: text;
-            
-            /* Brilho quente ao redor */
-            filter: drop-shadow(0px 10px 15px rgba(225, 34, 23, 0.3));
-            animation: burn 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes burn {
-            0% { 
-                background-position: 0% 100%; 
-                filter: drop-shadow(0px 5px 10px rgba(225, 34, 23, 0.2));
-            }
-            100% { 
-                background-position: 0% 0%; 
-                filter: drop-shadow(0px 15px 25px rgba(242, 118, 19, 0.5));
-                transform: scale(1.02); /* Leve pulso de calor */
-            }
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            margin-bottom: 15px;
-            color: var(--ink-soft);
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .btn-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--ink-soft);
-            color: var(--cream);
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(118, 51, 26, 0.2);
-        }
-
-        .btn-home:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(118, 51, 26, 0.3);
-        }
-
-        .icon-404 {
-            font-size: 50px;
-            color: var(--gold);
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-    </style>
+    <link rel="stylesheet" href="../FF193/assets/css/404.css">
 </head>
+
 <body>
     <div class="container">
         <div class="error-code">404</div><br>
@@ -133,10 +30,12 @@
             <img src="assets/ui/favicon-96x96.png" alt="Ícone Fênix" width="70">
         </div>
         <h1>Ops, Não encontramos essa página!</h1>
-        <p>Parece que a página que você está procurando foi movida ou nunca existiu, certifique-se que digitou o endereço corretamente ou seguiu um link válido.</p>
+        <p>Parece que a página que você está procurando foi movida ou nunca existiu, certifique-se que digitou o
+            endereço corretamente ou seguiu um link válido.</p>
         <a href="index.html" class="btn-home">
             <i class="fas fa-fire-extinguisher"></i> Voltar para o Início
         </a>
     </div>
 </body>
+
 </html>
