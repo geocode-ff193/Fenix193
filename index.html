@@ -18,7 +18,8 @@
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dropdown.css">
 </head>
 
 <body>
@@ -42,15 +43,51 @@
                     <span class="hamburger-bar"></span>
                 </button>
                 <ul id="menu" role="list">
-                    <li><a href="#hero" style="color:var(--amber);">Início</a></li>
-                    <li><a href="#quem-somos">Quem Somos</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#atuacao">Atuação</a></li>
+                    <li><a href="index.html#hero" style="color:var(--amber);">Início</a></li>
+                    <!-- DROPDOWN: Quem Somos -->
+                    <li class="has-dropdown">
+                        <a href="institucional/nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="institucional/nossa-historia.html" role="menuitem">
+                                    <i class="fas fa-book-open"></i> Nossa História
+                                </a></li>
+                            <li><a href="institucional/missao-valores.html" role="menuitem">
+                                    <i class="fas fa-bullseye"></i> Missão e Valores
+                                </a></li>
+                            <li><a href="institucional/equipe.html" role="menuitem">
+                                    <i class="fas fa-users"></i> Conselho
+                                </a></li>
+                        </ul>
+                    </li>
+                    <!-- DROPDOWN: Atuação -->
+                    <li class="has-dropdown">
+                        <a href="atuacao/projetos.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="atuacao/projetos.html" role="menuitem">
+                                    <i class="fas fa-clipboard-list"></i> Projetos
+                                </a></li>
+                            <li><a href="atuacao/capacitacao.html" role="menuitem">
+                                    <i class="fas fa-graduation-cap"></i> Capacitação
+                                </a></li>
+                            <li><a href="atuacao/eventos.html" role="menuitem">
+                                    <i class="fas fa-calendar-days"></i> Eventos
+                                </a></li>
+                            <li><a href="atuacao/parcerias.html" role="menuitem">
+                                    <i class="fas fa-handshake"></i> Parcerias
+                                </a></li>
+                        </ul>
+                    </li>
                     <li><a href="transparencia.html">Transparência</a></li>
-                    <li><a href="#stats">Impacto</a></li>
-                    <li><a href="news.html">Notícias</a></li>
-                    <li><a href="#contato">Contato</a></li>
-                    <li><a href="#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+                    <li><a href="index.html#stats">Impacto</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
+                    <li><a href="index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
                 </ul>
             </nav>
         </div>
@@ -97,7 +134,7 @@
                             comunidade sergipana.</p>
                         <p><strong>Nosso compromisso é com a proteção da vida, com a sociedade e com aqueles que dedicam
                                 suas vidas a salvar outras.</strong></p>
-                        <a href="conselho.html"><button class="btn-outline toggle-diretoria-btn">
+                        <a href="institucional/equipe.html"><button class="btn-outline toggle-diretoria-btn">
                                 <i class="fas fa-users"></i> Conselhos e Presidente de Honra
                             </button></a>
                     </div>
@@ -333,7 +370,7 @@
                             <li><i class="fas fa-check"></i> Boleto bancário</li>
                             <li><i class="fas fa-check"></i> Transferência TED/DOC</li>
                         </ul>
-                        <a href="#contato" class="btn-help">Fazer Doação</a>
+                        <a href="index.html#contato" class="btn-help">Fazer Doação</a>
                     </div>
                     <div class="help-card">
                         <div class="help-icon"><i class="fas fa-handshake"></i></div>
@@ -345,7 +382,7 @@
                             <li><i class="fas fa-check"></i> Doação de equipamentos</li>
                             <li><i class="fas fa-check"></i> Apoio institucional</li>
                         </ul>
-                        <a href="#contato" class="btn-help">Ser Parceiro</a>
+                        <a href="index.html#contato" class="btn-help">Ser Parceiro</a>
                     </div>
                     <div class="help-card">
                         <div class="help-icon"><i class="fas fa-people-carry-box"></i></div>
@@ -357,7 +394,7 @@
                             <li><i class="fas fa-check"></i> Suporte administrativo</li>
                             <li><i class="fas fa-check"></i> Comunicação e marketing</li>
                         </ul>
-                        <a href="#contato" class="btn-help">Ser Voluntário</a>
+                        <a href="index.html#contato" class="btn-help">Ser Voluntário</a>
                     </div>
                 </div>
             </div>
@@ -377,7 +414,7 @@
                     <div class="news-home-skeleton"></div>
                 </div>
                 <div style="text-align:center;margin-top:36px;">
-                    <a href="news.html" class="btn-outline-sm">
+                    <a href="noticias.html" class="btn-outline-sm">
                         <i class="fas fa-newspaper"></i> Ver todas as notícias
                     </a>
                 </div>
@@ -488,19 +525,19 @@
                 <div class="footer-links-col">
                     <h4>Institucional</h4>
                     <ul>
-                        <li><a href="#quem-somos">Quem Somos</a></li>
-                        <li><a href="conselho.html">Membros do Conselho</a></li>
-                        <li><a href="#como-ajudar">Como Ajudar</a></li>
-                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="index.html#quem-somos">Quem Somos</a></li>
+                        <li><a href="institucional/equipe.html">Membros do Conselho</a></li>
+                        <li><a href="index.html#como-ajudar">Como Ajudar</a></li>
+                        <li><a href="index.html#contato">Contato</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links-col">
                     <h4>Atuação e Transparência</h4>
                     <ul>
-                        <li><a href="#projetos">Projetos</a></li>
-                        <li><a href="#atuacao">Áreas de Atuação</a></li>
-                        <li><a href="news.html">Notícias</a></li>
+                        <li><a href="index.html#projetos">Projetos</a></li>
+                        <li><a href="index.html#atuacao">Áreas de Atuação</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
                         <li><a href="transparencia.html">Transparência</a></li>
                         <li><a href="https://eusougeovani.vercel.app/privacidade.html">Privacidade</a></li>
                         <li><a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a></li>
@@ -533,7 +570,7 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <script type="module" src="script.js"></script>
+    <script type="module" src="assets/js/script.js"></script>
 </body>
 
 </html>

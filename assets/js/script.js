@@ -42,35 +42,55 @@ const analytics = getAnalytics(firebaseApp);
 /* =============================================================
    1. MENU MOBILE
    ============================================================= */
-(function initMobileMenu() {
-    const btnMobile = document.getElementById('btn-mobile');
-    const menu = document.getElementById('menu');
-    if (!btnMobile || !menu) return;
+// ── Menu hamburger ──────────────────────────────────────
+const btnMobile = document.getElementById('btn-mobile');
+const menu = document.getElementById('menu');
 
-    btnMobile.addEventListener('click', () => {
-        const isOpen = menu.classList.toggle('active');
-        btnMobile.classList.toggle('open', isOpen);
-        btnMobile.setAttribute('aria-expanded', String(isOpen));
-    });
+btnMobile.addEventListener('click', () => {
+    const open = menu.classList.toggle('active');
+    btnMobile.classList.toggle('open', open);
+    btnMobile.setAttribute('aria-expanded', String(open));
+});
 
-    // Fecha ao clicar em qualquer link do menu
-    menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            menu.classList.remove('active');
-            btnMobile.classList.remove('open');
-            btnMobile.setAttribute('aria-expanded', 'false');
+// ── Dropdowns (mobile: toggle via clique no trigger) ────
+document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+        if (window.innerWidth > 768) return; // desktop usa hover puro via CSS
+        e.preventDefault();
+        const li = trigger.closest('.has-dropdown');
+        const isOpen = li.classList.contains('open');
+
+        // Fecha todos antes de abrir o clicado
+        document.querySelectorAll('.has-dropdown.open').forEach(el => {
+            if (el !== li) {
+                el.classList.remove('open');
+                el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+            }
         });
-    });
 
-    // Fecha ao clicar fora
-    document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && !btnMobile.contains(e.target)) {
-            menu.classList.remove('active');
-            btnMobile.classList.remove('open');
-            btnMobile.setAttribute('aria-expanded', 'false');
-        }
+        li.classList.toggle('open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
     });
-})();
+});
+
+// Fecha dropdown ao clicar fora (desktop)
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.has-dropdown')) {
+        document.querySelectorAll('.has-dropdown.open').forEach(el => {
+            el.classList.remove('open');
+            el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+        });
+    }
+});
+
+// Fecha dropdown ao pressionar Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.has-dropdown.open').forEach(el => {
+            el.classList.remove('open');
+        });
+    }
+});
 
 /* =============================================================
    2. HEADER FIXO — muda aparência ao rolar
@@ -188,7 +208,7 @@ const analytics = getAnalytics(firebaseApp);
 })();
 
 /* =============================================================
-   7. NOTÍCIAS — Plano B: Vercel Edge Function
+   7. NOTÍCIAS
    ============================================================= */
 (function initHomeNews() {
     const grid = document.getElementById('home-news-grid');
