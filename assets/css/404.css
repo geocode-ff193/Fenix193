@@ -92,10 +92,6 @@ p {
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    
-    /* Brilho quente ao redor */
-    filter: drop-shadow(0px 10px 15px rgba(225, 34, 23, 0.3));
-    animation: burn 2s ease-in-out infinite alternate;
 }
 
 .btn-home:hover {
@@ -110,10 +106,6 @@ p {
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
-    
-    /* Brilho quente ao redor */
-    filter: drop-shadow(0px 10px 15px rgba(225, 34, 23, 0.3));
-    animation: burn 2s ease-in-out infinite alternate;
 }
 
 .icon-404 {
