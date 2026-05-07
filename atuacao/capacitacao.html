@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <title>Capacitação · Fundação Fênix 193</title>
+    <meta name="description"
+        content="Cursos e treinamentos da Fundação Fênix 193: Primeiros Socorros, Brigada de Incêndio, Instrutor de Brigada e Proteção e Defesa Civil. Inscreva-se.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* ── Page Hero ── */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/fenix-2.jpeg') center/cover no-repeat;
+            padding: 90px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        /* ── Diferenciais (strip) ── */
+        .diferenciais-strip {
+            background: var(--navy);
+            padding: 36px 0;
+            margin-bottom: 80px;
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0;
+        }
+
+        .diferencial-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            padding: 20px 24px;
+            border-right: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .diferencial-item:last-child {
+            border-right: none;
+        }
+
+        .diferencial-item i {
+            font-size: 1.6rem;
+            color: var(--amber);
+        }
+
+        .diferencial-item strong {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--white);
+            display: block;
+            line-height: 1.2;
+        }
+
+        .diferencial-item span {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .5);
+        }
+
+        /* ── Catálogo de cursos ── */
+        .curso-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, .06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+            overflow: hidden;
+            margin-bottom: 28px;
+            transition: var(--transition);
+        }
+
+        .curso-card:hover {
+            box-shadow: 0 10px 36px rgba(0, 0, 0, .11);
+            transform: translateY(-3px);
+        }
+
+        .curso-card-inner {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+        }
+
+        .curso-card-aside {
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .curso-card-aside::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            right: -40px;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .curso-card-aside.red {
+            background: linear-gradient(160deg, var(--red-dark), var(--red));
+        }
+
+        .curso-card-aside.fire {
+            background: linear-gradient(160deg, #7C3404, var(--fire));
+        }
+
+        .curso-card-aside.navy {
+            background: linear-gradient(160deg, var(--navy), #1a3a5c);
+        }
+
+        .curso-card-aside.green {
+            background: linear-gradient(160deg, #1a4a1a, #2d8a2d);
+        }
+
+        .curso-aside-icon {
+            font-size: 2.8rem;
+            color: rgba(255, 255, 255, .9);
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .25));
+        }
+
+        .curso-aside-ch {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, .15);
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: .75rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .curso-aside-nivel {
+            position: relative;
+            z-index: 1;
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .65);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+        }
+
+        .curso-card-body {
+            padding: 32px 36px;
+        }
+
+        .curso-card-body h3 {
+            font-size: 1.45rem;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .curso-card-body>p {
+            font-size: .95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        /* ── Módulos ── */
+        .curso-modulos {
+            margin-bottom: 24px;
+        }
+
+        .curso-modulos-title {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .modulos-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+        }
+
+        .modulo-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: .875rem;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .modulo-item i {
+            color: var(--red);
+            font-size: .65rem;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        /* ── Infos rápidas ── */
+        .curso-infos {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, .06);
+        }
+
+        .curso-info-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: var(--off-white);
+            border-radius: 20px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--navy);
+            border: 1px solid rgba(0, 0, 0, .06);
+        }
+
+        .curso-info-badge i {
+            color: var(--red);
+            font-size: .72rem;
+        }
+
+        .btn-inscricao {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .88rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .btn-inscricao:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ── Como funciona ── */
+        .como-funciona {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 56px 52px;
+            margin-bottom: 80px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+            border: 1px solid rgba(0, 0, 0, .055);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            position: relative;
+            margin-top: 36px;
+        }
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 32px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--red), var(--amber));
+            opacity: .2;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 14px;
+            padding: 24px 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-num {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--fire));
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(225, 34, 23, .3);
+            flex-shrink: 0;
+        }
+
+        .step-item h4 {
+            font-size: 1rem;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .step-item p {
+            font-size: .85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── CTA ── */
+        .cap-cta {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            border-radius: 20px;
+            padding: 56px 52px;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(225, 34, 23, .22);
+            margin-bottom: 20px;
+        }
+
+        .cap-cta h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .cap-cta p {
+            color: rgba(255, 255, 255, .75);
+            font-size: 1rem;
+            max-width: 520px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white-solid {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: var(--white);
+            color: var(--red);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-white-solid:hover {
+            background: var(--off-white);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border: 1.5px solid rgba(255, 255, 255, .4);
+            color: rgba(255, 255, 255, .9);
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(255, 255, 255, .08);
+        }
+
+        /* ── Responsivo ── */
+        @media (max-width: 860px) {
+            .curso-card-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .curso-card-aside {
+                flex-direction: row;
+                padding: 24px 28px;
+                justify-content: flex-start;
+                gap: 20px;
+                border-radius: 0;
+            }
+
+            .curso-aside-icon {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .modulos-list {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid::before {
+                display: none;
+            }
+
+            .como-funciona {
+                padding: 40px 24px;
+            }
+
+            .cap-cta {
+                padding: 44px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <header id="main-header">
+        <div class="container nav-wrapper">
+            <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <div class="logo-icon" aria-hidden="true">
+                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                </div>
+            </a>
+
+            <nav id="nav-menu" aria-label="Navegação principal">
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul id="menu" role="list">
+                    <li><a href="../index.html#hero">Início</a></li>
+
+                    <li class="has-dropdown">
+                        <a href="../institucional/nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../institucional/nossa-historia.html" role="menuitem"><i
+                                        class="fas fa-book-open"></i> Nossa História</a></li>
+                            <li><a href="../institucional/missao-valores.html" role="menuitem"><i
+                                        class="fas fa-bullseye"></i> Missão e Valores</a></li>
+                            <li><a href="../institucional/equipe.html" role="menuitem"><i class="fas fa-users"></i>
+                                    Conselho</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-dropdown">
+                        <a href="projetos.html" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false"
+                            style="color:var(--amber);">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="projetos.html" role="menuitem"><i class="fas fa-clipboard-list"></i>
+                                    Projetos</a></li>
+                            <li><a href="capacitacao.html" role="menuitem"><i class="fas fa-graduation-cap"></i>
+                                    Capacitação</a></li>
+                            <li><a href="eventos.html" role="menuitem"><i class="fas fa-calendar-days"></i> Eventos</a>
+                            </li>
+                            <li><a href="parcerias.html" role="menuitem"><i class="fas fa-handshake"></i> Parcerias</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../transparencia.html">Transparência</a></li>
+                    <li><a href="../index.html#stats">Impacto</a></li>
+                    <li><a href="../noticias.html">Notícias</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                    <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===================== PAGE HERO ===================== -->
+        <section class="page-hero" aria-label="Capacitação">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="../index.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Atuação</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Capacitação</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Capacitação</h1>
+                <p>Cursos e treinamentos desenvolvidos pela Fundação Fênix 193 para formar profissionais e cidadãos
+                    preparados para emergências.</p>
+            </div>
+        </section>
+
+        <!-- ===================== DIFERENCIAIS ===================== -->
+        <div class="diferenciais-strip" aria-label="Diferenciais dos cursos">
+            <div class="container">
+                <div class="diferenciais-grid">
+                    <div class="diferencial-item">
+                        <i class="fas fa-medal"></i>
+                        <strong>Instrutores Qualificados</strong>
+                        <span>Profissionais do CBMSE e especialistas certificados</span>
+                    </div>
+                    <div class="diferencial-item">
+                        <i class="fas fa-certificate"></i>
+                        <strong>Certificação Reconhecida</strong>
+                        <span>Certificados válidos para exigências legais e normativas</span>
+                    </div>
+                    <div class="diferencial-item">
+                        <i class="fas fa-users-gear"></i>
+                        <strong>Turmas Reduzidas</strong>
+                        <span>Aprendizado prático e personalizado para cada aluno</span>
+                    </div>
+                    <div class="diferencial-item">
+                        <i class="fas fa-building"></i>
+                        <strong>In Company</strong>
+                        <span>Treinamentos realizados na sua empresa ou instituição</span>
+                    </div>
+                    <div class="diferencial-item">
+                        <i class="fas fa-fire-flame-curved"></i>
+                        <strong>Conteúdo Atualizado</strong>
+                        <span>Alinhado às normas técnicas e melhores práticas vigentes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== CATÁLOGO ===================== -->
+        <div class="section-padding" style="padding-top:0;">
+            <div class="container">
+
+                <div class="section-header reveal">
+                    <span class="section-label">Catálogo</span>
+                    <h2>Nossos Cursos</h2>
+                    <div class="section-bar"></div>
+                </div>
+
+                <!-- Curso 1 — Primeiros Socorros -->
+                <article class="curso-card reveal">
+                    <div class="curso-card-inner">
+                        <div class="curso-card-aside red">
+                            <i class="fas fa-kit-medical curso-aside-icon"></i>
+                            <span class="curso-aside-ch">8 horas</span>
+                            <span class="curso-aside-nivel">Básico</span>
+                        </div>
+                        <div class="curso-card-body">
+                            <h3>Curso Básico de Primeiros Socorros</h3>
+                            <p>Capacitação essencial para o público civil que deseja saber como agir nas primeiras
+                                etapas de uma emergência médica, antes da chegada do socorro especializado. Conteúdo
+                                prático, com simulações reais e instrutores experientes do CBMSE.</p>
+
+                            <div class="curso-modulos">
+                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
+                                </p>
+                                <div class="modulos-list">
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Reconhecimento de
+                                        emergências</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Acionamento correto do
+                                        socorro</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> RCP e desfibrilação (DEA)
+                                    </div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Controle de hemorragias
+                                    </div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Tratamento de fraturas e
+                                        entorses</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Queimaduras e
+                                        intoxicações</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Engasgo e obstrução de
+                                        vias aéreas</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Transporte seguro de
+                                        vítimas</div>
+                                </div>
+                            </div>
+
+                            <div class="curso-infos">
+                                <span class="curso-info-badge"><i class="fas fa-clock"></i> 8 horas</span>
+                                <span class="curso-info-badge"><i class="fas fa-users"></i> Público geral</span>
+                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> Nível básico</span>
+                                <span class="curso-info-badge"><i class="fas fa-certificate"></i> Certificação
+                                    inclusa</span>
+                                <span class="curso-info-badge"><i class="fas fa-building"></i> In company
+                                    disponível</span>
+                            </div>
+
+                            <a href="../index.html#contato" class="btn-inscricao">
+                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Curso 2 — Brigada 8h -->
+                <article class="curso-card reveal">
+                    <div class="curso-card-inner">
+                        <div class="curso-card-aside fire">
+                            <i class="fas fa-fire-extinguisher curso-aside-icon"></i>
+                            <span class="curso-aside-ch">8 horas</span>
+                            <span class="curso-aside-nivel">Básico</span>
+                        </div>
+                        <div class="curso-card-body">
+                            <h3>Brigada de Incêndio — 8 Horas</h3>
+                            <p>Formação básica para brigadistas de incêndio, atendendo às exigências das normas de
+                                segurança contra incêndio e pânico. Indicado para empresas que buscam adequação
+                                normativa e querem treinar equipes para resposta a emergências internas.</p>
+
+                            <div class="curso-modulos">
+                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
+                                </p>
+                                <div class="modulos-list">
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Triângulo do fogo e
+                                        classes de incêndio</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Tipos e uso correto de
+                                        extintores</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Abandono de área e rotas
+                                        de fuga</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Acionamento de alarmes e
+                                        bombeiros</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Primeiros atendimentos a
+                                        emergências</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Noções de hidrantes e
+                                        sprinklers</div>
+                                </div>
+                            </div>
+
+                            <div class="curso-infos">
+                                <span class="curso-info-badge"><i class="fas fa-clock"></i> 8 horas</span>
+                                <span class="curso-info-badge"><i class="fas fa-building"></i> Empresas e
+                                    trabalhadores</span>
+                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> Nível básico</span>
+                                <span class="curso-info-badge"><i class="fas fa-certificate"></i> Certificação
+                                    inclusa</span>
+                                <span class="curso-info-badge"><i class="fas fa-building"></i> In company
+                                    disponível</span>
+                            </div>
+
+                            <a href="../index.html#contato" class="btn-inscricao">
+                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Curso 3 — Brigada 16h -->
+                <article class="curso-card reveal">
+                    <div class="curso-card-inner">
+                        <div class="curso-card-aside fire">
+                            <i class="fas fa-fire-extinguisher curso-aside-icon"></i>
+                            <span class="curso-aside-ch">16 horas</span>
+                            <span class="curso-aside-nivel">Avançado</span>
+                        </div>
+                        <div class="curso-card-body">
+                            <h3>Brigada de Incêndio — 16 Horas</h3>
+                            <p>Formação avançada para brigadistas que buscam habilitação completa conforme as normas
+                                técnicas vigentes. Além dos conteúdos do nível básico, aprofunda técnicas de combate,
+                                coordenação de equipes e gestão de emergências complexas.</p>
+
+                            <div class="curso-modulos">
+                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
+                                </p>
+                                <div class="modulos-list">
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Todos os conteúdos do
+                                        nível básico</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Técnicas avançadas de
+                                        combate a incêndio</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Coordenação e liderança
+                                        de brigada</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Comunicação interna em
+                                        emergências</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Gestão de emergências
+                                        complexas</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Simulados práticos
+                                        supervisionados</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Primeiros socorros
+                                        aplicados a sinistros</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Elaboração de Plano de
+                                        Emergência</div>
+                                </div>
+                            </div>
+
+                            <div class="curso-infos">
+                                <span class="curso-info-badge"><i class="fas fa-clock"></i> 16 horas</span>
+                                <span class="curso-info-badge"><i class="fas fa-building"></i> Empresas e
+                                    trabalhadores</span>
+                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> Nível avançado</span>
+                                <span class="curso-info-badge"><i class="fas fa-certificate"></i> Certificação
+                                    inclusa</span>
+                                <span class="curso-info-badge"><i class="fas fa-building"></i> In company
+                                    disponível</span>
+                            </div>
+
+                            <a href="../index.html#contato" class="btn-inscricao">
+                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Curso 4 — Instrutor de Brigada -->
+                <article class="curso-card reveal">
+                    <div class="curso-card-inner">
+                        <div class="curso-card-aside navy">
+                            <i class="fas fa-chalkboard-teacher curso-aside-icon"></i>
+                            <span class="curso-aside-ch">A definir</span>
+                            <span class="curso-aside-nivel">Especialização</span>
+                        </div>
+                        <div class="curso-card-body">
+                            <h3>Instrutor de Brigada de Incêndios</h3>
+                            <p>Habilitação especializada para bombeiros civis e Técnicos de Segurança do Trabalho que
+                                desejam atuar como instrutores. Forma multiplicadores capazes de planejar, ministrar e
+                                avaliar treinamentos de brigada em empresas e instituições.</p>
+
+                            <div class="curso-modulos">
+                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
+                                </p>
+                                <div class="modulos-list">
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Fundamentos da docência
+                                        técnica</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Planejamento de
+                                        treinamentos de brigada</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Técnicas didáticas e
+                                        avaliação de alunos</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Normas técnicas
+                                        aplicáveis</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Elaboração de material
+                                        didático</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Prática supervisionada de
+                                        instrução</div>
+                                </div>
+                            </div>
+
+                            <div class="curso-infos">
+                                <span class="curso-info-badge"><i class="fas fa-user-tie"></i> Bombeiros civis e
+                                    TST</span>
+                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> Especialização</span>
+                                <span class="curso-info-badge"><i class="fas fa-certificate"></i> Certificação
+                                    inclusa</span>
+                                <span class="curso-info-badge"><i class="fas fa-info-circle"></i> Pré-requisito: brigada
+                                    avançada</span>
+                            </div>
+
+                            <a href="../index.html#contato" class="btn-inscricao">
+                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Curso 5 — Defesa Civil -->
+                <article class="curso-card reveal">
+                    <div class="curso-card-inner">
+                        <div class="curso-card-aside green">
+                            <i class="fas fa-shield curso-aside-icon"></i>
+                            <span class="curso-aside-ch">A definir</span>
+                            <span class="curso-aside-nivel">Básico</span>
+                        </div>
+                        <div class="curso-card-body">
+                            <h3>Proteção e Defesa Civil</h3>
+                            <p>Capacitação para agentes de proteção e defesa civil, profissionais de segurança pública e
+                                cidadãos que desejam atuar em situações de desastres naturais e emergências coletivas,
+                                em conformidade com o Sistema Nacional de Proteção e Defesa Civil.</p>
+
+                            <div class="curso-modulos">
+                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
+                                </p>
+                                <div class="modulos-list">
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Sistema Nacional de
+                                        Proteção e Defesa Civil</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Identificação e
+                                        mapeamento de riscos</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Sistemas de alerta e
+                                        monitoramento</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Gestão de abrigos
+                                        temporários</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Assistência humanitária
+                                        em desastres</div>
+                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> Coordenação
+                                        interinstitucional</div>
+                                </div>
+                            </div>
+
+                            <div class="curso-infos">
+                                <span class="curso-info-badge"><i class="fas fa-users"></i> Agentes de defesa
+                                    civil</span>
+                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> Nível básico</span>
+                                <span class="curso-info-badge"><i class="fas fa-certificate"></i> Certificação
+                                    inclusa</span>
+                                <span class="curso-info-badge"><i class="fas fa-building"></i> In company
+                                    disponível</span>
+                            </div>
+
+                            <a href="../index.html#contato" class="btn-inscricao">
+                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Como funciona -->
+                <div class="como-funciona reveal">
+                    <div class="section-header">
+                        <span class="section-label">Processo</span>
+                        <h2>Como Funciona a Inscrição</h2>
+                        <div class="section-bar"></div>
+                    </div>
+                    <div class="steps-grid">
+                        <div class="step-item">
+                            <div class="step-num">1</div>
+                            <h4>Escolha o Curso</h4>
+                            <p>Selecione o treinamento que atende à sua necessidade ou da sua empresa.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">2</div>
+                            <h4>Entre em Contato</h4>
+                            <p>Envie uma mensagem pelo formulário ou WhatsApp informando o curso desejado.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">3</div>
+                            <h4>Alinhamento</h4>
+                            <p>Nossa equipe retorna com datas, turmas disponíveis e informações de acesso.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">4</div>
+                            <h4>Confirmação</h4>
+                            <p>Vaga confirmada! Você recebe todas as instruções para o dia do treinamento.</p>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-num">5</div>
+                            <h4>Certificação</h4>
+                            <p>Ao concluir, receba seu certificado reconhecido e esteja pronto para emergências.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="cap-cta reveal">
+                    <h2>Leve a Capacitação até a Sua Empresa</h2>
+                    <p>Realizamos treinamentos in company, adaptando conteúdo, data e local para a sua realidade. Fale
+                        com nossa equipe.</p>
+                    <div class="cta-btns">
+                        <a href="../index.html#contato" class="btn-white-solid">
+                            <i class="fas fa-paper-plane"></i> Solicitar Proposta
+                        </a>
+                        <a href="parcerias.html" class="btn-outline-white">
+                            <i class="fas fa-handshake"></i> Ser Parceiro
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-area footer-logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" height="33" width="33">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                        </div>
+                    </div>
+                    <p>Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: ?</p><br>
+                    <div class="footer-social-col">
+                        <h4>Redes Sociais</h4>
+                        <div class="footer-social-links">
+                            <a href="?" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="?" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="?" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="?" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="../institucional/nossa-historia.html">Nossa História</a></li>
+                        <li><a href="../institucional/missao-valores.html">Missão e Valores</a></li>
+                        <li><a href="../institucional/equipe.html">Membros do Conselho</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Atuação e Transparência</h4>
+                    <ul>
+                        <li><a href="projetos.html">Projetos</a></li>
+                        <li><a href="capacitacao.html">Capacitação</a></li>
+                        <li><a href="../noticias.html">Notícias</a></li>
+                        <li><a href="../transparencia.html">Transparência</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/privacidade.html">Privacidade</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Administração</h4>
+                    <a href="../akannihub.html" class="btn-cta-nav">
+                        <i class="fa-solid fa-user-lock"></i> Acesso Restrito
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.</p>
+                <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank"
+                        rel="noopener">Privacidade</a>
+                    · <a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const btnTop = document.getElementById('btn-top');
+        window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
+        btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+</body>
+
+</html>

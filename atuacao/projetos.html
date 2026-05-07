@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <title>Projetos · Fundação Fênix 193</title>
+    <meta name="description"
+        content="Conheça os projetos da Fundação Fênix 193: Bombeiro Mirim, SOS Abelhas, Apoio Operacional, cursos de capacitação e muito mais.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* ── Page Hero ── */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/fenix-1.jpeg') center/cover no-repeat;
+            padding: 90px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        /* ── Status tags ── */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .tag-planning {
+            background: rgba(248, 186, 37, .15);
+            color: #92600A;
+        }
+
+        .tag-active {
+            background: rgba(34, 197, 94, .12);
+            color: #166534;
+        }
+
+        .tag-course {
+            background: rgba(49, 51, 50, .08);
+            color: var(--navy);
+        }
+
+        /* ── Toolbar / filtros ── */
+        .projects-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid rgba(0, 0, 0, .07);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 30px;
+            border: 1.5px solid var(--gray-light);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: var(--font-body);
+            font-size: .83rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: .03em;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+
+        .filter-btn.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
+
+        .projects-count {
+            font-size: .88rem;
+            color: var(--text-muted);
+        }
+
+        .projects-count strong {
+            color: var(--navy);
+        }
+
+        /* ── Grid de projetos ── */
+        .projects-page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+            margin-bottom: 72px;
+        }
+
+        /* ── Card de projeto ── */
+        .proj-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, .06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .proj-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .12);
+            border-color: transparent;
+        }
+
+        .proj-card-top {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .proj-card-top.color-red {
+            background: linear-gradient(135deg, var(--red-dark), var(--red));
+            color: rgba(255, 255, 255, .25);
+        }
+
+        .proj-card-top.color-fire {
+            background: linear-gradient(135deg, #7C3404, var(--fire));
+            color: rgba(255, 255, 255, .2);
+        }
+
+        .proj-card-top.color-navy {
+            background: linear-gradient(135deg, var(--navy), #1a3a5c);
+            color: rgba(255, 255, 255, .2);
+        }
+
+        .proj-card-top.color-amber {
+            background: linear-gradient(135deg, #5c3d00, var(--amber));
+            color: rgba(255, 255, 255, .2);
+        }
+
+        .proj-card-top.color-green {
+            background: linear-gradient(135deg, #1a4a1a, #2d8a2d);
+            color: rgba(255, 255, 255, .2);
+        }
+
+        .proj-card-top::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .proj-card-icon {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .3));
+        }
+
+        .proj-card-body {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .proj-card-body h3 {
+            font-size: 1.2rem;
+            color: var(--navy);
+            line-height: 1.25;
+        }
+
+        .proj-card-body p {
+            font-size: .9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            flex: 1;
+        }
+
+        .proj-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-top: 1px solid rgba(0, 0, 0, .05);
+            background: var(--off-white);
+        }
+
+        .proj-card-area {
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .proj-card-area i {
+            color: var(--red);
+            font-size: .7rem;
+        }
+
+        .btn-proj-saiba {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .8rem;
+            font-weight: 700;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            transition: gap var(--transition);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            padding: 0;
+        }
+
+        .proj-card:hover .btn-proj-saiba {
+            gap: 10px;
+        }
+
+        /* ── Card featured (destaque) ── */
+        .proj-card.featured {
+            grid-column: span 2;
+            flex-direction: row;
+        }
+
+        .proj-card.featured .proj-card-top {
+            width: 260px;
+            height: auto;
+            min-height: 100%;
+            flex-shrink: 0;
+            border-radius: 0;
+            font-size: 4rem;
+        }
+
+        .proj-card.featured .proj-card-body {
+            padding: 32px;
+        }
+
+        .proj-card.featured .proj-card-body h3 {
+            font-size: 1.5rem;
+        }
+
+        /* ── Modal de detalhe ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(0, 0, 0, .55);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .proj-modal {
+            background: var(--white);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 620px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .3);
+            transform: translateY(20px);
+            transition: transform .25s ease;
+        }
+
+        .modal-overlay.open .proj-modal {
+            transform: none;
+        }
+
+        .proj-modal-hero {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            position: relative;
+        }
+
+        .proj-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .35);
+            border: none;
+            color: var(--white);
+            font-size: .95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition);
+        }
+
+        .proj-modal-close:hover {
+            background: var(--red);
+        }
+
+        .proj-modal-body {
+            padding: 32px;
+        }
+
+        .proj-modal-body h2 {
+            font-size: 1.7rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .proj-modal-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .proj-modal-body p {
+            font-size: .97rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .proj-modal-divider {
+            height: 1px;
+            background: var(--gray-light);
+            margin: 24px 0;
+        }
+
+        .proj-modal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .proj-info-item {
+            background: var(--off-white);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .proj-info-label {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 4px;
+        }
+
+        .proj-info-value {
+            font-size: .92rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .proj-modal-cta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 22px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: var(--radius);
+            font-size: .88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary:hover {
+            background: var(--red-dark);
+        }
+
+        .btn-outline-navy {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 22px;
+            border: 1.5px solid var(--gray-light);
+            color: var(--navy);
+            border-radius: var(--radius);
+            font-size: .88rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-outline-navy:hover {
+            border-color: var(--navy);
+            background: var(--off-white);
+        }
+
+        /* ── Proposta de projeto ── */
+        .proposta-section {
+            background: linear-gradient(135deg, var(--navy), #3a1010);
+            border-radius: 20px;
+            padding: 60px 52px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .proposta-section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .proposta-section p {
+            color: rgba(255, 255, 255, .7);
+            font-size: 1rem;
+            max-width: 540px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-amber-solid {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: var(--amber);
+            color: var(--navy);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-amber-solid:hover {
+            background: #F0A800;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border: 1.5px solid rgba(255, 255, 255, .35);
+            color: rgba(255, 255, 255, .9);
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(255, 255, 255, .08);
+        }
+
+        /* ── Estado vazio ── */
+        .empty-filter {
+            text-align: center;
+            padding: 72px 24px;
+            color: var(--text-muted);
+            grid-column: 1 / -1;
+        }
+
+        .empty-filter i {
+            font-size: 2.8rem;
+            opacity: .2;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        /* ── Responsivo ── */
+        @media (max-width: 900px) {
+            .proj-card.featured {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+
+            .proj-card.featured .proj-card-top {
+                width: 100%;
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-page-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proj-modal-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proposta-section {
+                padding: 44px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <header id="main-header">
+        <div class="container nav-wrapper">
+            <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <div class="logo-icon" aria-hidden="true">
+                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                </div>
+            </a>
+
+            <nav id="nav-menu" aria-label="Navegação principal">
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul id="menu" role="list">
+                    <li><a href="../index.html#hero">Início</a></li>
+
+                    <li class="has-dropdown">
+                        <a href="../institucional/nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../institucional/nossa-historia.html" role="menuitem">
+                                    <i class="fas fa-book-open"></i> Nossa História
+                                </a></li>
+                            <li><a href="../institucional/missao-valores.html" role="menuitem">
+                                    <i class="fas fa-bullseye"></i> Missão e Valores
+                                </a></li>
+                            <li><a href="../institucional/equipe.html" role="menuitem">
+                                    <i class="fas fa-users"></i> Conselho
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-dropdown">
+                        <a href="projetos.html" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false"
+                            style="color:var(--amber);">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="projetos.html" role="menuitem">
+                                    <i class="fas fa-clipboard-list"></i> Projetos
+                                </a></li>
+                            <li><a href="capacitacao.html" role="menuitem">
+                                    <i class="fas fa-graduation-cap"></i> Capacitação
+                                </a></li>
+                            <li><a href="eventos.html" role="menuitem">
+                                    <i class="fas fa-calendar-days"></i> Eventos
+                                </a></li>
+                            <li><a href="parcerias.html" role="menuitem">
+                                    <i class="fas fa-handshake"></i> Parcerias
+                                </a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../transparencia.html">Transparência</a></li>
+                    <li><a href="../index.html#stats">Impacto</a></li>
+                    <li><a href="../noticias.html">Notícias</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                    <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===================== PAGE HERO ===================== -->
+        <section class="page-hero" aria-label="Projetos">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="../index.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Atuação</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Projetos</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Projetos</h1>
+                <p>Iniciativas concretas que traduzem nossa missão em ações reais de apoio, capacitação e proteção à
+                    comunidade sergipana.</p>
+            </div>
+        </section>
+
+        <!-- ===================== CONTEÚDO ===================== -->
+        <div class="section-padding">
+            <div class="container">
+
+                <!-- Toolbar -->
+                <div class="projects-toolbar reveal">
+                    <div class="filter-group" role="group" aria-label="Filtrar por status">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="planning">Em Planejamento</button>
+                        <button class="filter-btn" data-filter="active">Em Andamento</button>
+                        <button class="filter-btn" data-filter="course">Cursos</button>
+                    </div>
+                    <p class="projects-count">
+                        Exibindo <strong id="count-visible">8</strong> de <strong>8</strong> projetos
+                    </p>
+                </div>
+
+                <!-- Grid -->
+                <div class="projects-page-grid" id="projects-grid">
+
+                    <!-- Bombeiro Mirim — DESTAQUE -->
+                    <article class="proj-card featured reveal" data-category="planning" data-title="Bombeiro Mirim"
+                        data-desc="Iniciativa voltada à formação cidadã de crianças e adolescentes entre 10 e 17 anos, com foco em disciplina, respeito, noções de primeiros socorros e conscientização sobre prevenção de incêndios e situações de emergência. O projeto tem inspiração nas iniciativas de mesmo nome existentes em outros estados brasileiros e busca aproximar a nova geração da cultura de proteção e defesa civil."
+                        data-area="Projetos Sociais" data-status="planning"
+                        data-publico="Crianças e adolescentes (10–17 anos)"
+                        data-objetivo="Formação cidadã e conscientização">
+                        <div class="proj-card-top color-red">
+                            <i class="fas fa-child-reaching proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-planning"><i class="fas fa-clock"></i> Em Planejamento</span>
+                            <h3>Bombeiro Mirim</h3>
+                            <p>Formação cidadã de crianças e adolescentes com foco em disciplina, primeiros socorros e
+                                conscientização sobre prevenção de incêndios e emergências.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Projetos Sociais</span>
+                        </div>
+                    </article>
+
+                    <!-- Apoio Operacional -->
+                    <article class="proj-card reveal" data-category="planning" data-title="Apoio Operacional"
+                        data-desc="Ações voltadas ao fortalecimento direto da estrutura do Corpo de Bombeiros Militar de Sergipe, com captação de recursos para aquisição de equipamentos de proteção individual, viaturas, ferramentas de resgate e melhoria das instalações físicas dos quartéis. A iniciativa responde a demandas reais identificadas junto ao CBMSE."
+                        data-area="Apoio Institucional" data-status="planning"
+                        data-publico="CBMSE — Corpo de Bombeiros Militar de Sergipe"
+                        data-objetivo="Equipamentos e infraestrutura operacional">
+                        <div class="proj-card-top color-navy">
+                            <i class="fas fa-truck-medical proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-planning"><i class="fas fa-clock"></i> Em Planejamento</span>
+                            <h3>Apoio Operacional</h3>
+                            <p>Captação de recursos para equipamentos, viaturas e infraestrutura, fortalecendo
+                                diretamente a capacidade de resposta do CBMSE.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Apoio Institucional</span>
+                        </div>
+                    </article>
+
+                    <!-- SOS Abelhas -->
+                    <article class="proj-card reveal" data-category="planning" data-title="SOS Abelhas"
+                        data-desc="Projeto de aquisição de equipamentos e insumos para ampliar a capacidade de atendimento do Corpo de Bombeiros a ocorrências envolvendo enxames de abelhas, vespas e outros insetos sociais. O CBMSE é acionado frequentemente para esse tipo de ocorrência em áreas urbanas e rurais de Sergipe, e este projeto visa dotar as equipes dos materiais adequados para atuar com segurança."
+                        data-area="Apoio Operacional" data-status="planning" data-publico="CBMSE e comunidade em geral"
+                        data-objetivo="Equipamentos para ocorrências com enxames">
+                        <div class="proj-card-top color-amber">
+                            <i class="fas fa-bug proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-planning"><i class="fas fa-clock"></i> Em Planejamento</span>
+                            <h3>SOS Abelhas</h3>
+                            <p>Aquisição de equipamentos e insumos para ampliar a capacidade de resposta do CBMSE em
+                                ocorrências com enxames em áreas urbanas e rurais.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Apoio Operacional</span>
+                        </div>
+                    </article>
+
+                    <!-- Primeiros Socorros -->
+                    <article class="proj-card reveal" data-category="course"
+                        data-title="Curso Básico de Primeiros Socorros"
+                        data-desc="Capacitação destinada ao público civil que deseja adquirir conhecimentos essenciais de primeiros socorros: reconhecimento de emergências, acionamento do socorro, suporte básico de vida (RCP), controle de hemorragias, tratamento de fraturas e queimaduras. O curso será ministrado por instrutores qualificados do CBMSE ou habilitados pela Fundação."
+                        data-area="Capacitação" data-status="course" data-publico="Público civil em geral"
+                        data-objetivo="Capacitação em primeiros socorros básicos">
+                        <div class="proj-card-top color-fire">
+                            <i class="fas fa-kit-medical proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>
+                            <h3>Curso Básico de Primeiros Socorros</h3>
+                            <p>Capacitação essencial para o público civil: RCP, controle de hemorragias, fraturas e
+                                queimaduras, com certificação reconhecida.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Capacitação</span>
+                        </div>
+                    </article>
+
+                    <!-- Brigada 8h -->
+                    <article class="proj-card reveal" data-category="course"
+                        data-title="Curso de Brigada de Incêndio — 8 Horas"
+                        data-desc="Formação básica para brigadistas de incêndio com carga horária de 8 horas, abordando prevenção de incêndios, uso correto de extintores, rotas de fuga, abandono de área e primeiros atendimentos em situações de emergência. Indicado para empresas que buscam atender às exigências das normas de segurança contra incêndio e pânico."
+                        data-area="Capacitação" data-status="course" data-publico="Empresas e trabalhadores em geral"
+                        data-objetivo="Formação de brigadistas — nível básico">
+                        <div class="proj-card-top color-red">
+                            <i class="fas fa-fire-extinguisher proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>
+                            <h3>Brigada de Incêndio — 8 Horas</h3>
+                            <p>Formação básica de brigadistas com 8h de duração: extintores, rotas de fuga, abandono de
+                                área e atendimento inicial a emergências.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Capacitação</span>
+                        </div>
+                    </article>
+
+                    <!-- Brigada 16h -->
+                    <article class="proj-card reveal" data-category="course"
+                        data-title="Curso de Brigada de Incêndio — 16 Horas"
+                        data-desc="Formação avançada para brigadistas de incêndio com carga horária de 16 horas. Além dos conteúdos do nível básico, aprofunda técnicas de combate a incêndio, gestão de emergências, comunicação interna durante sinistros e coordenação de equipes de brigada. Ideal para brigadistas que buscam habilitação completa conforme normas técnicas vigentes."
+                        data-area="Capacitação" data-status="course" data-publico="Empresas e trabalhadores em geral"
+                        data-objetivo="Formação de brigadistas — nível avançado">
+                        <div class="proj-card-top color-fire">
+                            <i class="fas fa-fire-extinguisher proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>
+                            <h3>Brigada de Incêndio — 16 Horas</h3>
+                            <p>Formação avançada de brigadistas com 16h: combate a incêndio, gestão de emergências e
+                                coordenação de equipes conforme normas técnicas.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Capacitação</span>
+                        </div>
+                    </article>
+
+                    <!-- Instrutor de Brigada -->
+                    <article class="proj-card reveal" data-category="course"
+                        data-title="Curso de Instrutor de Brigada de Incêndios"
+                        data-desc="Habilitação especializada para bombeiros civis e Técnicos de Segurança do Trabalho que desejam atuar como instrutores de brigadas de incêndio. O curso capacita os participantes a planejar, ministrar e avaliar treinamentos de brigada, formando multiplicadores que ampliam a cultura de segurança contra incêndio em Sergipe."
+                        data-area="Capacitação Especializada" data-status="course"
+                        data-publico="Bombeiros civis e Técnicos de Segurança do Trabalho"
+                        data-objetivo="Formação de instrutores de brigada">
+                        <div class="proj-card-top color-navy">
+                            <i class="fas fa-chalkboard-teacher proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>
+                            <h3>Instrutor de Brigada de Incêndios</h3>
+                            <p>Formação de multiplicadores: capacita bombeiros civis e TST a planejar e ministrar
+                                treinamentos de brigada com metodologia profissional.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Capacitação Especializada</span>
+                        </div>
+                    </article>
+
+                    <!-- Defesa Civil -->
+                    <article class="proj-card reveal" data-category="course"
+                        data-title="Curso Básico de Proteção e Defesa Civil"
+                        data-desc="Capacitação destinada a agentes de proteção e defesa civil, profissionais de segurança pública e cidadãos interessados em atuar em situações de desastres naturais e emergências coletivas. O curso aborda gestão de riscos, sistemas de alerta, abrigos, assistência humanitária e coordenação com os órgãos competentes do Sistema Nacional de Proteção e Defesa Civil."
+                        data-area="Defesa Civil" data-status="course"
+                        data-publico="Agentes de defesa civil e profissionais de segurança"
+                        data-objetivo="Capacitação em gestão de riscos e desastres">
+                        <div class="proj-card-top color-green">
+                            <i class="fas fa-shield proj-card-icon"></i>
+                        </div>
+                        <div class="proj-card-body">
+                            <span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>
+                            <h3>Proteção e Defesa Civil</h3>
+                            <p>Capacitação para agentes de defesa civil: gestão de riscos, sistemas de alerta,
+                                assistência humanitária e coordenação em desastres.</p>
+                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                                Saiba mais <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="proj-card-footer">
+                            <span class="proj-card-area"><i class="fas fa-tag"></i> Defesa Civil</span>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- CTA -->
+                <div class="proposta-section reveal">
+                    <h2>Tem uma Ideia de Projeto?</h2>
+                    <p>A Fundação está aberta a parcerias e propostas que fortaleçam o CBMSE e beneficiem a sociedade
+                        sergipana. Fale conosco.</p>
+                    <div class="cta-btns">
+                        <a href="../index.html#contato" class="btn-amber-solid">
+                            <i class="fas fa-paper-plane"></i> Entrar em Contato
+                        </a>
+                        <a href="parcerias.html" class="btn-outline-white">
+                            <i class="fas fa-handshake"></i> Ser Parceiro
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ════ MODAL DETALHE ════ -->
+    <div class="modal-overlay" id="proj-modal-overlay" role="dialog" aria-modal="true"
+        aria-labelledby="modal-proj-title">
+        <div class="proj-modal">
+            <div class="proj-modal-hero" id="modal-hero">
+                <button class="proj-modal-close" id="btn-modal-close" aria-label="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="proj-modal-body">
+                <div class="proj-modal-meta" id="modal-meta"></div>
+                <h2 id="modal-proj-title"></h2>
+                <p id="modal-desc"></p>
+                <div class="proj-modal-divider"></div>
+                <div class="proj-modal-info-grid" id="modal-info-grid"></div>
+                <div class="proj-modal-cta">
+                    <a href="../index.html#contato" class="btn-primary">
+                        <i class="fas fa-envelope"></i> Quero Apoiar
+                    </a>
+                    <button class="btn-outline-navy" onclick="closeModal()">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-area footer-logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" height="33" width="33">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                        </div>
+                    </div>
+                    <p>Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: ?</p><br>
+                    <div class="footer-social-col">
+                        <h4>Redes Sociais</h4>
+                        <div class="footer-social-links">
+                            <a href="?" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="?" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="?" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="?" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="../institucional/nossa-historia.html">Nossa História</a></li>
+                        <li><a href="../institucional/missao-valores.html">Missão e Valores</a></li>
+                        <li><a href="../institucional/equipe.html">Membros do Conselho</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Atuação e Transparência</h4>
+                    <ul>
+                        <li><a href="projetos.html">Projetos</a></li>
+                        <li><a href="capacitacao.html">Capacitação</a></li>
+                        <li><a href="../noticias.html">Notícias</a></li>
+                        <li><a href="../transparencia.html">Transparência</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/privacidade.html">Privacidade</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Administração</h4>
+                    <a href="../akannihub.html" class="btn-cta-nav">
+                        <i class="fa-solid fa-user-lock"></i> Acesso Restrito
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.</p>
+                <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank"
+                        rel="noopener">Privacidade</a>
+                    · <a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const btnTop = document.getElementById('btn-top');
+        window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
+        btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── Filtros ──────────────────────────────────────────
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.proj-card');
+        const countEl = document.getElementById('count-visible');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                let visible = 0;
+
+                cards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    card.style.display = match ? '' : 'none';
+                    if (match) visible++;
+                });
+
+                countEl.textContent = visible;
+            });
+        });
+
+        // ── Modal ────────────────────────────────────────────
+        const overlay = document.getElementById('proj-modal-overlay');
+        const colorMap = { red: 'color-red', fire: 'color-fire', navy: 'color-navy', amber: 'color-amber', green: 'color-green' };
+        const statusMap = {
+            planning: '<span class="tag tag-planning"><i class="fas fa-clock"></i> Em Planejamento</span>',
+            active: '<span class="tag tag-active"><i class="fas fa-circle-check"></i> Em Andamento</span>',
+            course: '<span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>'
+        };
+
+        window.openModal = function (card) {
+            const hero = document.getElementById('modal-hero');
+            const topEl = card.querySelector('.proj-card-top');
+            const iconEl = card.querySelector('.proj-card-icon');
+            const colorClass = [...topEl.classList].find(c => c.startsWith('color-')) || 'color-red';
+
+            hero.className = `proj-modal-hero ${colorClass}`;
+            hero.innerHTML = `
+                <i class="${[...iconEl.classList].join(' ')}" style="font-size:4.5rem;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))"></i>
+                <button class="proj-modal-close" onclick="closeModal()" aria-label="Fechar"><i class="fas fa-times"></i></button>`;
+
+            document.getElementById('modal-proj-title').textContent = card.dataset.title;
+            document.getElementById('modal-desc').textContent = card.dataset.desc;
+            document.getElementById('modal-meta').innerHTML = statusMap[card.dataset.status] || '';
+
+            document.getElementById('modal-info-grid').innerHTML = `
+                <div class="proj-info-item">
+                    <div class="proj-info-label">Área</div>
+                    <div class="proj-info-value">${card.dataset.area}</div>
+                </div>
+                <div class="proj-info-item">
+                    <div class="proj-info-label">Público-alvo</div>
+                    <div class="proj-info-value">${card.dataset.publico}</div>
+                </div>
+                <div class="proj-info-item" style="grid-column:1/-1;">
+                    <div class="proj-info-label">Objetivo Principal</div>
+                    <div class="proj-info-value">${card.dataset.objetivo}</div>
+                </div>`;
+
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeModal = function () {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // ── Dropdowns ────────────────────────────────────────
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+</body>
+
+</html>

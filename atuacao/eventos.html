@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <title>Eventos · Fundação Fênix 193</title>
+    <meta name="description"
+        content="Acompanhe os eventos, ações sociais e atividades promovidas pela Fundação Fênix 193 em apoio ao Corpo de Bombeiros Militar de Sergipe.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* ── Page Hero ── */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/fenix-3.jpeg') center/cover no-repeat;
+            padding: 90px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        /* ── Tabs próximos / passados ── */
+        .eventos-tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid var(--gray-light);
+            margin-bottom: 48px;
+        }
+
+        .tab-btn {
+            padding: 14px 28px;
+            background: none;
+            border: none;
+            font-family: var(--font-body);
+            font-size: .95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: var(--transition);
+            letter-spacing: .02em;
+        }
+
+        .tab-btn:hover {
+            color: var(--navy);
+        }
+
+        .tab-btn.active {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* ── Evento destaque ── */
+        .evento-featured {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 32px rgba(0, 0, 0, .09);
+            border: 1px solid rgba(0, 0, 0, .055);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            margin-bottom: 36px;
+            transition: var(--transition);
+        }
+
+        .evento-featured:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 48px rgba(0, 0, 0, .14);
+        }
+
+        .evento-feat-aside {
+            background: linear-gradient(160deg, var(--red-dark), var(--red));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 24px;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .evento-feat-aside::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .feat-badge {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--amber);
+            background: rgba(248, 186, 37, .15);
+            border: 1px solid rgba(248, 186, 37, .3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feat-day {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feat-month-year {
+            font-size: .9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .75);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feat-icon {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, .25);
+            position: relative;
+            z-index: 1;
+            margin-top: 8px;
+        }
+
+        .evento-feat-body {
+            padding: 36px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .evento-tipo {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            align-self: flex-start;
+        }
+
+        .tipo-social {
+            background: rgba(34, 197, 94, .1);
+            color: #166534;
+        }
+
+        .tipo-curso {
+            background: rgba(49, 51, 50, .08);
+            color: var(--navy);
+        }
+
+        .tipo-inst {
+            background: rgba(225, 34, 23, .08);
+            color: var(--red-dark);
+        }
+
+        .tipo-prev {
+            background: rgba(242, 118, 19, .12);
+            color: #7C3404;
+        }
+
+        .evento-feat-body h3 {
+            font-size: 1.6rem;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .evento-feat-body p {
+            font-size: .95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+        }
+
+        .evento-meta-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .evento-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .83rem;
+            color: var(--text-muted);
+        }
+
+        .evento-meta-item i {
+            color: var(--red);
+            font-size: .78rem;
+        }
+
+        .btn-evento {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .87rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+            align-self: flex-start;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+        }
+
+        .btn-evento:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ── Grid de eventos ── */
+        .eventos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .evento-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, .06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .evento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .12);
+            border-color: transparent;
+        }
+
+        .evento-card-top {
+            padding: 20px 22px 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .evento-date-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--off-white);
+            border-radius: 10px;
+            padding: 10px 14px;
+            min-width: 58px;
+            border: 1px solid rgba(0, 0, 0, .06);
+            flex-shrink: 0;
+        }
+
+        .ev-day {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .ev-month {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .ev-year {
+            font-size: .6rem;
+            color: var(--gray);
+            letter-spacing: .06em;
+        }
+
+        .evento-card-body {
+            padding: 0 22px 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .evento-card-body h3 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            line-height: 1.25;
+        }
+
+        .evento-card-body p {
+            font-size: .88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            flex: 1;
+        }
+
+        .evento-card-footer {
+            padding: 14px 22px;
+            border-top: 1px solid rgba(0, 0, 0, .05);
+            background: var(--off-white);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .ev-local {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .77rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .ev-local i {
+            color: var(--red);
+            font-size: .7rem;
+        }
+
+        .btn-ev-saiba {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .78rem;
+            font-weight: 700;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            transition: gap var(--transition);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            padding: 0;
+        }
+
+        .evento-card:hover .btn-ev-saiba {
+            gap: 9px;
+        }
+
+        /* ── Estado vazio ── */
+        .eventos-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 80px 24px;
+            color: var(--text-muted);
+        }
+
+        .eventos-empty i {
+            font-size: 3rem;
+            opacity: .18;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .eventos-empty h3 {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .eventos-empty p {
+            font-size: .93rem;
+        }
+
+        /* ── Aviso cadastro ── */
+        .aviso-strip {
+            background: linear-gradient(135deg, var(--navy), #3a1a1a);
+            border-radius: 20px;
+            padding: 52px 52px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .aviso-strip h3 {
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .aviso-strip p {
+            color: rgba(255, 255, 255, .65);
+            font-size: .95rem;
+            line-height: 1.65;
+        }
+
+        .aviso-form {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .aviso-input {
+            padding: 12px 18px;
+            border-radius: var(--radius);
+            border: 1.5px solid rgba(255, 255, 255, .2);
+            background: rgba(255, 255, 255, .08);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: .9rem;
+            width: 240px;
+            outline: none;
+            transition: border-color var(--transition);
+        }
+
+        .aviso-input::placeholder {
+            color: rgba(255, 255, 255, .4);
+        }
+
+        .aviso-input:focus {
+            border-color: var(--amber);
+        }
+
+        .btn-aviso {
+            padding: 12px 22px;
+            background: var(--amber);
+            color: var(--navy);
+            border: none;
+            border-radius: var(--radius);
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: .88rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-aviso:hover {
+            background: #F0A800;
+            transform: translateY(-2px);
+        }
+
+        /* ── Tipos de eventos ── */
+        .tipos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 80px;
+        }
+
+        .tipo-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 26px 22px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
+            border: 1px solid rgba(0, 0, 0, .055);
+            transition: var(--transition);
+        }
+
+        .tipo-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .1);
+        }
+
+        .tipo-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--red), var(--fire));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(225, 34, 23, .22);
+        }
+
+        .tipo-card h4 {
+            font-size: .97rem;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .tipo-card p {
+            font-size: .84rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── Modal ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(0, 0, 0, .55);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .ev-modal {
+            background: var(--white);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 580px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+            transform: translateY(20px);
+            transition: transform .25s ease;
+        }
+
+        .modal-overlay.open .ev-modal {
+            transform: none;
+        }
+
+        .ev-modal-hero {
+            background: linear-gradient(135deg, var(--red-dark), var(--red));
+            padding: 40px 36px 32px;
+            position: relative;
+        }
+
+        .ev-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .3);
+            border: none;
+            color: var(--white);
+            font-size: .95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition);
+        }
+
+        .ev-modal-close:hover {
+            background: rgba(0, 0, 0, .5);
+        }
+
+        .ev-modal-date {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .ev-modal-month {
+            font-size: .85rem;
+            color: rgba(255, 255, 255, .7);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .ev-modal-title {
+            font-size: 1.5rem;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .ev-modal-body {
+            padding: 28px 36px 36px;
+        }
+
+        .ev-modal-body p {
+            font-size: .97rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .ev-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .ev-detail-item {
+            background: var(--off-white);
+            border-radius: 10px;
+            padding: 13px 16px;
+        }
+
+        .ev-detail-label {
+            font-size: .67rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 4px;
+        }
+
+        .ev-detail-value {
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .ev-modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline-navy {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 11px 22px;
+            border: 1.5px solid var(--gray-light);
+            color: var(--navy);
+            border-radius: var(--radius);
+            font-size: .87rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .03em;
+            transition: var(--transition);
+            cursor: pointer;
+            background: transparent;
+            font-family: var(--font-body);
+        }
+
+        .btn-outline-navy:hover {
+            border-color: var(--navy);
+            background: var(--off-white);
+        }
+
+        /* ── CTA final ── */
+        .ev-cta {
+            background: linear-gradient(135deg, var(--red), var(--red-dark));
+            border-radius: 20px;
+            padding: 56px 52px;
+            text-align: center;
+            box-shadow: 0 8px 40px rgba(225, 34, 23, .22);
+            margin-bottom: 20px;
+        }
+
+        .ev-cta h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .ev-cta p {
+            color: rgba(255, 255, 255, .75);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white-solid {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: var(--white);
+            color: var(--red);
+            border-radius: var(--radius);
+            font-weight: 700;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-white-solid:hover {
+            background: var(--off-white);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border: 1.5px solid rgba(255, 255, 255, .4);
+            color: rgba(255, 255, 255, .9);
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: var(--transition);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            color: var(--white);
+            background: rgba(255, 255, 255, .08);
+        }
+
+        /* ── Responsivo ── */
+        @media (max-width: 860px) {
+            .evento-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .evento-feat-aside {
+                flex-direction: row;
+                padding: 24px 28px;
+                gap: 20px;
+                justify-content: flex-start;
+            }
+
+            .feat-day {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .aviso-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .aviso-form {
+                flex-direction: column;
+            }
+
+            .aviso-input {
+                width: 100%;
+            }
+
+            .ev-modal-body {
+                padding: 24px 20px 32px;
+            }
+
+            .ev-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ev-cta {
+                padding: 44px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===================== HEADER ===================== -->
+    <header id="main-header">
+        <div class="container nav-wrapper">
+            <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <div class="logo-icon" aria-hidden="true">
+                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                </div>
+            </a>
+
+            <nav id="nav-menu" aria-label="Navegação principal">
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+                <ul id="menu" role="list">
+                    <li><a href="../index.html#hero">Início</a></li>
+
+                    <li class="has-dropdown">
+                        <a href="../institucional/nossa-historia.html" class="dropdown-trigger" aria-haspopup="true"
+                            aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../institucional/nossa-historia.html" role="menuitem"><i
+                                        class="fas fa-book-open"></i> Nossa História</a></li>
+                            <li><a href="../institucional/missao-valores.html" role="menuitem"><i
+                                        class="fas fa-bullseye"></i> Missão e Valores</a></li>
+                            <li><a href="../institucional/equipe.html" role="menuitem"><i class="fas fa-users"></i>
+                                    Conselho</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-dropdown">
+                        <a href="projetos.html" class="dropdown-trigger" aria-haspopup="true" aria-expanded="false"
+                            style="color:var(--amber);">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="projetos.html" role="menuitem"><i class="fas fa-clipboard-list"></i>
+                                    Projetos</a></li>
+                            <li><a href="capacitacao.html" role="menuitem"><i class="fas fa-graduation-cap"></i>
+                                    Capacitação</a></li>
+                            <li><a href="eventos.html" role="menuitem"><i class="fas fa-calendar-days"></i> Eventos</a>
+                            </li>
+                            <li><a href="parcerias.html" role="menuitem"><i class="fas fa-handshake"></i> Parcerias</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../transparencia.html">Transparência</a></li>
+                    <li><a href="../index.html#stats">Impacto</a></li>
+                    <li><a href="../noticias.html">Notícias</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                    <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===================== PAGE HERO ===================== -->
+        <section class="page-hero" aria-label="Eventos">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="../index.html">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Atuação</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Eventos</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Eventos</h1>
+                <p>Ações sociais, treinamentos, cerimônias e atividades que aproximam a Fundação Fênix 193 da sociedade
+                    e do Corpo de Bombeiros.</p>
+            </div>
+        </section>
+
+        <!-- ===================== CONTEÚDO ===================== -->
+        <div class="section-padding">
+            <div class="container">
+
+                <!-- Tipos de Eventos -->
+                <div class="section-header reveal">
+                    <span class="section-label">O que fazemos</span>
+                    <h2>Tipos de Eventos</h2>
+                    <div class="section-bar"></div>
+                </div>
+
+                <div class="tipos-grid">
+                    <div class="tipo-card reveal">
+                        <div class="tipo-card-icon"><i class="fas fa-hands-holding-child"></i></div>
+                        <div>
+                            <h4>Ações Sociais</h4>
+                            <p>Atividades comunitárias, campanhas de doação e iniciativas que beneficiam diretamente a
+                                sociedade sergipana.</p>
+                        </div>
+                    </div>
+                    <div class="tipo-card reveal">
+                        <div class="tipo-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h4>Treinamentos Abertos</h4>
+                            <p>Cursos e capacitações com vagas abertas ao público, promovendo a cultura de segurança em
+                                Sergipe.</p>
+                        </div>
+                    </div>
+                    <div class="tipo-card reveal">
+                        <div class="tipo-card-icon"><i class="fas fa-award"></i></div>
+                        <div>
+                            <h4>Cerimônias Institucionais</h4>
+                            <p>Formaturas, posses, homenagens e eventos que valorizam os profissionais do CBMSE e da
+                                Defesa Civil.</p>
+                        </div>
+                    </div>
+                    <div class="tipo-card reveal">
+                        <div class="tipo-card-icon"><i class="fas fa-shield-halved"></i></div>
+                        <div>
+                            <h4>Prevenção e Conscientização</h4>
+                            <p>Campanhas educativas em escolas, empresas e espaços públicos sobre segurança contra
+                                incêndio e emergências.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="eventos-tabs reveal" role="tablist">
+                    <button class="tab-btn active" role="tab" aria-selected="true" data-tab="proximos">
+                        <i class="fas fa-calendar-days"></i> Próximos Eventos
+                    </button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-tab="passados">
+                        <i class="fas fa-clock-rotate-left"></i> Eventos Realizados
+                    </button>
+                </div>
+
+                <!-- Painel: Próximos -->
+                <div class="tab-panel active" id="tab-proximos">
+
+                    <!-- Sem eventos agendados — estado inicial (remova quando houver eventos reais) -->
+                    <div style="text-align:center; padding: 80px 24px 40px; max-width: 560px; margin: 0 auto;">
+                        <div
+                            style="width:80px;height:80px;border-radius:50%;background:rgba(225,34,23,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:2rem;color:var(--red);opacity:.5;">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+                        <h3 style="font-size:1.5rem;color:var(--navy);margin-bottom:10px;">Em Breve, Novos Eventos</h3>
+                        <p style="color:var(--text-muted);font-size:.97rem;line-height:1.75;margin-bottom:28px;">
+                            A Fundação Fênix 193 está planejando suas primeiras atividades públicas. Cadastre seu e-mail
+                            abaixo para ser avisado assim que os eventos forem publicados.
+                        </p>
+                        <a href="../index.html#contato"
+                            style="display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--red);color:var(--white);border-radius:var(--radius);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;transition:var(--transition);">
+                            <i class="fas fa-paper-plane"></i> Entrar em Contato
+                        </a>
+                    </div>
+
+                    <!--
+                    ════════════════════════════════════════════════════
+                    QUANDO HOUVER EVENTOS: remova o bloco acima e
+                    descomente o trecho abaixo, ajustando os dados.
+                    ════════════════════════════════════════════════════
+
+                    <article class="evento-featured reveal"
+                        data-title="1º Simulado de Evacuação em Empresas de Aracaju"
+                        data-desc="A Fundação Fênix 193 realiza o primeiro simulado de evacuação aberto a empresas de Aracaju, conduzido por instrutores do CBMSE. O evento é gratuito para empresas parceiras e tem vagas limitadas."
+                        data-dia="15" data-mes="Julho 2026" data-hora="08:00 – 17:00"
+                        data-local="Quartel do CBMSE – Aracaju/SE"
+                        data-tipo="tipo-prev" data-tipo-label="Prevenção" data-tipo-icon="fa-shield-halved"
+                        data-vagas="Vagas limitadas" data-gratuito="Gratuito para parceiros">
+                        <div class="evento-feat-aside">
+                            <span class="feat-badge">Próximo Evento</span>
+                            <div class="feat-day">15</div>
+                            <div class="feat-month-year">Julho 2026</div>
+                            <i class="fas fa-shield-halved feat-icon"></i>
+                        </div>
+                        <div class="evento-feat-body">
+                            <span class="evento-tipo tipo-prev"><i class="fas fa-shield-halved"></i> Prevenção</span>
+                            <h3>1º Simulado de Evacuação em Empresas de Aracaju</h3>
+                            <p>Conduzido por instrutores do CBMSE, o simulado treina equipes de brigada e gestores de segurança em situações reais de emergência. Vagas limitadas.</p>
+                            <div class="evento-meta-row">
+                                <span class="evento-meta-item"><i class="fas fa-clock"></i> 08:00 – 17:00</span>
+                                <span class="evento-meta-item"><i class="fas fa-location-dot"></i> Quartel CBMSE – Aracaju</span>
+                                <span class="evento-meta-item"><i class="fas fa-ticket"></i> Gratuito para parceiros</span>
+                            </div>
+                            <button class="btn-evento" onclick="openEvModal(this.closest('.evento-featured'))">
+                                <i class="fas fa-circle-info"></i> Saiba Mais
+                            </button>
+                        </div>
+                    </article>
+
+                    -->
+
+                </div>
+
+                <!-- Painel: Passados -->
+                <div class="tab-panel" id="tab-passados">
+                    <div class="eventos-grid">
+                        <div class="eventos-empty">
+                            <i class="fas fa-clock-rotate-left"></i>
+                            <h3>Histórico em Construção</h3>
+                            <p>Os eventos realizados pela Fundação serão registrados aqui à medida que acontecerem.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aviso por e-mail -->
+                <div class="aviso-strip reveal">
+                    <div>
+                        <h3>Fique por Dentro dos Próximos Eventos</h3>
+                        <p>Receba avisos por e-mail sobre cursos abertos, ações sociais e atividades da Fundação Fênix
+                            193 antes de qualquer divulgação nas redes sociais.</p>
+                    </div>
+                    <div class="aviso-form">
+                        <input type="email" class="aviso-input" placeholder="Seu melhor e-mail" id="aviso-email"
+                            aria-label="E-mail para avisos">
+                        <button class="btn-aviso" onclick="handleAviso()">
+                            <i class="fas fa-bell"></i> Me Avisar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="ev-cta reveal">
+                    <h2>Quer Propor ou Patrocinar um Evento?</h2>
+                    <p>A Fundação está aberta a sugestões de eventos e parcerias que fortaleçam o CBMSE e gerem impacto
+                        positivo em Sergipe.</p>
+                    <div class="cta-btns">
+                        <a href="../index.html#contato" class="btn-white-solid">
+                            <i class="fas fa-paper-plane"></i> Fale Conosco
+                        </a>
+                        <a href="parcerias.html" class="btn-outline-white">
+                            <i class="fas fa-handshake"></i> Ser Parceiro
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ════ MODAL DETALHE ════ -->
+    <div class="modal-overlay" id="ev-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="ev-modal-title">
+        <div class="ev-modal">
+            <div class="ev-modal-hero" id="ev-modal-hero">
+                <button class="ev-modal-close" onclick="closeEvModal()" aria-label="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="ev-modal-date" id="ev-modal-day"></div>
+                <div class="ev-modal-month" id="ev-modal-month"></div>
+                <h2 class="ev-modal-title" id="ev-modal-title"></h2>
+            </div>
+            <div class="ev-modal-body">
+                <p id="ev-modal-desc"></p>
+                <div class="ev-detail-grid" id="ev-detail-grid"></div>
+                <div class="ev-modal-actions">
+                    <a href="../index.html#contato" class="btn-evento">
+                        <i class="fas fa-paper-plane"></i> Quero Participar
+                    </a>
+                    <button class="btn-outline-navy" onclick="closeEvModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-area footer-logo">
+                        <div class="logo-icon" aria-hidden="true">
+                            <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" height="33" width="33">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                        </div>
+                    </div>
+                    <p>Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: ?</p><br>
+                    <div class="footer-social-col">
+                        <h4>Redes Sociais</h4>
+                        <div class="footer-social-links">
+                            <a href="?" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="?" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="?" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="?" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="../institucional/nossa-historia.html">Nossa História</a></li>
+                        <li><a href="../institucional/missao-valores.html">Missão e Valores</a></li>
+                        <li><a href="../institucional/equipe.html">Membros do Conselho</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Atuação e Transparência</h4>
+                    <ul>
+                        <li><a href="projetos.html">Projetos</a></li>
+                        <li><a href="capacitacao.html">Capacitação</a></li>
+                        <li><a href="../noticias.html">Notícias</a></li>
+                        <li><a href="../transparencia.html">Transparência</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/privacidade.html">Privacidade</a></li>
+                        <li><a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Administração</h4>
+                    <a href="../akannihub.html" class="btn-cta-nav">
+                        <i class="fa-solid fa-user-lock"></i> Acesso Restrito
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.</p>
+                <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank"
+                        rel="noopener">Privacidade</a>
+                    · <a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+        const btnTop = document.getElementById('btn-top');
+        window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
+        btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── Tabs ─────────────────────────────────────────────
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+            });
+        });
+
+        // ── Aviso por e-mail ─────────────────────────────────
+        window.handleAviso = function () {
+            const email = document.getElementById('aviso-email').value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+            // Redireciona para contato com e-mail preenchido na URL (simples)
+            window.location.href = `../index.html#contato`;
+        };
+
+        // ── Modal de evento ──────────────────────────────────
+        const evOverlay = document.getElementById('ev-modal-overlay');
+
+        window.openEvModal = function (el) {
+            document.getElementById('ev-modal-day').textContent = el.dataset.dia || '';
+            document.getElementById('ev-modal-month').textContent = el.dataset.mes || '';
+            document.getElementById('ev-modal-title').textContent = el.dataset.title || '';
+            document.getElementById('ev-modal-desc').textContent = el.dataset.desc || '';
+
+            document.getElementById('ev-detail-grid').innerHTML = `
+                <div class="ev-detail-item">
+                    <div class="ev-detail-label">Horário</div>
+                    <div class="ev-detail-value">${el.dataset.hora || '—'}</div>
+                </div>
+                <div class="ev-detail-item">
+                    <div class="ev-detail-label">Local</div>
+                    <div class="ev-detail-value">${el.dataset.local || '—'}</div>
+                </div>
+                <div class="ev-detail-item">
+                    <div class="ev-detail-label">Vagas</div>
+                    <div class="ev-detail-value">${el.dataset.vagas || '—'}</div>
+                </div>
+                <div class="ev-detail-item">
+                    <div class="ev-detail-label">Investimento</div>
+                    <div class="ev-detail-value">${el.dataset.gratuito || '—'}</div>
+                </div>`;
+
+            evOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeEvModal = function () {
+            evOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        evOverlay.addEventListener('click', e => { if (e.target === evOverlay) closeEvModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEvModal(); });
+
+        // ── Dropdowns ────────────────────────────────────────
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+</body>
+
+</html>
