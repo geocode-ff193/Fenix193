@@ -3,16 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
-    <link rel="manifest" href="site.webmanifest" />
-    <title>Conselho · Fundação Fênix 193</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="author" content="GeoCODE Programmer · Geovani Santos">
+    <meta name="theme-color" content="#313332">
     <meta name="description"
         content="Conheça os membros dos Conselhos da Fundação Fênix 193: Presidente de Honra, Conselho de Curadores, Conselho Executivo e Conselho Fiscal.">
+    <meta name="apple-mobile-web-app-title" content="FF193" />
+    <title>Equipe · Fundação Fênix 193</title>
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="icon" type="image/x-icon" href="assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -315,18 +317,17 @@
 
 <body>
 
-    <!-- ===================== HEADER ===================== -->
     <header id="main-header">
         <div class="container nav-wrapper">
-            <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+            <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                 <div class="logo-icon" aria-hidden="true">
-                    <img src="assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
+                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
                 </div>
                 <div class="logo-text">
                     <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
                 </div>
             </a>
-
+    
             <nav id="nav-menu" aria-label="Navegação principal">
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
                     <span class="hamburger-bar"></span>
@@ -334,15 +335,53 @@
                     <span class="hamburger-bar"></span>
                 </button>
                 <ul id="menu" role="list">
-                    <li><a href="index.html#hero">Início</a></li>
-                    <li><a href="conselho.html" style="color:var(--amber);">Quem Somos</a></li>
-                    <li><a href="index.html#projetos">Projetos</a></li>
-                    <li><a href="index.html#atuacao">Atuação</a></li>
+                    <li><a href="../index.html#hero" style="color:var(--amber);">Início</a></li>
+                    <!-- DROPDOWN: Quem Somos -->
+                    <li class="has-dropdown">
+                        <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../index.html#quem-somos" role="menuitem">
+                                    <i class="fas fa-landmark"></i> Quem Somos
+                                </a></li>
+                            <li><a href="nossa-historia.html" role="menuitem">
+                                    <i class="fas fa-book-open"></i> Nossa História
+                                </a></li>
+                            <li><a href="missao-valores.html" role="menuitem">
+                                    <i class="fas fa-bullseye"></i> Missão e Valores
+                                </a></li>
+                            <li><a href="equipe.html" role="menuitem">
+                                    <i class="fas fa-users"></i> Equipe
+                                </a></li>
+                        </ul>
+                    </li>
+                    <!-- DROPDOWN: Atuação -->
+                    <li class="has-dropdown">
+                        <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../atuacao/projetos.html" role="menuitem">
+                                    <i class="fas fa-clipboard-list"></i> Projetos
+                                </a></li>
+                            <li><a href="../atuacao/capacitacao.html" role="menuitem">
+                                    <i class="fas fa-graduation-cap"></i> Capacitação
+                                </a></li>
+                            <li><a href="../atuacao/eventos.html" role="menuitem">
+                                    <i class="fas fa-calendar-days"></i> Eventos
+                                </a></li>
+                            <li><a href="../atuacao/parcerias.html" role="menuitem">
+                                    <i class="fas fa-handshake"></i> Parcerias
+                                </a></li>
+                        </ul>
+                    </li>
                     <li><a href="transparencia.html">Transparência</a></li>
-                    <li><a href="index.html#stats">Impacto</a></li>
-                    <li><a href="news.html">Notícias</a></li>
-                    <li><a href="index.html#contato">Contato</a></li>
-                    <li><a href="index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+                    <li><a href="../index.html#stats">Impacto</a></li>
+                    <li><a href="../atuacao/noticias.html">Notícias</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                    <li><a><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
                 </ul>
             </nav>
         </div>
@@ -354,7 +393,7 @@
         <section class="page-hero" aria-label="Conselhos da Fundação">
             <div class="container page-hero-content">
                 <nav class="page-breadcrumb" aria-label="Localização">
-                    <a href="index.html">Início</a>
+                    <a href="../index.html">Início</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Conselhos</span>
                 </nav>
@@ -387,7 +426,7 @@
                     <div class="grid-membros-honra">
                         <div class="card-membro-page destaque">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/presidentehonra.jpeg" alt="Foto do Cel Carlos Magno de Oliveira" class="membro-foto-placeholder">
+                                <img src="../assets/img/presidentehonra.jpeg" alt="Foto do Cel Carlos Magno de Oliveira" class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Presidente de Honra</span>
