@@ -10,7 +10,7 @@
         content="Conheça os membros dos Conselhos da Fundação Fênix 193: Presidente de Honra, Conselho de Curadores, Conselho Executivo e Conselho Fiscal.">
     <meta name="apple-mobile-web-app-title" content="FF193" />
     <title>Equipe · Fundação Fênix 193</title>
-    <link rel="manifest" href="site.webmanifest" />
+    <link rel="manifest" href="../site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="assets/ui/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
     <link rel="shortcut icon" href="assets/ui/favicon.ico" />
@@ -26,52 +26,66 @@
         /* ── Page Hero ── */
         .page-hero {
             background:
-                linear-gradient(135deg, rgba(49,51,50,.95) 0%, rgba(135,32,32,.75) 100%),
-                url('assets/img/fenix-4.jpeg') center/cover no-repeat;
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../../assets/img/fenix-4.jpeg') center/cover no-repeat;
             padding: 90px 0 70px;
             position: relative;
             overflow: hidden;
         }
+
         .page-hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: repeating-linear-gradient(
-                0deg, transparent, transparent 3px,
-                rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px
-            );
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
             pointer-events: none;
         }
+
         .page-hero-content {
             position: relative;
             z-index: 1;
         }
+
         .page-breadcrumb {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: .8rem;
-            color: rgba(255,255,255,.5);
+            color: rgba(255, 255, 255, .5);
             letter-spacing: .08em;
             text-transform: uppercase;
             margin-bottom: 16px;
         }
-        .page-breadcrumb a { color: var(--amber); transition: var(--transition); }
-        .page-breadcrumb a:hover { color: var(--white); }
-        .page-breadcrumb i { font-size: .65rem; }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
         .page-hero h1 {
             font-size: clamp(2.4rem, 5vw, 4rem);
             color: var(--white);
             margin-bottom: 14px;
-            text-shadow: 0 2px 16px rgba(0,0,0,.4);
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
         }
+
         .page-hero p {
             font-size: 1.05rem;
-            color: rgba(255,255,255,.75);
+            color: rgba(255, 255, 255, .75);
             max-width: 560px;
             font-weight: 300;
             line-height: 1.7;
         }
+
         .page-hero-bar {
             width: 52px;
             height: 4px;
@@ -84,6 +98,7 @@
         .conselho-section {
             padding: 72px 0 0;
         }
+
         .conselho-section:last-of-type {
             padding-bottom: 90px;
         }
@@ -96,8 +111,10 @@
             padding-bottom: 20px;
             border-bottom: 2px solid var(--gray-light);
         }
+
         .conselho-group-icon {
-            width: 52px; height: 52px;
+            width: 52px;
+            height: 52px;
             border-radius: var(--radius);
             background: linear-gradient(135deg, var(--red), var(--fire));
             display: flex;
@@ -106,13 +123,15 @@
             color: var(--white);
             font-size: 1.25rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 14px rgba(225,34,23,.35);
+            box-shadow: 0 4px 14px rgba(225, 34, 23, .35);
         }
+
         .conselho-group-title {
             display: flex;
             flex-direction: column;
             gap: 2px;
         }
+
         .conselho-group-label {
             font-size: .72rem;
             font-weight: 600;
@@ -120,6 +139,7 @@
             text-transform: uppercase;
             color: var(--red);
         }
+
         .conselho-group-title h2 {
             font-size: clamp(1.5rem, 2.8vw, 2rem);
             color: var(--navy);
@@ -131,6 +151,7 @@
             display: flex;
             justify-content: center;
         }
+
         .grid-membros-honra .card-membro-page {
             max-width: 340px;
         }
@@ -140,12 +161,14 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
+
         .grid-membros-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
             max-width: 880px;
         }
+
         .grid-membros-4 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -162,31 +185,37 @@
             text-align: center;
             gap: 14px;
             box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0,0,0,.055);
+            border: 1px solid rgba(0, 0, 0, .055);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
+
         .card-membro-page::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--red), var(--fire));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform var(--transition);
         }
+
         .card-membro-page:hover {
             box-shadow: var(--shadow-md);
             transform: translateY(-4px);
         }
+
         .card-membro-page:hover::before {
             transform: scaleX(1);
         }
 
         .membro-avatar-page {
-            width: 80px; height: 80px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--navy), var(--navy-light));
             display: flex;
@@ -195,25 +224,29 @@
             color: var(--white);
             font-size: 1.7rem;
             flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,.18);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
             border: 3px solid var(--gray-light);
         }
+
         .card-membro-page.destaque .membro-avatar-page {
             background: linear-gradient(135deg, var(--red-dark), var(--red));
             border-color: var(--amber);
         }
+
         .membro-foto-placeholder {
-            width: 80px; height: 80px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,.18);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
             border: 3px solid var(--gray-light);
             background: var(--gray-light);
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
         .membro-foto-placeholder img {
             width: 100%;
             height: 100%;
@@ -226,6 +259,7 @@
             gap: 4px;
             align-items: center;
         }
+
         .membro-cargo-page {
             font-size: .7rem;
             font-weight: 700;
@@ -233,17 +267,20 @@
             text-transform: uppercase;
             color: var(--red);
         }
+
         .membro-nome-page {
             font-family: var(--font-display);
             font-size: 1.05rem;
             color: var(--navy);
             line-height: 1.2;
         }
+
         .membro-sub-page {
             font-size: .82rem;
             color: var(--text-muted);
             font-style: italic;
         }
+
         .badge-cargo {
             display: inline-block;
             padding: 3px 12px;
@@ -256,6 +293,7 @@
             color: var(--navy);
             margin-top: 2px;
         }
+
         .card-membro-page.destaque .badge-cargo {
             background: var(--amber);
             color: var(--navy);
@@ -269,6 +307,7 @@
             margin: 60px 0 0;
             color: var(--gray);
         }
+
         .section-divider::before,
         .section-divider::after {
             content: '';
@@ -276,6 +315,7 @@
             height: 1px;
             background: var(--gray-light);
         }
+
         .section-divider i {
             font-size: 1rem;
             color: var(--red);
@@ -288,6 +328,7 @@
             margin: 0 auto 56px;
             text-align: center;
         }
+
         .conselho-intro p {
             color: var(--text-muted);
             font-size: 1rem;
@@ -296,16 +337,20 @@
 
         /* ── Responsivo ── */
         @media (max-width: 768px) {
+
             .grid-membros,
             .grid-membros-3,
             .grid-membros-4 {
                 grid-template-columns: 1fr 1fr;
             }
+
             .grid-membros-honra .card-membro-page {
                 max-width: 100%;
             }
         }
+
         @media (max-width: 480px) {
+
             .grid-membros,
             .grid-membros-3,
             .grid-membros-4 {
@@ -321,13 +366,13 @@
         <div class="container nav-wrapper">
             <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                 <div class="logo-icon" aria-hidden="true">
-                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
+                    <img src="../../assets/img/ff193_transp.png" alt="Logo Transparente" width="75" height="75">
                 </div>
                 <div class="logo-text">
                     <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
                 </div>
             </a>
-    
+
             <nav id="nav-menu" aria-label="Navegação principal">
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
                     <span class="hamburger-bar"></span>
@@ -399,7 +444,8 @@
                 </nav>
                 <div class="page-hero-bar"></div>
                 <h1>Estrutura Organizacional</h1>
-                <p>Conheça os membros que compõem os conselhos da Fundação Fênix 193 — pessoas comprometidas com a missão de apoiar e fortalecer o Corpo de Bombeiros Militar de Sergipe.</p>
+                <p>Conheça os membros que compõem os conselhos da Fundação Fênix 193 — pessoas comprometidas com a
+                    missão de apoiar e fortalecer o Corpo de Bombeiros Militar de Sergipe.</p>
             </div>
         </section>
 
@@ -408,7 +454,10 @@
             <div class="container">
 
                 <div class="conselho-intro reveal">
-                    <p>A Fundação Fênix 193 é governada por uma estrutura colegiada composta por quatro instâncias: <strong>Presidente de Honra</strong>, <strong>Conselho de Curadores</strong>, <strong>Conselho Executivo</strong> e <strong>Conselho Fiscal</strong>, garantindo transparência, controle e eficácia na gestão da instituição.</p>
+                    <p>A Fundação Fênix 193 é governada por uma estrutura colegiada composta por quatro instâncias:
+                        <strong>Presidente de Honra</strong>, <strong>Conselho de Curadores</strong>, <strong>Conselho
+                            Executivo</strong> e <strong>Conselho Fiscal</strong>, garantindo transparência, controle e
+                        eficácia na gestão da instituição.</p>
                 </div>
 
                 <!-- ── 1. PRESIDENTE DE HONRA ── -->
@@ -426,7 +475,8 @@
                     <div class="grid-membros-honra">
                         <div class="card-membro-page destaque">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="../assets/img/presidentehonra.jpeg" alt="Foto do Cel Carlos Magno de Oliveira" class="membro-foto-placeholder">
+                                <img src="../../assets/img/presidentehonra.jpeg"
+                                    alt="Foto do Cel Carlos Magno de Oliveira" class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Presidente de Honra</span>
@@ -454,7 +504,8 @@
                     <div class="grid-membros">
                         <div class="card-membro-page destaque">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/celmoura.jpeg" alt="Foto do Cel Reginaldo Moura" class="membro-foto-placeholder">
+                                <img src="../../assets/img/celmoura.jpeg" alt="Foto do Cel Reginaldo Moura"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho de Curadores</span>
@@ -464,7 +515,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/celjosue.jpeg" alt="Foto do Cel Josué Bezerra" class="membro-foto-placeholder">
+                                <img src="../../assets/img/celjosue.jpeg" alt="Foto do Cel Josué Bezerra"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho de Curadores</span>
@@ -473,7 +525,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/telcelbitencourt.jpeg" alt="Foto do Ten Cel Mario Bitencourt" class="membro-foto-placeholder">
+                                <img src="../assets/img/telcelbitencourt.jpeg" alt="Foto do Ten Cel Mario Bitencourt"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho de Curadores</span>
@@ -483,7 +536,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/drvalter.jpeg" alt="Foto do Prof. Dr. Valter Joviniano" class="membro-foto-placeholder">
+                                <img src="../assets/img/drvalter.jpeg" alt="Foto do Prof. Dr. Valter Joviniano"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho de Curadores</span>
@@ -492,7 +546,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/dracatarina.jpeg" alt="Foto da Drª. Catarina Aragão" class="membro-foto-placeholder">
+                                <img src="../assets/img/dracatarina.jpeg" alt="Foto da Drª. Catarina Aragão"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho de Curadores</span>
@@ -519,7 +574,8 @@
                     <div class="grid-membros-3">
                         <div class="card-membro-page destaque">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/celdias.jpeg" alt="Foto do Cel Laudemy Dias" class="membro-foto-placeholder">
+                                <img src="../assets/img/celdias.jpeg" alt="Foto do Cel Laudemy Dias"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Executivo</span>
@@ -529,7 +585,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/celmateus.jpeg" alt="Foto do Cel Gilfran Mateus" class="membro-foto-placeholder">
+                                <img src="../assets/img/celmateus.jpeg" alt="Foto do Cel Gilfran Mateus"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Executivo</span>
@@ -539,7 +596,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/celluiz.jpeg" alt="Foto do Cel Luiz Henrique" class="membro-foto-placeholder">
+                                <img src="../assets/img/celluiz.jpeg" alt="Foto do Cel Luiz Henrique"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Executivo</span>
@@ -567,7 +625,8 @@
                     <div class="grid-membros-4">
                         <div class="card-membro-page destaque">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/edivaldo.jpeg" alt="Foto do Ass. Social Edivaldo Celestino" class="membro-foto-placeholder">
+                                <img src="../assets/img/edivaldo.jpeg" alt="Foto do Ass. Social Edivaldo Celestino"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Fiscal</span>
@@ -577,7 +636,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/majvicente.jpeg" alt="Foto do Maj. Valtemiro Vicente" class="membro-foto-placeholder">
+                                <img src="../assets/img/majvicente.jpeg" alt="Foto do Maj. Valtemiro Vicente"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Fiscal</span>
@@ -586,7 +646,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/majraimundo.jpeg" alt="Foto do Maj. José Raimundo Brito" class="membro-foto-placeholder">
+                                <img src="../assets/img/majraimundo.jpeg" alt="Foto do Maj. José Raimundo Brito"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Fiscal</span>
@@ -595,7 +656,8 @@
                         </div>
                         <div class="card-membro-page">
                             <div class="membro-avatar-page" aria-label="Foto do membro">
-                                <img src="assets/img/subtenroberto.jpeg" alt="Foto do Subten. Roberto Bastos" class="membro-foto-placeholder">
+                                <img src="../assets/img/subtenroberto.jpeg" alt="Foto do Subten. Roberto Bastos"
+                                    class="membro-foto-placeholder">
                             </div>
                             <div class="membro-info-page">
                                 <span class="membro-cargo-page">Conselho Fiscal</span>
@@ -618,7 +680,7 @@
                 <div class="footer-brand">
                     <div class="logo-area footer-logo">
                         <div class="logo-icon" aria-hidden="true">
-                            <img src="assets/img/ff193_transp.png" alt="Logo Transparente" height="33" width="33">
+                            <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" height="33" width="33">
                         </div>
                         <div class="logo-text">
                             <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
@@ -636,40 +698,41 @@
                         </div>
                     </div>
                 </div>
-
+    
                 <div class="footer-links-col">
                     <h4>Institucional</h4>
                     <ul>
-                        <li><a href="index.html#quem-somos">Quem Somos</a></li>
-                        <li><a href="conselho.html">Membros do Conselho</a></li>
-                        <li><a href="index.html#como-ajudar">Como Ajudar</a></li>
-                        <li><a href="index.html#contato">Contato</a></li>
+                        <li><a href="nossa-historia.html">Nossa História</a></li>
+                        <li><a href="missao-valores.html">Missão e Valores</a></li>
+                        <li><a href="equipe.html">Membros do Conselho</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
                     </ul>
                 </div>
-
+    
                 <div class="footer-links-col">
                     <h4>Atuação e Transparência</h4>
                     <ul>
-                        <li><a href="index.html#projetos">Projetos</a></li>
-                        <li><a href="index.html#atuacao">Áreas de Atuação</a></li>
-                        <li><a href="news.html">Notícias</a></li>
-                        <li><a href="transparencia.html">Transparência</a></li>
+                        <li><a href="../atuacao/projetos.html">Projetos</a></li>
+                        <li><a href="../atuacao/capacitacao.html">Capacitação</a></li>
+                        <li><a href="../atuacao/noticias.html">Notícias</a></li>
+                        <li><a href="../transparencia.html">Transparência</a></li>
                         <li><a href="https://eusougeovani.vercel.app/privacidade.html">Privacidade</a></li>
                         <li><a href="https://eusougeovani.vercel.app/termos.html">Termos de Uso</a></li>
                     </ul>
                 </div>
-
+    
                 <div class="footer-links-col">
                     <h4>Administração</h4>
-                    <a href="akannihub.html" class="btn-cta-nav"><i class="fa-solid fa-user-lock"></i> Acesso
-                        Restrito</a>
+                    <a href="../akannihub.html" class="btn-cta-nav">
+                        <i class="fa-solid fa-user-lock"></i> Acesso Restrito
+                    </a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
-                    reservados.</p>
+                <p>&copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos reservados.
+                </p>
                 <p>Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café" style="color:var(--red)"></i> por
                     <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a> —
                     <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank"
@@ -714,4 +777,5 @@
     </script>
 
 </body>
+
 </html>
