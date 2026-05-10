@@ -1448,6 +1448,12 @@ h5 {
         padding: 12px 24px;
         border-radius: 0;
         font-size: .95rem;
+        color: rgba(255, 255, 255, .85);
+    }
+
+    #menu a:hover {
+        color: var(--amber);
+        background: rgba(255, 255, 255, .06);
     }
 
     .btn-cta-nav {

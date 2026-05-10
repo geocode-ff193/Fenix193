@@ -137,3 +137,17 @@
         font-size: .88rem;
     }
 }
+
+/* ── Bridge: preenche o gap entre trigger e dropdown ── */
+@media (min-width: 769px) {
+    .has-dropdown::before {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: -10px;
+        right: -10px;
+        height: 12px;
+        background: transparent;
+        z-index: 399;
+    }
+}
