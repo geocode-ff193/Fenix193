@@ -101,29 +101,28 @@
         <section id="hero" aria-label="Banner principal">
             <div class="hero-overlay"></div>
             <div class="container hero-grid">
+                <!-- Barra de busca -->
+                <div class="hero-search" id="hero-search" role="search" aria-label="Busca no site">
+                    <div class="hero-search-input-wrap">
+                        <i class="fas fa-magnifying-glass hero-search-icon" aria-hidden="true"></i>
+                        <input type="search" id="hero-search-input" class="hero-search-input"
+                            placeholder="Buscar notícias, projetos, documentos…" autocomplete="off" spellcheck="false"
+                            aria-label="Campo de busca" aria-autocomplete="list" aria-controls="search-dropdown"
+                            aria-expanded="false" aria-haspopup="listbox">
+                        <button class="hero-search-clear" id="hero-search-clear" type="button" aria-label="Limpar busca"
+                            hidden>
+                            <i class="fas fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="search-dropdown" id="search-dropdown" role="listbox" aria-label="Resultados da busca"
+                        aria-hidden="true" hidden>
+                    </div>
+                </div>
                 <div class="hero-img">
                     <img src="assets/img/ff193_transp.png" alt="Logo Fundação Fênix 193">
                 </div>
-
                 <div class="hero-text">
                     <h1>Apoiar quem arrisca sua vida para salvar vidas e riquezas alheias é proteger a sociedade.</h1>
-                    <!-- Barra de busca -->
-                    <div class="hero-search" id="hero-search" role="search" aria-label="Busca no site">
-                        <div class="hero-search-input-wrap">
-                            <i class="fas fa-magnifying-glass hero-search-icon" aria-hidden="true"></i>
-                            <input type="search" id="hero-search-input" class="hero-search-input"
-                                placeholder="Buscar notícias, projetos, documentos…" autocomplete="off"
-                                spellcheck="false" aria-label="Campo de busca" aria-autocomplete="list"
-                                aria-controls="search-dropdown" aria-expanded="false" aria-haspopup="listbox">
-                            <button class="hero-search-clear" id="hero-search-clear" type="button"
-                                aria-label="Limpar busca" hidden>
-                                <i class="fas fa-times" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                        <div class="search-dropdown" id="search-dropdown" role="listbox"
-                            aria-label="Resultados da busca" aria-hidden="true" hidden>
-                        </div>
-                    </div>
                 </div>
 
             </div>
