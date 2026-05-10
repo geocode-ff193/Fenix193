@@ -634,7 +634,7 @@ h5 {
 }
 
 .stats-section::before {
-    content: 'FÊNIX 193';
+    content: '193';
     position: absolute;
     right: -20px;
     bottom: -30px;
