@@ -541,57 +541,6 @@
             transform: translateY(-2px);
         }
 
-        /* ── Tipos de eventos ── */
-        .tipos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-            margin-bottom: 80px;
-        }
-
-        .tipo-card {
-            background: var(--white);
-            border-radius: 14px;
-            padding: 26px 22px;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
-            border: 1px solid rgba(0, 0, 0, .055);
-            transition: var(--transition);
-        }
-
-        .tipo-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, .1);
-        }
-
-        .tipo-card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--red), var(--fire));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(225, 34, 23, .22);
-        }
-
-        .tipo-card h4 {
-            font-size: .97rem;
-            color: var(--navy);
-            margin-bottom: 5px;
-        }
-
-        .tipo-card p {
-            font-size: .84rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
         /* ── Modal ── */
         .modal-overlay {
             position: fixed;
@@ -958,44 +907,9 @@
 
                 <!-- Tipos de Eventos -->
                 <div class="section-header reveal">
-                    <span class="section-label">O que fazemos</span>
-                    <h2>Tipos de Eventos</h2>
+                    <span class="section-label">Programação</span>
+                    <h2>Nossos Eventos</h2>
                     <div class="section-bar"></div>
-                </div>
-
-                <div class="tipos-grid">
-                    <div class="tipo-card reveal">
-                        <div class="tipo-card-icon"><i class="fas fa-hands-holding-child"></i></div>
-                        <div>
-                            <h4>Ações Sociais</h4>
-                            <p>Atividades comunitárias, campanhas de doação e iniciativas que beneficiam diretamente a
-                                sociedade sergipana.</p>
-                        </div>
-                    </div>
-                    <div class="tipo-card reveal">
-                        <div class="tipo-card-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <div>
-                            <h4>Treinamentos Abertos</h4>
-                            <p>Cursos e capacitações com vagas abertas ao público, promovendo a cultura de segurança em
-                                Sergipe.</p>
-                        </div>
-                    </div>
-                    <div class="tipo-card reveal">
-                        <div class="tipo-card-icon"><i class="fas fa-award"></i></div>
-                        <div>
-                            <h4>Cerimônias Institucionais</h4>
-                            <p>Formaturas, posses, homenagens e eventos que valorizam os profissionais do CBMSE e da
-                                Defesa Civil.</p>
-                        </div>
-                    </div>
-                    <div class="tipo-card reveal">
-                        <div class="tipo-card-icon"><i class="fas fa-shield-halved"></i></div>
-                        <div>
-                            <h4>Prevenção e Conscientização</h4>
-                            <p>Campanhas educativas em escolas, empresas e espaços públicos sobre segurança contra
-                                incêndio e emergências.</p>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Tabs -->
