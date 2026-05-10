@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dropdown.css">
+    <link rel="stylesheet" href="assets/css/search.css">
 </head>
 
 <body>
@@ -44,7 +45,7 @@
                 </button>
                 <ul id="menu" role="list">
                     <li><a href="index.html#hero" style="color:var(--amber);">Início</a></li>
-                    
+
                     <li class="has-dropdown">
                         <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
                             Quem Somos <i class="fas fa-chevron-down dropdown-arrow"></i>
@@ -110,6 +111,26 @@
                     <p>A <strong>Fundação Fênix 193</strong> fortalece a proteção da sociedade sergipana por meio do
                         apoio ao trabalho do Corpo de Bombeiros Militar de Sergipe e das ações de Proteção e Defesa
                         Civil.</p>
+                    <!-- Barra de busca -->
+                    <div class="hero-search" id="hero-search" role="search" aria-label="Busca no site">
+                        <div class="hero-search-input-wrap">
+                            <i class="fas fa-magnifying-glass hero-search-icon" aria-hidden="true"></i>
+                            <input type="search" id="hero-search-input" class="hero-search-input"
+                                placeholder="Buscar notícias, projetos, documentos…" autocomplete="off"
+                                spellcheck="false" aria-label="Campo de busca" aria-autocomplete="list"
+                                aria-controls="search-dropdown" aria-expanded="false" aria-haspopup="listbox">
+                            <button class="hero-search-clear" id="hero-search-clear" type="button"
+                                aria-label="Limpar busca" hidden>
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <div class="search-dropdown" id="search-dropdown" role="listbox"
+                            aria-label="Resultados da busca" aria-hidden="true" hidden>
+                            <!-- Resultados injetados dinamicamente via search.js -->
+                        </div>
+                    </div>
+                    <!-- [FIM NOVO] -->
+
                 </div>
 
             </div>
@@ -435,7 +456,8 @@
                     <div class="contact-info">
                         <p>Tem dúvidas, denúncia, deseja colaborar ou propor uma parceria?<br>Fale com a
                             <strong>Fundação Fênix
-                                193</strong>. Estamos prontos para atendê-lo.</p>
+                                193</strong>. Estamos prontos para atendê-lo.
+                        </p>
                         <ul class="contact-list">
                             <li>
                                 <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
@@ -580,6 +602,7 @@
     </button>
 
     <script type="module" src="assets/js/script.js"></script>
+    <script type="module" src="assets/js/search.js"></script>
 </body>
 
 </html>

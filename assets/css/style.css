@@ -1505,3 +1505,332 @@ h5 {
         right: 16px;
     }
 }
+
+/* ===========================
+   HERO SEARCH
+   ========================== */
+
+/* ── Wrapper da busca ────────────────────────────────────── */
+.hero-search {
+    position: relative;
+    margin-top: 28px;
+    max-width: 540px;
+}
+
+/* ── Input wrapper ───────────────────────────────────────── */
+.hero-search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, .1);
+    border: 1.5px solid rgba(255, 255, 255, .22);
+    border-radius: 50px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.hero-search-input-wrap:focus-within {
+    background: rgba(255, 255, 255, .16);
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(248, 186, 37, .2);
+}
+
+/* ── Ícone lupa ──────────────────────────────────────────── */
+.hero-search-icon {
+    color: rgba(255, 255, 255, .55);
+    font-size: .95rem;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+/* ── Campo de texto ──────────────────────────────────────── */
+.hero-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-family: var(--font-body);
+    font-size: .97rem;
+    color: var(--white);
+    font-weight: 400;
+    caret-color: var(--amber);
+}
+
+.hero-search-input::placeholder {
+    color: rgba(255, 255, 255, .45);
+}
+
+/* Remove o X nativo do input[type=search] */
+.hero-search-input::-webkit-search-cancel-button,
+.hero-search-input::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* ── Botão limpar ────────────────────────────────────────── */
+.hero-search-clear {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, .45);
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-size: .82rem;
+    border-radius: 50%;
+    transition: color .2s ease, background .2s ease;
+    flex-shrink: 0;
+}
+
+.hero-search-clear:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, .1);
+}
+
+/* ── Dropdown ────────────────────────────────────────────── */
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, .05),
+        0 20px 48px rgba(0, 0, 0, .22);
+    border: 1px solid rgba(0, 0, 0, .06);
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 600;
+    animation: searchDropIn .2s ease;
+    /* Scrollbar personalizada */
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray-light) transparent;
+}
+
+.search-dropdown::-webkit-scrollbar {
+    width: 4px;
+}
+
+.search-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.search-dropdown::-webkit-scrollbar-thumb {
+    background: var(--gray-light);
+    border-radius: 2px;
+}
+
+@keyframes searchDropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── Label de grupo ──────────────────────────────────────── */
+.search-group-label {
+    padding: 10px 18px 6px;
+    font-size: .66rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 1;
+}
+
+.search-group-label:first-child {
+    border-top: none;
+}
+
+/* ── Item de resultado ───────────────────────────────────── */
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text);
+    transition: background .15s ease;
+    outline: none;
+    border-radius: 0;
+}
+
+.search-result-item:hover,
+.search-result-item:focus,
+.search-result-item.highlighted {
+    background: var(--off-white);
+}
+
+.search-result-item:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: -2px;
+}
+
+/* ── Ícone do resultado ──────────────────────────────────── */
+.search-result-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .88rem;
+    flex-shrink: 0;
+    transition: background .15s ease, color .15s ease;
+}
+
+.icon-pagina {
+    background: rgba(49, 51, 50, .07);
+    color: var(--navy);
+}
+
+.icon-atuacao {
+    background: rgba(242, 118, 19, .12);
+    color: var(--fire);
+}
+
+.icon-noticia {
+    background: rgba(225, 34, 23, .1);
+    color: var(--red);
+}
+
+.icon-documento {
+    background: rgba(34, 197, 94, .1);
+    color: #166534;
+}
+
+.icon-contato {
+    background: rgba(37, 99, 235, .1);
+    color: #1d4ed8;
+}
+
+.search-result-item:hover .search-result-icon,
+.search-result-item.highlighted .search-result-icon {
+    filter: brightness(.95);
+}
+
+/* ── Texto do resultado ──────────────────────────────────── */
+.search-result-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.search-result-title {
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.search-result-sub {
+    font-size: .76rem;
+    color: var(--gray);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Highlight da query no texto ─────────────────────────── */
+mark.search-highlight {
+    background: rgba(248, 186, 37, .38);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 1px;
+}
+
+/* ── Badges de categoria ─────────────────────────────────── */
+.search-badge {
+    font-size: .6rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.badge-pagina {
+    background: rgba(49, 51, 50, .09);
+    color: var(--navy-light);
+}
+
+.badge-atuacao {
+    background: rgba(242, 118, 19, .13);
+    color: #7C3404;
+}
+
+.badge-noticia {
+    background: rgba(225, 34, 23, .1);
+    color: var(--red-dark);
+}
+
+.badge-documento {
+    background: rgba(34, 197, 94, .12);
+    color: #166534;
+}
+
+.badge-contato {
+    background: rgba(37, 99, 235, .1);
+    color: #1e3a8a;
+}
+
+/* ── Estado: nenhum resultado ────────────────────────────── */
+.search-empty {
+    padding: 36px 18px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.search-empty i {
+    display: block;
+    font-size: 1.8rem;
+    opacity: .2;
+    margin-bottom: 10px;
+}
+
+.search-empty p {
+    font-size: .9rem;
+    margin-bottom: 4px;
+    color: var(--navy);
+}
+
+.search-empty span {
+    font-size: .8rem;
+    color: var(--gray);
+}
+
+/* ── Responsivo ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero-search {
+        max-width: 100%;
+        margin-top: 22px;
+    }
+
+    .search-dropdown {
+        max-height: 320px;
+    }
+
+    .search-result-sub {
+        display: none;
+    }
+}
