@@ -73,7 +73,7 @@
 /
 ├── index.html          # Site institucional
 ├── akannihub.html      # SaaS — área restrita da administração
-├── conselho.html       # Página pública do conselho
+├── conselho.html       # Página pública da Equipe
 ├── news.html           # Portal de notícias
 ├── transparencia.html  # Portal da Trasnparência
 │
@@ -84,7 +84,7 @@
 ├── site.webmanifest    # Manifesto PWA
 ├── sitemap.xml         # SiteMap
 └── img/                # Imagens, logos e ícones
-    └── membros/        # Foto dos Membros do Conselho (conselho.html)
+    └── membros/        # Foto dos Membros da Equipe (conselho.html)
 ├── akanni/             # Imagens, logos e ícones do SaaS
 ```
 
