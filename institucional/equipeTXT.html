@@ -299,42 +299,6 @@
             color: var(--navy);
         }
 
-        /* ── Separador entre seções ── */
-        .section-divider {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin: 60px 0 0;
-            color: var(--gray);
-        }
-
-        .section-divider::before,
-        .section-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--gray-light);
-        }
-
-        .section-divider i {
-            font-size: 1rem;
-            color: var(--red);
-            opacity: .5;
-        }
-
-        /* ── Intro da página ── */
-        .conselho-intro {
-            max-width: 720px;
-            margin: 0 auto 56px;
-            text-align: center;
-        }
-
-        .conselho-intro p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.75;
-        }
-
         /* ── Responsivo ── */
         @media (max-width: 768px) {
 
@@ -448,14 +412,6 @@
         <div class="section-padding">
             <div class="container">
 
-                <div class="conselho-intro reveal">
-                    <p>A Fundação Fênix 193 é governada por uma estrutura colegiada composta por quatro instâncias:
-                        <strong>Presidente de Honra</strong>, <strong>Conselho de Curadores</strong>, <strong>Conselho
-                            Executivo</strong> e <strong>Conselho Fiscal</strong>, garantindo transparência, controle e
-                        eficácia na gestão da instituição.
-                    </p>
-                </div>
-
                 <!-- ── 1. PRESIDENTE DE HONRA ── -->
                 <section class="conselho-section reveal" aria-labelledby="titulo-honra">
                     <div class="conselho-group-header">
@@ -482,8 +438,6 @@
                         </div>
                     </div>
                 </section>
-
-                <div class="section-divider" aria-hidden="true"><i class="fa-brands fa-phoenix-framework"></i></div>
 
                 <!-- ── 2. CONSELHO DE CURADORES ── -->
                 <section class="conselho-section reveal" aria-labelledby="titulo-curadores">
@@ -553,8 +507,6 @@
                     </div>
                 </section>
 
-                <div class="section-divider" aria-hidden="true"><i class="fa-brands fa-phoenix-framework"></i></div>
-
                 <!-- ── 3. CONSELHO EXECUTIVO ── -->
                 <section class="conselho-section reveal" aria-labelledby="titulo-executivo">
                     <div class="conselho-group-header">
@@ -603,8 +555,6 @@
                         </div>
                     </div>
                 </section>
-
-                <div class="section-divider" aria-hidden="true"><i class="fa-brands fa-phoenix-framework"></i></div>
 
                 <!-- ── 4. CONSELHO FISCAL ── -->
                 <section class="conselho-section reveal" aria-labelledby="titulo-fiscal">
