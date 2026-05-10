@@ -2,24 +2,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
 
-  "redirects": [
-    {
-      "source": "/conselho",
-      "destination": "/institucional/equipe",
-      "permanent": true
-    },
-    {
-      "source": "/news",
-      "destination": "/noticias",
-      "permanent": true
-    },
-    {
-      "source": "/index",
-      "destination": "/",
-      "permanent": true
-    }
-  ],
-
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "status": 404, "dest": "/404.html" }
