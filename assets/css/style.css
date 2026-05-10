@@ -1506,9 +1506,9 @@ h5 {
     }
 }
 
-/* ===========================
-   HERO SEARCH
-   ========================== */
+/* ==========
+HERO SEARCH
+=========== */
 
 /* ── Wrapper da busca ────────────────────────────────────── */
 .hero-search {
@@ -1832,5 +1832,34 @@ mark.search-highlight {
 
     .search-result-sub {
         display: none;
+    }
+}
+
+/* ── Wrapper centralizador (acima do hero-grid) ──────────── */
+.hero-search-center-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 72px 0 32px;
+}
+
+.hero-search-center-wrap .hero-search {
+    width: 100%;
+    max-width: 620px;
+    margin: 0;
+}
+
+/* hero-grid agora não precisa de padding-top próprio */
+.hero-grid {
+    padding-top: 0 !important;
+    padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+    .hero-search-center-wrap {
+        padding: 52px 0 20px;
+    }
+
+    .hero-search-center-wrap .hero-search {
+        max-width: 100%;
     }
 }
