@@ -12,7 +12,7 @@ body:
     id: nome_cliente
     attributes:
       label: "Seu Nome / Projeto"
-      placeholder: "Ex: Meire, Fundação Fênix..."
+      placeholder: "Ex: André, Site XYZ..."
     validations:
       required: true
 
@@ -44,7 +44,7 @@ body:
     attributes:
       label: "Descreva a sua solicitação em detalhes"
       description: "Se for um erro, o que você tentou fazer e o que aconteceu? Se for uma nova funcionalidade, explique como ela deve funcionar."
-      placeholder: "Ex: Ao tentar clicar no botão de salvar paciente, aparece uma mensagem vermelha dizendo 'Erro 500'..."
+      placeholder: "Ex: Ao tentar clicar no botão de salvar, aparece uma mensagem vermelha dizendo 'Erro 500'..."
     validations:
       required: true
 
