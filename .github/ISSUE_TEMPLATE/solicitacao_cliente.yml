@@ -1,66 +1,200 @@
-name: "Nova Solicitação (Cliente)"
-description: "Abra um chamado para relatar um erro, pedir um ajuste ou sugerir melhorias."
-title: "[Chamado]: "
+name: "📋 Nova Solicitação"
+description: "Relate um problema, peça uma alteração ou sugira uma melhoria. Preencha com calma — quanto mais detalhes, mais rápido resolvemos! 🚀"
+title: "[Chamado] "
 labels: ["Novo Chamado"]
+
 body:
+
+  # ── Boas-vindas ──────────────────────────────────────────────────────────────
   - type: markdown
     attributes:
       value: |
-        👋 **Olá!** Preencha o formulário abaixo com o máximo de detalhes possível para que possamos resolver sua solicitação rapidamente.
-  
+        ## 👋 Olá! Bem-vindo(a) ao suporte GeoCODE
+
+        Este formulário é o canal oficial para enviar qualquer solicitação sobre o seu projeto.
+        Preencha os campos abaixo com o máximo de detalhes que conseguir — **não existe resposta errada aqui!**
+
+        > 💡 **Dica:** Se preferir, pode **arrastar e soltar** fotos ou vídeos da tela diretamente em qualquer campo de texto.
+
+        ---
+
+  # ── 1. Identificação ─────────────────────────────────────────────────────────
   - type: input
     id: nome_cliente
     attributes:
-      label: "Seu Nome / Projeto"
-      placeholder: "Ex: Mateus, Akanni..."
+      label: "👤 Qual é o seu nome?"
+      description: "Seu nome ou o nome do seu projeto/empresa."
+      placeholder: "Ex: Maria da Silva / Clínica Bem Viver"
+    validations:
+      required: true
+
+  - type: input
+    id: melhor_contato
+    attributes:
+      label: "📱 Qual é o melhor jeito de te contactar? (Opcional)"
+      description: "WhatsApp, e-mail ou telefone. Assim entramos em contato rapidamente se precisarmos de mais informações."
+      placeholder: "Ex: (79) 99999-9999 ou maria@email.com.br"
+    validations:
+      required: false
+
+  # ── Separador ────────────────────────────────────────────────────────────────
+  - type: markdown
+    attributes:
+      value: "---"
+
+  # ── 2. Tipo e Urgência ───────────────────────────────────────────────────────
+  - type: dropdown
+    id: tipo_solicitacao
+    attributes:
+      label: "🗂️ O que você precisa?"
+      description: "Escolha a opção que melhor descreve o motivo do seu chamado."
+      options:
+        - "🐛 Tem algo com defeito (um botão não funciona, erro na tela, etc.)"
+        - "🚨 Urgente! O sistema está fora do ar ou travado"
+        - "✏️ Quero alterar um texto, imagem ou link"
+        - "🎨 Quero mudar a aparência (cor, tamanho, layout)"
+        - "💡 Quero adicionar algo novo no sistema"
+        - "🔒 Problema de acesso (não consigo entrar, senha, permissão)"
+        - "❓ Tenho uma dúvida sobre como usar"
+        - "💬 Outro assunto"
     validations:
       required: true
 
   - type: dropdown
-    id: tipo_solicitacao
+    id: urgencia
     attributes:
-      label: "Qual é o tipo da sua solicitação?"
-      description: "Selecione a opção que melhor descreve o que você precisa."
+      label: "⏰ Qual é a urgência disso para você?"
+      description: "Seja honesto(a) — isso nos ajuda a priorizar corretamente."
       options:
-        - "🐛 Erro no Sistema (Algo não está funcionando)"
-        - "🚨 Crítico / Urgente (Sistema fora do ar ou impedindo o trabalho)"
-        - "✏️ Ajuste de Conteúdo (Troca de textos, imagens, links)"
-        - "🎨 Ajuste Visual (Cores, layout, design da interface)"
-        - "💡 Nova Funcionalidade (Criar algo novo no sistema)"
-        - "❓ Dúvida (Como usar o painel ou sistema)"
+        - "🟢 Pode aguardar — quando der, tudo bem"
+        - "🟡 Médio — gostaria de resolver essa semana"
+        - "🔴 Alto — está atrapalhando o meu trabalho hoje"
+        - "🆘 Crítico — o sistema está parado e não consigo trabalhar"
     validations:
       required: true
 
+  # ── Separador ────────────────────────────────────────────────────────────────
+  - type: markdown
+    attributes:
+      value: "---"
+
+  # ── 3. Onde está acontecendo ─────────────────────────────────────────────────
   - type: input
     id: local_ocorrencia
     attributes:
-      label: "Em qual tela ou link isso está acontecendo?"
-      placeholder: "Ex: www.seusite.com.br/contato ou 'Painel Administrativo - Aba de Relatórios'"
+      label: "📍 Em qual parte do sistema isso está acontecendo?"
+      description: "Cole o endereço da página (link do site) ou descreva onde está — por exemplo: 'Tela de login', 'Painel administrativo, aba de Notícias', 'Página inicial do site'."
+      placeholder: "Ex: https://meusite.com.br/contato  —  ou  —  Painel Admin, seção Contatos"
     validations:
       required: true
 
-  - type: textarea
-    id: descricao_detalhada
+  # ── Separador ────────────────────────────────────────────────────────────────
+  - type: markdown
     attributes:
-      label: "Descreva a sua solicitação em detalhes"
-      description: "Se for um erro, o que você tentou fazer e o que aconteceu? Se for uma nova funcionalidade, explique como ela deve funcionar."
-      placeholder: "Ex: Ao tentar clicar no botão de salvar, aparece uma mensagem vermelha dizendo 'Erro 500'..."
-    validations:
-      required: true
+      value: "---"
 
+  # ── 4. O que está acontecendo ────────────────────────────────────────────────
   - type: textarea
-    id: passo_a_passo
+    id: o_que_aconteceu
     attributes:
-      label: "Passo a passo (Opcional, mas muito recomendado para erros)"
-      description: "Como eu faço para ver esse erro acontecer no meu computador?"
+      label: "📝 O que está acontecendo? Descreva com suas palavras"
+      description: "Não precisa usar linguagem técnica. Escreva como você contaria para um amigo. Se for uma alteração ou nova funcionalidade, explique o que você gostaria que fizesse."
       placeholder: |
-        1. Acessei a página de login
-        2. Digitei minha senha
-        3. Cliquei em 'Entrar' e a tela ficou toda branca
+        Exemplos:
+        • "Cliquei no botão Enviar do formulário de contato e apareceu uma mensagem vermelha de erro."
+        • "O meu logo está aparecendo pequeno demais na versão do celular."
+        • "Gostaria de adicionar um botão de WhatsApp flutuante em todas as páginas."
+    validations:
+      required: true
+
+  - type: textarea
+    id: o_que_deveria
+    attributes:
+      label: "✅ O que você esperava que acontecesse? (Opcional)"
+      description: "Como deveria funcionar corretamente? Isso nos ajuda a entender melhor o problema."
+      placeholder: |
+        Ex: "O formulário deveria mostrar uma mensagem de 'Mensagem enviada com sucesso!' em verde."
+        Ex: "O logo deveria aparecer do mesmo tamanho que aparece no computador."
     validations:
       required: false
 
+  # ── Separador ────────────────────────────────────────────────────────────────
+  - type: markdown
+    attributes:
+      value: "---"
+
+  # ── 5. Como reproduzir (para erros) ─────────────────────────────────────────
+  - type: textarea
+    id: passo_a_passo
+    attributes:
+      label: "🔁 Se for um erro: como faço para ver o mesmo problema? (Opcional)"
+      description: "Descreva o caminho que você fez antes do erro aparecer. Quanto mais detalhes, mais fácil fica para a gente reproduzir e corrigir."
+      placeholder: |
+        1. Abri o site pelo celular
+        2. Fui até a página de Contato
+        3. Preenchi o formulário com meu nome e e-mail
+        4. Cliquei em "Enviar Mensagem"
+        5. A tela ficou em branco e nada aconteceu
+    validations:
+      required: false
+
+  # ── Separador ────────────────────────────────────────────────────────────────
+  - type: markdown
+    attributes:
+      value: "---"
+
+  # ── 6. Informações do dispositivo ────────────────────────────────────────────
+  - type: dropdown
+    id: dispositivo
+    attributes:
+      label: "📱 Em qual aparelho isso acontece?"
+      description: "Se acontece em mais de um, selecione o principal."
+      options:
+        - "Celular (Android)"
+        - "Celular (iPhone)"
+        - "Computador ou Notebook"
+        - "Tablet"
+        - "Em todos os aparelhos"
+        - "Não sei / Não testei"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: navegador
+    attributes:
+      label: "🌐 Qual navegador você estava usando? (Opcional)"
+      options:
+        - "Google Chrome"
+        - "Safari (iPhone / Mac)"
+        - "Firefox"
+        - "Microsoft Edge"
+        - "Outro"
+        - "Não sei"
+    validations:
+      required: false
+
+  # ── Separador ────────────────────────────────────────────────────────────────
+  - type: markdown
+    attributes:
+      value: "---"
+
+  # ── 7. Checklist final ───────────────────────────────────────────────────────
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: "✔️ Antes de enviar, confirme:"
+      options:
+        - label: "Descrevi o problema ou pedido com detalhes suficientes."
+          required: true
+        - label: "Se possível, anexei uma foto ou vídeo da tela (arraste e solte nos campos acima)."
+          required: false
+        - label: "Entendo que o prazo de resposta pode variar conforme a urgência selecionada."
+          required: true
+
+  # ── Rodapé ───────────────────────────────────────────────────────────────────
   - type: markdown
     attributes:
       value: |
-        📸 **Dica Importante:** Sinta-se à vontade para arrastar e soltar **prints (capturas de tela) ou vídeos** na caixa de descrição acima! Isso ajuda a agilizar o desenvolvimento pela GeoCODE.
+        ---
+        🙏 **Obrigado por abrir o chamado!**
+        A equipe **GeoCODE Programmer** irá analisar sua solicitação e retornar pelo contato informado ou diretamente aqui. Fique de olho nas notificações do GitHub!
