@@ -77,7 +77,7 @@ h5 {
 }
 
 .section-padding {
-    padding: 90px 0;
+    padding: 60px 0;
 }
 
 .bg-light {
@@ -121,7 +121,7 @@ h5 {
 
 /* ── Section Headers ── */
 .section-header {
-    margin-bottom: 52px;
+    margin-bottom: 36px;
 }
 
 .section-header.light .section-label,
@@ -1266,7 +1266,7 @@ h5 {
 }
 
 .footer-top {
-    padding: 72px 0 40px;
+    padding: 48px 0 28px;
     border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
 
@@ -1418,8 +1418,8 @@ h5 {
 
 @media (max-width: 768px) {
     .section-padding {
-        padding: 60px 0;
-    }
+            padding: 40px 0;
+        }
 
     /* Header */
     #btn-mobile {
@@ -1839,7 +1839,7 @@ mark.search-highlight {
 .hero-search-center-wrap {
     display: flex;
     justify-content: center;
-    padding: 72px 0 32px;
+    padding: 44px 0 16px;
 }
 
 .hero-search-center-wrap .hero-search {
@@ -1851,7 +1851,7 @@ mark.search-highlight {
 /* hero-grid agora não precisa de padding-top próprio */
 .hero-grid {
     padding-top: 0 !important;
-    padding-bottom: 80px;
+    padding-bottom: 48px;
 }
 
 @media (max-width: 768px) {
