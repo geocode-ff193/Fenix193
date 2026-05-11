@@ -12,7 +12,7 @@ body:
     id: nome_cliente
     attributes:
       label: "Seu Nome / Projeto"
-      placeholder: "Ex: André, Site XYZ..."
+      placeholder: "Ex: Mateus, Akanni..."
     validations:
       required: true
 
