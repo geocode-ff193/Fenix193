@@ -1,0 +1,66 @@
+name: "Nova Solicitação (Cliente)"
+description: "Abra um chamado para relatar um erro, pedir um ajuste ou sugerir melhorias."
+title: "[Chamado]: "
+labels: ["Novo Chamado"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        👋 **Olá!** Preencha o formulário abaixo com o máximo de detalhes possível para que possamos resolver sua solicitação rapidamente.
+  
+  - type: input
+    id: nome_cliente
+    attributes:
+      label: "Seu Nome / Projeto"
+      placeholder: "Ex: Meire, Fundação Fênix..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tipo_solicitacao
+    attributes:
+      label: "Qual é o tipo da sua solicitação?"
+      description: "Selecione a opção que melhor descreve o que você precisa."
+      options:
+        - "🐛 Erro no Sistema (Algo não está funcionando)"
+        - "🚨 Crítico / Urgente (Sistema fora do ar ou impedindo o trabalho)"
+        - "✏️ Ajuste de Conteúdo (Troca de textos, imagens, links)"
+        - "🎨 Ajuste Visual (Cores, layout, design da interface)"
+        - "💡 Nova Funcionalidade (Criar algo novo no sistema)"
+        - "❓ Dúvida (Como usar o painel ou sistema)"
+    validations:
+      required: true
+
+  - type: input
+    id: local_ocorrencia
+    attributes:
+      label: "Em qual tela ou link isso está acontecendo?"
+      placeholder: "Ex: www.seusite.com.br/contato ou 'Painel Administrativo - Aba de Relatórios'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: descricao_detalhada
+    attributes:
+      label: "Descreva a sua solicitação em detalhes"
+      description: "Se for um erro, o que você tentou fazer e o que aconteceu? Se for uma nova funcionalidade, explique como ela deve funcionar."
+      placeholder: "Ex: Ao tentar clicar no botão de salvar paciente, aparece uma mensagem vermelha dizendo 'Erro 500'..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: passo_a_passo
+    attributes:
+      label: "Passo a passo (Opcional, mas muito recomendado para erros)"
+      description: "Como eu faço para ver esse erro acontecer no meu computador?"
+      placeholder: |
+        1. Acessei a página de login
+        2. Digitei minha senha
+        3. Cliquei em 'Entrar' e a tela ficou toda branca
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        📸 **Dica Importante:** Sinta-se à vontade para arrastar e soltar **prints (capturas de tela) ou vídeos** na caixa de descrição acima! Isso ajuda a agilizar o desenvolvimento pela GeoCODE.
