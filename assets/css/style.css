@@ -502,34 +502,94 @@ h5 {
     transform: rotate(180deg);
 }
 
-/* Emblema decorativo */
+/* ── Polaroid Stack — Quem Somos ── */
 .qs-visual {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
+    padding: 24px 0;
 }
 
-.qs-emblem {
+.polaroid-stack {
     position: relative;
-    width: 450px;
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 300px;
+    height: 220px;
+    cursor: default;
 }
 
-@keyframes ringPulse {
+.polaroid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    background: var(--white);
+    padding: 10px 10px 38px;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, .15),
+        0 8px 32px rgba(0, 0, 0, .12);
+    transition: transform .45s cubic-bezier(.34, 1.56, .64, 1), box-shadow .4s ease;
+    will-change: transform;
+}
 
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+.polaroid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
 
-    50% {
-        transform: scale(1.04);
-        opacity: .6;
-    }
+.polaroid-label {
+    display: block;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: .75rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 7px;
+    letter-spacing: .04em;
+}
+
+.pol-1 {
+    z-index: 1;
+    transform: rotate(-7deg) translate(-12px, 8px);
+}
+
+.pol-2 {
+    z-index: 2;
+    transform: rotate(5deg) translate(8px, -6px);
+}
+
+.pol-3 {
+    z-index: 3;
+    transform: rotate(-2deg) translate(-4px, -10px);
+}
+
+.pol-4 {
+    z-index: 4;
+    transform: rotate(4deg) translate(6px, 2px);
+}
+
+.polaroid-stack:hover .pol-1 {
+    transform: rotate(-20deg) translate(-120px, 18px);
+    box-shadow: 0 10px 48px rgba(0, 0, 0, .18);
+}
+
+.polaroid-stack:hover .pol-2 {
+    transform: rotate(-6deg) translate(-40px, -18px);
+    box-shadow: 0 10px 48px rgba(0, 0, 0, .18);
+}
+
+.polaroid-stack:hover .pol-3 {
+    transform: rotate(6deg) translate(40px, -18px);
+    box-shadow: 0 10px 48px rgba(0, 0, 0, .18);
+}
+
+.polaroid-stack:hover .pol-4 {
+    transform: rotate(20deg) translate(120px, 18px);
+    box-shadow: 0 14px 56px rgba(0, 0, 0, .22);
 }
 
 /* Diretoria Panel */
@@ -1419,8 +1479,8 @@ h5 {
 
 @media (max-width: 768px) {
     .section-padding {
-            padding: 40px 0;
-        }
+        padding: 40px 0;
+    }
 
     /* Header */
     #btn-mobile {
@@ -1473,6 +1533,37 @@ h5 {
 
     .hero-text p {
         max-width: 100%;
+    }
+
+    /* Polaroid — mobile */
+    .polaroid-stack {
+        width: 240px;
+        height: 180px;
+    }
+
+    .polaroid {
+        width: 240px;
+        padding: 8px 8px 30px;
+    }
+
+    .polaroid img {
+        height: 145px;
+    }
+
+    .polaroid-stack:hover .pol-1 {
+        transform: rotate(-20deg) translate(-90px, 15px);
+    }
+
+    .polaroid-stack:hover .pol-2 {
+        transform: rotate(-6deg) translate(-30px, -14px);
+    }
+
+    .polaroid-stack:hover .pol-3 {
+        transform: rotate(6deg) translate(30px, -14px);
+    }
+
+    .polaroid-stack:hover .pol-4 {
+        transform: rotate(20deg) translate(90px, 15px);
     }
 
     /* Diretoria */
@@ -1608,7 +1699,6 @@ HERO SEARCH
     overflow-x: hidden;
     z-index: 600;
     animation: searchDropIn .2s ease;
-    /* Scrollbar personalizada */
     scrollbar-width: thin;
     scrollbar-color: var(--gray-light) transparent;
 }
