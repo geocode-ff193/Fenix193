@@ -1503,18 +1503,112 @@
                     <div class="page-header">
                         <div>
                             <h2 class="page-header-title">Eventos</h2>
-                            <p class="page-header-sub">Gerencie os eventos listados no site</p>
+                            <p class="page-header-sub">Publique e gerencie os eventos da Fundação</p>
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <span class="panel-title"><i class="fas fa-calendar-days"></i> Gerar Eventos</span>
-                        </div>
-                        <div class="panel-body">
-                            <div id="events-list-wrap">
-                                <div class="empty-state"><span class="spinner"></span></div>
+                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+
+                        <!-- Formulário -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title" id="eventos-form-title">
+                                    <i class="fas fa-calendar-plus"></i> Novo Evento
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-eventos" class="form-grid">
+                                    <input type="hidden" id="evento-edit-id" value="">
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="evento-titulo">
+                                            Nome do Evento <span>*</span>
+                                        </label>
+                                        <input class="form-input" id="evento-titulo" type="text"
+                                            placeholder="Nome do evento" required>
+                                    </div>
+
+                                    <div class="form-grid form-grid-2">
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-data">
+                                                Data <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="evento-data" type="date" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-horario">
+                                                Horário <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="evento-horario" type="time" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="evento-local">
+                                            Local <span>*</span>
+                                        </label>
+                                        <input class="form-input" id="evento-local" type="text"
+                                            placeholder="Nome do local ou endereço completo" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="evento-custo">
+                                            Custo <span>*</span>
+                                        </label>
+                                        <select class="form-select" id="evento-custo" required>
+                                            <option value="">Selecione…</option>
+                                            <option value="Gratuito">Gratuito</option>
+                                            <option value="Pago">Pago</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="evento-link">
+                                            Link para Inscrição
+                                        </label>
+                                        <input class="form-input" id="evento-link" type="url" placeholder="https://…">
+                                        <span class="form-hint">
+                                            <i class="fas fa-circle-info"></i>
+                                            Opcional — link externo de inscrição / formulário
+                                        </span>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="evento-descricao">
+                                            Descrição <span>*</span>
+                                        </label>
+                                        <textarea class="form-textarea" id="evento-descricao"
+                                            placeholder="Descreva o evento com detalhes…" required></textarea>
+                                    </div>
+
+                                    <div style="display:flex;gap:10px;">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-evento"
+                                            style="flex:1;">
+                                            <i class="fas fa-paper-plane"></i>
+                                            <span id="evento-submit-label">Publicar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline" id="btn-cancel-evento"
+                                            style="display:none;">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+
+                        <!-- Lista de eventos publicados -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title">
+                                    <i class="fas fa-list"></i> Eventos Publicados
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                <div id="eventos-list-wrap">
+                                    <div class="empty-state"><span class="spinner"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
 
@@ -1533,19 +1627,22 @@
                         <div class="panel-body">
                             <div class="empty-state" style="text-align: center; padding: 20px;">
                                 <i class="fas fa-headset" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                                <p>Para suporte técnico, abra um chamado no GitHub utilizando as credenciais de acesso ao suporte:</p>
-                        
-                                <a href="https://github.com/eusougeovani/FF193/issues/new/choose" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn-green" style="text-decoration: none; display: inline-block; margin: 15px 0;">
+                                <p>Para suporte técnico, abra um chamado no GitHub utilizando as credenciais de acesso
+                                    ao suporte:</p>
+
+                                <a href="https://github.com/eusougeovani/FF193/issues/new/choose" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-green"
+                                    style="text-decoration: none; display: inline-block; margin: 15px 0;">
                                     <i class="fab fa-github"></i> Contatar Suporte via GitHub
                                 </a>
-                        
+
                                 <div
                                     style="background: #f4f4f4; padding: 10px; border-radius: 5px; font-size: 0.9rem; border: 1px dashed #ccc;">
                                     <strong>Credenciais de Suporte:</strong><br>
-                                    <span>Email: geocode.ff193@gmail.com</span> | <span>Senha: <em>Senha Padrão</em></span>
+                                    <span>Email: geocode.ff193@gmail.com</span> | <span>Senha: <em>Senha
+                                            Padrão</em></span>
                                 </div>
-                        
+
                                 <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">
                                     * Certifique-se de estar logado no GitHub com os dados acima antes de abrir a issue.
                                 </p>
@@ -1586,7 +1683,7 @@
     <div id="toast-container" role="status" aria-live="polite"></div>
 
     <!-- ══════════════════════════════════════════════════════════
-     FIREBASE SDK v9 + APP LOGIC
+    FIREBASE SDK v9 + APP LOGIC
 ══════════════════════════════════════════════════════════ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
@@ -1729,7 +1826,7 @@
 
         // ── LOAD ALL ─────────────────────────────────────────────────
         async function loadAllData() {
-            await Promise.all([loadContacts(), loadTransparency(), loadNews()]);
+            await Promise.all([loadContacts(), loadTransparency(), loadNews(), loadEventos()]);
         }
 
         // ══════════════════════════════════════════════════════════════
@@ -2067,6 +2164,218 @@
             if (!str) return '';
             return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
+
+        /*══════════════════════════════════════════════════════════════════
+        EVENTOS — colar dentro do script type="module" do akannihub.html
+        ══════════════════════════════════════════════════════════════════*/
+
+        // ── Helpers de data ──────────────────────────────────────────────
+        function parseDateLocal(dateStr) {
+            // dateStr formato: YYYY-MM-DD
+            if (!dateStr) return null;
+            const [y, m, d] = dateStr.split('-').map(Number);
+            return new Date(y, m - 1, d);
+        }
+
+        function fmtEventDate(dateStr) {
+            const d = parseDateLocal(dateStr);
+            if (!d) return '—';
+            return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
+
+        // ── loadEventos ──────────────────────────────────────────────────
+        async function loadEventos() {
+            const wrap = document.getElementById('eventos-list-wrap');
+            try {
+                const q = query(collection(db, 'eventos'), orderBy('data', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    wrap.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-calendar-days"></i>
+                    <p>Nenhum evento publicado.</p>
+                </div>`;
+                    return;
+                }
+
+                const list = document.createElement('div');
+                list.className = 'news-admin-list';
+
+                const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+
+                snap.forEach(d => {
+                    const ev = d.data();
+                    const dataEvento = parseDateLocal(ev.data);
+                    const isPast = dataEvento && dataEvento < hoje;
+
+                    const dayNum = dataEvento ? dataEvento.getDate() : '—';
+                    const monthAb = dataEvento
+                        ? dataEvento.toLocaleDateString('pt-BR', { month: 'short' })
+                            .toUpperCase().replace('.', '')
+                        : '';
+
+                    const dateBlockBg = isPast
+                        ? 'linear-gradient(135deg,var(--navy-mid),var(--navy))'
+                        : 'linear-gradient(135deg,var(--red-dark),var(--red))';
+
+                    const statusBadge = isPast
+                        ? `<span style="color:var(--gray);font-size:.75rem;">
+                       <i class="fas fa-check-circle"></i> Realizado
+                   </span>`
+                        : `<span style="color:#16A34A;font-size:.75rem;">
+                       <i class="fas fa-calendar-check"></i> Próximo
+                   </span>`;
+
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
+                <!-- Bloco de data -->
+                <div style="width:64px;height:64px;flex-shrink:0;border-radius:var(--radius);
+                            background:${dateBlockBg};display:flex;flex-direction:column;
+                            align-items:center;justify-content:center;gap:1px;padding:8px;">
+                    <span style="font-family:var(--font-display);font-size:1.5rem;
+                                 font-weight:800;color:var(--white);line-height:1;">
+                        ${dayNum}
+                    </span>
+                    <span style="font-size:.55rem;font-weight:700;letter-spacing:.1em;
+                                 text-transform:uppercase;color:rgba(255,255,255,.75);">
+                        ${monthAb}
+                    </span>
+                </div>
+ 
+                <!-- Corpo -->
+                <div class="news-admin-body">
+                    <div class="news-admin-title">${escHtml(ev.titulo)}</div>
+                    <div class="news-admin-meta">
+                        <span><i class="fas fa-clock"></i> ${escHtml(ev.horario || '—')}</span>
+                        <span><i class="fas fa-location-dot"></i> ${escHtml(ev.local || '—')}</span>
+                        <span><i class="fas fa-tag"></i> ${escHtml(ev.custo || '—')}</span>
+                        ${statusBadge}
+                    </div>
+                </div>
+ 
+                <!-- Ações -->
+                <div style="display:flex;gap:6px;flex-shrink:0;align-items:flex-start;">
+                    <button class="btn btn-outline btn-sm"
+                        onclick="editEvento('${d.id}')" title="Editar">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteEvento('${d.id}')" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>`;
+
+                    list.appendChild(item);
+                });
+
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+
+                // Cache para edição
+                window._eventosCache = {};
+                snap.forEach(d => { window._eventosCache[d.id] = d.data(); });
+
+            } catch (e) {
+                wrap.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-triangle-exclamation"></i>
+                <p>Erro ao carregar: ${e.message}</p>
+            </div>`;
+            }
+        }
+
+        // ── Submit (criar / editar) ──────────────────────────────────────
+        document.getElementById('form-eventos').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-evento');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Salvando…';
+
+            const editId = document.getElementById('evento-edit-id').value;
+            const isEdit = !!editId;
+
+            const payload = {
+                titulo: document.getElementById('evento-titulo').value.trim(),
+                data: document.getElementById('evento-data').value,         // YYYY-MM-DD
+                horario: document.getElementById('evento-horario').value,      // HH:MM
+                local: document.getElementById('evento-local').value.trim(),
+                custo: document.getElementById('evento-custo').value,
+                linkInscricao: document.getElementById('evento-link').value.trim() || null,
+                descricao: document.getElementById('evento-descricao').value.trim(),
+            };
+
+            try {
+                if (isEdit) {
+                    await updateDoc(doc(db, 'eventos', editId), {
+                        ...payload,
+                        updatedAt: serverTimestamp()
+                    });
+                    toast('Evento actualizado!', 'success');
+                    cancelEditEvento();
+                } else {
+                    payload.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'eventos'), payload);
+                    toast('Evento publicado com sucesso!', 'success');
+                    e.target.reset();
+                }
+                loadEventos();
+            } catch (err) {
+                toast('Erro: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="evento-submit-label">'
+                    + (isEdit ? 'Guardar' : 'Publicar') + '</span>';
+            }
+        });
+
+        // ── Editar evento ────────────────────────────────────────────────
+        window.editEvento = function (id) {
+            const ev = window._eventosCache?.[id];
+            if (!ev) return;
+
+            document.getElementById('evento-edit-id').value = id;
+            document.getElementById('evento-titulo').value = ev.titulo;
+            document.getElementById('evento-data').value = ev.data;
+            document.getElementById('evento-horario').value = ev.horario;
+            document.getElementById('evento-local').value = ev.local;
+            document.getElementById('evento-custo').value = ev.custo;
+            document.getElementById('evento-link').value = ev.linkInscricao || '';
+            document.getElementById('evento-descricao').value = ev.descricao;
+
+            document.getElementById('eventos-form-title').innerHTML =
+                '<i class="fas fa-pen"></i> Editar Evento';
+            document.getElementById('evento-submit-label').textContent = 'Guardar';
+            document.getElementById('btn-cancel-evento').style.display = 'inline-flex';
+
+            navigate('eventos');
+            document.getElementById('section-eventos').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // ── Cancelar edição ──────────────────────────────────────────────
+        function cancelEditEvento() {
+            document.getElementById('evento-edit-id').value = '';
+            document.getElementById('form-eventos').reset();
+            document.getElementById('eventos-form-title').innerHTML =
+                '<i class="fas fa-calendar-plus"></i> Novo Evento';
+            document.getElementById('evento-submit-label').textContent = 'Publicar';
+            document.getElementById('btn-cancel-evento').style.display = 'none';
+        }
+        document.getElementById('btn-cancel-evento').addEventListener('click', cancelEditEvento);
+
+        // ── Eliminar evento ──────────────────────────────────────────────
+        window.deleteEvento = function (id) {
+            confirmDelete('Deseja eliminar este evento permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'eventos', id));
+                    toast('Evento eliminado.', 'success');
+                    loadEventos();
+                } catch (e) {
+                    toast('Erro: ' + e.message, 'error');
+                }
+            });
+        };
     </script>
 
 </body>

@@ -728,6 +728,249 @@
                 padding: 44px 24px;
             }
         }
+
+        /* ── Grid dos cards ──────────────────────────────────────────── */
+        .ev-dynamic-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        /* ── Card base ───────────────────────────────────────────────── */
+        .ev-dyn-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, .06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .06);
+            overflow: hidden;
+            display: flex;
+            transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+        }
+
+        .ev-dyn-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 44px rgba(0, 0, 0, .12);
+            border-color: transparent;
+        }
+
+        /* ── Bloco de data (coluna esquerda) ────────────────────────── */
+        .ev-dyn-date {
+            min-width: 88px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 14px;
+            gap: 2px;
+            background: linear-gradient(160deg, var(--red-dark), var(--red));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ev-dyn-date::after {
+            content: '';
+            position: absolute;
+            bottom: -28px;
+            right: -28px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .ev-dyn-date.past {
+            background: linear-gradient(160deg, var(--navy-mid), var(--navy));
+        }
+
+        .ev-date-day {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ev-date-month {
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .78);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ev-date-year {
+            font-size: .57rem;
+            color: rgba(255, 255, 255, .45);
+            letter-spacing: .07em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Corpo do card ───────────────────────────────────────────── */
+        .ev-dyn-body {
+            padding: 20px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            min-width: 0;
+        }
+
+        .ev-dyn-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--navy);
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ev-dyn-desc {
+            font-size: .9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-clamp: 2;
+        }
+
+        .ev-dyn-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: .8rem;
+            color: var(--text-muted);
+        }
+
+        .ev-dyn-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ev-dyn-meta i {
+            color: var(--red);
+            font-size: .72rem;
+        }
+
+        /* ── Rodapé do card (badges + botão) ────────────────────────── */
+        .ev-dyn-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+
+        .badge-gratuito {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(34, 197, 94, .1);
+            color: #166534;
+        }
+
+        .badge-pago {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(248, 186, 37, .18);
+            color: #92600A;
+        }
+
+        .badge-realizado {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: var(--gray-light);
+            color: var(--text-muted);
+        }
+
+        .btn-inscricao-ev {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 18px;
+            background: var(--red);
+            color: var(--white);
+            border-radius: var(--radius);
+            font-size: .82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            transition: background var(--transition), transform var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-inscricao-ev:hover {
+            background: var(--red-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ── Estados de carregamento / vazio ─────────────────────────── */
+        .ev-loading {
+            text-align: center;
+            padding: 72px 24px;
+            color: var(--text-muted);
+        }
+
+        .ev-loading .spinner {
+            width: 36px;
+            height: 36px;
+            border-width: 3px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        /* ── Responsivo ──────────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .ev-dyn-card {
+                flex-direction: column;
+            }
+
+            .ev-dyn-date {
+                flex-direction: row;
+                min-width: unset;
+                padding: 14px 20px;
+                justify-content: flex-start;
+                gap: 10px;
+            }
+
+            .ev-date-day {
+                font-size: 1.8rem;
+            }
+
+            .ev-dyn-body {
+                padding: 16px 18px;
+            }
+        }
     </style>
 </head>
 
@@ -841,70 +1084,11 @@
                 <!-- Painel: Próximos -->
                 <div class="tab-panel active" id="tab-proximos">
 
-                    <!-- Sem eventos agendados — estado inicial (remova quando houver eventos reais) -->
-                    <div style="text-align:center; padding: 80px 24px 40px; max-width: 560px; margin: 0 auto;">
-                        <div
-                            style="width:80px;height:80px;border-radius:50%;background:rgba(225,34,23,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:2rem;color:var(--red);opacity:.5;">
-                            <i class="fas fa-calendar-plus"></i>
-                        </div>
-                        <h3 style="font-size:1.5rem;color:var(--navy);margin-bottom:10px;">Em Breve, Novos Eventos</h3>
-                        <p style="color:var(--text-muted);font-size:.97rem;line-height:1.75;margin-bottom:28px;">
-                            A Fundação Fênix 193 está planejando suas primeiras atividades públicas. Cadastre seu e-mail
-                            abaixo para ser avisado assim que os eventos forem publicados.
-                        </p>
-                        <a href="../index.html#contato"
-                            style="display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--red);color:var(--white);border-radius:var(--radius);font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;transition:var(--transition);">
-                            <i class="fas fa-paper-plane"></i> Entrar em Contato
-                        </a>
-                    </div>
-
-                    <!--
-                    ════════════════════════════════════════════════════
-                    QUANDO HOUVER EVENTOS: remova o bloco acima e
-                    descomente o trecho abaixo, ajustando os dados.
-                    ════════════════════════════════════════════════════
-
-                    <article class="evento-featured reveal"
-                        data-title="1º Simulado de Evacuação em Empresas de Aracaju"
-                        data-desc="A Fundação Fênix 193 realiza o primeiro simulado de evacuação aberto a empresas de Aracaju, conduzido por instrutores do CBMSE. O evento é gratuito para empresas parceiras e tem vagas limitadas."
-                        data-dia="15" data-mes="Julho 2026" data-hora="08:00 – 17:00"
-                        data-local="Quartel do CBMSE – Aracaju/SE"
-                        data-tipo="tipo-prev" data-tipo-label="Prevenção" data-tipo-icon="fa-shield-halved"
-                        data-vagas="Vagas limitadas" data-gratuito="Gratuito para parceiros">
-                        <div class="evento-feat-aside">
-                            <span class="feat-badge">Próximo Evento</span>
-                            <div class="feat-day">15</div>
-                            <div class="feat-month-year">Julho 2026</div>
-                            <i class="fas fa-shield-halved feat-icon"></i>
-                        </div>
-                        <div class="evento-feat-body">
-                            <span class="evento-tipo tipo-prev"><i class="fas fa-shield-halved"></i> Prevenção</span>
-                            <h3>1º Simulado de Evacuação em Empresas de Aracaju</h3>
-                            <p>Conduzido por instrutores do CBMSE, o simulado treina equipes de brigada e gestores de segurança em situações reais de emergência. Vagas limitadas.</p>
-                            <div class="evento-meta-row">
-                                <span class="evento-meta-item"><i class="fas fa-clock"></i> 08:00 – 17:00</span>
-                                <span class="evento-meta-item"><i class="fas fa-location-dot"></i> Quartel CBMSE – Aracaju</span>
-                                <span class="evento-meta-item"><i class="fas fa-ticket"></i> Gratuito para parceiros</span>
-                            </div>
-                            <button class="btn-evento" onclick="openEvModal(this.closest('.evento-featured'))">
-                                <i class="fas fa-circle-info"></i> Saiba Mais
-                            </button>
-                        </div>
-                    </article>
-
-                    -->
-
                 </div>
 
                 <!-- Painel: Passados -->
                 <div class="tab-panel" id="tab-passados">
-                    <div class="eventos-grid">
-                        <div class="eventos-empty">
-                            <i class="fas fa-clock-rotate-left"></i>
-                            <h3>Histórico em Construção</h3>
-                            <p>Os eventos realizados pela Fundação serão registrados aqui à medida que acontecerem.</p>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <!-- CTA -->
@@ -976,7 +1160,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="footer-links-col">
                     <h4>Institucional</h4>
                     <ul>
@@ -987,7 +1171,7 @@
                         <li><a href="../institucional/transparencia.html">Transparência</a></li>
                     </ul>
                 </div>
-    
+
                 <div class="footer-links-col">
                     <h4>Atuação</h4>
                     <ul>
@@ -998,7 +1182,7 @@
                         <li><a href="noticias.html">Notícias</a></li>
                     </ul>
                 </div>
-    
+
                 <div class="footer-links-col">
                     <h4>Administração</h4>
                     <a href="../akannihub.html" class="btn-cta-nav"><i class="fa-solid fa-user-lock"></i> Acesso
@@ -1146,6 +1330,239 @@
                 document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
             }
         });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        /* ── Config Firebase ─────────────────────────────────────── */
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        /* ── Helpers ─────────────────────────────────────────────── */
+        function escHtml(s) {
+            return String(s || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        /**
+         * Converte "YYYY-MM-DD" em Date sem deslocamento de fuso.
+         * Usar new Date("YYYY-MM-DD") interpreta como UTC, gerando
+         * diferença de 1 dia no Brasil — este helper evita o problema.
+         */
+        function parseDateLocal(str) {
+            if (!str) return null;
+            const [y, m, d] = str.split('-').map(Number);
+            return new Date(y, m - 1, d);
+        }
+
+        /* ── Constrói um card de evento ──────────────────────────── */
+        function buildCard(ev, isPast) {
+            const dateObj = parseDateLocal(ev.data);
+            const dayStr = dateObj ? String(dateObj.getDate()).padStart(2, '0') : '—';
+            const monthStr = dateObj
+                ? dateObj.toLocaleDateString('pt-BR', { month: 'short' })
+                    .toUpperCase().replace('.', '')
+                : '';
+            const yearStr = dateObj ? dateObj.getFullYear() : '';
+
+            /* Badge de custo */
+            const custoBadge = ev.custo === 'Gratuito'
+                ? `<span class="badge-gratuito"><i class="fas fa-circle-check"></i> Gratuito</span>`
+                : `<span class="badge-pago"><i class="fas fa-ticket"></i> Pago</span>`;
+
+            /* Botão de inscrição — só para eventos futuros com link */
+            let acaoBtns = '';
+            if (!isPast) {
+                if (ev.linkInscricao) {
+                    acaoBtns = `
+                        <a href="${escHtml(ev.linkInscricao)}"
+                           target="_blank" rel="noopener noreferrer"
+                           class="btn-inscricao-ev">
+                            <i class="fas fa-paper-plane"></i> Inscreva-se
+                        </a>`;
+                } else {
+                    acaoBtns = `
+                        <a href="../index.html#contato" class="btn-inscricao-ev">
+                            <i class="fas fa-envelope"></i> Mais informações
+                        </a>`;
+                }
+            } else {
+                acaoBtns = `<span class="badge-realizado">
+                                <i class="fas fa-check"></i> Realizado
+                            </span>`;
+            }
+
+            return `
+            <article class="ev-dyn-card reveal">
+                <div class="ev-dyn-date${isPast ? ' past' : ''}">
+                    <span class="ev-date-day">${dayStr}</span>
+                    <span class="ev-date-month">${monthStr}</span>
+                    <span class="ev-date-year">${yearStr}</span>
+                </div>
+                <div class="ev-dyn-body">
+                    <h3 class="ev-dyn-title">${escHtml(ev.titulo)}</h3>
+                    <p class="ev-dyn-desc">${escHtml(ev.descricao)}</p>
+                    <div class="ev-dyn-meta">
+                        <span><i class="fas fa-clock"></i> ${escHtml(ev.horario || '—')}</span>
+                        <span><i class="fas fa-location-dot"></i> ${escHtml(ev.local || '—')}</span>
+                    </div>
+                    <div class="ev-dyn-footer">
+                        ${custoBadge}
+                        ${acaoBtns}
+                    </div>
+                </div>
+            </article>`;
+        }
+
+        /* ── Estado vazio — próximos ─────────────────────────────── */
+        function emptyProximos() {
+            return `
+            <div style="text-align:center;padding:80px 24px 40px;max-width:540px;margin:0 auto;">
+                <div style="width:80px;height:80px;border-radius:50%;
+                            background:rgba(225,34,23,.08);
+                            display:flex;align-items:center;justify-content:center;
+                            margin:0 auto 24px;font-size:2rem;
+                            color:var(--red);opacity:.5;">
+                    <i class="fas fa-calendar-plus"></i>
+                </div>
+                <h3 style="font-size:1.5rem;color:var(--navy);margin-bottom:10px;">
+                    Em Breve, Novos Eventos
+                </h3>
+                <p style="color:var(--text-muted);font-size:.97rem;
+                          line-height:1.75;margin-bottom:28px;">
+                    A Fundação Fênix 193 está planejando suas próximas atividades públicas.
+                    Entre em contato para ficar por dentro das novidades.
+                </p>
+                <a href="../index.html#contato"
+                   style="display:inline-flex;align-items:center;gap:8px;
+                          padding:12px 26px;background:var(--red);color:var(--white);
+                          border-radius:var(--radius);font-weight:700;font-size:.9rem;
+                          text-transform:uppercase;letter-spacing:.04em;">
+                    <i class="fas fa-paper-plane"></i> Entrar em Contato
+                </a>
+            </div>`;
+        }
+
+        /* ── Estado vazio — realizados ───────────────────────────── */
+        function emptyPassados() {
+            return `
+            <div class="eventos-empty">
+                <i class="fas fa-clock-rotate-left"></i>
+                <h3>Histórico em Construção</h3>
+                <p>Os eventos realizados pela Fundação serão registrados
+                   aqui à medida que acontecerem.</p>
+            </div>`;
+        }
+
+        /* ── Activa o scroll reveal nos cards recém-injectados ────── */
+        function applyReveal(container) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.06 });
+            container.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+        }
+
+        /* ── Função principal ────────────────────────────────────── */
+        async function loadEventosPublic() {
+            const proxContainer = document.getElementById('tab-proximos');
+            const passContainer = document.getElementById('tab-passados');
+
+            /* Loading state no painel ativo */
+            proxContainer.innerHTML = `
+                <div class="ev-loading">
+                    <div class="spinner"></div>
+                    <p style="font-size:.93rem;">Carregando eventos…</p>
+                </div>`;
+
+            try {
+                /* Busca todos os eventos ordenados por data ascendente (próximos primeiro) */
+                const q = query(collection(db, 'eventos'), orderBy('data', 'asc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    proxContainer.innerHTML = emptyProximos();
+                    passContainer.innerHTML = emptyPassados();
+                    return;
+                }
+
+                /* Data de hoje com horas zeradas para comparação justa */
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0);
+
+                const proximos = [];  // data >= hoje
+                const passados = [];  // data < hoje
+
+                snap.forEach(d => {
+                    const ev = { id: d.id, ...d.data() };
+                    const dataEvento = parseDateLocal(ev.data);
+
+                    if (dataEvento && dataEvento >= hoje) {
+                        proximos.push(ev);
+                    } else {
+                        passados.push(ev);
+                    }
+                });
+
+                /* Passados: exibir do mais recente para o mais antigo */
+                passados.reverse();
+
+                /* ── Renderizar próximos ── */
+                if (proximos.length === 0) {
+                    proxContainer.innerHTML = emptyProximos();
+                } else {
+                    const grid = document.createElement('div');
+                    grid.className = 'ev-dynamic-grid';
+                    grid.innerHTML = proximos.map(ev => buildCard(ev, false)).join('');
+                    proxContainer.innerHTML = '';
+                    proxContainer.appendChild(grid);
+                    applyReveal(proxContainer);
+                }
+
+                /* ── Renderizar passados ── */
+                if (passados.length === 0) {
+                    passContainer.innerHTML = emptyPassados();
+                } else {
+                    const grid = document.createElement('div');
+                    grid.className = 'ev-dynamic-grid';
+                    grid.innerHTML = passados.map(ev => buildCard(ev, true)).join('');
+                    passContainer.innerHTML = '';
+                    passContainer.appendChild(grid);
+                    applyReveal(passContainer);
+                }
+
+            } catch (err) {
+                proxContainer.innerHTML = `
+                    <div class="eventos-empty">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        <h3>Erro ao carregar</h3>
+                        <p>${escHtml(err.message)}</p>
+                    </div>`;
+                console.error('[FF193] Eventos:', err);
+            }
+        }
+
+        /* Inicializa ao carregar o módulo */
+        loadEventosPublic();
+
     </script>
 
 </body>
