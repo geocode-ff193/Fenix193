@@ -1,8 +1,6 @@
 /* ==========================================================
-EQUIPE
+GERAL
 ========================================================== */
-
-/* ── Page Hero ── */
 .page-hero {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
@@ -24,6 +22,29 @@ EQUIPE
 .page-hero-content {
     position: relative;
     z-index: 1;
+}
+
+.page-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    color: var(--white);
+    margin-bottom: 14px;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+}
+
+.page-hero p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, .75);
+    max-width: 560px;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+.page-hero-bar {
+    width: 52px;
+    height: 4px;
+    background: var(--red);
+    border-radius: 2px;
+    margin-bottom: 18px;
 }
 
 .page-breadcrumb {
@@ -50,340 +71,36 @@ EQUIPE
     font-size: .65rem;
 }
 
-.page-hero h1 {
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--white);
-    margin-bottom: 14px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-}
-
-.page-hero p {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, .75);
-    max-width: 560px;
-    font-weight: 300;
-    line-height: 1.7;
-}
-
-.page-hero-bar {
-    width: 52px;
-    height: 4px;
-    background: var(--red);
-    border-radius: 2px;
-    margin-bottom: 18px;
-}
-
-/* ── Organograma / Conselho Sections ── */
-.conselho-section {
-    padding: 72px 0 0;
-}
-
-.conselho-section:last-of-type {
-    padding-bottom: 90px;
-}
-
-.conselho-group-header {
+.cta-btns {
     display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 36px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid var(--gray-light);
-}
-
-.conselho-group-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius);
-    background: linear-gradient(135deg, var(--red), var(--fire));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    font-size: 1.25rem;
-    flex-shrink: 0;
-    box-shadow: 0 4px 14px rgba(225, 34, 23, .35);
-}
-
-.conselho-group-title {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
-.conselho-group-label {
-    font-size: .72rem;
-    font-weight: 600;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--red);
-}
-
-.conselho-group-title h2 {
-    font-size: clamp(1.5rem, 2.8vw, 2rem);
-    color: var(--navy);
-    margin: 0;
-}
-
-/* ── Cards de Membros — versão ampliada para a página ── */
-.grid-membros-honra {
-    display: flex;
-    justify-content: center;
-}
-
-.grid-membros-honra .card-membro-page {
-    max-width: 340px;
-}
-
-.grid-membros {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-}
-
-.grid-membros-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 20px;
-    max-width: 880px;
-}
-
-.grid-membros-4 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.card-membro-page {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    padding: 28px 22px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     gap: 14px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(0, 0, 0, .055);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.card-membro-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--red), var(--fire));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--transition);
-}
-
-.card-membro-page:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-4px);
-}
-
-.card-membro-page:hover::before {
-    transform: scaleX(1);
-}
-
-.membro-avatar-page {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--navy), var(--navy-light));
-    display: flex;
-    align-items: center;
     justify-content: center;
-    color: var(--white);
-    font-size: 1.7rem;
-    flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
-    border: 3px solid var(--gray-light);
+    flex-wrap: wrap;
 }
 
-.card-membro-page.destaque .membro-avatar-page {
-    background: linear-gradient(135deg, var(--red-dark), var(--red));
-    border-color: var(--amber);
-}
-
-.membro-foto-placeholder {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
-    border: 3px solid var(--gray-light);
-    background: var(--gray-light);
-    display: flex;
+.btn-outline-white {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-}
-
-.membro-foto-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.membro-info-page {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    align-items: center;
-}
-
-.membro-nome-page {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    color: var(--navy);
-    line-height: 1.2;
-}
-
-.membro-sub-page {
-    font-size: .82rem;
-    color: var(--text-muted);
-    font-style: italic;
-}
-
-.badge-cargo {
-    display: inline-block;
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: .7rem;
-    font-weight: 700;
-    letter-spacing: .08em;
+    gap: 8px;
+    padding: 13px 28px;
+    border: 1.5px solid rgba(255, 255, 255, .45);
+    color: rgba(255, 255, 255, .9);
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: .9rem;
     text-transform: uppercase;
-    background: var(--gray-light);
-    color: var(--navy);
-    margin-top: 2px;
+    letter-spacing: .04em;
+    transition: var(--transition);
 }
 
-.card-membro-page.destaque .badge-cargo {
-    background: var(--amber);
-    color: var(--navy);
+.btn-outline-white:hover {
+    border-color: var(--white);
+    color: var(--white);
+    background: rgba(255, 255, 255, .1);
 }
-
-/* ── Responsivo ── */
-@media (max-width: 768px) {
-
-    .grid-membros,
-    .grid-membros-3,
-    .grid-membros-4 {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .grid-membros-honra .card-membro-page {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .grid-membros,
-    .grid-membros-3,
-    .grid-membros-4 {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* hero-grid agora não precisa de padding-top próprio */
-.hero-grid {
-    padding-top: 0 !important;
-    padding-bottom: 48px;
-}
-
-@media (max-width: 768px) {
-    .hero-search-center-wrap {
-        padding: 52px 0 20px;
-    }
-
-    .hero-search-center-wrap .hero-search {
-        max-width: 100%;
-    }
-}
-
 /* ==========================================================
 EQUIPE
 ========================================================== */
-
-/* ── Page Hero ── */
-.page-hero {
-    background:
-        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../assets/img/bomb1.jpeg') center/cover no-repeat;
-    padding: 90px 0 70px;
-    position: relative;
-    overflow: hidden;
-}
-
-.page-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px,
-            rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
-    pointer-events: none;
-}
-
-.page-hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.page-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: .8rem;
-    color: rgba(255, 255, 255, .5);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.page-breadcrumb a {
-    color: var(--amber);
-    transition: var(--transition);
-}
-
-.page-breadcrumb a:hover {
-    color: var(--white);
-}
-
-.page-breadcrumb i {
-    font-size: .65rem;
-}
-
-.page-hero h1 {
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--white);
-    margin-bottom: 14px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-}
-
-.page-hero p {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, .75);
-    max-width: 560px;
-    font-weight: 300;
-    line-height: 1.7;
-}
-
-.page-hero-bar {
-    width: 52px;
-    height: 4px;
-    background: var(--red);
-    border-radius: 2px;
-    margin-bottom: 18px;
-}
-
 /* ── Organograma / Conselho Sections ── */
 .conselho-section {
     padding: 72px 0 0;
@@ -579,105 +296,11 @@ EQUIPE
 .card-membro-page.destaque .badge-cargo {
     background: var(--amber);
     color: var(--navy);
-}
-
-/* ── Responsivo ── */
-@media (max-width: 768px) {
-
-    .grid-membros,
-    .grid-membros-3,
-    .grid-membros-4 {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .grid-membros-honra .card-membro-page {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .grid-membros,
-    .grid-membros-3,
-    .grid-membros-4 {
-        grid-template-columns: 1fr;
-    }
 }
 
 /* ==========================================================
 MISSÃO, VISÃO E VALORES
 ========================================================== */
-
-/* ── Page Hero ── */
-.page-hero {
-    background:
-        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../assets/img/bomb14.jpeg') center/cover no-repeat;
-    padding: 90px 0 70px;
-    position: relative;
-    overflow: hidden;
-}
-
-.page-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
-    pointer-events: none;
-}
-
-.page-hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.page-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: .8rem;
-    color: rgba(255, 255, 255, .5);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.page-breadcrumb a {
-    color: var(--amber);
-    transition: var(--transition);
-}
-
-.page-breadcrumb a:hover {
-    color: var(--white);
-}
-
-.page-breadcrumb i {
-    font-size: .65rem;
-}
-
-.page-hero h1 {
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--white);
-    margin-bottom: 14px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-}
-
-.page-hero p {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, .75);
-    max-width: 560px;
-    font-weight: 300;
-    line-height: 1.7;
-}
-
-.page-hero-bar {
-    width: 52px;
-    height: 4px;
-    background: var(--red);
-    border-radius: 2px;
-    margin-bottom: 18px;
-}
-
 /* ── MVV Cards (Missão / Visão / Valores) ── */
 .mvv-grid {
     display: grid;
@@ -848,13 +471,6 @@ MISSÃO, VISÃO E VALORES
     line-height: 1.7;
 }
 
-.cta-btns {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 .btn-white-solid {
     display: inline-flex;
     align-items: center;
@@ -875,108 +491,9 @@ MISSÃO, VISÃO E VALORES
     transform: translateY(-2px);
 }
 
-.btn-outline-white {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    border: 1.5px solid rgba(255, 255, 255, .45);
-    color: rgba(255, 255, 255, .9);
-    border-radius: var(--radius);
-    font-weight: 600;
-    font-size: .9rem;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    transition: var(--transition);
-}
-
-.btn-outline-white:hover {
-    border-color: var(--white);
-    color: var(--white);
-    background: rgba(255, 255, 255, .1);
-}
-
-/* ── Responsivo ── */
-@media (max-width: 768px) {
-    .mv-cta {
-        padding: 40px 24px;
-    }
-}
-
 /* ==========================================================
 NOSSA HISTÓRIA
 ========================================================== */
-
-/* ── Page Hero ── */
-.page-hero {
-    background:
-        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../assets/img/bomb3.jpeg') center/cover no-repeat;
-    padding: 90px 0 70px;
-    position: relative;
-    overflow: hidden;
-}
-
-.page-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
-    pointer-events: none;
-}
-
-.page-hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.page-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: .8rem;
-    color: rgba(255, 255, 255, .5);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.page-breadcrumb a {
-    color: var(--amber);
-    transition: var(--transition);
-}
-
-.page-breadcrumb a:hover {
-    color: var(--white);
-}
-
-.page-breadcrumb i {
-    font-size: .65rem;
-}
-
-.page-hero h1 {
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--white);
-    margin-bottom: 14px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-}
-
-.page-hero p {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, .75);
-    max-width: 560px;
-    font-weight: 300;
-    line-height: 1.7;
-}
-
-.page-hero-bar {
-    width: 52px;
-    height: 4px;
-    background: var(--red);
-    border-radius: 2px;
-    margin-bottom: 18px;
-}
-
 /* ── Intro ── */
 .historia-intro {
     max-width: 780px;
@@ -1214,13 +731,6 @@ NOSSA HISTÓRIA
     line-height: 1.7;
 }
 
-.cta-btns {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
 .btn-amber-solid {
     display: inline-flex;
     align-items: center;
@@ -1241,139 +751,9 @@ NOSSA HISTÓRIA
     transform: translateY(-2px);
 }
 
-.btn-outline-white {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 28px;
-    border: 1.5px solid rgba(255, 255, 255, .35);
-    color: rgba(255, 255, 255, .85);
-    border-radius: var(--radius);
-    font-weight: 600;
-    font-size: .9rem;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    transition: var(--transition);
-}
-
-.btn-outline-white:hover {
-    border-color: var(--white);
-    color: var(--white);
-    background: rgba(255, 255, 255, .08);
-}
-
-/* ── Responsivo ── */
-@media (max-width: 768px) {
-    .timeline::before {
-        left: 22px;
-    }
-
-    .timeline-item,
-    .timeline-item:nth-child(even) {
-        flex-direction: column;
-        gap: 0;
-        padding-left: 60px;
-    }
-
-    .timeline-side {
-        display: none;
-    }
-
-    .timeline-center {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 44px;
-    }
-
-    .timeline-item:nth-child(odd) .timeline-card::after,
-    .timeline-item:nth-child(even) .timeline-card::after {
-        top: 14px;
-        left: -8px;
-        right: auto;
-        border-left: none;
-        border-right: 8px solid var(--white);
-    }
-
-    .historia-cta {
-        padding: 40px 24px;
-    }
-}
-
 /* ==========================================================
 TRANSPARÊNCIA
 ========================================================== */
-
-/* ── Page Hero ── */
-.page-hero {
-    background:
-        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../assets/img/bomb4.jpeg') center/cover no-repeat;
-    padding: 90px 0 70px;
-    position: relative;
-    overflow: hidden;
-}
-
-.page-hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
-    pointer-events: none;
-}
-
-.page-hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.page-breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: .8rem;
-    color: rgba(255, 255, 255, .5);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-}
-
-.page-breadcrumb a {
-    color: var(--amber);
-    transition: var(--transition);
-}
-
-.page-breadcrumb a:hover {
-    color: var(--white);
-}
-
-.page-breadcrumb i {
-    font-size: .65rem;
-}
-
-.page-hero h1 {
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--white);
-    margin-bottom: 14px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
-}
-
-.page-hero p {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, .75);
-    max-width: 560px;
-    font-weight: 300;
-    line-height: 1.7;
-}
-
-.page-hero-bar {
-    width: 52px;
-    height: 4px;
-    background: var(--red);
-    border-radius: 2px;
-    margin-bottom: 18px;
-}
-
 /* ── Intro ── */
 .transp-intro {
     background: var(--white);
@@ -1664,6 +1044,61 @@ TRANSPARÊNCIA
     transform: translateY(-2px);
 }
 
+/* ==========================================================
+RESPONSIVIDADE
+========================================================== */
+@media (max-width: 768px) {
+
+    .grid-membros,
+    .grid-membros-3,
+    .grid-membros-4 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-membros-honra .card-membro-page {
+        max-width: 100%;
+    }
+
+    .mv-cta {
+        padding: 40px 24px;
+    }
+
+    .timeline::before {
+        left: 22px;
+    }
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
+        flex-direction: column;
+        gap: 0;
+        padding-left: 60px;
+    }
+
+    .timeline-side {
+        display: none;
+    }
+
+    .timeline-center {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 44px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-card::after,
+    .timeline-item:nth-child(even) .timeline-card::after {
+        top: 14px;
+        left: -8px;
+        right: auto;
+        border-left: none;
+        border-right: 8px solid var(--white);
+    }
+
+    .historia-cta {
+        padding: 40px 24px;
+    }
+}
+
 @media (max-width: 640px) {
     .transp-intro {
         flex-direction: column;
@@ -1677,5 +1112,14 @@ TRANSPARÊNCIA
     .transp-cta {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .grid-membros,
+    .grid-membros-3,
+    .grid-membros-4 {
+        grid-template-columns: 1fr;
     }
 }
