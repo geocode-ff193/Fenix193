@@ -373,11 +373,4 @@ document.addEventListener('keydown', (e) => {
     });
 })();
 
-/* =============================================================
-   INICIALIZAÇÃO
-   ============================================================= */
-document.addEventListener('DOMContentLoaded', () => {
-    initHomeNews();
-    initContactForm();
-    console.log('%c🔥 Fundação Fênix 193 — Sistema iniciado', 'color:#FF6F00;font-weight:bold;font-size:13px');
-});
+console.log('%c🔥 Fundação Fênix 193 — Sistema iniciado', 'color:#FF6F00;font-weight:bold;font-size:13px');
