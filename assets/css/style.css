@@ -1371,6 +1371,7 @@ h5 {
 }
 
 .footer-links-col a {
+    text-decoration: none;  
     font-size: .88rem;
     color: rgba(255, 255, 255, .6);
     transition: color var(--transition);
