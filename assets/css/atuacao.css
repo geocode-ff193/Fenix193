@@ -2,13 +2,21 @@
 GERAL
 ========================================================== */
 .page-hero {
-    --page-hero-img: url('../img/bomb1.jpeg');
     background:
-        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        var(--page-hero-img) center/cover no-repeat;
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%) center/cover no-repeat;
+    background-color: var(--navy);
     padding: 90px 0 70px;
     position: relative;
     overflow: hidden;
+}
+
+.page-hero--capacitacao,
+.page-hero--eventos,
+.page-hero--parcerias,
+.page-hero--projetos {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/bomb2.jpeg') center/cover no-repeat;
 }
 
 .page-hero::after {
