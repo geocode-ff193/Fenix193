@@ -407,8 +407,7 @@
             btnMobile.classList.toggle('open', open);
             btnMobile.setAttribute('aria-expanded', String(open));
         });
-    </script>
-    <script>
+        
         document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
             trigger.addEventListener('click', (e) => {
                 if (window.innerWidth > 768) return;
