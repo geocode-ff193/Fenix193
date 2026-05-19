@@ -1496,6 +1496,11 @@ PROJETOS
     color: #166534;
 }
 
+.tag-desactive {
+    background: rgba(255, 0, 0, 0.122);
+    color: #ff0000;
+}
+
 .tag-course {
     background: rgba(49, 51, 50, .08);
     color: var(--navy);
