@@ -411,10 +411,11 @@ HEADER
 
 .hero-text p {
     font-size: 1.05rem;
-    color: rgba(255, 255, 255, .90);
+    color: rgba(255, 255, 255, .82);
     max-width: 540px;
     margin-bottom: 32px;
     font-weight: 300;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .4);
 }
 
 .btn-social {
