@@ -7,12 +7,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 👋 Olá! Bem-vindo(a) ao suporte GeoCODE
+        ## Olá! Bem-vindo(a) ao suporte GeoCODE
 
         Este formulário é o canal oficial para enviar qualquer solicitação sobre o seu projeto.
         Preencha os campos abaixo com o máximo de detalhes que conseguir — **não existe resposta errada aqui!**
 
-        > 💡 **Dica:** Se preferir, pode **arrastar e soltar** fotos ou vídeos da tela diretamente em qualquer campo de texto.
+        > **Dica:** Se preferir, pode **arrastar e soltar** fotos ou vídeos da tela diretamente em qualquer campo de texto.
 
         ---
 
@@ -29,7 +29,7 @@ body:
   - type: input
     id: melhor_contato
     attributes:
-      label: "📱 Qual é o melhor jeito de te contactar? (Opcional)"
+      label: "Qual é o melhor jeito de te contactar? (Opcional)"
       description: "WhatsApp, e-mail ou telefone. Assim entramos em contato rapidamente se precisarmos de mais informações."
       placeholder: "Ex: (79) 99999-9999 ou maria@email.com.br"
     validations:
