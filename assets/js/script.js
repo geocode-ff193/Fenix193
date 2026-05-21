@@ -373,4 +373,77 @@ document.addEventListener('keydown', (e) => {
     });
 })();
 
+/* =============================================================
+   12. HERO NEWS FEED — 5 mini-cards no hero-grid
+   ============================================================= */
+(function initHeroNewsFeed() {
+    const container = document.getElementById('hero-news-feed-items');
+    if (!container) return;
+
+    /* Escape HTML simples para saída segura */
+    function esc(s) {
+        return String(s || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    /* Formata timestamp → "dd mmm" (ex: "21 mai") */
+    function fmtShort(ts) {
+        if (!ts) return '';
+        const d = ts.toDate ? ts.toDate() : new Date(ts);
+        return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })
+            .replace('.', '');
+    }
+
+    async function fetchHeroNews() {
+        try {
+            const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(5));
+            const snap = await getDocs(q);
+
+            container.innerHTML = '';
+
+            if (snap.empty) {
+                container.innerHTML =
+                    `<p style="font-size:.82rem;color:rgba(255,255,255,.45);padding:6px 0;">
+                        Nenhuma notícia publicada ainda.
+                     </p>`;
+                return;
+            }
+
+            snap.forEach(d => {
+                const n = d.data();
+
+                const card = document.createElement('a');
+                card.className = 'hero-news-mini-card';
+                card.href = `pages/noticias.html?noticia=${d.id}`;
+                card.setAttribute('aria-label', `Ler: ${esc(n.titulo)}`);
+
+                const thumb = n.imagemUrl
+                    ? `<img class="hero-news-mini-thumb"
+                            src="${esc(n.imagemUrl)}"
+                            alt=""
+                            loading="lazy">`
+                    : `<div class="hero-news-mini-placeholder" aria-hidden="true">
+                            <i class="fas fa-fire-flame-curved"></i>
+                       </div>`;
+
+                card.innerHTML = `
+                    ${thumb}
+                    <span class="hero-news-mini-title">${esc(n.titulo)}</span>
+                    <span class="hero-news-mini-date">${fmtShort(n.createdAt)}</span>`;
+
+                container.appendChild(card);
+            });
+
+        } catch (e) {
+            console.warn('[FF193] Hero news feed:', e.message);
+            container.innerHTML = ''; /* falha silenciosa — não prejudica o hero */
+        }
+    }
+
+    fetchHeroNews();
+})();
+
 console.log('%c🔥 Fundação Fênix 193 — Sistema iniciado', 'color:#FF6F00;font-weight:bold;font-size:13px');
