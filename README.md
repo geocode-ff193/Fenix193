@@ -24,7 +24,7 @@
 
 <br/>
 
-[🌐 Site Institucional](#-site-institucional-indexhtml) · [🖥️ SaaS AkanniHub](#-saas-akannihub-akannihubhtml) · [📁 Transparência](#-portal-de-transparência-institucional/transparenciahtml) · [📰 Notícias](#-notícias-atuacaonotiiciashtml) · [👥 Equipe](#-equipe-institucionalequipehtml)
+[🌐 Site Institucional](#-site-institucional-indexhtml) · [🖥️ SaaS AkanniHub](#-saas-akannihub-akannihubhtml) · [📁 Transparência](#-portal-de-transparência-pages/transparenciahtml) · [📰 Notícias](#-notícias-atuacaonotiiciashtml) · [👥 Equipe](#-equipe-institucionalequipehtml)
 
 </div>
 
@@ -103,13 +103,13 @@ Este projeto entrega dois produtos integrados em um único repositório:
 │   ├── akanni/                     # Assets exclusivos do AkanniHub (favicon, manifesto)
 │   └── ui/                         # Assets de UI globais (favicons, apple-touch-icon)
 │
-├── institucional/
+├── pages/
 │   ├── nossa-historia.html         # Timeline da fundação e pilares fundadores
 │   ├── missao-valores.html         # Missão, Visão e Valores (cards MVV + lista detalhada)
 │   ├── equipe.html                 # Estrutura organizacional (4 conselhos com fotos reais)
 │   └── transparencia.html          # Portal público de transparência (docs do Firestore)
 │
-└── atuacao/
+└── pages/
     ├── projetos.html               # Catálogo de projetos com filtros e modal de detalhes
     ├── capacitacao.html            # Catálogo de cursos e treinamentos com processo de inscrição
     ├── eventos.html                # Eventos (abas "Próximos" e "Realizados" com modal)
@@ -215,7 +215,7 @@ Painel administrativo completo em single-file, sem build step.
 
 ### 📑 Páginas Institucionais
 
-#### Nossa História (`institucional/nossa-historia.html`)
+#### Nossa História (`pages/nossa-historia.html`)
 
 - Texto introdutório
 - Timeline alternada (esquerda/direita) com cards de eventos, ícones e anos em watermark
@@ -223,13 +223,13 @@ Painel administrativo completo em single-file, sem build step.
 - Grid de "Pilares que nos Fundamentam" (4 cards com ícones)
 - CTA final com links para "Como Ajudar" e "Equipe"
 
-#### Missão e Valores (`institucional/missao-valores.html`)
+#### Missão e Valores (`pages/missao-valores.html`)
 
 - 3 cards MVV com gradientes distintos (vermelho, navy, laranja-fogo) e ícones grandes
 - Seção "Valores em Detalhe" com grid de cards com borda esquerda colorida
 - CTA final com links para Projetos e Transparência
 
-#### Equipe (`institucional/equipe.html`)
+#### Equipe (`pages/equipe.html`)
 
 - 4 conselhos com fotos reais dos membros:
   - **Presidente de Honra** — card centralizado com destaque
@@ -240,7 +240,7 @@ Painel administrativo completo em single-file, sem build step.
 - Cards com badge de cargo, hover com barra superior animada
 - Destaque visual (gradiente vermelho) para presidentes de cada conselho
 
-#### Transparência (`institucional/transparencia.html`)
+#### Transparência (`pages/transparencia.html`)
 
 - Banner de "Compromisso com a Transparência"
 - Carrega todos os documentos da coleção `transparency_docs` do Firestore
@@ -255,7 +255,7 @@ Painel administrativo completo em single-file, sem build step.
 
 ### 🎯 Páginas de Atuação
 
-#### Projetos (`atuacao/projetos.html`)
+#### Projetos (`pages/projetos.html`)
 
 - Barra de filtros por status: Todos, Em Planejamento, Em Andamento, Cursos
 - Contador dinâmico de projetos visíveis
@@ -263,14 +263,14 @@ Painel administrativo completo em single-file, sem build step.
 - Modal de detalhes com ícone, título, status, área, público-alvo e objetivo principal
 - CTA "Tem uma Ideia de Projeto?" com links para contato e parcerias
 
-#### Capacitação (`atuacao/capacitacao.html`)
+#### Capacitação (`pages/capacitacao.html`)
 
 - Strip de 5 diferenciais dos cursos (navy background)
 - Cards de curso com aside colorido (ícone, carga horária, nível) e corpo (título, descrição, conteúdo programático em grid 2 colunas, badges de informações)
 - "Como Funciona a Inscrição" — processo em 5 passos com linha de progresso decorativa
 - CTA de treinamento in company
 
-#### Eventos (`atuacao/eventos.html`)
+#### Eventos (`pages/eventos.html`)
 
 - Tabs "Próximos Eventos" e "Eventos Realizados" com navegação por atributos ARIA
 - Estado inicial "Em Breve" com CTA de contato (quando não há eventos agendados)
@@ -278,14 +278,14 @@ Painel administrativo completo em single-file, sem build step.
 - Modal de detalhe de evento com data, título, descrição, horário, local, vagas e investimento
 - Comentários no HTML com template de evento para descomenter quando houver dados reais
 
-#### Parcerias (`atuacao/parcerias.html`)
+#### Parcerias (`pages/parcerias.html`)
 
 - Grid "Por que ser Parceiro?" com 4 cards de motivação
 - Processo de adesão em 5 passos com linha de progresso
 - Grid de logos de parceiros (slots placeholder para substituição por logos reais)
 - CTA final com links para contato e transparência
 
-#### Notícias (`atuacao/noticias.html`)
+#### Notícias (`pages/noticias.html`)
 
 - Carregamento paginado: 9 notícias por página via `startAfter` do Firestore
 - Primeiro card com layout `featured` (destaque horizontal em grid)
@@ -450,8 +450,8 @@ O sistema adota uma **identidade visual quente e institucional**, derivada das c
    - `assets/js/script.js`
    - `assets/js/search.js`
    - `akannihub.html` (bloco `<script type="module">`)
-   - `institucional/transparencia.html`
-   - `atuacao/noticias.html`
+   - `pages/transparencia.html`
+   - `pages/noticias.html`
 
 ```javascript
 const firebaseConfig = {

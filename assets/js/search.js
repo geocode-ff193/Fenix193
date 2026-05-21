@@ -57,7 +57,7 @@ const STATIC_INDEX = [
         sub: 'Trajetória da Fundação',
         category: 'Página',
         icon: 'fa-book-open',
-        link: 'institucional/nossa-historia.html',
+        link: 'pages/nossa-historia.html',
         keywords: 'história trajetória fundação criação origem sergipe bombeiros militares linha do tempo'
     },
     {
@@ -65,7 +65,7 @@ const STATIC_INDEX = [
         sub: 'Propósito e princípios',
         category: 'Página',
         icon: 'fa-bullseye',
-        link: 'institucional/missao-valores.html',
+        link: 'pages/missao-valores.html',
         keywords: 'missão visão valores compromisso ética integridade responsabilidade social princípios'
     },
     {
@@ -73,7 +73,7 @@ const STATIC_INDEX = [
         sub: 'Membros dos conselhos',
         category: 'Página',
         icon: 'fa-users',
-        link: 'institucional/equipe.html',
+        link: 'pages/equipe.html',
         keywords: 'equipe conselho membros diretoria presidente curadores fiscal executivo estrutura organizacional'
     },
     {
@@ -81,7 +81,7 @@ const STATIC_INDEX = [
         sub: 'Portal de documentos públicos',
         category: 'Documento',
         icon: 'fa-folder-open',
-        link: 'institucional/transparencia.html',
+        link: 'pages/transparencia.html',
         keywords: 'transparência documentos prestação contas relatórios certidões estatuto atas contratos editais portal'
     },
     {
@@ -89,7 +89,7 @@ const STATIC_INDEX = [
         sub: 'Iniciativas e programas',
         category: 'Atuação',
         icon: 'fa-clipboard-list',
-        link: 'atuacao/projetos.html',
+        link: 'pages/projetos.html',
         keywords: 'projetos bombeiro mirim apoio operacional sos abelhas defesa civil primeiros socorros iniciativas programas'
     },
     {
@@ -97,7 +97,7 @@ const STATIC_INDEX = [
         sub: 'Cursos e treinamentos',
         category: 'Atuação',
         icon: 'fa-graduation-cap',
-        link: 'atuacao/capacitacao.html',
+        link: 'pages/capacitacao.html',
         keywords: 'capacitação cursos treinamentos primeiros socorros brigada incêndio instrutor certificação in company'
     },
     {
@@ -105,7 +105,7 @@ const STATIC_INDEX = [
         sub: 'Ações e atividades',
         category: 'Atuação',
         icon: 'fa-calendar-days',
-        link: 'atuacao/eventos.html',
+        link: 'pages/eventos.html',
         keywords: 'eventos ações sociais cerimônias atividades simulado calendário programação próximos'
     },
     {
@@ -113,7 +113,7 @@ const STATIC_INDEX = [
         sub: 'Empresas parceiras',
         category: 'Atuação',
         icon: 'fa-handshake',
-        link: 'atuacao/parcerias.html',
+        link: 'pages/parcerias.html',
         keywords: 'parcerias empresas parceiros patrocinadores apoio institucional voluntariado como ser parceiro'
     },
     {
@@ -121,7 +121,7 @@ const STATIC_INDEX = [
         sub: 'Últimas publicações',
         category: 'Página',
         icon: 'fa-newspaper',
-        link: 'atuacao/noticias.html',
+        link: 'pages/noticias.html',
         keywords: 'notícias acontecimentos novidades últimas publicações informações blog'
     },
     {
@@ -145,7 +145,7 @@ const STATIC_INDEX = [
         sub: 'Documentos financeiros',
         category: 'Documento',
         icon: 'fa-file-invoice',
-        link: 'institucional/transparencia.html',
+        link: 'pages/transparencia.html',
         keywords: 'prestação de contas finanças financeiro orçamento receita despesa balanço'
     },
     {
@@ -153,7 +153,7 @@ const STATIC_INDEX = [
         sub: 'Documentação institucional',
         category: 'Documento',
         icon: 'fa-scroll',
-        link: 'institucional/transparencia.html',
+        link: 'pages/transparencia.html',
         keywords: 'estatuto social regimento fundação normas regras documentos institucionais constituição'
     },
     {
@@ -161,7 +161,7 @@ const STATIC_INDEX = [
         sub: 'Regularidade e certificados',
         category: 'Documento',
         icon: 'fa-certificate',
-        link: 'institucional/transparencia.html',
+        link: 'pages/transparencia.html',
         keywords: 'certidões certificados documentação regularidade fiscal negativa débitos'
     },
 ];
@@ -189,7 +189,7 @@ async function loadCache() {
                 sub: data.autor ? `Por ${data.autor}` : '',
                 category: 'Notícia',
                 icon: 'fa-newspaper',
-                link: `atuacao/noticias.html?noticia=${d.id}`,
+                link: `pages/noticias.html?noticia=${d.id}`,
                 keywords: normalize(`${data.titulo} ${data.autor} ${data.corpo || ''}`)
             };
         });
@@ -202,7 +202,7 @@ async function loadCache() {
                 sub: data.categoria || '',
                 category: 'Documento',
                 icon: getCatIcon(data.categoria),
-                link: data.link || 'institucional/transparencia.html',
+                link: data.link || 'pages/transparencia.html',
                 external: true,
                 keywords: normalize(`${data.nome} ${data.categoria}`)
             };
