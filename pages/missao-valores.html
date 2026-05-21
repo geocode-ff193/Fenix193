@@ -10,9 +10,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/../assets/ui/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Fênix 193" />
     <link rel="manifest" href="../site.webmanifest" />
-    <title>Transparência · Fundação Fênix 193</title>
+    <title>Missão e Valores · Fundação Fênix 193</title>
     <meta name="description"
-        content="Portal de transparência da Fundação Fênix 193. Acesse prestações de contas, relatórios, estatutos, certidões e demais documentos institucionais.">
+        content="Conheça a missão, visão e os valores que orientam cada ação da Fundação Fênix 193 no apoio ao Corpo de Bombeiros Militar de Sergipe.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -66,23 +66,23 @@
                             Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="../atuacao/projetos.html" role="menuitem">
+                            <li><a href="../pages/projetos.html" role="menuitem">
                                     <i class="fas fa-clipboard-list"></i> Projetos
                                 </a></li>
-                            <li><a href="../atuacao/capacitacao.html" role="menuitem">
+                            <li><a href="../pages/capacitacao.html" role="menuitem">
                                     <i class="fas fa-graduation-cap"></i> Capacitação
                                 </a></li>
-                            <li><a href="../atuacao/eventos.html" role="menuitem">
+                            <li><a href="../pages/eventos.html" role="menuitem">
                                     <i class="fas fa-calendar-days"></i> Eventos
                                 </a></li>
-                            <li><a href="../atuacao/parcerias.html" role="menuitem">
+                            <li><a href="../pages/parcerias.html" role="menuitem">
                                     <i class="fas fa-handshake"></i> Parcerias
                                 </a></li>
                         </ul>
                     </li>
                     <li><a href="transparencia.html">Transparência</a></li>
                     <li><a href="../index.html#stats">Impacto</a></li>
-                    <li><a href="../atuacao/noticias.html">Notícias</a></li>
+                    <li><a href="../pages/noticias.html">Notícias</a></li>
                     <li><a href="../index.html#contato">Contato</a></li>
                     <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
                 </ul>
@@ -92,50 +92,114 @@
 
     <main>
 
-        <section class="page-hero page-hero--transparencia" aria-label="Portal de Transparência">
+        <!-- ===================== PAGE HERO ===================== -->
+        <section class="page-hero page-hero--missao" aria-label="Missão e Valores">
             <div class="container page-hero-content">
                 <nav class="page-breadcrumb" aria-label="Localização">
-                    <a href="index.html">Início</a>
+                    <a href="../index.html">Início</a>
                     <i class="fas fa-chevron-right"></i>
-                    <span>Transparência</span>
+                    <a href="nossa-historia.html">Quem Somos</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Missão e Valores</span>
                 </nav>
                 <div class="page-hero-bar"></div>
-                <h1>Portal de Transparência</h1>
-                <p>Acesse todos os documentos institucionais da Fundação Fênix 193. Transparência é o pilar da nossa
-                    gestão.</p>
+                <h1>Missão e Valores</h1>
+                <p>Os princípios que orientam cada decisão, cada projeto e cada ação da Fundação Fênix 193.</p>
             </div>
         </section>
 
-        <!-- CONTENT -->
+        <!-- ===================== CONTEÚDO ===================== -->
         <div class="section-padding">
             <div class="container">
 
-                <!-- Intro Banner -->
-                <div class="transp-intro reveal">
-                    <div class="transp-intro-icon"><i class="fas fa-shield-halved"></i></div>
-                    <div class="transp-intro-text">
-                        <h3>Compromisso com a Transparência</h3>
-                        <p>A Fundação Fênix 193 disponibiliza todos os documentos institucionais para consulta pública,
-                            em conformidade com os princípios de boa governança e responsabilidade social. Todos os
-                            arquivos são hospedados no Google Drive e abertos diretamente para visualização.</p>
+                <!-- MVV -->
+                <div class="mvv-grid">
+                    <div class="mvv-card missao reveal">
+                        <span class="mvv-label">Nossa Missão</span>
+                        <i class="fas fa-bullseye mvv-icon"></i>
+                        <h2>Missão</h2>
+                        <p>DESCRIÇÃO</p>
+                    </div>
+                    <div class="mvv-card visao reveal">
+                        <span class="mvv-label">Nossa Visão</span>
+                        <i class="fas fa-eye mvv-icon"></i>
+                        <h2>Visão</h2>
+                        <p>DESCRIÇÃO</p>
+                    </div>
+                    <div class="mvv-card valores reveal">
+                        <span class="mvv-label">Nossos Valores</span>
+                        <i class="fas fa-fire-flame-curved mvv-icon"></i>
+                        <h2>Valores</h2>
+                        <p>DESCRIÇÃO</p>
                     </div>
                 </div>
 
-                <!-- Dynamic categories container -->
-                <div id="transp-content">
-                    <div class="state-loading">
-                        <div class="spinner"></div>
-                        <p style="margin-top:16px;font-size:.93rem;">Carregando documentos…</p>
+                <!-- Valores detalhados -->
+                <section class="valores-section reveal" aria-labelledby="titulo-valores">
+                    <div class="section-header">
+                        <span class="section-label">Detalhamento</span>
+                        <h2 id="titulo-valores">Nossos Valores em Detalhe</h2>
+                        <div class="section-bar"></div>
                     </div>
-                </div>
+
+                    <div class="valores-grid">
+                        <div class="valor-item reveal">
+                            <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div class="valor-body">
+                                <h3>TÍTULO</h3>
+                                <p>DESCRIÇÃO</p>
+                            </div>
+                        </div>
+                        <div class="valor-item reveal">
+                            <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div class="valor-body">
+                                <h3>TÍTULO</h3>
+                                <p>DESCRIÇÃO</p>
+                            </div>
+                        </div>
+                        <div class="valor-item reveal">
+                            <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div class="valor-body">
+                                <h3>TÍTULO</h3>
+                                <p>DESCRIÇÃO</p>
+                            </div>
+                        </div>
+                        <div class="valor-item reveal">
+                            <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div class="valor-body">
+                                <h3>TÍTULO</h3>
+                                <p>DESCRIÇÃO</p>
+                            </div>
+                        </div>
+                        <div class="valor-item reveal">
+                            <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div class="valor-body">
+                                <h3>TÍTULO</h3>
+                                <p>DESCRIÇÃO</p>
+                            </div>
+                        </div>
+                        <div class="valor-item reveal">
+                            <div class="valor-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <div class="valor-body">
+                                <h3>TÍTULO</h3>
+                                <p>DESCRIÇÃO</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
                 <!-- CTA -->
-                <div class="transp-cta reveal">
-                    <div class="transp-cta-text">
-                        <h3>Não encontrou o que procura?</h3>
-                        <p>Entre em contacto com a Fundação para solicitar documentos ou esclarecimentos adicionais.</p>
+                <div class="mv-cta reveal">
+                    <h2>Nossos Valores em Prática</h2>
+                    <p>Conheça os projetos e ações concretas que traduzem nossa missão em impacto real para Sergipe.</p>
+                    <div class="cta-btns">
+                        <a href="../pages/projetos.html" class="btn-white-solid">
+                            <i class="fas fa-clipboard-list"></i> Ver Projetos
+                        </a>
+                        <a href="../transparencia.html" class="btn-outline-white">
+                            <i class="fas fa-folder-open"></i> Portal de Transparência
+                        </a>
                     </div>
-                    <a href="index.html#contato" class="btn-amber"><i class="fas fa-envelope"></i> Fale Conosco</a>
                 </div>
 
             </div>
@@ -168,7 +232,7 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="footer-links-col">
                     <h4>Institucional</h4>
                     <ul>
@@ -179,18 +243,18 @@
                         <li><a href="transparencia.html">Transparência</a></li>
                     </ul>
                 </div>
-    
+
                 <div class="footer-links-col">
                     <h4>Atuação</h4>
                     <ul>
-                        <li><a href="../atuacao/projetos.html">Projetos</a></li>
-                        <li><a href="../atuacao/capacitacao.html">Capacitação</a></li>
-                        <li><a href="../atuacao/eventos.html">Eventos</a></li>
-                        <li><a href="../atuacao/parcerias.html">Parcerias</a></li>
-                        <li><a href="../atuacao/noticias.html">Notícias</a></li>
+                        <li><a href="../pages/projetos.html">Projetos</a></li>
+                        <li><a href="../pages/capacitacao.html">Capacitação</a></li>
+                        <li><a href="../pages/eventos.html">Eventos</a></li>
+                        <li><a href="../pages/parcerias.html">Parcerias</a></li>
+                        <li><a href="../pages/noticias.html">Notícias</a></li>
                     </ul>
                 </div>
-    
+
                 <div class="footer-links-col">
                     <h4>Administração</h4>
                     <a href="../akannihub.html" class="btn-cta-nav"><i class="fa-solid fa-user-lock"></i> Acesso
@@ -216,120 +280,23 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- ══ FIREBASE + LOGIC ══ -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy }
-            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
-            authDomain: "fundacaofenix193.firebaseapp.com",
-            projectId: "fundacaofenix193",
-            storageBucket: "fundacaofenix193.firebasestorage.app",
-            messagingSenderId: "263835472373",
-            appId: "1:263835472373:web:492921e00e51a1e74750bc"
-        };
-        const db = getFirestore(initializeApp(firebaseConfig));
-
-        // Category order + icons
-        const CATEGORIES = [
-            { name: 'Prestação de Contas', icon: 'fa-file-invoice', label: 'Finanças' },
-            { name: 'Relatórios Institucionais', icon: 'fa-chart-line', label: 'Relatórios' },
-            { name: 'Estatuto Social', icon: 'fa-scroll', label: 'Documento Base' },
-            { name: 'Certidões', icon: 'fa-certificate', label: 'Documentação' },
-            { name: 'Contratos', icon: 'fa-file-contract', label: 'Jurídico' },
-            { name: 'Editais', icon: 'fa-bullhorn', label: 'Processos' },
-            { name: 'Atas', icon: 'fa-file-circle-check', label: 'Assembleias' },
-        ];
-
-        function fmtDate(ts) {
-            if (!ts) return '';
-            const d = ts.toDate ? ts.toDate() : new Date(ts);
-            return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-        }
-
-        async function loadDocs() {
-            const content = document.getElementById('transp-content');
-            try {
-                const q = query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'));
-                const snap = await getDocs(q);
-
-                if (snap.empty) {
-                    content.innerHTML = `<div class="state-empty"><i class="fas fa-folder-open"></i><p>Nenhum documento publicado ainda. Volte em breve.</p></div>`;
-                    return;
-                }
-
-                // Group by category
-                const groups = {};
-                CATEGORIES.forEach(c => { groups[c.name] = []; });
-                snap.forEach(d => {
-                    const data = d.data();
-                    if (!groups[data.categoria]) groups[data.categoria] = [];
-                    groups[data.categoria].push({ id: d.id, ...data });
-                });
-
-                content.innerHTML = '';
-                CATEGORIES.forEach(cat => {
-                    const docs = groups[cat.name];
-                    if (!docs || docs.length === 0) return;
-
-                    const section = document.createElement('div');
-                    section.className = 'cat-section reveal';
-                    section.innerHTML = `
-                    <div class="cat-header">
-                        <div class="cat-icon"><i class="fas ${cat.icon}"></i></div>
-                        <div class="cat-title-group">
-                            <span class="cat-label">${cat.label}</span>
-                            <h2 class="cat-title">${cat.name}</h2>
-                        </div>
-                        <span class="cat-count">${docs.length} ${docs.length === 1 ? 'documento' : 'documentos'}</span>
-                    </div>
-                    <div class="docs-grid"></div>`;
-
-                    const grid = section.querySelector('.docs-grid');
-                    docs.forEach(doc => {
-                        const card = document.createElement('a');
-                        card.className = 'doc-card';
-                        card.href = doc.link || '#';
-                        card.target = '_blank';
-                        card.rel = 'noopener noreferrer';
-                        card.setAttribute('aria-label', `Abrir ${doc.nome}`);
-                        card.innerHTML = `
-                        <div class="doc-card-icon"><i class="fas ${cat.icon}"></i></div>
-                        <div class="doc-card-info">
-                            <div class="doc-card-name" title="${escHtml(doc.nome)}">${escHtml(doc.nome)}</div>
-                            <div class="doc-card-date">${fmtDate(doc.createdAt)}</div>
-                        </div>
-                        <i class="fas fa-external-link doc-card-arrow"></i>`;
-                        grid.appendChild(card);
-                    });
-
-                    content.appendChild(section);
-                });
-
-                // Scroll reveal
-                const obs = new IntersectionObserver(entries => {
-                    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-                }, { threshold: 0.08 });
-                content.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-            } catch (e) {
-                content.innerHTML = `<div class="state-error"><i class="fas fa-triangle-exclamation" style="font-size:1.3rem;flex-shrink:0;"></i> Erro ao carregar documentos: ${e.message}</div>`;
-            }
-        }
-
-        function escHtml(str) {
-            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        }
-
-        loadDocs();
-        
+    <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
+
         const btnTop = document.getElementById('btn-top');
         window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
         btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        // ── Menu hamburger ──────────────────────────────────────
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
         const btnMobile = document.getElementById('btn-mobile');
         const menu = document.getElementById('menu');
 
@@ -339,7 +306,6 @@
             btnMobile.setAttribute('aria-expanded', String(open));
         });
 
-        // ── Dropdowns ───────────────────────────────────────────
         document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
             trigger.addEventListener('click', (e) => {
                 if (window.innerWidth > 768) return;
@@ -371,15 +337,6 @@
                 document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
             }
         });
-        // Reveal for static elements
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-        // Header scroll shadow
-        window.addEventListener('scroll', () => {
-            document.getElementById('main-header').style.boxShadow = window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
-        }, { passive: true });
     </script>
 
 </body>

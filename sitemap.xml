@@ -13,14 +13,14 @@
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/atuacao/noticias</loc>
+    <loc>https://ff193.vercel.app/pages/noticias</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/institucional/transparencia</loc>
+    <loc>https://ff193.vercel.app/pages/transparencia</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -31,21 +31,21 @@
   ════════════════════════════════ -->
 
   <url>
-    <loc>https://ff193.vercel.app/institucional/nossa-historia</loc>
+    <loc>https://ff193.vercel.app/pages/nossa-historia</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/institucional/missao-valores</loc>
+    <loc>https://ff193.vercel.app/pages/missao-valores</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/institucional/equipe</loc>
+    <loc>https://ff193.vercel.app/pages/equipe</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -56,28 +56,28 @@
   ════════════════════════════════ -->
 
   <url>
-    <loc>https://ff193.vercel.app/atuacao/projetos</loc>
+    <loc>https://ff193.vercel.app/pages/projetos</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/atuacao/capacitacao</loc>
+    <loc>https://ff193.vercel.app/pages/capacitacao</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/atuacao/eventos</loc>
+    <loc>https://ff193.vercel.app/pages/eventos</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://ff193.vercel.app/atuacao/parcerias</loc>
+    <loc>https://ff193.vercel.app/pages/parcerias</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -502,7 +502,7 @@ const CLOUDINARY_PRESET = "seu_preset";       // ex: "ml_default"
 2. Importe o projeto na [Vercel](https://vercel.com)
 3. Não é necessária nenhuma configuração de build — o projeto é estático
 4. O arquivo `vercel.json` já configura:
-   - `cleanUrls: true` — URLs sem `.html` (ex: `/atuacao/noticias`)
+   - `cleanUrls: true` — URLs sem `.html` (ex: `/pages/noticias`)
    - `trailingSlash: false`
    - Redirecionamento 404 → `404.html`
    - Cache imutável para assets (`max-age=31536000`)
@@ -538,15 +538,15 @@ O sitemap inclui 13 URLs com prioridades e frequências de atualização configu
 | URL | Prioridade | Frequência |
 |---|---|---|
 | `/` | 1.0 | weekly |
-| `/atuacao/noticias` | 0.9 | weekly |
-| `/institucional/nossa-historia` | 0.8 | yearly |
-| `/institucional/missao-valores` | 0.8 | yearly |
-| `/institucional/equipe` | 0.8 | monthly |
-| `/atuacao/projetos` | 0.8 | monthly |
-| `/atuacao/capacitacao` | 0.8 | monthly |
-| `/institucional/transparencia` | 0.7 | monthly |
-| `/atuacao/eventos` | 0.7 | weekly |
-| `/atuacao/parcerias` | 0.7 | monthly |
+| `/pages/noticias` | 0.9 | weekly |
+| `/pages/nossa-historia` | 0.8 | yearly |
+| `/pages/missao-valores` | 0.8 | yearly |
+| `/pages/equipe` | 0.8 | monthly |
+| `/pages/projetos` | 0.8 | monthly |
+| `/pages/capacitacao` | 0.8 | monthly |
+| `/pages/transparencia` | 0.7 | monthly |
+| `/pages/eventos` | 0.7 | weekly |
+| `/pages/parcerias` | 0.7 | monthly |
 | `/akannihub` | 0.2 | never |
 | `/404` | 0.1 | never |
 
