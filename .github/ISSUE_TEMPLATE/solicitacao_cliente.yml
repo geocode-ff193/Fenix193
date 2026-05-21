@@ -1,10 +1,8 @@
-name: "📋 Nova Solicitação"
-description: "Relate um problema, peça uma alteração ou sugira uma melhoria. Preencha com calma — quanto mais detalhes, mais rápido resolvemos! 🚀"
-title: "[Chamado] "
+name: "Nova Solicitação"
+description: "Abra um chamado para relatar um erro, pedir um ajuste ou sugerir melhorias."
+title: "[Chamado]: "
 labels: ["Novo Chamado"]
-
 body:
-
   # ── Boas-vindas ──────────────────────────────────────────────────────────────
   - type: markdown
     attributes:
@@ -22,7 +20,7 @@ body:
   - type: input
     id: nome_cliente
     attributes:
-      label: "👤 Qual é o seu nome?"
+      label: "1. Se Identifique:"
       description: "Seu nome ou o nome do seu projeto/empresa."
       placeholder: "Ex: Maria da Silva / Clínica Bem Viver"
     validations:
@@ -46,7 +44,7 @@ body:
   - type: dropdown
     id: tipo_solicitacao
     attributes:
-      label: "🗂️ O que você precisa?"
+      label: "2. O que você precisa?"
       description: "Escolha a opção que melhor descreve o motivo do seu chamado."
       options:
         - "🐛 Tem algo com defeito (um botão não funciona, erro na tela, etc.)"
@@ -63,7 +61,7 @@ body:
   - type: dropdown
     id: urgencia
     attributes:
-      label: "⏰ Qual é a urgência disso para você?"
+      label: "Qual é a urgência disso para você?"
       description: "Seja honesto(a) — isso nos ajuda a priorizar corretamente."
       options:
         - "🟢 Pode aguardar — quando der, tudo bem"
@@ -82,7 +80,7 @@ body:
   - type: input
     id: local_ocorrencia
     attributes:
-      label: "📍 Em qual parte do sistema isso está acontecendo?"
+      label: "3. Em qual parte do sistema isso está acontecendo?"
       description: "Cole o endereço da página (link do site) ou descreva onde está — por exemplo: 'Tela de login', 'Painel administrativo, aba de Notícias', 'Página inicial do site'."
       placeholder: "Ex: https://meusite.com.br/contato  —  ou  —  Painel Admin, seção Contatos"
     validations:
@@ -97,8 +95,8 @@ body:
   - type: textarea
     id: o_que_aconteceu
     attributes:
-      label: "📝 O que está acontecendo? Descreva com suas palavras"
-      description: "Não precisa usar linguagem técnica. Escreva como você contaria para um amigo. Se for uma alteração ou nova funcionalidade, explique o que você gostaria que fizesse."
+      label: "4. O que está acontecendo? Descreva com suas palavras"
+      description: "Escreva com suas próprias palavras o que está acontecendo. Se for uma alteração ou nova funcionalidade, explique o que você gostaria que fizesse."
       placeholder: |
         Exemplos:
         • "Cliquei no botão Enviar do formulário de contato e apareceu uma mensagem vermelha de erro."
@@ -110,7 +108,7 @@ body:
   - type: textarea
     id: o_que_deveria
     attributes:
-      label: "✅ O que você esperava que acontecesse? (Opcional)"
+      label: "O que você esperava que acontecesse? (Opcional)"
       description: "Como deveria funcionar corretamente? Isso nos ajuda a entender melhor o problema."
       placeholder: |
         Ex: "O formulário deveria mostrar uma mensagem de 'Mensagem enviada com sucesso!' em verde."
@@ -127,7 +125,7 @@ body:
   - type: textarea
     id: passo_a_passo
     attributes:
-      label: "🔁 Se for um erro: como faço para ver o mesmo problema? (Opcional)"
+      label: "5. Se for um erro: como faço para ver o mesmo problema? (Opcional)"
       description: "Descreva o caminho que você fez antes do erro aparecer. Quanto mais detalhes, mais fácil fica para a gente reproduzir e corrigir."
       placeholder: |
         1. Abri o site pelo celular
@@ -147,7 +145,7 @@ body:
   - type: dropdown
     id: dispositivo
     attributes:
-      label: "📱 Em qual aparelho isso acontece?"
+      label: "6. Em qual aparelho isso acontece?"
       description: "Se acontece em mais de um, selecione o principal."
       options:
         - "Celular (Android)"
@@ -162,7 +160,7 @@ body:
   - type: dropdown
     id: navegador
     attributes:
-      label: "🌐 Qual navegador você estava usando? (Opcional)"
+      label: "Qual navegador você estava usando? (Opcional)"
       options:
         - "Google Chrome"
         - "Safari (iPhone / Mac)"
@@ -182,7 +180,7 @@ body:
   - type: checkboxes
     id: checklist
     attributes:
-      label: "✔️ Antes de enviar, confirme:"
+      label: "7. Antes de enviar, confirme:"
       options:
         - label: "Descrevi o problema ou pedido com detalhes suficientes."
           required: true
@@ -197,4 +195,4 @@ body:
       value: |
         ---
         🙏 **Obrigado por abrir o chamado!**
-        A equipe **GeoCODE Programmer** irá analisar sua solicitação e retornar pelo contato informado ou diretamente aqui. Fique de olho nas notificações do GitHub!
+        A equipe **GeoCODE Programmer** irá analisar sua solicitação e retornar pelo contato informado ou diretamente aqui. Fique de olho nas notificações do GitHub, do email ou do WhatsApp!
