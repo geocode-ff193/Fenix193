@@ -1958,15 +1958,12 @@ mark.search-highlight {
     }
 }
 
-/* ==========================================================
-   HERO NEWS FEED — 5 mini-cards dentro do hero-text
-   ========================================================== */
-
+/* ── Hero News Feed ─────────────────────────────────────── */
 .hero-news-feed {
     margin-top: 24px;
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 7px
 }
 
 .hero-news-feed-label {
@@ -1978,7 +1975,7 @@ mark.search-highlight {
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 2px;
+    margin-bottom: 2px
 }
 
 .hero-news-mini-card {
@@ -1993,15 +1990,14 @@ mark.search-highlight {
     color: rgba(255, 255, 255, .85);
     transition: var(--transition);
     backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    cursor: pointer;
+    -webkit-backdrop-filter: blur(4px)
 }
 
 .hero-news-mini-card:hover {
     background: rgba(255, 255, 255, .14);
     border-color: rgba(248, 186, 37, .45);
     color: var(--white);
-    transform: translateX(3px);
+    transform: translateX(3px)
 }
 
 .hero-news-mini-thumb {
@@ -2009,7 +2005,7 @@ mark.search-highlight {
     height: 38px;
     border-radius: 4px;
     object-fit: cover;
-    flex-shrink: 0;
+    flex-shrink: 0
 }
 
 .hero-news-mini-placeholder {
@@ -2022,7 +2018,7 @@ mark.search-highlight {
     justify-content: center;
     color: rgba(255, 255, 255, .3);
     font-size: .8rem;
-    flex-shrink: 0;
+    flex-shrink: 0
 }
 
 .hero-news-mini-title {
@@ -2032,10 +2028,10 @@ mark.search-highlight {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     line-clamp: 1;
+    overflow: hidden;
     flex: 1;
-    min-width: 0;
+    min-width: 0
 }
 
 .hero-news-mini-date {
@@ -2043,25 +2039,25 @@ mark.search-highlight {
     color: rgba(255, 255, 255, .4);
     white-space: nowrap;
     flex-shrink: 0;
-    letter-spacing: .04em;
+    letter-spacing: .04em
 }
 
 .hero-news-mini-skeleton {
     height: 54px;
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, .06);
-    animation: heroSkeletonPulse 1.5s ease-in-out infinite;
+    background: rgba(255, 255, 255, .1);
+    animation: heroSkeletonPulse 1.5s ease-in-out infinite
 }
 
 @keyframes heroSkeletonPulse {
 
     0%,
     100% {
-        opacity: .4;
+        opacity: .4
     }
 
     50% {
-        opacity: .8;
+        opacity: .9
     }
 }
 
@@ -2077,16 +2073,15 @@ mark.search-highlight {
     margin-top: 4px;
     transition: gap var(--transition);
     text-decoration: none;
-    align-self: flex-start;
+    align-self: flex-start
 }
 
 .hero-news-view-all:hover {
-    gap: 10px;
+    gap: 10px
 }
 
-/* No mobile o hero já é coluna única — o feed se torna desnecessário */
-@media (max-width: 768px) {
+@media(max-width:768px) {
     .hero-news-feed {
-        display: none;
+        display: none
     }
 }
