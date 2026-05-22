@@ -173,23 +173,38 @@
                                 <i class="fas fa-book-open"></i> Nossa História Completa
                             </button></a>
                     </div>
-                    <div class="qs-visual" aria-hidden="true">
-                        <div class="polaroid-stack">
-                            <div class="polaroid pol-1">
-                                <img src="assets/img/bomb10.jpeg" alt="Fundação Fênix 193">
-                                <span class="polaroid-label">Fênix 193</span>
+                    <div class="qs-visual" aria-label="Galeria de imagens">
+                        <div class="qs-carousel" role="region" aria-label="Carrossel de imagens">
+                            <div class="qs-carousel-track">
+                                <div class="qs-slide active">
+                                    <img src="assets/img/bomb10.jpeg" alt="Fênix 193">
+                                    <span class="qs-slide-label">Fênix 193</span>
+                                </div>
+                                <div class="qs-slide">
+                                    <img src="assets/img/bomb11.jpeg" alt="Nossa missão">
+                                    <span class="qs-slide-label">Nossa missão</span>
+                                </div>
+                                <div class="qs-slide">
+                                    <img src="assets/img/bomb12.jpeg" alt="Proteção de vidas">
+                                    <span class="qs-slide-label">Proteção de vidas</span>
+                                </div>
+                                <div class="qs-slide">
+                                    <img src="assets/img/bomb13.jpeg" alt="CBMSE · Sergipe">
+                                    <span class="qs-slide-label">CBMSE · Sergipe</span>
+                                </div>
                             </div>
-                            <div class="polaroid pol-2">
-                                <img src="assets/img/bomb11.jpeg" alt="Fundação Fênix 193">
-                                <span class="polaroid-label">Nossa missão</span>
-                            </div>
-                            <div class="polaroid pol-3">
-                                <img src="assets/img/bomb12.jpeg" alt="Fundação Fênix 193">
-                                <span class="polaroid-label">Proteção de vidas</span>
-                            </div>
-                            <div class="polaroid pol-4">
-                                <img src="assets/img/bomb13.jpeg" alt="Fundação Fênix 193">
-                                <span class="polaroid-label">CBMSE · Sergipe</span>
+                            <button class="qs-carousel-btn qs-prev" aria-label="Imagem anterior">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="qs-carousel-btn qs-next" aria-label="Próxima imagem">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="qs-carousel-dots" role="tablist" aria-label="Navegação do carrossel">
+                                <button class="qs-dot active" role="tab" aria-selected="true"
+                                    aria-label="Imagem 1"></button>
+                                <button class="qs-dot" role="tab" aria-selected="false" aria-label="Imagem 2"></button>
+                                <button class="qs-dot" role="tab" aria-selected="false" aria-label="Imagem 3"></button>
+                                <button class="qs-dot" role="tab" aria-selected="false" aria-label="Imagem 4"></button>
                             </div>
                         </div>
                     </div>
@@ -631,6 +646,48 @@
 
     <script type="module" src="assets/js/script.js"></script>
     <script type="module" src="assets/js/search.js"></script>
+    <script>
+        (function () {
+            const track = document.querySelector('.qs-carousel-track');
+            if (!track) return;
+            const slides = track.querySelectorAll('.qs-slide');
+            const dots = document.querySelectorAll('.qs-dot');
+            const prev = document.querySelector('.qs-prev');
+            const next = document.querySelector('.qs-next');
+            let current = 0;
+            let timer;
+
+            function goTo(idx) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                dots[current].setAttribute('aria-selected', 'false');
+                current = (idx + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+                dots[current].setAttribute('aria-selected', 'true');
+            }
+
+            function startAuto() {
+                timer = setInterval(() => goTo(current + 1), 4000);
+            }
+
+            function resetAuto() {
+                clearInterval(timer);
+                startAuto();
+            }
+
+            prev.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+            next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+            dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetAuto(); }));
+
+            /* Pausa no hover */
+            const carousel = document.querySelector('.qs-carousel');
+            carousel.addEventListener('mouseenter', () => clearInterval(timer));
+            carousel.addEventListener('mouseleave', startAuto);
+
+            startAuto();
+        })();
+    </script>
 </body>
 
 </html>
