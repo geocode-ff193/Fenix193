@@ -1197,7 +1197,6 @@
 </head>
 
 <body>
-
     <!-- ======================== LOGIN SCREEN ======================== -->
     <div id="login-screen">
         <div class="login-card">
@@ -1231,7 +1230,6 @@
                     autorizado.</span></div>
         </div>
     </div>
-
     <!-- ======================== APP SHELL ======================== -->
     <div id="app-shell">
         <!-- Top bar -->
@@ -1653,7 +1651,6 @@
             </main>
         </div>
     </div>
-
     <!-- ════ MODAL: Contact Detail ════ -->
     <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
         <div class="modal">
@@ -1665,7 +1662,6 @@
             <div id="contact-modal-body"></div>
         </div>
     </div>
-
     <!-- ════ MODAL: Confirm Delete ════ -->
     <div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true">
         <div class="modal">
@@ -1678,13 +1674,11 @@
             </div>
         </div>
     </div>
-
     <!-- Toast container -->
     <div id="toast-container" role="status" aria-live="polite"></div>
-
     <!-- ══════════════════════════════════════════════════════════
     FIREBASE SDK v9 + APP LOGIC
-══════════════════════════════════════════════════════════ -->
+    ══════════════════════════════════════════════════════════ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
@@ -2377,7 +2371,5 @@
             });
         };
     </script>
-
 </body>
-
 </html>
