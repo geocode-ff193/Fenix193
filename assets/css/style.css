@@ -2412,3 +2412,24 @@ mark.search-highlight {
         gap: 12px;
     }
 }
+
+/* ── Layout lado a lado (Instituidores | Apoiadores) ── */
+.apoiadores-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.apoiadores-columns .apoiadores-group {
+    margin-bottom: 0;
+    min-width: 0;
+    /* evita overflow no grid */
+}
+
+@media (max-width: 768px) {
+    .apoiadores-columns {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+}
