@@ -2160,3 +2160,255 @@ mark.search-highlight {
         display: none;
     }
 }
+
+/* ==========================================================
+   INSTITUIDORES & APOIADORES — Carrossel Marquee
+   ========================================================== */
+
+.apoiadores-section {
+    background: var(--off-white);
+    overflow: hidden;
+}
+
+.apoiadores-desc {
+    color: var(--text-muted);
+    font-size: .97rem;
+    max-width: 560px;
+    margin-top: 0;
+    line-height: 1.6;
+}
+
+/* ── Grupo (Instituidores / Apoiadores) ── */
+.apoiadores-group {
+    margin-bottom: 44px;
+}
+
+.apoiadores-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.apoiadores-group-header {
+    margin-bottom: 20px;
+}
+
+.apoiadores-group-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-body);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid;
+}
+
+.instituidores-badge {
+    color: var(--red-dark);
+    border-color: var(--red);
+    background: rgba(225, 34, 23, .07);
+}
+
+.instituidores-badge i {
+    color: var(--amber);
+}
+
+.apoiadores-badge {
+    color: var(--navy-mid);
+    border-color: var(--navy-mid);
+    background: rgba(49, 51, 50, .06);
+}
+
+.apoiadores-badge i {
+    color: var(--red);
+}
+
+/* ── Track Wrapper (overflow + fade nas bordas) ── */
+.apoiadores-track-wrap {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0,
+            black 80px,
+            black calc(100% - 80px),
+            transparent 100%);
+    mask-image: linear-gradient(to right,
+            transparent 0,
+            black 80px,
+            black calc(100% - 80px),
+            transparent 100%);
+}
+
+/* ── Track (fila de cards animada) ── */
+.apoiadores-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    padding: 10px 4px;
+    animation: marqueeScrollLTR 32s linear infinite;
+    will-change: transform;
+}
+
+.apoiadores-track--rtl {
+    animation: marqueeScrollRTL 36s linear infinite;
+}
+
+.apoiadores-track-wrap:hover .apoiadores-track,
+.apoiadores-track-wrap:focus-within .apoiadores-track {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeScrollLTR {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes marqueeScrollRTL {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* ── Card individual ── */
+.apoiador-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    border: 1.5px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px 16px;
+    min-width: 148px;
+    max-width: 148px;
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.apoiador-card:hover {
+    border-color: var(--red-light);
+    box-shadow: 0 8px 28px rgba(225, 34, 23, .14);
+    transform: translateY(-4px);
+}
+
+/* ── Área da imagem/logo ── */
+.apoiador-img-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid var(--gray-light);
+    transition: border-color var(--transition);
+}
+
+.apoiador-card:hover .apoiador-img-wrap {
+    border-color: var(--red-light);
+}
+
+.apoiador-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+/* ── Placeholder com iniciais ── */
+.apoiador-initials {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--ac, var(--navy));
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    line-height: 1;
+}
+
+/* ── Nome do apoiador ── */
+.apoiador-name {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    line-height: 1.3;
+    max-width: 110px;
+}
+
+/* ── CTA ao final ── */
+.apoiadores-cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1.5px dashed var(--gray-light);
+    flex-wrap: wrap;
+}
+
+.apoiadores-cta p {
+    font-size: .93rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+    .apoiadores-track-wrap {
+        -webkit-mask-image: linear-gradient(to right,
+                transparent 0,
+                black 40px,
+                black calc(100% - 40px),
+                transparent 100%);
+        mask-image: linear-gradient(to right,
+                transparent 0,
+                black 40px,
+                black calc(100% - 40px),
+                transparent 100%);
+    }
+
+    .apoiador-card {
+        min-width: 128px;
+        max-width: 128px;
+        padding: 16px 14px 12px;
+    }
+
+    .apoiador-img-wrap {
+        width: 60px;
+        height: 60px;
+    }
+
+    .apoiador-initials {
+        font-size: 1.2rem;
+    }
+
+    .apoiadores-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
