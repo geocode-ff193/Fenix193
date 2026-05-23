@@ -2415,21 +2415,29 @@ mark.search-highlight {
 
 /* ── Layout lado a lado (Instituidores | Apoiadores) ── */
 .apoiadores-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     gap: 32px;
-    align-items: start;
+    align-items: flex-start;
 }
 
 .apoiadores-columns .apoiadores-group {
-    margin-bottom: 0;
+    flex: 1 1 0%;
     min-width: 0;
-    /* evita overflow no grid */
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.apoiadores-columns .apoiadores-track-wrap {
+    width: 100%;
 }
 
 @media (max-width: 768px) {
     .apoiadores-columns {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 36px;
+    }
+
+    .apoiadores-columns .apoiadores-group {
+        width: 100%;
     }
 }
