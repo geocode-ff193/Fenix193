@@ -2229,16 +2229,6 @@ mark.search-highlight {
 .apoiadores-track-wrap {
     position: relative;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right,
-            transparent 0,
-            black 80px,
-            black calc(100% - 80px),
-            transparent 100%);
-    mask-image: linear-gradient(to right,
-            transparent 0,
-            black 80px,
-            black calc(100% - 80px),
-            transparent 100%);
 }
 
 /* ── Track (fila de cards animada) ── */
@@ -2252,7 +2242,7 @@ mark.search-highlight {
 }
 
 .apoiadores-track--rtl {
-    animation: marqueeScrollRTL 36s linear infinite;
+    animation: marqueeScrollLTR 36s linear infinite;
 }
 
 .apoiadores-track-wrap:hover .apoiadores-track,
@@ -2378,19 +2368,6 @@ mark.search-highlight {
 
 /* ── Responsivo ── */
 @media (max-width: 768px) {
-    .apoiadores-track-wrap {
-        -webkit-mask-image: linear-gradient(to right,
-                transparent 0,
-                black 40px,
-                black calc(100% - 40px),
-                transparent 100%);
-        mask-image: linear-gradient(to right,
-                transparent 0,
-                black 40px,
-                black calc(100% - 40px),
-                transparent 100%);
-    }
-
     .apoiador-card {
         min-width: 128px;
         max-width: 128px;
@@ -2416,7 +2393,7 @@ mark.search-highlight {
 /* ── Layout lado a lado (Instituidores | Apoiadores) ── */
 .apoiadores-columns {
     display: flex;
-    gap: 32px;
+    gap: 0;
     align-items: flex-start;
 }
 
@@ -2425,6 +2402,16 @@ mark.search-highlight {
     min-width: 0;
     overflow: hidden;
     margin-bottom: 0;
+    padding: 0 28px;
+}
+
+.apoiadores-columns .apoiadores-group:first-child {
+    padding-left: 0;
+    border-right: 1px solid rgba(0, 0, 0, .09);
+}
+
+.apoiadores-columns .apoiadores-group:last-child {
+    padding-right: 0;
 }
 
 .apoiadores-columns .apoiadores-track-wrap {
@@ -2439,5 +2426,7 @@ mark.search-highlight {
 
     .apoiadores-columns .apoiadores-group {
         width: 100%;
+        padding: 0;
+        border-right: none !important;
     }
 }
