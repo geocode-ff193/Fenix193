@@ -221,12 +221,12 @@ document.addEventListener('keydown', (e) => {
     }
 
     function escHtml(s) {
-        return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
     async function fetchHomeNews() {
         try {
-            const q    = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(2));
+            const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(2));
             const snap = await getDocs(q);
 
             grid.innerHTML = '';
@@ -244,13 +244,13 @@ document.addEventListener('keydown', (e) => {
                 const n = d.data();
                 const card = document.createElement('a');
                 card.className = 'news-home-card';
-                card.href      = `news.html?noticia=${d.id}`;
+                card.href = `news.html?noticia=${d.id}`;
                 card.setAttribute('aria-label', `Ler notícia: ${escHtml(n.titulo)}`);
                 card.innerHTML = `
                     <div style="overflow:hidden;">
                         ${n.imagemUrl
-                            ? `<img class="news-home-img" src="${escHtml(n.imagemUrl)}" alt="${escHtml(n.titulo)}" loading="lazy">`
-                            : `<div class="news-home-img-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`}
+                        ? `<img class="news-home-img" src="${escHtml(n.imagemUrl)}" alt="${escHtml(n.titulo)}" loading="lazy">`
+                        : `<div class="news-home-img-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`}
                     </div>
                     <div class="news-home-body">
                         <div class="news-home-meta">
@@ -278,7 +278,7 @@ document.addEventListener('keydown', (e) => {
    8. FORMULÁRIO DE CONTATO
    ============================================================= */
 (function initContactForm() {
-    const form   = document.getElementById('contact-form');
+    const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
     if (!form || !status) return;
 
@@ -292,12 +292,12 @@ document.addEventListener('keydown', (e) => {
         const telefoneEl = form.querySelector('#telefone');
 
         const payload = {
-            nome:     form.nome.value.trim(),
-            email:    form.email.value.trim(),
-            assunto:  form.assunto?.value  || '',
+            nome: form.nome.value.trim(),
+            email: form.email.value.trim(),
+            assunto: form.assunto?.value || '',
             mensagem: form.mensagem.value.trim(),
             ...(telefoneEl && { telefone: telefoneEl.value.trim() }),
-            read:     false,           // flag para admin saber se já leu
+            read: false,           // flag para admin saber se já leu
             createdAt: serverTimestamp()
         };
 
@@ -392,7 +392,7 @@ document.addEventListener('keydown', (e) => {
 
     async function fetchHeroNews() {
         try {
-            const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(5));
+            const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(3));
             const snap = await getDocs(q);
             container.innerHTML = '';
 
@@ -410,7 +410,8 @@ document.addEventListener('keydown', (e) => {
                 const thumb = n.imagemUrl
                     ? `<img class="hero-news-mini-thumb" src="${esc(n.imagemUrl)}" alt="" loading="lazy">`
                     : `<div class="hero-news-mini-placeholder" aria-hidden="true"><i class="fas fa-fire-flame-curved"></i></div>`;
-                card.innerHTML = `${thumb}
+                card.innerHTML = `
+                    ${thumb}
                     <span class="hero-news-mini-title">${esc(n.titulo)}</span>
                     <span class="hero-news-mini-date">${fmtShort(n.createdAt)}</span>`;
                 container.appendChild(card);

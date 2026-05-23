@@ -2033,83 +2033,116 @@ mark.search-highlight {
     font-size: .65rem;
 }
 
-.hero-news-mini-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 10px;
-    background: rgba(255, 255, 255, .06);
-    border: 1px solid rgba(255, 255, 255, .08);
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: rgba(255, 255, 255, .9);
-    transition: var(--transition);
-    margin-bottom: 6px;
+/* Grade 3 colunas para os mini-cards quadrados */
+#hero-news-feed-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
 }
 
-.hero-news-mini-card:last-of-type {
-    margin-bottom: 0;
+.hero-news-mini-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, .12);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    background: var(--navy-mid);
+}
+
+/* Gradiente escuro na parte inferior do card */
+.hero-news-mini-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, .88) 0%,
+            rgba(0, 0, 0, .35) 55%,
+            transparent 100%);
+    z-index: 1;
+    border-radius: inherit;
 }
 
 .hero-news-mini-card:hover {
-    background: rgba(255, 255, 255, .14);
-    border-color: rgba(248, 186, 37, .5);
-    color: var(--white);
-    transform: translateX(3px);
+    transform: translateY(-4px);
+    border-color: rgba(248, 186, 37, .6);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .5);
 }
 
 .hero-news-mini-thumb {
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 0;
+    border: none;
+    transition: transform .45s ease;
+}
+
+.hero-news-mini-card:hover .hero-news-mini-thumb {
+    transform: scale(1.07);
 }
 
 .hero-news-mini-placeholder {
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
-    background: linear-gradient(135deg, var(--red-dark), var(--navy-mid));
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--navy-mid) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, .5);
-    font-size: .85rem;
-    flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, .1);
+    color: rgba(255, 255, 255, .35);
+    font-size: 1.6rem;
+    border: none;
 }
 
 .hero-news-mini-title {
-    font-size: .83rem;
-    font-weight: 500;
+    position: relative;
+    z-index: 2;
+    font-size: .72rem;
+    font-weight: 600;
+    font-family: var(--font-body);
     line-height: 1.3;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-clamp: 1;
-    flex: 1;
-    min-width: 0;
-    color: rgba(255, 255, 255, .92);
+    color: var(--white);
+    padding: 0 8px 4px;
+    flex: unset;
+    min-width: unset;
+    text-transform: none;
+    letter-spacing: 0;
 }
 
 .hero-news-mini-date {
-    font-size: .68rem;
-    color: rgba(255, 255, 255, .5);
+    position: relative;
+    z-index: 2;
+    font-size: .62rem;
+    color: var(--amber);
     white-space: nowrap;
-    flex-shrink: 0;
+    padding: 0 8px 8px;
     letter-spacing: .04em;
+    font-weight: 600;
 }
 
-/* Skeletons visíveis sobre fundo escuro */
+/* Skeletons — mesma proporção quadrada */
 .hero-news-mini-skeleton {
-    height: 58px;
+    aspect-ratio: 1 / 1;
+    height: auto;
     border-radius: var(--radius);
     background: rgba(255, 255, 255, .12);
     border: 1px solid rgba(255, 255, 255, .08);
-    margin-bottom: 6px;
+    margin-bottom: 0;
     animation: heroSkeletonPulse 1.5s ease-in-out infinite;
 }
 
