@@ -20,7 +20,8 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import {
-    getAnalytics
+    getAnalytics,
+    setAnalyticsCollectionEnabled
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
 
 // ── Configuração Firebase ─────────────────────────────────────
@@ -37,7 +38,64 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
-const analytics = getAnalytics(firebaseApp);
+
+/* ── Consentimento de Cookies (LGPD) ─────────────────────────
+   O Firebase Analytics SÓ é inicializado se o usuário aceitar.
+   Caso recuse, nenhum dado analítico é coletado.
+   ──────────────────────────────────────────────────────────── */
+const COOKIE_KEY = 'ff193_cookie_consent';
+
+function initAnalytics() {
+    try {
+        const analyticsInstance = getAnalytics(firebaseApp);
+        setAnalyticsCollectionEnabled(analyticsInstance, true);
+    } catch (e) {
+        console.warn('[FF193] Analytics não pôde ser iniciado:', e.message);
+    }
+}
+
+function disableAnalytics() {
+    try {
+        // Garante coleta desativada caso já exista instância
+        const analyticsInstance = getAnalytics(firebaseApp);
+        setAnalyticsCollectionEnabled(analyticsInstance, false);
+    } catch (_) { /* instância não existe, seguro ignorar */ }
+}
+
+(function initCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    const btnAccept = document.getElementById('cookie-accept');
+    const btnDecline = document.getElementById('cookie-decline');
+    if (!banner || !btnAccept || !btnDecline) return;
+
+    const consent = localStorage.getItem(COOKIE_KEY);
+
+    if (consent === 'accepted') {
+        // Usuário já aceitou anteriormente → ativa analytics e oculta banner
+        initAnalytics();
+        return;
+    }
+
+    // Sem consentimento ou recusado anteriormente: exibe banner e bloqueia analytics
+    disableAnalytics();
+    banner.removeAttribute('hidden');
+
+    btnAccept.addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'accepted');
+        banner.setAttribute('hidden', '');
+        initAnalytics();
+    });
+
+    btnDecline.addEventListener('click', () => {
+        // NÃO persiste nada no localStorage → banner reaparece a cada visita
+        // Remove chave se existia de sessão anterior
+        localStorage.removeItem(COOKIE_KEY);
+        banner.setAttribute('hidden', '');
+        disableAnalytics();
+        // Informa no console para fins de auditoria
+        console.info('[FF193] Usuário recusou cookies — coleta de dados desativada.');
+    });
+})();
 
 /* =============================================================
    1. MENU MOBILE
