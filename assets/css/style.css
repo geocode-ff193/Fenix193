@@ -2138,7 +2138,7 @@ mark.search-highlight {
 
 /* Skeletons — mesma proporção quadrada */
 .hero-news-mini-skeleton {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 4 / 3;
     border-radius: var(--radius);
     background: rgba(255, 255, 255, .12);
     border: 1px solid rgba(255, 255, 255, .08);
