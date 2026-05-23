@@ -410,17 +410,13 @@ HEADER
 }
 
 .hero-text p {
-    font-size: 1.05rem;
+    font-size: .88rem;
     color: rgba(255, 255, 255, .82);
     max-width: 540px;
     margin-bottom: 32px;
     font-weight: 300;
     text-shadow: 0 2px 12px rgba(0, 0, 0, .75);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    line-height: 1.6;
 }
 
 .btn-social {
