@@ -1,69 +1,121 @@
 rules_version = '2';
 
 // ============================================================
-//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules
-//  Padrão: coleção `admins/{uid}` como fonte de verdade.
-//  Para adicionar um admin: crie um documento em `admins`
-//  cujo ID seja o UID do utilizador no Firebase Auth.
-//  Exemplo (Console Firebase):
-//    admins/ABC123UID → { email: "admin@fenix.org", name: "Admin" }
+//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.2.0
+//  Maio 2026
+//
+//  Coleções protegidas:
+//    admins            → acesso restrito ao próprio UID
+//    contacts          → criação pública com validação; gestão admin
+//    transparency_docs → leitura pública; escrita admin com validação
+//    news              → leitura pública; escrita admin com validação
+//    eventos           → leitura pública; escrita admin com validação
+//                        (NOVA — estava ausente na versão anterior)
+//
+//  Como adicionar um admin:
+//    Firebase Console → Firestore → coleção "admins"
+//    Crie um documento cujo ID seja o UID do usuário (Auth → Users)
+//    Campos mínimos: { email: "admin@fenix.org", name: "Nome" }
 // ============================================================
 
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── Função auxiliar: verifica se o utilizador autenticado é admin ──
+    // ──────────────────────────────────────────────────────────
+    //  FUNÇÕES AUXILIARES GLOBAIS
+    // ──────────────────────────────────────────────────────────
+
+    /** Usuário autenticado? */
     function isSignedIn() {
       return request.auth != null;
     }
 
+    /**
+     * Usuário é admin?
+     * Lê apenas o documento do próprio UID — permitido pelas regras
+     * de admins abaixo. NÃO usa getDocs() na coleção inteira,
+     * evitando varredura não autorizada.
+     */
     function isAdmin() {
       return isSignedIn() &&
-             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
     }
 
-    // ── Validação básica de campos de contacto ──
+    /** Campo obrigatório é string não-vazia? */
+    function requiredString(field) {
+      return field is string && field.size() > 0;
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  VALIDADORES POR COLEÇÃO
+    // ──────────────────────────────────────────────────────────
+
+    /** Contato enviado pelo formulário público */
     function isValidContact() {
-      let data = request.resource.data;
-      return data.keys().hasAll(['nome', 'email', 'mensagem'])
-          && data.nome is string  && data.nome.size() > 0
-          && data.email is string && data.email.matches('.*@.*\\..*')
-          && data.mensagem is string && data.mensagem.size() > 0;
+      let d = request.resource.data;
+      return d.keys().hasAll(['nome', 'email', 'mensagem', 'createdAt'])
+          && d.nome    is string                        // pode ser vazio (anônimo)
+          && requiredString(d.email)
+          && d.email.matches('.*@.*\\..*')
+          && requiredString(d.mensagem)
+          && d.mensagem.size() <= 4000
+          && d.read    is bool;
     }
 
-    // ── Validação de documento de transparência ──
+    /** Documento publicado no portal de transparência */
     function isValidTransparencyDoc() {
-      let data = request.resource.data;
-      let validCategories = [
+      let d = request.resource.data;
+      let cats = [
         'Prestação de Contas', 'Relatórios Institucionais',
         'Estatuto Social', 'Certidões', 'Contratos', 'Editais', 'Atas'
       ];
-      return data.keys().hasAll(['nome', 'link', 'categoria', 'createdAt'])
-          && data.nome is string && data.nome.size() > 0
-          && data.link is string && data.link.size() > 0
-          && data.categoria in validCategories;
+      return d.keys().hasAll(['nome', 'link', 'categoria', 'createdAt'])
+          && requiredString(d.nome)   && d.nome.size()      <= 200
+          && requiredString(d.link)   && d.link.size()      <= 500
+          && d.categoria in cats;
     }
 
-    // ── Validação de notícia ──
+    /** Notícia publicada pelo painel */
     function isValidNews() {
-      let data = request.resource.data;
-      return data.keys().hasAll(['titulo', 'autor', 'corpo', 'createdAt'])
-          && data.titulo is string && data.titulo.size() > 0
-          && data.autor  is string && data.autor.size()  > 0
-          && data.corpo  is string && data.corpo.size()  > 0;
+      let d = request.resource.data;
+      return d.keys().hasAll(['titulo', 'autor', 'corpo', 'createdAt'])
+          && requiredString(d.titulo) && d.titulo.size() <= 300
+          && requiredString(d.autor)  && d.autor.size()  <= 100
+          && requiredString(d.corpo)  && d.corpo.size()  <= 50000;
     }
 
-    // ==========================================================
-    // ADMINS — leitura só pelo próprio uid; escrita só via Console
-    // ==========================================================
+    /** Evento publicado pelo painel */
+    function isValidEvento() {
+      let d = request.resource.data;
+      let custos = ['Gratuito', 'Pago'];
+      // data deve ser YYYY-MM-DD (10 chars), horario HH:MM (5 chars)
+      return d.keys().hasAll(['titulo', 'data', 'horario', 'local', 'custo', 'descricao', 'createdAt'])
+          && requiredString(d.titulo)   && d.titulo.size()   <= 300
+          && requiredString(d.data)     && d.data.size()     == 10
+          && requiredString(d.horario)  && d.horario.size()  == 5
+          && requiredString(d.local)    && d.local.size()    <= 300
+          && d.custo in custos
+          && requiredString(d.descricao) && d.descricao.size() <= 10000;
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  ADMINS
+    //  Leitura: somente o próprio usuário pode ler seu documento.
+    //  Escrita: bloqueada (somente via Firebase Console).
+    // ──────────────────────────────────────────────────────────
     match /admins/{uid} {
-      allow read:  if isSignedIn() && request.auth.uid == uid;
-      allow write: if false; // Gerenciado exclusivamente pelo Firebase Console
+      allow read:   if isSignedIn() && request.auth.uid == uid;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
     }
 
-    // ==========================================================
-    // CONTACTS — criação pública; leitura/update/delete só admin
-    // ==========================================================
+    // ──────────────────────────────────────────────────────────
+    //  CONTACTS
+    //  Criação: pública (formulário de contato do site),
+    //           sujeita à validação de campos.
+    //  Leitura / atualização / exclusão: somente admins.
+    // ──────────────────────────────────────────────────────────
     match /contacts/{docId} {
       allow create: if isValidContact();
       allow read:   if isAdmin();
@@ -71,9 +123,12 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // ==========================================================
-    // TRANSPARENCY_DOCS — leitura pública; escrita só admin
-    // ==========================================================
+    // ──────────────────────────────────────────────────────────
+    //  TRANSPARENCY_DOCS
+    //  Leitura: pública (portal de transparência).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
     match /transparency_docs/{docId} {
       allow read:   if true;
       allow create: if isAdmin() && isValidTransparencyDoc();
@@ -81,14 +136,31 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
-    // ==========================================================
-    // NEWS — leitura pública; escrita só admin
-    // ==========================================================
+    // ──────────────────────────────────────────────────────────
+    //  NEWS
+    //  Leitura: pública (blog de notícias).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
     match /news/{docId} {
       allow read:   if true;
       allow create: if isAdmin() && isValidNews();
       allow update: if isAdmin() && isValidNews();
       allow delete: if isAdmin();
     }
+
+    // ──────────────────────────────────────────────────────────
+    //  EVENTOS
+    //  Leitura: pública (página de eventos do site).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
+    match /eventos/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidEvento();
+      allow update: if isAdmin() && isValidEvento();
+      allow delete: if isAdmin();
+    }
+
   }
 }
