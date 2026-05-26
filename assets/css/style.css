@@ -2129,23 +2129,38 @@ mark.search-highlight {
     overflow: hidden;
 }
 
-/* ── Track (fila de cards animada) ── */
+/* ── Track (fila de cards) ── */
 .apoiadores-track {
     display: flex;
     gap: 18px;
-    width: max-content;
     padding: 10px 4px;
+    /* Estado padrão: estático e centralizado */
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Animação ativada apenas via JS quando há 5 ou mais cards */
+.apoiadores-track--animated {
+    width: max-content;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     animation: marqueeScrollLTR 32s linear infinite;
     will-change: transform;
 }
 
-.apoiadores-track--rtl {
+.apoiadores-track--animated.apoiadores-track--rtl {
     animation: marqueeScrollLTR 36s linear infinite;
 }
 
-.apoiadores-track-wrap:hover .apoiadores-track,
-.apoiadores-track-wrap:focus-within .apoiadores-track {
+.apoiadores-track-wrap:hover .apoiadores-track--animated,
+.apoiadores-track-wrap:focus-within .apoiadores-track--animated {
     animation-play-state: paused;
+}
+
+/* Wrapper sem overflow quando estático */
+.apoiadores-track-wrap--static {
+    overflow: visible;
 }
 
 @keyframes marqueeScrollLTR {
