@@ -2103,20 +2103,15 @@ mark.search-highlight {
     border: 1.5px solid;
 }
 
+.apoiadores-badge,
 .instituidores-badge {
-    color: var(--red-dark);
-    border-color: var(--red);
-    background: rgba(225, 34, 23, .07);
+    color: var(--navy-mid);
+    border-color: var(--navy-mid);
+    background: rgba(49, 51, 50, .06);
 }
 
 .instituidores-badge i {
     color: var(--amber);
-}
-
-.apoiadores-badge {
-    color: var(--navy-mid);
-    border-color: var(--navy-mid);
-    background: rgba(49, 51, 50, .06);
 }
 
 .apoiadores-badge i {
