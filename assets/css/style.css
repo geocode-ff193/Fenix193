@@ -2830,26 +2830,64 @@ mark.search-highlight {
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 28px;
+        text-align: center;
     }
 
+    /* Centraliza logo e brand */
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-logo-area {
+        justify-content: center;
+    }
+
+    .footer-brand-tagline {
+        max-width: 100%;
+    }
+
+    /* Títulos das colunas centralizados */
+    .footer-col-title {
+        text-align: center;
+    }
+
+    /* Navegação: mantém 2 colunas lado a lado */
     .footer-nav-grid {
         grid-template-columns: 1fr 1fr;
+        justify-items: start;
+        max-width: 320px;
+        margin: 0 auto;
     }
 
+    /* Ícones sociais centralizados */
+    .footer-social-links {
+        justify-content: center;
+    }
+
+    /* Lista de contato centralizada */
+    .footer-contact-list {
+        align-items: center;
+        display: inline-flex;
+        flex-direction: column;
+        width: auto;
+    }
+
+    .footer-admin-links {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    /* Sub-footer */
     .footer-bottom-inner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
+        text-align: center;
     }
 
     .footer-legal-links {
-        justify-content: flex-start;
-    }
-}
-
-/* Mobile pequeno — ≤ 480px */
-@media (max-width: 480px) {
-    .footer-nav-grid {
-        grid-template-columns: 1fr;
+        justify-content: center;
     }
 }
