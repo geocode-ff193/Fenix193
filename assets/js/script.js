@@ -392,7 +392,7 @@ document.addEventListener('keydown', (e) => {
 })();
 
 /* =============================================================
-   9. CHATBOT FLUTUANTE
+   9. CHATBOT FLUTUANTE — LuminIA · Guia de Ajuda Fundação Fênix 193
    ============================================================= */
 
 class Chatbot {
@@ -404,15 +404,26 @@ class Chatbot {
         this.options = document.getElementById('chatbotOptions');
         this.badge = document.querySelector('.chatbot-badge');
 
+        // Detecta se estamos numa subpágina (pages/) para ajustar o caminho do avatar
+        this.avatarPath = window.location.pathname.includes('/pages/')
+            ? '../assets/img/luminia.png'
+            : 'assets/img/luminia.png';
+
         if (!this.toggle || !this.box || !this.close || !this.body || !this.options) {
-            console.error('Elementos do chatbot não encontrados');
+            console.error('[LuminIA] Elementos do chatbot não encontrados.');
             return;
         }
 
-        this.conversationState = 'initial';
         this.init();
     }
 
+    // ── Caminho relativo para links internos ──────────────────
+    _href(path) {
+        const isSubpage = window.location.pathname.includes('/pages/');
+        return isSubpage ? `../${path}` : path;
+    }
+
+    // ── Inicialização ─────────────────────────────────────────
     init() {
         this.toggle.addEventListener('click', () => this.toggleChat());
         this.close.addEventListener('click', () => this.closeChat());
@@ -423,7 +434,7 @@ class Chatbot {
         const isActive = this.box.classList.toggle('active');
         this.toggle.classList.toggle('active');
         if (isActive) {
-            this.badge.style.display = 'none';
+            if (this.badge) this.badge.style.display = 'none';
             setTimeout(() => this.scrollToBottom(), 300);
         }
     }
@@ -437,6 +448,7 @@ class Chatbot {
         this.body.scrollTop = this.body.scrollHeight;
     }
 
+    // ── Adiciona mensagem (bot ou usuário) ────────────────────
     addMessage(text, isUser = false, delay = 0) {
         setTimeout(() => {
             const messageDiv = document.createElement('div');
@@ -446,7 +458,7 @@ class Chatbot {
             avatar.className = 'message-avatar';
             avatar.innerHTML = isUser
                 ? '<i class="fas fa-user"></i>'
-                : '<img src="../assets/img/luminia.png" alt="Bot">';
+                : `<img src="${this.avatarPath}" alt="LuminIA">`;
 
             const content = document.createElement('div');
             content.className = 'message-content';
@@ -470,62 +482,60 @@ class Chatbot {
         }, delay);
     }
 
+    // ── Adiciona mensagem com link clicável ───────────────────
+    addLinkMessage(label, icon, href, external = false) {
+        const div = document.createElement('div');
+        div.className = 'chatbot-message bot-message';
+        div.innerHTML = `
+<div class="message-avatar"><img src="${this.avatarPath}" alt="LuminIA"></div>
+<div class="message-content">
+    <p><a href="${href}" ${external ? 'target="_blank" rel="noopener"' : ''} class="chatbot-link">
+        <i class="${icon}"></i> ${label}
+    </a></p>
+</div>`;
+        this.body.appendChild(div);
+        this.scrollToBottom();
+    }
+
+    // ── Indicador de digitação ────────────────────────────────
     showTypingIndicator() {
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chatbot-message bot-message typing-message';
         typingDiv.innerHTML = `
-<div class="message-avatar">
-    <img src="../assets/img/luminia.png" alt="Bot">
-</div>
+<div class="message-avatar"><img src="${this.avatarPath}" alt="LuminIA"></div>
 <div class="message-content">
     <div class="typing-indicator">
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
     </div>
-</div>
-`;
+</div>`;
         this.body.appendChild(typingDiv);
         this.scrollToBottom();
         return typingDiv;
     }
 
     removeTypingIndicator(indicator) {
-        if (indicator && indicator.parentNode) {
-            indicator.parentNode.removeChild(indicator);
-        }
+        if (indicator && indicator.parentNode) indicator.parentNode.removeChild(indicator);
     }
 
-    clearOptions() {
-        this.options.innerHTML = '';
-    }
+    clearOptions() { this.options.innerHTML = ''; }
 
+    // ── Exibe botões de opção ─────────────────────────────────
     showOptions(optionsArray) {
         this.clearOptions();
         optionsArray.forEach(option => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
             btn.innerHTML = `<i class="${option.icon}"></i> ${option.text}`;
-
-            if (typeof option.action === 'function') {
-                btn.onclick = option.action;
-            } else {
-                btn.onclick = () => this.handleOption(option);
-            }
-
+            btn.onclick = typeof option.action === 'function'
+                ? option.action
+                : () => this.handleOption(option);
             this.options.appendChild(btn);
         });
     }
 
-    showInitialOptions() {
-        this.showOptions([
-            { text: 'Agendar uma consulta', icon: 'fas fa-ban', action: 'schedule' },
-            { text: 'Tipos de terapia', icon: 'fas fa-ban', action: 'therapy' },
-            { text: 'Formas de atendimento', icon: 'fas fa-ban', action: 'attendance' },
-            { text: 'Entrar em contato', icon: 'fas fa-ban', action: 'contact' }
-        ]);
-    }
-
+    // ── Processa clique numa opção ────────────────────────────
     handleOption(option) {
         this.addMessage(option.text, true);
         this.clearOptions();
@@ -533,185 +543,402 @@ class Chatbot {
         setTimeout(() => {
             this.removeTypingIndicator(typing);
             this.processAction(option.action);
-        }, 1000 + Math.random() * 500);
+        }, 900 + Math.random() * 400);
     }
 
+    // ── Roteador de ações ─────────────────────────────────────
     processAction(action) {
-        switch (action) {
-            case 'schedule': this.handleSchedule(); break;
-            case 'therapy': this.handleTherapy(); break;
-            case 'attendance': this.handleAttendance(); break;
-            case 'contact': this.handleContact(); break;
-            case 'therapy_individual': this.handleTherapyType('individual'); break;
-            case 'therapy_couple': this.handleTherapyType('couple'); break;
-            case 'therapy_family': this.handleTherapyType('family'); break;
-            case 'therapy_group': this.handleTherapyType('group'); break;
-            case 'attendance_presential': this.handleAttendanceType('presential'); break;
-            case 'attendance_online': this.handleAttendanceType('online'); break;
-            case 'back': this.backToMenu(); break;
-            default: this.showInitialOptions();
-        }
-    }
-
-    handleSchedule() {
-        this.addMessage(['Ótimo! 📅', 'Você pode agendar sua consulta de forma rápida através da minha agenda online.']);
-
-        setTimeout(() => {
-            const linkDiv = document.createElement('div');
-            linkDiv.className = 'chatbot-message bot-message';
-            linkDiv.innerHTML = `
-<div class="message-avatar">
-    <img src="../assets/img/luminia.png" alt="Bot">
-</div>
-<div class="message-content">
-    <p><a href="pages/portal.html?uid=3XxQtmtjLhYEmhm70biZuZEqO0P2" target="_blank" class="chatbot-link">
-            <i class="fas fa-calendar-check"></i> Acessar Agendamento
-        </a></p>
-</div>
-`;
-            this.body.appendChild(linkDiv);
-            this.scrollToBottom();
-        }, 500);
-
-        setTimeout(() => {
-            this.addMessage('Posso ajudar com mais alguma coisa? 😊');
-            this.showBackToMenuOptions();
-        }, 1000);
-    }
-
-    handleTherapy() {
-        this.addMessage(['Ofereço diferentes tipos de terapia para atender suas necessidades: 🤎']);
-        setTimeout(() => {
-            this.showOptions([
-                { text: 'Individual', icon: 'fas fa-user', action: 'therapy_individual' },
-                { text: 'Casal', icon: 'fas fa-user-group', action: 'therapy_couple' },
-                { text: 'Família', icon: 'fas fa-people-roof', action: 'therapy_family' },
-                { text: 'Grupo', icon: 'fas fa-people-group', action: 'therapy_group' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
-            ]);
-        }, 800);
-    }
-
-    handleContact() {
-        this.addMessage(['Entre em contato pelo WhatsApp para tirar suas dúvidas ou agendar uma consulta! 📱']);
-        setTimeout(() => {
-            this.showOptions([
-                {
-                    text: 'Contato por WhatsApp',
-                    icon: 'fab fa-whatsapp',
-                    action: () => {
-                        this.addMessage('Entrar em contato por WhatsApp', true);
-                        this.clearOptions();
-                        const typing = this.showTypingIndicator();
-                        setTimeout(() => {
-                            this.removeTypingIndicator(typing);
-                            this.addMessage('Vou te redirecionar para o WhatsApp! 📱');
-                            setTimeout(() => {
-                                window.open('https://wa.me/5579998556740', '_blank');
-                                this.addMessage('Posso ajudar com mais alguma coisa? 😊');
-                                this.showBackToMenuOptions();
-                            }, 800);
-                        }, 1000);
-                    }
-                },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
-            ]);
-        }, 800);
-    }
-
-    handleTherapyType(type) {
-        const therapyInfo = {
-            individual: {
-                title: 'Terapia Individual', description: 'Sessões individuais focadas em questões pessoais, emocionais e comportamentais em ambiente seguro e confidencial.'
-            },
-            couple: { title: 'Terapia de Casal', description: 'Melhora a comunicação e resolve conflitos para fortalecer o relacionamento.' },
-            family: { title: 'Terapia de Família', description: 'Envolve membros da família para melhorar dinâmica familiar e fortalecer relacionamentos.' },
-            group: { title: 'Terapia em Grupo', description: 'Pequenos grupos com objetivos em comum se reúnem para suporte mútuo e crescimento coletivo.' }
+        const map = {
+            // Categorias principais
+            'sobre': () => this.handleSobre(),
+            'atuacao': () => this.handleAtuacao(),
+            'como_ajudar': () => this.handleComoAjudar(),
+            'transparencia': () => this.handleTransparencia(),
+            'contato': () => this.handleContato(),
+            'navegacao': () => this.handleNavegacao(),
+            // Subcategorias — Sobre
+            'quem_somos': () => this.handleQuemSomos(),
+            'historia': () => this.handleHistoria(),
+            'missao': () => this.handleMissao(),
+            'equipe': () => this.handleEquipe(),
+            // Subcategorias — Atuação
+            'projetos': () => this.handleProjetos(),
+            'capacitacao': () => this.handleCapacitacao(),
+            'eventos': () => this.handleEventos(),
+            'parcerias': () => this.handleParcerias(),
+            // Subcategorias — Como ajudar
+            'doacao': () => this.handleDoacao(),
+            'voluntariado': () => this.handleVoluntariado(),
+            'parceria_empresa': () => this.handleParceriaEmpresa(),
+            // Subcategorias — Contato
+            'contato_whatsapp': () => this.handleContatoWhatsApp(),
+            'contato_form': () => this.handleContatoForm(),
+            'contato_redes': () => this.handleContatoRedes(),
+            // Navegação
+            'nav_paginas': () => this.handleNavPaginas(),
+            'nav_busca': () => this.handleNavBusca(),
+            'nav_noticias': () => this.handleNavNoticias(),
+            // Utilitários
+            'back': () => this.backToMenu(),
         };
+        (map[action] || (() => this.backToMenu()))();
+    }
 
-        const info = therapyInfo[type];
-        this.addMessage([`<strong>${info.title}</strong> ✨`, info.description, 'Gostaria de agendar uma consulta?']);
+    // ══════════════════════════════════════════════════════════
+    //  MENU INICIAL
+    // ══════════════════════════════════════════════════════════
+    showInitialOptions() {
+        this.showOptions([
+            { text: 'O que é a Fundação Fênix 193?', icon: 'fas fa-landmark', action: 'sobre' },
+            { text: 'Projetos e atuação', icon: 'fas fa-clipboard-list', action: 'atuacao' },
+            { text: 'Como posso colaborar?', icon: 'fas fa-hand-holding-heart', action: 'como_ajudar' },
+            { text: 'Transparência e documentos', icon: 'fas fa-file-shield', action: 'transparencia' },
+            { text: 'Falar com a Fundação', icon: 'fas fa-comments', action: 'contato' },
+            { text: 'Navegar no site', icon: 'fas fa-map', action: 'navegacao' },
+        ]);
+    }
 
+    // ══════════════════════════════════════════════════════════
+    //  SOBRE A FUNDAÇÃO
+    // ══════════════════════════════════════════════════════════
+    handleSobre() {
+        this.addMessage([
+            '<strong>Sobre a Fundação Fênix 193 🔥</strong>',
+            'Somos uma organização sem fins lucrativos que apoia o <strong>Corpo de Bombeiros Militar de Sergipe (CBMSE)</strong> e as ações de <strong>Proteção e Defesa Civil</strong>.',
+            'Nosso trabalho fortalece a segurança da sociedade sergipana, valorizando quem arrisca a vida para salvar vidas.',
+            'Sobre qual aspecto você quer saber mais?'
+        ]);
         setTimeout(() => {
             this.showOptions([
-                { text: 'Sim, quero agendar', icon: 'fas fa-calendar-check', action: 'schedule' },
-                { text: 'Ver outras opções', icon: 'fas fa-list', action: 'therapy' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+                { text: 'Quem somos', icon: 'fas fa-users', action: 'quem_somos' },
+                { text: 'Nossa história', icon: 'fas fa-book-open', action: 'historia' },
+                { text: 'Missão e valores', icon: 'fas fa-bullseye', action: 'missao' },
+                { text: 'Nossa equipe', icon: 'fas fa-id-badge', action: 'equipe' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
         }, 1000);
     }
 
-    handleAttendance() {
-        this.addMessage(['Ofereço duas formas de atendimento: 🏥']);
-        setTimeout(() => {
-            this.showOptions([
-                { text: 'Presencial', icon: 'fas fa-home', action: 'attendance_presential' },
-                { text: 'Online', icon: 'fas fa-laptop-house', action: 'attendance_online' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
-            ]);
-        }, 800);
+    handleQuemSomos() {
+        this.addMessage([
+            '<strong>Quem Somos 🏛️</strong>',
+            'A Fundação Fênix 193 é uma entidade privada sem fins lucrativos, com sede em Aracaju/SE, criada para fortalecer as atividades do CBMSE e da Defesa Civil.',
+            'Atuamos captando recursos, promovendo capacitações, realizando eventos e firmando parcerias estratégicas em prol da segurança pública sergipana.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ver seção Quem Somos', 'fas fa-arrow-right', this._href('index.html#quem-somos')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
-    handleAttendanceType(type) {
-        if (type === 'presential') {
-            this.addMessage([
-                '<strong>Atendimento Presencial</strong> 🏢',
-                'Sessões realizadas em consultório físico, em espaço acolhedor e privativo.',
-                '<strong>Endereço:</strong><br>Av. Ministro Geraldo Barreto Sobral, 2131<br>Centro Médico Jardins, Sala 1212<br>Jardins — Aracaju / SE'
-            ]);
-            setTimeout(() => {
-                const linkDiv = document.createElement('div');
-                linkDiv.className = 'chatbot-message bot-message';
-                linkDiv.innerHTML = `
-<div class="message-avatar"><img src="../assets/img/luminia.png" alt="Bot"></div>
-<div class="message-content">
-    <p><a href="https://maps.app.goo.gl/384cj33NEXNZiuTV8" target="_blank" class="chatbot-link">
-            <i class="fas fa-map-marker-alt"></i> Ver no Mapa
-        </a></p>
-</div>
-`;
-                this.body.appendChild(linkDiv);
-                this.scrollToBottom();
-            }, 500);
-        } else {
-            this.addMessage([
-                '<strong>Atendimento Online</strong> 💻',
-                'Sessões por videochamada com comodidade e flexibilidade.',
-                'Plataformas: WhatsApp, Google Meet ou Jitsi — com total privacidade.'
-            ]);
-        }
+    handleHistoria() {
+        this.addMessage([
+            '<strong>Nossa História 📖</strong>',
+            'A Fundação Fênix 193 nasceu da necessidade de criar um elo sólido entre a sociedade civil e o Corpo de Bombeiros Militar de Sergipe.',
+            'Ao longo dos anos, construímos uma trajetória de compromisso com a segurança, a solidariedade e o desenvolvimento institucional.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ler nossa história completa', 'fas fa-book-open', this._href('pages/nossa-historia.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
 
+    handleMissao() {
+        this.addMessage([
+            '<strong>Missão, Visão e Valores 🎯</strong>',
+            '<strong>Missão:</strong> Apoiar o CBMSE e a Defesa Civil, fortalecendo a proteção da sociedade sergipana.',
+            '<strong>Visão:</strong> Ser referência no apoio às instituições de segurança pública em Sergipe.',
+            '<strong>Valores:</strong> Transparência, Solidariedade, Comprometimento, Inovação e Respeito à vida.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ver missão e valores completos', 'fas fa-bullseye', this._href('pages/missao-valores.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
+
+    handleEquipe() {
+        this.addMessage([
+            '<strong>Nossa Equipe 👥</strong>',
+            'A Fundação é gerida por um time dedicado de diretores, colaboradores e voluntários comprometidos com a missão institucional.',
+            'Conheça os membros que fazem a Fênix 193 acontecer:',
+        ]);
+        setTimeout(() => this.addLinkMessage('Conhecer a equipe', 'fas fa-users', this._href('pages/equipe.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    //  ATUAÇÃO
+    // ══════════════════════════════════════════════════════════
+    handleAtuacao() {
+        this.addMessage([
+            '<strong>Projetos e Atuação 🚒</strong>',
+            'A Fundação Fênix 193 desenvolve diversas frentes de atuação para fortalecer o CBMSE e a Defesa Civil.',
+            'O que você quer explorar?'
+        ]);
         setTimeout(() => {
-            this.addMessage('Gostaria de agendar uma consulta? 📅');
             this.showOptions([
-                { text: 'Sim, quero agendar', icon: 'fas fa-calendar-check', action: 'schedule' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+                { text: 'Projetos em andamento', icon: 'fas fa-clipboard-list', action: 'projetos' },
+                { text: 'Capacitação e treinamentos', icon: 'fas fa-graduation-cap', action: 'capacitacao' },
+                { text: 'Eventos', icon: 'fas fa-calendar-days', action: 'eventos' },
+                { text: 'Parcerias', icon: 'fas fa-handshake', action: 'parcerias' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 900);
+    }
+
+    handleProjetos() {
+        this.addMessage([
+            '<strong>Projetos 📋</strong>',
+            'A Fundação desenvolve projetos voltados ao aparelhamento do CBMSE, à prevenção de acidentes e à promoção da cultura de segurança em Sergipe.',
+            'Cada projeto é pensado para gerar impacto real na proteção da população sergipana.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ver todos os projetos', 'fas fa-clipboard-list', this._href('pages/projetos.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
+
+    handleCapacitacao() {
+        this.addMessage([
+            '<strong>Capacitação e Treinamentos 🎓</strong>',
+            'Promovemos cursos, oficinas e treinamentos voltados tanto para bombeiros militares quanto para a população civil.',
+            'As ações de capacitação incluem primeiros socorros, combate a incêndio, salvamento e proteção em situações de risco.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ver programas de capacitação', 'fas fa-graduation-cap', this._href('pages/capacitacao.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
+
+    handleEventos() {
+        this.addMessage([
+            '<strong>Eventos 📅</strong>',
+            'A Fundação Fênix 193 organiza e apoia eventos de sensibilização, arrecadação e integração com a sociedade sergipana.',
+            'Fique por dentro dos próximos eventos e participe!',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ver agenda de eventos', 'fas fa-calendar-days', this._href('pages/eventos.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
+
+    handleParcerias() {
+        this.addMessage([
+            '<strong>Parcerias Institucionais 🤝</strong>',
+            'Contamos com parceiros estratégicos — empresas, entidades e órgãos públicos — que acreditam na missão da Fundação.',
+            'Juntos, ampliamos nosso impacto e alcançamos mais pessoas em Sergipe.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Conhecer nossos parceiros', 'fas fa-handshake', this._href('pages/parcerias.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1500);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    //  COMO AJUDAR
+    // ══════════════════════════════════════════════════════════
+    handleComoAjudar() {
+        this.addMessage([
+            '<strong>Como Colaborar com a Fundação 💛</strong>',
+            'Existem diversas formas de apoiar a missão da Fênix 193 e contribuir com a segurança de Sergipe.',
+            'Como você gostaria de ajudar?'
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Fazer uma doação', icon: 'fas fa-donate', action: 'doacao' },
+                { text: 'Ser voluntário(a)', icon: 'fas fa-hands-helping', action: 'voluntariado' },
+                { text: 'Parceria empresarial', icon: 'fas fa-building', action: 'parceria_empresa' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 900);
+    }
+
+    handleDoacao() {
+        this.addMessage([
+            '<strong>Faça uma Doação ❤️‍🔥</strong>',
+            'Sua doação financia projetos, equipamentos e ações que protegem vidas em Sergipe.',
+            'Todo valor é bem-vindo e aplicado diretamente nas atividades da Fundação, com total transparência.',
+            'Para realizar sua doação, entre em contato conosco pelo WhatsApp ou pelo formulário de contato.',
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Contato por WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
+                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 1000);
+    }
+
+    handleVoluntariado() {
+        this.addMessage([
+            '<strong>Seja Voluntário(a) 🙌</strong>',
+            'Voluntários são fundamentais para ampliar o impacto da Fundação Fênix 193.',
+            'Você pode colaborar em eventos, ações comunitárias, comunicação, captação de recursos e muito mais.',
+            'Para se inscrever como voluntário(a), fale conosco!',
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Contato por WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
+                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 1000);
+    }
+
+    handleParceriaEmpresa() {
+        this.addMessage([
+            '<strong>Parceria Empresarial 🏢</strong>',
+            'Empresas que apoiam a Fundação Fênix 193 ganham visibilidade, reforçam seu ESG e contribuem diretamente com a segurança pública de Sergipe.',
+            'Oferecemos diferentes modalidades de parceria adaptadas ao perfil e porte de cada empresa.',
+            'Quer saber mais? Entre em contato com nossa equipe!',
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Contato por WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
+                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
+                { text: 'Ver parcerias atuais', icon: 'fas fa-handshake', action: 'parcerias' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 1000);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    //  TRANSPARÊNCIA
+    // ══════════════════════════════════════════════════════════
+    handleTransparencia() {
+        this.addMessage([
+            '<strong>Transparência e Prestação de Contas 📂</strong>',
+            'A Fundação Fênix 193 é comprometida com a total transparência na gestão dos recursos públicos e privados.',
+            'Você pode acessar relatórios, demonstrativos financeiros, atas e documentos institucionais na nossa página de Transparência.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Acessar página de Transparência', 'fas fa-file-shield', this._href('pages/transparencia.html')), 500);
+        setTimeout(() => {
+            this.addMessage('Não encontrou o documento que precisa? Fale diretamente conosco.');
+            this.showOptions([
+                { text: 'Falar pelo WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
+                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
         }, 1500);
     }
 
+    // ══════════════════════════════════════════════════════════
+    //  CONTATO
+    // ══════════════════════════════════════════════════════════
+    handleContato() {
+        this.addMessage([
+            '<strong>Fale com a Fundação Fênix 193 📬</strong>',
+            'Escolha a forma que preferir para entrar em contato com nossa equipe:',
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
+                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
+                { text: 'Redes sociais', icon: 'fas fa-share-nodes', action: 'contato_redes' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 800);
+    }
+
+    handleContatoWhatsApp() {
+        this.addMessage('Ótimo! Vou abrir o WhatsApp da Fundação para você. 📲');
+        setTimeout(() => {
+            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579998556740', true);
+        }, 400);
+        setTimeout(() => {
+            this.addMessage('Nosso time responde em horário comercial. 🕘');
+            this.showBackToMenuOptions();
+        }, 1200);
+    }
+
+    handleContatoForm() {
+        this.addMessage('Você pode enviar uma mensagem diretamente pelo formulário na seção de Contato da página inicial.');
+        setTimeout(() => this.addLinkMessage('Ir para o Formulário de Contato', 'fas fa-paper-plane', this._href('index.html#contato')), 400);
+        setTimeout(() => this.showBackToMenuOptions(), 1200);
+    }
+
+    handleContatoRedes() {
+        this.addMessage([
+            '<strong>Redes Sociais 📣</strong>',
+            'Siga a Fundação Fênix 193 nas redes sociais e fique por dentro de tudo que acontece:',
+        ]);
+        setTimeout(() => {
+            this.addLinkMessage('Instagram', 'fab fa-instagram', 'https://instagram.com/fundacaofenix193', true);
+        }, 400);
+        setTimeout(() => {
+            this.addLinkMessage('Facebook', 'fab fa-facebook', 'https://facebook.com/fundacaofenix193', true);
+        }, 700);
+        setTimeout(() => this.showBackToMenuOptions(), 1400);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    //  NAVEGAÇÃO NO SITE
+    // ══════════════════════════════════════════════════════════
+    handleNavegacao() {
+        this.addMessage([
+            '<strong>Navegar no site 🗺️</strong>',
+            'Posso te levar rapidinho a qualquer seção. O que você quer acessar?'
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Páginas do site', icon: 'fas fa-sitemap', action: 'nav_paginas' },
+                { text: 'Usar a busca', icon: 'fas fa-magnifying-glass', action: 'nav_busca' },
+                { text: 'Últimas notícias', icon: 'fas fa-newspaper', action: 'nav_noticias' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 800);
+    }
+
+    handleNavPaginas() {
+        this.addMessage('Aqui estão as principais páginas do site:');
+        const pages = [
+            { label: 'Início', icon: 'fas fa-house', path: 'index.html' },
+            { label: 'Nossa História', icon: 'fas fa-book-open', path: 'pages/nossa-historia.html' },
+            { label: 'Missão e Valores', icon: 'fas fa-bullseye', path: 'pages/missao-valores.html' },
+            { label: 'Equipe', icon: 'fas fa-users', path: 'pages/equipe.html' },
+            { label: 'Projetos', icon: 'fas fa-clipboard-list', path: 'pages/projetos.html' },
+            { label: 'Capacitação', icon: 'fas fa-graduation-cap', path: 'pages/capacitacao.html' },
+            { label: 'Eventos', icon: 'fas fa-calendar-days', path: 'pages/eventos.html' },
+            { label: 'Parcerias', icon: 'fas fa-handshake', path: 'pages/parcerias.html' },
+            { label: 'Transparência', icon: 'fas fa-file-shield', path: 'pages/transparencia.html' },
+            { label: 'Notícias', icon: 'fas fa-newspaper', path: 'pages/noticias.html' },
+        ];
+        pages.forEach((p, i) => {
+            setTimeout(() => this.addLinkMessage(p.label, p.icon, this._href(p.path)), 300 + i * 120);
+        });
+        setTimeout(() => this.showBackToMenuOptions(), 300 + pages.length * 120 + 400);
+    }
+
+    handleNavBusca() {
+        this.addMessage([
+            '<strong>Barra de Busca 🔍</strong>',
+            'No topo da página inicial há uma barra de busca onde você pode pesquisar por notícias, projetos e documentos.',
+            'Basta digitar o que procura e os resultados aparecerão automaticamente!',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ir para a busca na página inicial', 'fas fa-magnifying-glass', this._href('index.html')), 500);
+        setTimeout(() => this.showBackToMenuOptions(), 1200);
+    }
+
+    handleNavNoticias() {
+        this.addMessage([
+            '<strong>Notícias 📰</strong>',
+            'Acompanhe as últimas novidades, conquistas e ações da Fundação Fênix 193 em nossa página de notícias.',
+        ]);
+        setTimeout(() => this.addLinkMessage('Ver todas as notícias', 'fas fa-newspaper', this._href('pages/noticias.html')), 400);
+        setTimeout(() => this.showBackToMenuOptions(), 1200);
+    }
+
+    // ══════════════════════════════════════════════════════════
+    //  UTILITÁRIOS
+    // ══════════════════════════════════════════════════════════
     backToMenu() {
         this.addMessage('Voltando ao menu principal... 🏠');
         setTimeout(() => {
             this.addMessage('Como posso ajudar você? 😊');
             this.showInitialOptions();
-        }, 800);
+        }, 700);
     }
 
     showBackToMenuOptions() {
         this.showOptions([
-            { text: 'Fazer outra pergunta', icon: 'fas fa-comments', action: 'back' },
+            { text: 'Outra dúvida', icon: 'fas fa-comments', action: 'back' },
             {
-                text: 'Finalizar conversa',
+                text: 'Encerrar',
                 icon: 'fas fa-check-circle',
                 action: () => {
-                    this.addMessage('Finalizar conversa', true);
+                    this.addMessage('Encerrar conversa', true);
                     this.clearOptions();
                     const typing = this.showTypingIndicator();
                     setTimeout(() => {
                         this.removeTypingIndicator(typing);
-                        this.addMessage(['Foi um prazer conversar com você! 🤎', 'Até breve! 👋']);
-                        setTimeout(() => this.closeChat(), 2000);
+                        this.addMessage(['Fico feliz em ter ajudado! 🔥', 'Qualquer dúvida, é só abrir o chat novamente. Até mais! 👋']);
+                        setTimeout(() => this.closeChat(), 2500);
                     }, 1000);
                 }
             }
@@ -722,7 +949,7 @@ class Chatbot {
 // ===== INICIALIZAR CHATBOT =====
 document.addEventListener('DOMContentLoaded', () => {
     new Chatbot();
-    console.log('🤖 FrançIA inicializada com sucesso!');
+    console.log('🤖 LuminIA — Guia de Ajuda da Fundação Fênix 193 inicializada!');
 });
 
 /* =============================================================
