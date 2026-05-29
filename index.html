@@ -815,10 +815,42 @@
         </div>
     </div>
 
-    <!-- Botão Voltar ao Topo -->
-    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <!-- ===== CHATBOT FLUTUANTE ===== -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir chat">
+            <i class="fas fa-comments"></i>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="assets/img/luminia.png" alt="LuminIA">
+                </div>
+                <div class="chatbot-info">
+                    <h4>LuminIA</h4>
+                    <p class="chatbot-status">
+                        <span class="status-dot"></span>Online
+                    </p>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot-message">
+                    <div class="message-avatar">
+                        <img src="assets/img/luminia.png" alt="Bot">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou a LuminIA, assistente virtual da Fundação Fênix 193. Como posso ajudar você hoje?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer" id="chatbotFooter">
+                <div class="chatbot-options" id="chatbotOptions"></div>
+            </div>
+        </div>
+    </div>
 
     <script>
         /* ── Carrossel de Apoiadores: animação condicional ──

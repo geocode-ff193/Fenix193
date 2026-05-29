@@ -392,20 +392,338 @@ document.addEventListener('keydown', (e) => {
 })();
 
 /* =============================================================
-   9. BOTÃO "VOLTAR AO TOPO"
+   9. CHATBOT FLUTUANTE
    ============================================================= */
-(function initBackToTop() {
-    const btn = document.getElementById('btn-top');
-    if (!btn) return;
 
-    window.addEventListener('scroll', () => {
-        btn.classList.toggle('visible', window.scrollY > 380);
-    }, { passive: true });
+class Chatbot {
+    constructor() {
+        this.toggle = document.getElementById('chatbotToggle');
+        this.box = document.getElementById('chatbotBox');
+        this.close = document.getElementById('chatbotClose');
+        this.body = document.getElementById('chatbotBody');
+        this.options = document.getElementById('chatbotOptions');
+        this.badge = document.querySelector('.chatbot-badge');
 
-    btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})();
+        if (!this.toggle || !this.box || !this.close || !this.body || !this.options) {
+            console.error('Elementos do chatbot não encontrados');
+            return;
+        }
+
+        this.conversationState = 'initial';
+        this.init();
+    }
+
+    init() {
+        this.toggle.addEventListener('click', () => this.toggleChat());
+        this.close.addEventListener('click', () => this.closeChat());
+        this.showInitialOptions();
+    }
+
+    toggleChat() {
+        const isActive = this.box.classList.toggle('active');
+        this.toggle.classList.toggle('active');
+        if (isActive) {
+            this.badge.style.display = 'none';
+            setTimeout(() => this.scrollToBottom(), 300);
+        }
+    }
+
+    closeChat() {
+        this.box.classList.remove('active');
+        this.toggle.classList.remove('active');
+    }
+
+    scrollToBottom() {
+        this.body.scrollTop = this.body.scrollHeight;
+    }
+
+    addMessage(text, isUser = false, delay = 0) {
+        setTimeout(() => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chatbot-message ${isUser ? 'user-message' : 'bot-message'}`;
+
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = isUser
+                ? '<i class="fas fa-user"></i>'
+                : '<img src="../assets/img/luminia.png" alt="Bot">';
+
+            const content = document.createElement('div');
+            content.className = 'message-content';
+
+            if (Array.isArray(text)) {
+                text.forEach(paragraph => {
+                    const p = document.createElement('p');
+                    p.innerHTML = paragraph;
+                    content.appendChild(p);
+                });
+            } else {
+                const p = document.createElement('p');
+                p.innerHTML = text;
+                content.appendChild(p);
+            }
+
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            this.body.appendChild(messageDiv);
+            this.scrollToBottom();
+        }, delay);
+    }
+
+    showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chatbot-message bot-message typing-message';
+        typingDiv.innerHTML = `
+<div class="message-avatar">
+    <img src="../assets/img/luminia.png" alt="Bot">
+</div>
+<div class="message-content">
+    <div class="typing-indicator">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+    </div>
+</div>
+`;
+        this.body.appendChild(typingDiv);
+        this.scrollToBottom();
+        return typingDiv;
+    }
+
+    removeTypingIndicator(indicator) {
+        if (indicator && indicator.parentNode) {
+            indicator.parentNode.removeChild(indicator);
+        }
+    }
+
+    clearOptions() {
+        this.options.innerHTML = '';
+    }
+
+    showOptions(optionsArray) {
+        this.clearOptions();
+        optionsArray.forEach(option => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerHTML = `<i class="${option.icon}"></i> ${option.text}`;
+
+            if (typeof option.action === 'function') {
+                btn.onclick = option.action;
+            } else {
+                btn.onclick = () => this.handleOption(option);
+            }
+
+            this.options.appendChild(btn);
+        });
+    }
+
+    showInitialOptions() {
+        this.showOptions([
+            { text: 'Agendar uma consulta', icon: 'fas fa-ban', action: 'schedule' },
+            { text: 'Tipos de terapia', icon: 'fas fa-ban', action: 'therapy' },
+            { text: 'Formas de atendimento', icon: 'fas fa-ban', action: 'attendance' },
+            { text: 'Entrar em contato', icon: 'fas fa-ban', action: 'contact' }
+        ]);
+    }
+
+    handleOption(option) {
+        this.addMessage(option.text, true);
+        this.clearOptions();
+        const typing = this.showTypingIndicator();
+        setTimeout(() => {
+            this.removeTypingIndicator(typing);
+            this.processAction(option.action);
+        }, 1000 + Math.random() * 500);
+    }
+
+    processAction(action) {
+        switch (action) {
+            case 'schedule': this.handleSchedule(); break;
+            case 'therapy': this.handleTherapy(); break;
+            case 'attendance': this.handleAttendance(); break;
+            case 'contact': this.handleContact(); break;
+            case 'therapy_individual': this.handleTherapyType('individual'); break;
+            case 'therapy_couple': this.handleTherapyType('couple'); break;
+            case 'therapy_family': this.handleTherapyType('family'); break;
+            case 'therapy_group': this.handleTherapyType('group'); break;
+            case 'attendance_presential': this.handleAttendanceType('presential'); break;
+            case 'attendance_online': this.handleAttendanceType('online'); break;
+            case 'back': this.backToMenu(); break;
+            default: this.showInitialOptions();
+        }
+    }
+
+    handleSchedule() {
+        this.addMessage(['Ótimo! 📅', 'Você pode agendar sua consulta de forma rápida através da minha agenda online.']);
+
+        setTimeout(() => {
+            const linkDiv = document.createElement('div');
+            linkDiv.className = 'chatbot-message bot-message';
+            linkDiv.innerHTML = `
+<div class="message-avatar">
+    <img src="../assets/img/luminia.png" alt="Bot">
+</div>
+<div class="message-content">
+    <p><a href="pages/portal.html?uid=3XxQtmtjLhYEmhm70biZuZEqO0P2" target="_blank" class="chatbot-link">
+            <i class="fas fa-calendar-check"></i> Acessar Agendamento
+        </a></p>
+</div>
+`;
+            this.body.appendChild(linkDiv);
+            this.scrollToBottom();
+        }, 500);
+
+        setTimeout(() => {
+            this.addMessage('Posso ajudar com mais alguma coisa? 😊');
+            this.showBackToMenuOptions();
+        }, 1000);
+    }
+
+    handleTherapy() {
+        this.addMessage(['Ofereço diferentes tipos de terapia para atender suas necessidades: 🤎']);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Individual', icon: 'fas fa-user', action: 'therapy_individual' },
+                { text: 'Casal', icon: 'fas fa-user-group', action: 'therapy_couple' },
+                { text: 'Família', icon: 'fas fa-people-roof', action: 'therapy_family' },
+                { text: 'Grupo', icon: 'fas fa-people-group', action: 'therapy_group' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+            ]);
+        }, 800);
+    }
+
+    handleContact() {
+        this.addMessage(['Entre em contato pelo WhatsApp para tirar suas dúvidas ou agendar uma consulta! 📱']);
+        setTimeout(() => {
+            this.showOptions([
+                {
+                    text: 'Contato por WhatsApp',
+                    icon: 'fab fa-whatsapp',
+                    action: () => {
+                        this.addMessage('Entrar em contato por WhatsApp', true);
+                        this.clearOptions();
+                        const typing = this.showTypingIndicator();
+                        setTimeout(() => {
+                            this.removeTypingIndicator(typing);
+                            this.addMessage('Vou te redirecionar para o WhatsApp! 📱');
+                            setTimeout(() => {
+                                window.open('https://wa.me/5579998556740', '_blank');
+                                this.addMessage('Posso ajudar com mais alguma coisa? 😊');
+                                this.showBackToMenuOptions();
+                            }, 800);
+                        }, 1000);
+                    }
+                },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+            ]);
+        }, 800);
+    }
+
+    handleTherapyType(type) {
+        const therapyInfo = {
+            individual: {
+                title: 'Terapia Individual', description: 'Sessões individuais focadas em questões pessoais, emocionais e comportamentais em ambiente seguro e confidencial.'
+            },
+            couple: { title: 'Terapia de Casal', description: 'Melhora a comunicação e resolve conflitos para fortalecer o relacionamento.' },
+            family: { title: 'Terapia de Família', description: 'Envolve membros da família para melhorar dinâmica familiar e fortalecer relacionamentos.' },
+            group: { title: 'Terapia em Grupo', description: 'Pequenos grupos com objetivos em comum se reúnem para suporte mútuo e crescimento coletivo.' }
+        };
+
+        const info = therapyInfo[type];
+        this.addMessage([`<strong>${info.title}</strong> ✨`, info.description, 'Gostaria de agendar uma consulta?']);
+
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Sim, quero agendar', icon: 'fas fa-calendar-check', action: 'schedule' },
+                { text: 'Ver outras opções', icon: 'fas fa-list', action: 'therapy' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+            ]);
+        }, 1000);
+    }
+
+    handleAttendance() {
+        this.addMessage(['Ofereço duas formas de atendimento: 🏥']);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Presencial', icon: 'fas fa-home', action: 'attendance_presential' },
+                { text: 'Online', icon: 'fas fa-laptop-house', action: 'attendance_online' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+            ]);
+        }, 800);
+    }
+
+    handleAttendanceType(type) {
+        if (type === 'presential') {
+            this.addMessage([
+                '<strong>Atendimento Presencial</strong> 🏢',
+                'Sessões realizadas em consultório físico, em espaço acolhedor e privativo.',
+                '<strong>Endereço:</strong><br>Av. Ministro Geraldo Barreto Sobral, 2131<br>Centro Médico Jardins, Sala 1212<br>Jardins — Aracaju / SE'
+            ]);
+            setTimeout(() => {
+                const linkDiv = document.createElement('div');
+                linkDiv.className = 'chatbot-message bot-message';
+                linkDiv.innerHTML = `
+<div class="message-avatar"><img src="../assets/img/luminia.png" alt="Bot"></div>
+<div class="message-content">
+    <p><a href="https://maps.app.goo.gl/384cj33NEXNZiuTV8" target="_blank" class="chatbot-link">
+            <i class="fas fa-map-marker-alt"></i> Ver no Mapa
+        </a></p>
+</div>
+`;
+                this.body.appendChild(linkDiv);
+                this.scrollToBottom();
+            }, 500);
+        } else {
+            this.addMessage([
+                '<strong>Atendimento Online</strong> 💻',
+                'Sessões por videochamada com comodidade e flexibilidade.',
+                'Plataformas: WhatsApp, Google Meet ou Jitsi — com total privacidade.'
+            ]);
+        }
+
+        setTimeout(() => {
+            this.addMessage('Gostaria de agendar uma consulta? 📅');
+            this.showOptions([
+                { text: 'Sim, quero agendar', icon: 'fas fa-calendar-check', action: 'schedule' },
+                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' }
+            ]);
+        }, 1500);
+    }
+
+    backToMenu() {
+        this.addMessage('Voltando ao menu principal... 🏠');
+        setTimeout(() => {
+            this.addMessage('Como posso ajudar você? 😊');
+            this.showInitialOptions();
+        }, 800);
+    }
+
+    showBackToMenuOptions() {
+        this.showOptions([
+            { text: 'Fazer outra pergunta', icon: 'fas fa-comments', action: 'back' },
+            {
+                text: 'Finalizar conversa',
+                icon: 'fas fa-check-circle',
+                action: () => {
+                    this.addMessage('Finalizar conversa', true);
+                    this.clearOptions();
+                    const typing = this.showTypingIndicator();
+                    setTimeout(() => {
+                        this.removeTypingIndicator(typing);
+                        this.addMessage(['Foi um prazer conversar com você! 🤎', 'Até breve! 👋']);
+                        setTimeout(() => this.closeChat(), 2000);
+                    }, 1000);
+                }
+            }
+        ]);
+    }
+}
+
+// ===== INICIALIZAR CHATBOT =====
+document.addEventListener('DOMContentLoaded', () => {
+    new Chatbot();
+    console.log('🤖 FrançIA inicializada com sucesso!');
+});
 
 /* =============================================================
    10. ANO DINÂMICO NO RODAPÉ
