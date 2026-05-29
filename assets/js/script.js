@@ -589,12 +589,11 @@ class Chatbot {
     // ══════════════════════════════════════════════════════════
     showInitialOptions() {
         this.showOptions([
-            { text: 'O que é a Fundação Fênix 193?', icon: 'fas fa-landmark', action: 'sobre' },
+            { text: 'Sobre a Fundação', icon: 'fas fa-landmark', action: 'sobre' },
             { text: 'Projetos e atuação', icon: 'fas fa-clipboard-list', action: 'atuacao' },
-            { text: 'Como posso colaborar?', icon: 'fas fa-hand-holding-heart', action: 'como_ajudar' },
-            { text: 'Transparência e documentos', icon: 'fas fa-file-shield', action: 'transparencia' },
+            { text: 'Como colaborar', icon: 'fas fa-hand-holding-heart', action: 'como_ajudar' },
+            { text: 'Transparência', icon: 'fas fa-file-shield', action: 'transparencia' },
             { text: 'Falar com a Fundação', icon: 'fas fa-comments', action: 'contato' },
-            { text: 'Navegar no site', icon: 'fas fa-map', action: 'navegacao' },
         ]);
     }
 
@@ -605,18 +604,16 @@ class Chatbot {
         this.addMessage([
             '<strong>Sobre a Fundação Fênix 193 🔥</strong>',
             'Somos uma organização sem fins lucrativos que apoia o <strong>Corpo de Bombeiros Militar de Sergipe (CBMSE)</strong> e as ações de <strong>Proteção e Defesa Civil</strong>.',
-            'Nosso trabalho fortalece a segurança da sociedade sergipana, valorizando quem arrisca a vida para salvar vidas.',
-            'Sobre qual aspecto você quer saber mais?'
+            'O que você quer saber?'
         ]);
         setTimeout(() => {
             this.showOptions([
                 { text: 'Quem somos', icon: 'fas fa-users', action: 'quem_somos' },
-                { text: 'Nossa história', icon: 'fas fa-book-open', action: 'historia' },
                 { text: 'Missão e valores', icon: 'fas fa-bullseye', action: 'missao' },
                 { text: 'Nossa equipe', icon: 'fas fa-id-badge', action: 'equipe' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
-        }, 1000);
+        }, 900);
     }
 
     handleQuemSomos() {
@@ -666,18 +663,17 @@ class Chatbot {
     handleAtuacao() {
         this.addMessage([
             '<strong>Projetos e Atuação 🚒</strong>',
-            'A Fundação Fênix 193 desenvolve diversas frentes de atuação para fortalecer o CBMSE e a Defesa Civil.',
-            'O que você quer explorar?'
+            'A Fênix 193 atua em projetos, capacitações, eventos e parcerias para fortalecer o CBMSE e a Defesa Civil.',
         ]);
         setTimeout(() => {
             this.showOptions([
-                { text: 'Projetos em andamento', icon: 'fas fa-clipboard-list', action: 'projetos' },
-                { text: 'Capacitação e treinamentos', icon: 'fas fa-graduation-cap', action: 'capacitacao' },
+                { text: 'Projetos', icon: 'fas fa-clipboard-list', action: 'projetos' },
+                { text: 'Capacitação', icon: 'fas fa-graduation-cap', action: 'capacitacao' },
                 { text: 'Eventos', icon: 'fas fa-calendar-days', action: 'eventos' },
                 { text: 'Parcerias', icon: 'fas fa-handshake', action: 'parcerias' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
-        }, 900);
+        }, 800);
     }
 
     handleProjetos() {
@@ -725,67 +721,51 @@ class Chatbot {
     // ══════════════════════════════════════════════════════════
     handleComoAjudar() {
         this.addMessage([
-            '<strong>Como Colaborar com a Fundação 💛</strong>',
-            'Existem diversas formas de apoiar a missão da Fênix 193 e contribuir com a segurança de Sergipe.',
-            'Como você gostaria de ajudar?'
+            '<strong>Como Colaborar 💛</strong>',
+            'Você pode apoiar a Fênix 193 de diferentes formas:',
         ]);
         setTimeout(() => {
             this.showOptions([
                 { text: 'Fazer uma doação', icon: 'fas fa-donate', action: 'doacao' },
-                { text: 'Ser voluntário(a)', icon: 'fas fa-hands-helping', action: 'voluntariado' },
+                { text: 'Voluntariado', icon: 'fas fa-hands-helping', action: 'voluntariado' },
                 { text: 'Parceria empresarial', icon: 'fas fa-building', action: 'parceria_empresa' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
-        }, 900);
+        }, 800);
     }
 
     handleDoacao() {
         this.addMessage([
             '<strong>Faça uma Doação ❤️‍🔥</strong>',
-            'Sua doação financia projetos, equipamentos e ações que protegem vidas em Sergipe.',
-            'Todo valor é bem-vindo e aplicado diretamente nas atividades da Fundação, com total transparência.',
-            'Para realizar sua doação, entre em contato conosco pelo WhatsApp ou pelo formulário de contato.',
+            'Sua doação financia projetos e equipamentos que protegem vidas em Sergipe, com total transparência.',
+            'Entre em contato para saber como contribuir:',
         ]);
-        setTimeout(() => {
-            this.showOptions([
-                { text: 'Contato por WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
-                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
-        }, 1000);
+        setTimeout(() => this._contatoRapido(), 800);
     }
 
     handleVoluntariado() {
         this.addMessage([
-            '<strong>Seja Voluntário(a) 🙌</strong>',
-            'Voluntários são fundamentais para ampliar o impacto da Fundação Fênix 193.',
-            'Você pode colaborar em eventos, ações comunitárias, comunicação, captação de recursos e muito mais.',
-            'Para se inscrever como voluntário(a), fale conosco!',
+            '<strong>Voluntariado 🙌</strong>',
+            'Você pode colaborar em eventos, ações comunitárias, comunicação e captação de recursos.',
         ]);
-        setTimeout(() => {
-            this.showOptions([
-                { text: 'Contato por WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
-                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
-        }, 1000);
+        setTimeout(() => this._contatoRapido(), 800);
     }
 
     handleParceriaEmpresa() {
         this.addMessage([
             '<strong>Parceria Empresarial 🏢</strong>',
-            'Empresas que apoiam a Fundação Fênix 193 ganham visibilidade, reforçam seu ESG e contribuem diretamente com a segurança pública de Sergipe.',
-            'Oferecemos diferentes modalidades de parceria adaptadas ao perfil e porte de cada empresa.',
-            'Quer saber mais? Entre em contato com nossa equipe!',
+            'Empresas parceiras reforçam seu ESG e contribuem diretamente com a segurança pública sergipana. Fale conosco:',
         ]);
-        setTimeout(() => {
-            this.showOptions([
-                { text: 'Contato por WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
-                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
-                { text: 'Ver parcerias atuais', icon: 'fas fa-handshake', action: 'parcerias' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
-        }, 1000);
+        setTimeout(() => this._contatoRapido(), 800);
+    }
+
+    // ── Atalho: opções de contato rápido ─────────────────────
+    _contatoRapido() {
+        this.showOptions([
+            { text: 'WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
+            { text: 'Formulário', icon: 'fas fa-envelope', action: 'contato_form' },
+            { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+        ]);
     }
 
     // ══════════════════════════════════════════════════════════
@@ -793,37 +773,29 @@ class Chatbot {
     // ══════════════════════════════════════════════════════════
     handleTransparencia() {
         this.addMessage([
-            '<strong>Transparência e Prestação de Contas 📂</strong>',
-            'A Fundação Fênix 193 é comprometida com a total transparência na gestão dos recursos públicos e privados.',
-            'Você pode acessar relatórios, demonstrativos financeiros, atas e documentos institucionais na nossa página de Transparência.',
+            '<strong>Transparência 📂</strong>',
+            'Acesse relatórios, demonstrativos financeiros, atas e documentos institucionais:',
         ]);
-        setTimeout(() => this.addLinkMessage('Acessar página de Transparência', 'fas fa-file-shield', this._href('pages/transparencia.html')), 500);
+        setTimeout(() => this.addLinkMessage('Página de Transparência', 'fas fa-file-shield', this._href('pages/transparencia.html')), 400);
         setTimeout(() => {
-            this.addMessage('Não encontrou o documento que precisa? Fale diretamente conosco.');
-            this.showOptions([
-                { text: 'Falar pelo WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
-                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
-        }, 1500);
+            this.addMessage('Não encontrou o documento? Fale conosco.');
+            this._contatoRapido();
+        }, 1200);
     }
 
     // ══════════════════════════════════════════════════════════
     //  CONTATO
     // ══════════════════════════════════════════════════════════
     handleContato() {
-        this.addMessage([
-            '<strong>Fale com a Fundação Fênix 193 📬</strong>',
-            'Escolha a forma que preferir para entrar em contato com nossa equipe:',
-        ]);
+        this.addMessage('Como prefere entrar em contato? 📬');
         setTimeout(() => {
             this.showOptions([
                 { text: 'WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
-                { text: 'Formulário de contato', icon: 'fas fa-envelope', action: 'contato_form' },
+                { text: 'Formulário', icon: 'fas fa-envelope', action: 'contato_form' },
                 { text: 'Redes sociais', icon: 'fas fa-share-nodes', action: 'contato_redes' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
-        }, 800);
+        }, 700);
     }
 
     handleContatoWhatsApp() {
@@ -857,72 +829,14 @@ class Chatbot {
         setTimeout(() => this.showBackToMenuOptions(), 1400);
     }
 
-    // ══════════════════════════════════════════════════════════
-    //  NAVEGAÇÃO NO SITE
-    // ══════════════════════════════════════════════════════════
-    handleNavegacao() {
-        this.addMessage([
-            '<strong>Navegar no site 🗺️</strong>',
-            'Posso te levar rapidinho a qualquer seção. O que você quer acessar?'
-        ]);
-        setTimeout(() => {
-            this.showOptions([
-                { text: 'Páginas do site', icon: 'fas fa-sitemap', action: 'nav_paginas' },
-                { text: 'Usar a busca', icon: 'fas fa-magnifying-glass', action: 'nav_busca' },
-                { text: 'Últimas notícias', icon: 'fas fa-newspaper', action: 'nav_noticias' },
-                { text: 'Voltar ao menu', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
-        }, 800);
-    }
-
-    handleNavPaginas() {
-        this.addMessage('Aqui estão as principais páginas do site:');
-        const pages = [
-            { label: 'Início', icon: 'fas fa-house', path: 'index.html' },
-            { label: 'Nossa História', icon: 'fas fa-book-open', path: 'pages/nossa-historia.html' },
-            { label: 'Missão e Valores', icon: 'fas fa-bullseye', path: 'pages/missao-valores.html' },
-            { label: 'Equipe', icon: 'fas fa-users', path: 'pages/equipe.html' },
-            { label: 'Projetos', icon: 'fas fa-clipboard-list', path: 'pages/projetos.html' },
-            { label: 'Capacitação', icon: 'fas fa-graduation-cap', path: 'pages/capacitacao.html' },
-            { label: 'Eventos', icon: 'fas fa-calendar-days', path: 'pages/eventos.html' },
-            { label: 'Parcerias', icon: 'fas fa-handshake', path: 'pages/parcerias.html' },
-            { label: 'Transparência', icon: 'fas fa-file-shield', path: 'pages/transparencia.html' },
-            { label: 'Notícias', icon: 'fas fa-newspaper', path: 'pages/noticias.html' },
-        ];
-        pages.forEach((p, i) => {
-            setTimeout(() => this.addLinkMessage(p.label, p.icon, this._href(p.path)), 300 + i * 120);
-        });
-        setTimeout(() => this.showBackToMenuOptions(), 300 + pages.length * 120 + 400);
-    }
-
-    handleNavBusca() {
-        this.addMessage([
-            '<strong>Barra de Busca 🔍</strong>',
-            'No topo da página inicial há uma barra de busca onde você pode pesquisar por notícias, projetos e documentos.',
-            'Basta digitar o que procura e os resultados aparecerão automaticamente!',
-        ]);
-        setTimeout(() => this.addLinkMessage('Ir para a busca na página inicial', 'fas fa-magnifying-glass', this._href('index.html')), 500);
-        setTimeout(() => this.showBackToMenuOptions(), 1200);
-    }
-
-    handleNavNoticias() {
-        this.addMessage([
-            '<strong>Notícias 📰</strong>',
-            'Acompanhe as últimas novidades, conquistas e ações da Fundação Fênix 193 em nossa página de notícias.',
-        ]);
-        setTimeout(() => this.addLinkMessage('Ver todas as notícias', 'fas fa-newspaper', this._href('pages/noticias.html')), 400);
-        setTimeout(() => this.showBackToMenuOptions(), 1200);
-    }
+    // (Navegação removida do menu principal — páginas acessíveis pelo cabeçalho)
 
     // ══════════════════════════════════════════════════════════
     //  UTILITÁRIOS
     // ══════════════════════════════════════════════════════════
     backToMenu() {
-        this.addMessage('Voltando ao menu principal... 🏠');
-        setTimeout(() => {
-            this.addMessage('Como posso ajudar você? 😊');
-            this.showInitialOptions();
-        }, 700);
+        this.addMessage('Voltando ao menu... 🏠');
+        setTimeout(() => this.showInitialOptions(), 600);
     }
 
     showBackToMenuOptions() {
@@ -932,14 +846,14 @@ class Chatbot {
                 text: 'Encerrar',
                 icon: 'fas fa-check-circle',
                 action: () => {
-                    this.addMessage('Encerrar conversa', true);
+                    this.addMessage('Encerrar', true);
                     this.clearOptions();
                     const typing = this.showTypingIndicator();
                     setTimeout(() => {
                         this.removeTypingIndicator(typing);
-                        this.addMessage(['Fico feliz em ter ajudado! 🔥', 'Qualquer dúvida, é só abrir o chat novamente. Até mais! 👋']);
-                        setTimeout(() => this.closeChat(), 2500);
-                    }, 1000);
+                        this.addMessage('Fico feliz em ter ajudado! 🔥 Até mais! 👋');
+                        setTimeout(() => this.closeChat(), 2000);
+                    }, 800);
                 }
             }
         ]);
