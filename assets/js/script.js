@@ -611,7 +611,7 @@ class Chatbot {
                 { text: 'Quem somos', icon: 'fas fa-users', action: 'quem_somos' },
                 { text: 'Missão e valores', icon: 'fas fa-bullseye', action: 'missao' },
                 { text: 'Nossa equipe', icon: 'fas fa-id-badge', action: 'equipe' },
-                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
         }, 900);
     }
@@ -671,7 +671,7 @@ class Chatbot {
                 { text: 'Capacitação', icon: 'fas fa-graduation-cap', action: 'capacitacao' },
                 { text: 'Eventos', icon: 'fas fa-calendar-days', action: 'eventos' },
                 { text: 'Parcerias', icon: 'fas fa-handshake', action: 'parcerias' },
-                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
         }, 800);
     }
@@ -729,7 +729,7 @@ class Chatbot {
                 { text: 'Fazer uma doação', icon: 'fas fa-donate', action: 'doacao' },
                 { text: 'Voluntariado', icon: 'fas fa-hands-helping', action: 'voluntariado' },
                 { text: 'Parceria empresarial', icon: 'fas fa-building', action: 'parceria_empresa' },
-                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
         }, 800);
     }
@@ -764,7 +764,7 @@ class Chatbot {
         this.showOptions([
             { text: 'WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
             { text: 'Formulário', icon: 'fas fa-envelope', action: 'contato_form' },
-            { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+            { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
         ]);
     }
 
@@ -793,7 +793,7 @@ class Chatbot {
                 { text: 'WhatsApp', icon: 'fab fa-whatsapp', action: 'contato_whatsapp' },
                 { text: 'Formulário', icon: 'fas fa-envelope', action: 'contato_form' },
                 { text: 'Redes sociais', icon: 'fas fa-share-nodes', action: 'contato_redes' },
-                { text: '← Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
             ]);
         }, 700);
     }
