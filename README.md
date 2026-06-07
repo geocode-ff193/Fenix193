@@ -1,4 +1,3 @@
-cat > /home/claude/README.md << 'ENDOFFILE'
 <div align="center">
 
 <img src="assets/img/ff193_transp.png" width="80" alt="Fundação Fênix 193 logo" />
@@ -557,4 +556,3 @@ Várias páginas ainda contêm placeholders (`DESCRIÇÃO`, `TÍTULO`, `TAGS`, `
 *Desenvolvido com ☕ por GeoCODE Programmer — 2025 / 2026*
 
 </div>
-ENDOFFILE
