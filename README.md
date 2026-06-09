@@ -443,15 +443,15 @@ v1.3.0
 
 ### Histórico de marcos
 
-| Versão | Data | Marco |
-|--------|------|-------|
-| `v0.1.0` | 2025 Q3 | Estrutura inicial: home, seções estáticas, Firebase config |
-| `v0.5.0` | 2025 Q4 | Subpáginas institucionais, dropdown nav, footer completo |
-| `v0.8.0` | 2026 Q1 | AkanniHub v1 (contatos, transparência, notícias), Firestore Rules v1.0 |
-| `v1.0.0` | 2026 Q2 | Módulo de eventos, chatbot LuminIA, busca global, hero news feed |
-| `v1.1.0` | 2026 Q2 | Firestore Rules v1.2.0, LGPD/cookies, headers de segurança no Vercel |
-| `v1.2.0` | 2026 Q2 | GitHub Issues template, carrossel de apoiadores marquee, PWA manifest |
-| **`v1.3.0`** | **2026 Jun** | **README profissional, consolidação e auditoria da base de código** |
+| Versão | Marco |
+|--------|-------|
+| `v0.1.0` | Estrutura inicial: home, seções estáticas, Firebase config |
+| `v0.5.0` | Subpáginas institucionais, dropdown nav, footer completo |
+| `v0.8.0` | AkanniHub v1 (contatos, transparência, notícias), Firestore Rules v1.0 |
+| `v1.0.0` | Módulo de eventos, chatbot LuminIA, busca global, hero news feed |
+| `v1.1.0` | Firestore Rules v1.2.0, LGPD/cookies, headers de segurança no Vercel |
+| `v1.2.0` | GitHub Issues template, carrossel de apoiadores marquee, PWA manifest |
+| **`v1.3.0`** | **README profissional, consolidação e auditoria da base de código** |
 
 ---
 
