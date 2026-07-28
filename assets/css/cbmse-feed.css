@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Widget "Direto do CBMSE" — feed institucional exibido como <aside>
+   na seção "Últimas Notícias" da página inicial.
+   Segue a linguagem visual do site: Barlow / Barlow Condensed,
+   cards com cantos arredondados e header em vermelho institucional.
+   ========================================================================== */
+
+/* Layout de duas colunas: notícias da Fundação + aside do CBMSE */
+.noticias-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+    gap: 40px;
+}
+
+.noticias-main {
+    min-width: 0;
+}
+
+/* Aside */
+.cbmse-feed {
+    --cbmse-red: #cc0000;
+    --cbmse-ink: #313332;
+    position: sticky;
+    top: 100px;
+    background: #ffffff;
+    border: 1px solid #ececec;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.cbmse-feed-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid var(--cbmse-red);
+}
+
+.cbmse-feed-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--cbmse-red);
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.cbmse-feed-eyebrow {
+    display: block;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cbmse-red);
+}
+
+.cbmse-feed-title {
+    margin: 2px 0 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--cbmse-ink);
+}
+
+.cbmse-feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cbmse-feed-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+}
+
+.cbmse-feed-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.cbmse-feed-item-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--cbmse-ink);
+    transition: color 0.2s ease;
+}
+
+.cbmse-feed-item:hover .cbmse-feed-item-title {
+    color: var(--cbmse-red);
+}
+
+.cbmse-feed-item-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.76rem;
+    color: #888;
+}
+
+.cbmse-feed-item-date i {
+    font-size: 0.7rem;
+}
+
+.cbmse-feed-empty {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.cbmse-feed-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--cbmse-red);
+    text-decoration: none;
+    transition: gap 0.2s ease;
+}
+
+.cbmse-feed-footer-link:hover {
+    gap: 12px;
+}
+
+/* Skeleton de carregamento, no mesmo espírito do shimmer usado no restante do site */
+.cbmse-feed-skeleton {
+    height: 46px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: cbmse-shimmer 1.4s infinite;
+}
+
+@keyframes cbmse-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Responsivo: empilha em telas menores e libera o sticky */
+@media (max-width: 900px) {
+    .noticias-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cbmse-feed {
+        position: static;
+    }
+}

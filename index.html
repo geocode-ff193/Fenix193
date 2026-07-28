@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dropdown.css">
     <link rel="stylesheet" href="assets/css/chatbot.css">
+    <link rel="stylesheet" href="assets/css/cbmse-feed.css">
 </head>
 
 <body>
@@ -474,15 +475,40 @@
                     <h2>Últimas Notícias</h2>
                     <div class="section-bar"></div>
                 </div>
-                <div id="home-news-grid" class="news-home-grid">
-                    <!-- Skeletons enquanto carrega -->
-                    <div class="news-home-skeleton"></div>
-                    <div class="news-home-skeleton"></div>
-                </div>
-                <div style="text-align:center;margin-top:36px;">
-                    <a href="pages/noticias.html" class="btn-outline-sm">
-                        <i class="fas fa-newspaper"></i> Ver todas as notícias
-                    </a>
+                <div class="noticias-layout">
+                    <div class="noticias-main">
+                        <div id="home-news-grid" class="news-home-grid">
+                            <!-- Skeletons enquanto carrega -->
+                            <div class="news-home-skeleton"></div>
+                            <div class="news-home-skeleton"></div>
+                        </div>
+                        <div style="text-align:center;margin-top:36px;">
+                            <a href="pages/noticias.html" class="btn-outline-sm">
+                                <i class="fas fa-newspaper"></i> Ver todas as notícias
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Widget: Feed institucional do CBMSE -->
+                    <aside class="cbmse-feed" aria-label="Últimas notícias do Corpo de Bombeiros Militar de Sergipe">
+                        <div class="cbmse-feed-header">
+                            <span class="cbmse-feed-icon" aria-hidden="true">
+                                <i class="fas fa-fire-flame-curved"></i>
+                            </span>
+                            <div>
+                                <span class="cbmse-feed-eyebrow">Direto do CBMSE</span>
+                                <h3 class="cbmse-feed-title">Boletim do Corpo de Bombeiros</h3>
+                            </div>
+                        </div>
+                        <div id="cbmse-feed-list" class="cbmse-feed-list">
+                            <div class="cbmse-feed-skeleton"></div>
+                            <div class="cbmse-feed-skeleton"></div>
+                            <div class="cbmse-feed-skeleton"></div>
+                        </div>
+                        <a href="https://cbm.se.gov.br/" target="_blank" rel="noopener" class="cbmse-feed-footer-link">
+                            Ver no site do CBMSE <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                        </a>
+                    </aside>
                 </div>
             </div>
         </section>
@@ -582,7 +608,9 @@
                 </div>
                 <div class="grid-2 contact-grid">
                     <div class="contact-info">
-                        <p>Tem dúvidas, denúncias ou propostas? A <strong>Fundação Fênix 193</strong> ouve você. Preencha o formulário; se se identificar, retornaremos em breve. Denúncias podem ser anônimas deixando os dados em branco.<br><em>( * obrigatório)</em></p>
+                        <p>Tem dúvidas, denúncias ou propostas? A <strong>Fundação Fênix 193</strong> ouve você.
+                            Preencha o formulário; se se identificar, retornaremos em breve. Denúncias podem ser
+                            anônimas deixando os dados em branco.<br><em>( * obrigatório)</em></p>
                         <ul class="contact-list">
                             <li>
                                 <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
@@ -843,7 +871,8 @@
                         <img src="assets/img/luminia.png" alt="Bot">
                     </div>
                     <div class="message-content">
-                        <p>Olá! 👋 Sou a LuminIA, assistente virtual da Fundação Fênix 193. Como posso ajudar você hoje?</p>
+                        <p>Olá! 👋 Sou a LuminIA, assistente virtual da Fundação Fênix 193. Como posso ajudar você hoje?
+                        </p>
                     </div>
                 </div>
             </div>
@@ -879,6 +908,7 @@
     <script type="module" src="assets/js/script.js"></script>
     <script type="module" src="assets/js/search.js"></script>
     <script type="module" src="assets/js/chatbot.js"></script>
+    <script type="module" src="assets/js/cbmse-feed.js"></script>
     <script>
         (function () {
             const track = document.querySelector('.qs-carousel-track');
