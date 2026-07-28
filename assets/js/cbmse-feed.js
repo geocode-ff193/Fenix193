@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const RSS_URL = 'https://cbm.se.gov.br/feed/';
     const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
-    const MAX_ITEMS = 5;
+    const MAX_ITEMS = 4;
 
     fetch(API_URL)
         .then((response) => response.json())
