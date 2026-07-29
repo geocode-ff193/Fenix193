@@ -47,6 +47,7 @@
     width: 42px;
     height: 42px;
     border-radius: 10px;
+    background: var(--cbmse-red);
     color: #fff;
     font-size: 1.05rem;
 }
@@ -68,6 +69,39 @@
     font-weight: 700;
     line-height: 1.2;
     color: var(--cbmse-ink);
+}
+
+/* Abas: alterna a fonte das notícias (CBMSE / Defesa Civil) sem duplicar cards */
+.cbmse-feed-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.cbmse-feed-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid #ececec;
+    border-radius: 20px;
+    background: #f7f7f7;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.cbmse-feed-tab:hover {
+    background: #f0f0f0;
+}
+
+.cbmse-feed-tab.active {
+    background: var(--cbmse-red, #cc0000);
+    border-color: transparent;
+    color: #fff;
 }
 
 .cbmse-feed-list {

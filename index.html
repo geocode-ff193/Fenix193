@@ -490,25 +490,38 @@
                     </div>
 
                     <!-- Widget: Feed institucional do CBMSE -->
-                    <aside class="cbmse-feed" aria-label="Últimas notícias do Corpo de Bombeiros Militar de Sergipe">
+                    <aside class="cbmse-feed"
+                        aria-label="Boletim de notícias oficiais: CBMSE e Defesa Civil de Sergipe">
                         <div class="cbmse-feed-header">
-                            <span class="cbmse-feed-icon" aria-hidden="true">
-                                <img src="assets/img/cbmse.png" alt="Logo CBMSE" width="40" height="40">
+                            <span class="cbmse-feed-icon" id="cbmse-feed-icon" aria-hidden="true">
+                                <i class="fas fa-fire-flame-curved"></i>
                             </span>
                             <div>
-                                <span class="cbmse-feed-eyebrow">Direto do CBMSE</span>
-                                <h3 class="cbmse-feed-title">Boletim do Corpo de Bombeiros</h3>
+                                <span class="cbmse-feed-eyebrow">Boletim Oficial</span>
+                                <h3 class="cbmse-feed-title">Segurança &amp; Defesa Civil</h3>
                             </div>
+                        </div>
+                        <div class="cbmse-feed-tabs" role="tablist" aria-label="Escolher fonte das notícias">
+                            <button type="button" class="cbmse-feed-tab active" role="tab" aria-selected="true"
+                                data-source="cbmse">
+                                <i class="fas fa-fire-flame-curved" aria-hidden="true"></i> CBMSE
+                            </button>
+                            <button type="button" class="cbmse-feed-tab" role="tab" aria-selected="false"
+                                data-source="defesacivil">
+                                <i class="fas fa-house-chimney-crack" aria-hidden="true"></i> Defesa Civil
+                            </button>
                         </div>
                         <div id="cbmse-feed-list" class="cbmse-feed-list">
                             <div class="cbmse-feed-skeleton"></div>
                             <div class="cbmse-feed-skeleton"></div>
                             <div class="cbmse-feed-skeleton"></div>
                         </div>
-                        <a href="https://cbm.se.gov.br/" target="_blank" rel="noopener" class="cbmse-feed-footer-link">
+                        <a id="cbmse-feed-footer-link" href="https://cbm.se.gov.br/" target="_blank" rel="noopener"
+                            class="cbmse-feed-footer-link">
                             Ver no site do CBMSE <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                         </a>
                     </aside>
+
                 </div>
             </div>
         </section>
