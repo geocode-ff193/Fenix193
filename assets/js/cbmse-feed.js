@@ -13,7 +13,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const listEl = document.getElementById('cbmse-feed-list');
-    const iconEl = document.querySelector('#cbmse-feed-icon i');
+    const iconEl = document.getElementById('cbmse-feed-icon-img');
     const footerLinkEl = document.getElementById('cbmse-feed-footer-link');
     const tabButtons = document.querySelectorAll('.cbmse-feed-tab');
     if (!listEl || !tabButtons.length) return;
@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
             label: 'CBMSE',
             siteUrl: 'https://cbm.se.gov.br/',
             rssUrl: 'https://cbm.se.gov.br/feed/',
-            icon: 'fa-fire-flame-curved',
+            logo: 'assets/img/cbmse.png',
         },
         defesacivil: {
             label: 'Defesa Civil',
             siteUrl: 'https://defesacivil.se.gov.br/',
             rssUrl: 'https://defesacivil.se.gov.br/feed/',
-            icon: 'fa-house-chimney-crack',
+            logo: 'assets/img/dcse.png',
         },
     };
 
@@ -165,7 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateHeaderAndFooter(sourceKey) {
         const source = SOURCES[sourceKey];
-        if (iconEl) iconEl.className = `fas ${source.icon}`;
+        if (iconEl) {
+            iconEl.src = source.logo;
+            iconEl.alt = source.label;
+        }
         if (footerLinkEl) {
             footerLinkEl.href = source.siteUrl;
             footerLinkEl.innerHTML = `Ver no site ${sourceKey === 'cbmse' ? 'do CBMSE' : 'da Defesa Civil'} <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>`;

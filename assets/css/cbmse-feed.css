@@ -47,9 +47,15 @@
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    background: var(--cbmse-red);
-    color: #fff;
-    font-size: 1.05rem;
+    background: #ffffff;
+    border: 1px solid #ececec;
+    padding: 6px;
+}
+
+.cbmse-feed-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .cbmse-feed-eyebrow {
@@ -102,6 +108,16 @@
     background: var(--cbmse-red, #cc0000);
     border-color: transparent;
     color: #fff;
+}
+
+.cbmse-feed-tab-logo {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #fff;
+    padding: 1px;
+    vertical-align: middle;
 }
 
 .cbmse-feed-list {

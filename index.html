@@ -494,7 +494,7 @@
                         aria-label="Boletim de notícias oficiais: CBMSE e Defesa Civil de Sergipe">
                         <div class="cbmse-feed-header">
                             <span class="cbmse-feed-icon" id="cbmse-feed-icon" aria-hidden="true">
-                                <img src="assets/img/cbmse.png" alt="Logo CBMSE" width="40" height="40">
+                                <img id="cbmse-feed-icon-img" src="assets/img/cbmse.png" alt="">
                             </span>
                             <div>
                                 <span class="cbmse-feed-eyebrow">Boletim Oficial</span>
@@ -504,11 +504,13 @@
                         <div class="cbmse-feed-tabs" role="tablist" aria-label="Escolher fonte das notícias">
                             <button type="button" class="cbmse-feed-tab active" role="tab" aria-selected="true"
                                 data-source="cbmse">
-                                <img src="assets/img/cbmse.png" alt="Logo CBMSE" width="40" height="40"> CBMSE
+                                <img src="assets/img/cbmse.png" alt="" class="cbmse-feed-tab-logo" aria-hidden="true">
+                                CBMSE
                             </button>
                             <button type="button" class="cbmse-feed-tab" role="tab" aria-selected="false"
                                 data-source="defesacivil">
-                                <img src="assets/img/dcse.png" alt="Logo DCSE" width="40" height="40"> Defesa Civil
+                                <img src="assets/img/dcse.png" alt="" class="cbmse-feed-tab-logo" aria-hidden="true">
+                                Defesa Civil
                             </button>
                         </div>
                         <div id="cbmse-feed-list" class="cbmse-feed-list">
