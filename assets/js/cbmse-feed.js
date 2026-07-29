@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.cbmse-feed-tab');
     if (!listEl || !tabButtons.length) return;
 
-    const MAX_ITEMS = 3;
+    const MAX_ITEMS = 5;
 
     const SOURCES = {
         cbmse: {
