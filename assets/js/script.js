@@ -108,6 +108,18 @@ btnMobile.addEventListener('click', () => {
     const open = menu.classList.toggle('active');
     btnMobile.classList.toggle('open', open);
     btnMobile.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+});
+
+// ── Fecha o menu mobile ao navegar por um link (exceto os que abrem submenu) ──
+document.querySelectorAll('#menu a:not(.dropdown-trigger)').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth > 768) return; // no desktop o menu nem usa .active
+        menu.classList.remove('active');
+        btnMobile.classList.remove('open');
+        btnMobile.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+    });
 });
 
 // ── Dropdowns (mobile: toggle via clique no trigger) ────
@@ -141,12 +153,18 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Fecha dropdown ao pressionar Esc
+// Fecha dropdown (e o menu mobile em tela cheia) ao pressionar Esc
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         document.querySelectorAll('.has-dropdown.open').forEach(el => {
             el.classList.remove('open');
         });
+        if (menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            btnMobile.classList.remove('open');
+            btnMobile.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        }
     }
 });
 

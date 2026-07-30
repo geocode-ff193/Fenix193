@@ -44,6 +44,11 @@ body {
     overflow-x: hidden;
 }
 
+/* Trava o scroll da página enquanto o menu mobile em tela cheia está aberto */
+body.menu-open {
+    overflow: hidden;
+}
+
 img {
     max-width: 100%;
     display: block;
@@ -1371,34 +1376,54 @@ HEADER
         padding: 28px 0;
     }
 
-    /* Header */
+    /* Header — menu mobile em tela cheia (full-screen takeover) */
     #btn-mobile {
         display: flex;
     }
 
     #menu {
-        position: absolute;
+        position: fixed;
         top: 70px;
         left: 0;
         right: 0;
+        bottom: 0;
         background: var(--navy);
         flex-direction: column;
         align-items: stretch;
-        padding: 16px 0 24px;
-        gap: 2px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+        justify-content: flex-start;
+        padding: 8px 28px 40px;
+        gap: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        box-shadow: none;
         display: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity .25s ease, transform .25s ease;
     }
 
     #menu.active {
         display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #menu>li {
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    #menu>li:last-child {
+        border-bottom: none;
     }
 
     #menu a {
-        padding: 12px 24px;
+        padding: 18px 4px;
         border-radius: 0;
-        font-size: .95rem;
-        color: rgba(255, 255, 255, .85);
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 600;
+        letter-spacing: .01em;
+        color: rgba(255, 255, 255, .92);
     }
 
     #menu a:hover {
@@ -1406,8 +1431,15 @@ HEADER
         background: rgba(255, 255, 255, .06);
     }
 
+    /* Empurra a seta do "Institucional"/"Atuação" para a borda direita */
+    .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
     .btn-cta-nav {
-        margin: 8px 16px 0;
+        margin: 20px 4px 0;
         justify-content: center;
         border-radius: var(--radius) !important;
     }
