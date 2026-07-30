@@ -1387,11 +1387,11 @@ HEADER
         left: 0;
         right: 0;
         bottom: 0;
-        background: var(--navy);
+        background: var(--off-white);
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
-        padding: 8px 28px 40px;
+        padding: 16px 32px 40px;
         gap: 0;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
@@ -1408,27 +1408,19 @@ HEADER
         transform: translateY(0);
     }
 
-    #menu>li {
-        border-bottom: 1px solid rgba(255, 255, 255, .08);
-    }
-
-    #menu>li:last-child {
-        border-bottom: none;
-    }
-
     #menu a {
-        padding: 18px 4px;
+        padding: 15px 2px;
         border-radius: 0;
         font-family: var(--font-display);
-        font-size: 1.15rem;
-        font-weight: 600;
+        font-size: 1.3rem;
+        font-weight: 500;
         letter-spacing: .01em;
-        color: rgba(255, 255, 255, .92);
+        color: var(--navy);
     }
 
     #menu a:hover {
-        color: var(--amber);
-        background: rgba(255, 255, 255, .06);
+        color: var(--red);
+        background: none;
     }
 
     /* Empurra a seta do "Institucional"/"Atuação" para a borda direita */
@@ -1439,9 +1431,11 @@ HEADER
     }
 
     .btn-cta-nav {
-        margin: 20px 4px 0;
+        margin: 26px 2px 0;
         justify-content: center;
-        border-radius: var(--radius) !important;
+        border-radius: 999px !important;
+        padding: 13px 20px !important;
+        font-size: 1rem;
     }
 
     /* Hero */
