@@ -6,6 +6,7 @@
 .dropdown-arrow {
     font-size: .65rem;
     margin-left: 4px;
+    line-height: 1;
     transition: transform 0.25s ease;
     display: inline-block;
     vertical-align: middle;
