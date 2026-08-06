@@ -10,6 +10,8 @@ class Chatbot {
         this.body = document.getElementById('chatbotBody');
         this.options = document.getElementById('chatbotOptions');
         this.badge = document.querySelector('.chatbot-badge');
+        this.teaser = document.getElementById('chatbotTeaser');
+        this.teaserDismiss = document.getElementById('chatbotTeaserDismiss');
 
         // Detecta se estamos numa subpágina (pages/) para ajustar o caminho do avatar
         this.avatarPath = window.location.pathname.includes('/pages/')
@@ -35,11 +37,13 @@ class Chatbot {
         this.toggle.addEventListener('click', () => this.toggleChat());
         this.close.addEventListener('click', () => this.closeChat());
         this.showInitialOptions();
+        this.initTeaser();
     }
 
     toggleChat() {
         const isActive = this.box.classList.toggle('active');
         this.toggle.classList.toggle('active');
+        this.hideTeaser();
         if (isActive) {
             if (this.badge) this.badge.style.display = 'none';
             setTimeout(() => this.scrollToBottom(), 300);
@@ -49,6 +53,39 @@ class Chatbot {
     closeChat() {
         this.box.classList.remove('active');
         this.toggle.classList.remove('active');
+    }
+
+    // ── Balão de convite proativo ──────────────────────────────
+    // Aparece uma vez por sessão, alguns segundos depois de a pessoa
+    // chegar ao site, convidando-a a pedir ajuda — sem abrir o chat sozinho.
+    initTeaser() {
+        if (!this.teaser) return;
+        if (sessionStorage.getItem('luminiaTeaserShown')) return;
+
+        const showTimer = setTimeout(() => {
+            if (this.box.classList.contains('active')) return;
+            this.teaser.classList.add('show');
+            sessionStorage.setItem('luminiaTeaserShown', '1');
+            setTimeout(() => this.hideTeaser(), 10000);
+        }, 4000);
+
+        this.teaser.addEventListener('click', () => {
+            clearTimeout(showTimer);
+            this.hideTeaser();
+            if (!this.box.classList.contains('active')) this.toggleChat();
+        });
+
+        if (this.teaserDismiss) {
+            this.teaserDismiss.addEventListener('click', (e) => {
+                e.stopPropagation();
+                clearTimeout(showTimer);
+                this.hideTeaser();
+            });
+        }
+    }
+
+    hideTeaser() {
+        if (this.teaser) this.teaser.classList.remove('show');
     }
 
     scrollToBottom() {
@@ -134,7 +171,11 @@ class Chatbot {
         optionsArray.forEach(option => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.innerHTML = `<i class="${option.icon}"></i> ${option.text}`;
+            btn.innerHTML = `
+                <span class="option-btn-icon"><i class="${option.icon}"></i></span>
+                <span class="option-btn-label">${option.text}</span>
+                <i class="fas fa-chevron-right option-btn-arrow" aria-hidden="true"></i>
+            `;
             btn.onclick = typeof option.action === 'function'
                 ? option.action
                 : () => this.handleOption(option);
@@ -182,9 +223,6 @@ class Chatbot {
             'contato_form': () => this.handleContatoForm(),
             'contato_redes': () => this.handleContatoRedes(),
             // Navegação
-            'nav_paginas': () => this.handleNavPaginas(),
-            'nav_busca': () => this.handleNavBusca(),
-            'nav_noticias': () => this.handleNavNoticias(),
             // Utilitários
             'back': () => this.backToMenu(),
         };
@@ -200,6 +238,7 @@ class Chatbot {
             { text: 'Projetos e atuação', icon: 'fas fa-clipboard-list', action: 'atuacao' },
             { text: 'Como colaborar', icon: 'fas fa-hand-holding-heart', action: 'como_ajudar' },
             { text: 'Transparência', icon: 'fas fa-file-shield', action: 'transparencia' },
+            { text: 'Ir direto para uma página', icon: 'fas fa-compass', action: 'navegacao' },
             { text: 'Falar com a Fundação', icon: 'fas fa-comments', action: 'contato' },
         ]);
     }
@@ -436,7 +475,46 @@ class Chatbot {
         setTimeout(() => this.showBackToMenuOptions(), 1400);
     }
 
-    // (Navegação removida do menu principal — páginas acessíveis pelo cabeçalho)
+    // ══════════════════════════════════════════════════════════
+    //  NAVEGAÇÃO RÁPIDA
+    // ══════════════════════════════════════════════════════════
+    handleNavegacao() {
+        this.addMessage([
+            '<strong>Navegação Rápida 🧭</strong>',
+            'Posso te levar direto para qualquer página do site. Para onde vamos?',
+        ]);
+        setTimeout(() => {
+            this.showOptions([
+                { text: 'Início', icon: 'fas fa-house', action: () => this._irPara('Início', this._href('index.html')) },
+                { text: 'Quem Somos', icon: 'fas fa-landmark', action: () => this._irPara('Quem Somos', this._href('index.html#quem-somos')) },
+                { text: 'Nossa História', icon: 'fas fa-book-open', action: () => this._irPara('Nossa História', this._href('pages/nossa-historia.html')) },
+                { text: 'Missão e Valores', icon: 'fas fa-bullseye', action: () => this._irPara('Missão e Valores', this._href('pages/missao-valores.html')) },
+                { text: 'Nossa Equipe', icon: 'fas fa-id-badge', action: () => this._irPara('Nossa Equipe', this._href('pages/equipe.html')) },
+                { text: 'Projetos', icon: 'fas fa-clipboard-list', action: () => this._irPara('Projetos', this._href('pages/projetos.html')) },
+                { text: 'Capacitação', icon: 'fas fa-graduation-cap', action: () => this._irPara('Capacitação', this._href('pages/capacitacao.html')) },
+                { text: 'Eventos', icon: 'fas fa-calendar-days', action: () => this._irPara('Eventos', this._href('pages/eventos.html')) },
+                { text: 'Parcerias', icon: 'fas fa-handshake', action: () => this._irPara('Parcerias', this._href('pages/parcerias.html')) },
+                { text: 'Transparência', icon: 'fas fa-file-shield', action: () => this._irPara('Transparência', this._href('pages/transparencia.html')) },
+                { text: 'Notícias', icon: 'fas fa-newspaper', action: () => this._irPara('Notícias', this._href('pages/noticias.html')) },
+                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
+            ]);
+        }, 700);
+    }
+
+    // ── Atalho: confirma a escolha e entrega o link da página ─
+    _irPara(nomePagina, href) {
+        this.addMessage(nomePagina, true);
+        this.clearOptions();
+        const typing = this.showTypingIndicator();
+        setTimeout(() => {
+            this.removeTypingIndicator(typing);
+            this.addMessage(`Perfeito! Te levando para <strong>${nomePagina}</strong> 🚀`);
+            setTimeout(() => this.addLinkMessage(`Abrir ${nomePagina}`, 'fas fa-arrow-right', href), 400);
+            setTimeout(() => this.showBackToMenuOptions(), 1200);
+        }, 700);
+    }
+
+    // (Navegação por cabeçalho — as demais páginas seguem acessíveis pelo menu do site)
 
     // ══════════════════════════════════════════════════════════
     //  UTILITÁRIOS
