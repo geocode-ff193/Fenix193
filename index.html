@@ -15,15 +15,460 @@
     <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
     <link rel="shortcut icon" href="assets/ui/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
+    <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- LCP: imagem de fundo do #hero (assets/img/bomb2.webp, definida via CSS background).
+         Como é carregada via CSS e não via <img>, o navegador só a descobre depois de
+         baixar e parsear o style.css. O preload força a busca em paralelo, junto ao HTML. -->
+    <link rel="preload" as="image" href="assets/img/bomb2.webp" fetchpriority="high">
+
+    <!-- Fontes: mantidas com display=swap (já configurado) para não bloquear o LCP de texto -->
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dropdown.css">
-    <link rel="stylesheet" href="assets/css/chatbot.css">
-    <link rel="stylesheet" href="assets/css/cbmse-feed.css">
+
+    <!-- ===================== CRITICAL CSS (inline) =====================
+         Estilos mínimos para renderizar header + hero (primeira dobra) sem
+         esperar pelo download do style.css completo (~60KB). -->
+    <style>
+        :root {
+            --red: #E12217;
+            --red-dark: #872020;
+            --red-light: #ED4C43;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
+            --navy-light: #505251;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
+            --gray-light: #E8E5DE;
+            --gray: #9CA3AF;
+            --text: #313332;
+            --text-muted: #636665;
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, .18);
+            --transition: 0.3s ease;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+        #main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .04em;
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #menu a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #btn-mobile {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--amber);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* HERO */
+        #hero {
+            position: relative;
+            min-height: 94vh;
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, 0.55) 0%, rgba(225, 34, 23, 0.33) 100%),
+                url('assets/img/bomb2.webp') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(242, 118, 19, .12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 60px;
+            align-items: center;
+            padding-top: 0 !important;
+            padding-bottom: 48px;
+        }
+
+        .hero-img img {
+            max-width: 100%;
+            display: grid
+        }
+
+        .hero-text h1 {
+            font-size: clamp(1.8rem, 3.6vw, 3rem);
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.12;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, .4);
+        }
+
+        .hero-text p {
+            font-size: .88rem;
+            color: rgba(255, 255, 255, .82);
+            max-width: 540px;
+            margin-bottom: 32px;
+            font-weight: 300;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, .75);
+            line-height: 1.6;
+        }
+
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) scale(2);
+            transform-origin: bottom center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--fire);
+            font-size: .72rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+
+        /* Busca no hero */
+        .hero-search-center-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 44px 0 16px;
+        }
+
+        .hero-search {
+            position: relative;
+            max-width: 540px;
+        }
+
+        .hero-search-center-wrap .hero-search {
+            width: 100%;
+            max-width: 620px;
+            margin: 0;
+        }
+
+        .hero-search-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 16px;
+            background: rgba(255, 255, 255, .1);
+            border: 1.5px solid rgba(255, 255, 255, .22);
+            border-radius: 50px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .hero-search-icon {
+            color: rgba(255, 255, 255, .55);
+            font-size: .95rem;
+            flex-shrink: 0;
+            pointer-events: none;
+        }
+
+        .hero-search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 14px 0;
+            font-family: var(--font-body);
+            font-size: .97rem;
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .hero-search-input::placeholder {
+            color: rgba(255, 255, 255, .45);
+        }
+
+        /* Feed de notícias no hero (skeleton evita CLS) */
+        .hero-news-feed {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, .35);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+        }
+
+        .hero-news-feed-label {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--amber);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        #hero-news-feed-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .hero-news-mini-skeleton {
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr 1.6fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            #btn-mobile {
+                display: flex;
+            }
+
+            #menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--off-white);
+                flex-direction: column;
+                align-items: stretch;
+                justify-content: flex-start;
+                padding: 16px 32px 40px;
+                overflow-y: auto;
+                display: none;
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            #menu.active {
+                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                text-align: center;
+            }
+
+            .hero-search-center-wrap {
+                padding: 52px 0 20px;
+            }
+
+            .hero-search-center-wrap .hero-search {
+                max-width: 100%;
+            }
+
+            .hero-text p {
+                max-width: 100%;
+            }
+
+            .hero-news-feed {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+
+    <!-- ===================== CSS NÃO CRÍTICO (assíncrono) =====================
+         Truque media="print" + onload: o navegador baixa o arquivo sem bloquear
+         a renderização (media="print" não se aplica à tela) e, ao terminar,
+         o onload troca o media para "all", aplicando os estilos. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="assets/css/dropdown.css" media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="assets/css/chatbot.css" media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="assets/css/cbmse-feed.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+
+    <!-- Fallback para navegadores/robôs sem JS -->
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/dropdown.css">
+        <link rel="stylesheet" href="assets/css/chatbot.css">
+        <link rel="stylesheet" href="assets/css/cbmse-feed.css">
+    </noscript>
 </head>
 
 <body>
@@ -31,13 +476,13 @@
         <div class="container nav-wrapper">
             <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                 <div class="logo-icon" aria-hidden="true">
-                    <img src="assets/img/ff193_transp.png" alt="Logo Transparente" width="45" height="45">
+                    <img src="assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
                 </div>
                 <div class="logo-text">
                     <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
                 </div>
                 <div class="logo-icon" aria-hidden="true">
-                    <img src="assets/img/cbmse.png" alt="Logo CBMSE" width="45" height="45">
+                    <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                 </div>
             </a>
 
@@ -123,7 +568,7 @@
                 </div>
                 <div class="hero-grid">
                     <div class="hero-img">
-                        <img src="assets/img/ff193_transp.png" alt="Logo Fundação Fênix 193">
+                        <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380" height="380">
                     </div>
                     <div class="hero-text">
                         <h1>Apoiar quem arrisca sua vida para salvar vidas é proteger a sociedade.</h1>
@@ -179,19 +624,23 @@
                         <div class="qs-carousel" role="region" aria-label="Carrossel de imagens">
                             <div class="qs-carousel-track">
                                 <div class="qs-slide active">
-                                    <img src="assets/img/bomb10.jpeg" alt="Fênix 193">
+                                    <img src="assets/img/bomb10.webp" alt="Fênix 193" width="800" height="600"
+                                        loading="lazy">
                                     <span class="qs-slide-label">Fênix 193</span>
                                 </div>
                                 <div class="qs-slide">
-                                    <img src="assets/img/bomb11.jpeg" alt="Nossa missão">
+                                    <img src="assets/img/bomb11.webp" alt="Nossa missão" width="800" height="600"
+                                        loading="lazy">
                                     <span class="qs-slide-label">Nossa missão</span>
                                 </div>
                                 <div class="qs-slide">
-                                    <img src="assets/img/bomb12.jpeg" alt="Proteção de vidas">
+                                    <img src="assets/img/bomb12.webp" alt="Proteção de vidas" width="800" height="600"
+                                        loading="lazy">
                                     <span class="qs-slide-label">Proteção de vidas</span>
                                 </div>
                                 <div class="qs-slide">
-                                    <img src="assets/img/bomb13.jpeg" alt="CBMSE · Sergipe">
+                                    <img src="assets/img/bomb13.webp" alt="CBMSE · Sergipe" width="800" height="600"
+                                        loading="lazy">
                                     <span class="qs-slide-label">CBMSE · Sergipe</span>
                                 </div>
                             </div>
@@ -494,7 +943,8 @@
                         aria-label="Boletim de notícias oficiais: CBMSE e Defesa Civil de Sergipe">
                         <div class="cbmse-feed-header">
                             <span class="cbmse-feed-icon" id="cbmse-feed-icon" aria-hidden="true">
-                                <img id="cbmse-feed-icon-img" src="assets/img/cbmse.png" alt="">
+                                <img id="cbmse-feed-icon-img" src="assets/img/cbmse.webp" alt="" width="42" height="42"
+                                    loading="lazy">
                             </span>
                             <div>
                                 <span class="cbmse-feed-eyebrow">Boletim Oficial</span>
@@ -504,12 +954,14 @@
                         <div class="cbmse-feed-tabs" role="tablist" aria-label="Escolher fonte das notícias">
                             <button type="button" class="cbmse-feed-tab active" role="tab" aria-selected="true"
                                 data-source="cbmse">
-                                <img src="assets/img/cbmse.png" alt="" class="cbmse-feed-tab-logo" aria-hidden="true">
+                                <img src="assets/img/cbmse.webp" alt="" class="cbmse-feed-tab-logo" aria-hidden="true"
+                                    width="16" height="16" loading="lazy">
                                 CBMSE
                             </button>
                             <button type="button" class="cbmse-feed-tab" role="tab" aria-selected="false"
                                 data-source="defesacivil">
-                                <img src="assets/img/dcse.png" alt="" class="cbmse-feed-tab-logo" aria-hidden="true">
+                                <img src="assets/img/dcse.webp" alt="" class="cbmse-feed-tab-logo" aria-hidden="true"
+                                    width="16" height="16" loading="lazy">
                                 Defesa Civil
                             </button>
                         </div>
@@ -553,7 +1005,7 @@
                                 <a href="https://www.ilbj.org.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoILBJ.png" alt="ILBJ" width="60" height="60">
+                                            <img src="assets/img/logoILBJ.webp" alt="ILBJ" width="60" height="60" loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Inst. Luciano Barreto Jr.</span>
                                     </div>
@@ -561,8 +1013,8 @@
                                 <a href="https://redeprimavera.com.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoPRIMAVERA.png" alt="Rede Primavera" width="60"
-                                                height="60">
+                                            <img src="assets/img/logoPRIMAVERA.webp" alt="Rede Primavera" width="60"
+                                                height="60" loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Rede Primavera</span>
                                     </div>
@@ -584,8 +1036,8 @@
                                 <a href="https://shoppingjardins.com.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoSHOPJARDINS.png" alt="Shopping Jardins" width="60"
-                                                height="60">
+                                            <img src="assets/img/logoSHOPJARDINS.webp" alt="Shopping Jardins" width="60"
+                                                height="60" loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Shopping Jardins</span>
                                     </div>
@@ -593,7 +1045,7 @@
                                 <a href="https://www.unit.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoUNIT.png" alt="UNIT" width="60" height="60">
+                                            <img src="assets/img/logoUNIT.webp" alt="UNIT" width="60" height="60" loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Universidade Tiradentes</span>
                                     </div>
@@ -701,8 +1153,9 @@
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
-                        <img src="assets/img/ff193_transp.png" alt="Logo Fênix 193" width="36" height="36">
-                        <img src="assets/img/cbmse.png" alt="Logo CBMSE" width="36" height="36">
+                        <img src="assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36"
+                            loading="lazy">
+                        <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
                     <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
                     <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
@@ -868,14 +1321,14 @@
             <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
         </div>
         <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
-            <span class="chatbot-toggle-face"><img src="assets/img/luminia.png" alt=""></span>
+            <span class="chatbot-toggle-face"><img src="assets/img/luminia.webp" alt="" width="38" height="38"></span>
             <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
             <span class="chatbot-badge">1</span>
         </button>
         <div class="chatbot-box" id="chatbotBox">
             <div class="chatbot-header">
                 <div class="chatbot-avatar">
-                    <img src="assets/img/luminia.png" alt="LuminIA">
+                    <img src="assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
                 </div>
                 <div class="chatbot-info">
                     <h4>LuminIA</h4>
@@ -890,7 +1343,7 @@
             <div class="chatbot-body" id="chatbotBody">
                 <div class="chatbot-message bot-message">
                     <div class="message-avatar">
-                        <img src="assets/img/luminia.png" alt="Bot">
+                        <img src="assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
                     </div>
                     <div class="message-content">
                         <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix 193. Posso tirar dúvidas,
@@ -928,10 +1381,12 @@
             });
         })();
     </script>
-    <script type="module" src="assets/js/script.js"></script>
-    <script type="module" src="assets/js/search.js"></script>
-    <script type="module" src="assets/js/chatbot.js"></script>
-    <script type="module" src="assets/js/cbmse-feed.js"></script>
+    <!-- type="module" já é tratado como defer nativamente pelos navegadores;
+         o atributo defer é mantido de forma explícita por clareza/compatibilidade. -->
+    <script type="module" defer src="assets/js/script.js"></script>
+    <script type="module" defer src="assets/js/search.js"></script>
+    <script type="module" defer src="assets/js/chatbot.js"></script>
+    <script type="module" defer src="assets/js/cbmse-feed.js"></script>
     <script>
         (function () {
             const track = document.querySelector('.qs-carousel-track');
