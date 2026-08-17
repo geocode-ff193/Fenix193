@@ -296,7 +296,7 @@ HEADER
     min-height: 94vh;
     background:
         linear-gradient(135deg, rgba(49, 51, 50, 0.55) 0%, rgba(225, 34, 23, 0.33) 100%),
-        url('../img/bomb2.jpeg') center/cover no-repeat;
+        url('../img/bomb2.webp') center/cover no-repeat;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -732,7 +732,7 @@ HEADER
    ========================================================== */
 .stats-section {
     background: linear-gradient(135deg, rgba(12, 20, 40, 0.82) 0%, rgba(30, 40, 70, 0.80) 60%, rgba(120, 20, 20, 0.80) 100%),
-        url('../img/bomb10.jpeg') center center / cover no-repeat;
+        url('../img/bomb10.webp') center center / cover no-repeat;
     position: relative;
     overflow: hidden;
     padding: 36px 0;
