@@ -13,14 +13,297 @@
     <title>Transparência · Fundação Fênix 193</title>
     <meta name="description"
         content="Portal de transparência da Fundação Fênix 193. Acesse prestações de contas, relatórios, estatutos, certidões e demais documentos institucionais.">
+    <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- LCP desta página: fundo do .page-hero (banner interno) -->
+    <link rel="preload" as="image" href="../assets/img/bomb1.webp" fetchpriority="high">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/dropdown.css">
-    <link rel="stylesheet" href="../assets/css/pages.css">
+
+    <!-- ===================== CRITICAL CSS (inline) =====================
+         Header/nav + banner interno (.page-hero) — o suficiente para renderizar
+         a primeira dobra sem esperar o style.css/pages.css completos. -->
+    <style>
+        :root {
+            --red: #E12217;
+            --red-dark: #872020;
+            --red-light: #ED4C43;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
+            --navy-light: #505251;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
+            --gray-light: #E8E5DE;
+            --gray: #9CA3AF;
+            --text: #313332;
+            --text-muted: #636665;
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, .18);
+            --transition: 0.3s ease;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+        #main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .04em;
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #menu a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #btn-mobile {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--amber);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+
+        /* PAGE HERO (banner interno) */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%) center/cover no-repeat;
+            background-color: var(--navy);
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/bomb1.webp') center/cover no-repeat;
+        }
+
+    </style>
+
+    <!-- ===================== CSS NÃO CRÍTICO (assíncrono) ===================== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="../assets/css/style.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="../assets/css/dropdown.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="../assets/css/pages.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/dropdown.css">
+        <link rel="stylesheet" href="../assets/css/pages.css">
+    </noscript>
 </head>
 
 <body>
@@ -28,13 +311,13 @@
         <div class="container nav-wrapper">
             <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                 <div class="logo-icon" aria-hidden="true">
-                    <img src="../assets/img/ff193_transp.png" alt="Logo Transparente" width="50" height="50">
+                    <img src="../assets/img/ff193_transp.webp" alt="Logo Transparente" width="50" height="50">
                 </div>
                 <div class="logo-text">
                     <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
                 </div>
                 <div class="logo-icon" aria-hidden="true">
-                    <img src="../assets/img/cbmse.png" alt="Logo CBMSE" width="50" height="50">
+                    <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="50" height="50">
                 </div>
             </a>
             <nav id="nav-menu" aria-label="Navegação principal">
@@ -153,8 +436,8 @@
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
                     <a href="../index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
-                        <img src="../assets/img/ff193_transp.png" alt="Logo Fênix 193" width="36" height="36">
-                        <img src="../assets/img/cbmse.png" alt="Logo CBMSE" width="36" height="36">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36" loading="lazy">
+                        <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
                     <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
                     <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
