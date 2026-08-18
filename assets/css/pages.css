@@ -17,7 +17,7 @@ GERAL
 .page-hero--transparencia {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb1.jpeg') center/cover no-repeat;
+        url('../img/bomb1.webp') center/cover no-repeat;
 }
 
 /* ── Variantes atuação ── */
@@ -27,7 +27,7 @@ GERAL
 .page-hero--projetos {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb2.jpeg') center/cover no-repeat;
+        url('../img/bomb2.webp') center/cover no-repeat;
 }
 
 .page-hero::after {

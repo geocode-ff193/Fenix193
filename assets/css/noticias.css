@@ -2,7 +2,7 @@
 .page-hero {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb7.jpeg') center/cover no-repeat;
+        url('../img/bomb7.webp') center/cover no-repeat;
     padding: 60px 0 48px;
     position: relative;
     overflow: hidden;
