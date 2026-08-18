@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
             label: 'CBMSE',
             siteUrl: 'https://cbm.se.gov.br/',
             rssUrl: 'https://cbm.se.gov.br/feed/',
-            logo: 'assets/img/cbmse.png',
+            logo: 'assets/img/cbmse.webp',
         },
         defesacivil: {
             label: 'Defesa Civil',
             siteUrl: 'https://defesacivil.se.gov.br/',
             rssUrl: 'https://defesacivil.se.gov.br/feed/',
-            logo: 'assets/img/dcse.png',
+            logo: 'assets/img/dcse.webp',
         },
     };
 

@@ -15,8 +15,8 @@ class Chatbot {
 
         // Detecta se estamos numa subpágina (pages/) para ajustar o caminho do avatar
         this.avatarPath = window.location.pathname.includes('/pages/')
-            ? '../assets/img/luminia.png'
-            : 'assets/img/luminia.png';
+            ? '../assets/img/luminia.webp'
+            : 'assets/img/luminia.webp';
 
         if (!this.toggle || !this.box || !this.close || !this.body || !this.options) {
             console.error('[LuminIA] Elementos do chatbot não encontrados.');
