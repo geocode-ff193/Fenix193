@@ -1,0 +1,262 @@
+/* ==========================================================================
+   ACESSIBILIDADE.CSS — Fundação Fênix 193
+   Painel de ferramentas de acessibilidade (fonte, contraste) + player AD
+   Conformidade: WCAG 2.1 AA / eMAG
+   ========================================================================== */
+
+/* -------------------------------------------------
+   1. VARIÁVEIS DE TEMA (Padrão)
+   Tudo em rem/em para respeitar o zoom do usuário
+------------------------------------------------- */
+:root {
+  --a11y-bg: #ffffff;
+  --a11y-text: #1a1a1a;
+  --a11y-link: #7a1f16;
+  --a11y-focus: #0b5fff;
+  --a11y-panel-bg: #1a2b4c;
+  --a11y-panel-text: #ffffff;
+  --a11y-btn-bg: #c0392b;
+  --a11y-btn-text: #ffffff;
+  --font-scale: 1; /* multiplicador controlado via JS */
+}
+
+/* Tema Alto Contraste Escuro (fundo preto, texto branco/amarelo) */
+[data-a11y-theme="escuro"] {
+  --a11y-bg: #000000;
+  --a11y-text: #ffffff;
+  --a11y-link: #ffd700;
+  --a11y-focus: #ffd700;
+}
+
+/* Tema Alto Contraste Amarelo/Preto (exigência clássica eMAG) */
+[data-a11y-theme="amarelo"] {
+  --a11y-bg: #000000;
+  --a11y-text: #ffff00;
+  --a11y-link: #ffffff;
+  --a11y-focus: #ffffff;
+}
+
+/* Aplica o tema ativo em toda a página */
+[data-a11y-theme] body,
+[data-a11y-theme] header,
+[data-a11y-theme] main,
+[data-a11y-theme] footer,
+[data-a11y-theme] section,
+[data-a11y-theme] nav,
+[data-a11y-theme] aside {
+  background-color: var(--a11y-bg) !important;
+  color: var(--a11y-text) !important;
+}
+[data-a11y-theme] a { color: var(--a11y-link) !important; }
+[data-a11y-theme] img { filter: grayscale(0%); } /* mantém fotos legíveis */
+
+/* Escala de fonte global — aplicada no <html> via JS (font-size em %) */
+html { font-size: 100%; } /* base 1rem = 16px */
+body { font-size: calc(1rem * var(--font-scale, 1)); }
+
+/* -------------------------------------------------
+   2. FOCO VISÍVEL (obrigatório WCAG 2.4.7)
+------------------------------------------------- */
+:focus {
+  outline: 3px solid var(--a11y-focus) !important;
+  outline-offset: 2px !important;
+}
+/* Remove outline apenas para mouse, mantém para teclado */
+:focus:not(:focus-visible) { outline: none !important; }
+:focus-visible {
+  outline: 3px solid var(--a11y-focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* Link "pular para o conteúdo" */
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 0.5rem;
+  background: var(--a11y-btn-bg);
+  color: var(--a11y-btn-text);
+  padding: 0.6em 1em;
+  border-radius: 0.3em;
+  z-index: 10000;
+  font-weight: bold;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0.5rem; }
+
+/* -------------------------------------------------
+   3. BOTÃO FLUTUANTE DE ABERTURA DO PAINEL
+------------------------------------------------- */
+.a11y-toggle-btn {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 9998;
+  background: var(--a11y-btn-bg);
+  color: var(--a11y-btn-text);
+  border: none;
+  border-radius: 0 0.5em 0.5em 0;
+  padding: 0.9em 0.6em;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+.a11y-toggle-btn:hover,
+.a11y-toggle-btn:focus { background: #8a2f24; }
+
+/* -------------------------------------------------
+   4. PAINEL LATERAL (aside)
+------------------------------------------------- */
+.a11y-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 17.5rem;
+  max-width: 85vw;
+  background: var(--a11y-panel-bg);
+  color: var(--a11y-panel-text);
+  z-index: 9999;
+  padding: 1.25rem;
+  overflow-y: auto;
+  box-shadow: 4px 0 16px rgba(0,0,0,0.35);
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+.a11y-panel[data-open="true"] { transform: translateX(0); }
+
+.a11y-panel h2 {
+  font-size: 1.15rem;
+  margin: 0 0 1rem 0;
+  border-bottom: 2px solid #ffffff44;
+  padding-bottom: 0.5rem;
+}
+
+.a11y-panel .a11y-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: transparent;
+  border: 1px solid #ffffff88;
+  color: #fff;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.a11y-group {
+  margin-bottom: 1.5rem;
+}
+.a11y-group h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+  color: #ffd7a3;
+}
+
+.a11y-btn-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.a11y-btn {
+  flex: 1;
+  background: #ffffff1a;
+  border: 1px solid #ffffff55;
+  color: #fff;
+  border-radius: 0.4em;
+  padding: 0.55em 0.4em;
+  font-size: 1rem;
+  cursor: pointer;
+  min-height: 44px; /* alvo de toque acessível */
+}
+.a11y-btn:hover { background: #ffffff33; }
+.a11y-btn[aria-pressed="true"] {
+  background: #c0392b;
+  border-color: #ffd700;
+}
+
+.a11y-theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: 1px solid #ffffff55;
+  border-radius: 0.4em;
+  padding: 0.6em 0.7em;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  min-height: 44px;
+}
+.a11y-theme-btn[aria-pressed="true"] { border-color: #ffd700; background: #ffffff22; }
+.a11y-swatch {
+  width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 1px solid #fff;
+  flex-shrink: 0;
+}
+.a11y-swatch.padrao { background: linear-gradient(#fff 50%, #1a1a1a 50%); }
+.a11y-swatch.escuro { background: #000; border-color: #ffd700; }
+.a11y-swatch.amarelo { background: #000; box-shadow: inset 0 0 0 3px #ffff00; }
+
+/* Overlay atrás do painel em telas pequenas */
+.a11y-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 9997;
+  display: none;
+}
+.a11y-overlay[data-open="true"] { display: block; }
+
+/* -------------------------------------------------
+   5. PLAYER DE MÍDIA ACESSÍVEL
+------------------------------------------------- */
+.media-player {
+  max-width: 50rem;
+  margin: 1.5rem auto;
+  background: #111;
+  border-radius: 0.6em;
+  overflow: hidden;
+  color: #fff;
+}
+.media-player video { width: 100%; display: block; background: #000; }
+
+.media-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  background: #1a1a1a;
+  flex-wrap: wrap;
+}
+.media-controls button {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 0.4em;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.media-controls button:hover { background: #3a3a3a; }
+.media-controls button[aria-pressed="true"] { background: var(--a11y-btn-bg); border-color: #ffd700; }
+
+.media-progress {
+  flex: 1;
+  min-width: 8rem;
+  accent-color: var(--a11y-btn-bg);
+  height: 1.2rem;
+}
+.media-volume { width: 5rem; accent-color: var(--a11y-btn-bg); }
+
+.media-time { font-size: 0.8rem; min-width: 5.5rem; text-align: center; }
+
+/* Container da audiodescrição textual (para leitores de tela / legenda visual) */
+.ad-live-region {
+  padding: 0.5rem 0.9rem;
+  background: #000;
+  color: #ffd700;
+  font-size: 0.9rem;
+  min-height: 1.4em;
+  border-top: 1px solid #333;
+}
