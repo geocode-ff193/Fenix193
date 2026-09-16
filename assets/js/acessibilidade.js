@@ -60,7 +60,10 @@
   function applyFontScale(scale) {
     scale = Math.min(FONT_MAX, Math.max(FONT_MIN, scale));
     prefs.fontScale = scale;
-    document.documentElement.style.setProperty("--font-scale", scale);
+    // Ajusta o font-size do <html> (não do <body>): como todo o site usa
+    // rem, isso escala tipografia, espaçamentos e componentes em 100% das
+    // páginas — desktop e mobile — sem precisar tocar em cada elemento.
+    document.documentElement.style.fontSize = scale * 100 + "%";
     savePrefs(prefs);
     announce(`Tamanho da fonte ajustado para ${Math.round(scale * 100)}%`);
   }
@@ -111,7 +114,7 @@
     toggleBtn.setAttribute("aria-label", "Abrir painel de acessibilidade");
     toggleBtn.setAttribute("aria-expanded", "false");
     toggleBtn.setAttribute("aria-controls", "a11y-panel");
-    toggleBtn.innerHTML = '<span aria-hidden="true">♿</span>';
+    toggleBtn.innerHTML = '<i class="fas fa-universal-access" aria-hidden="true"></i>';
 
     const panel = document.createElement("aside");
     panel.id = "a11y-panel";
@@ -123,37 +126,29 @@
 
     panel.innerHTML = `
       <button type="button" class="a11y-close" aria-label="Fechar painel de acessibilidade">
-        <span aria-hidden="true">✕</span>
+        <i class="fas fa-xmark" aria-hidden="true"></i>
       </button>
       <h2 id="a11y-panel-title">Acessibilidade</h2>
 
-      <section class="a11y-group" aria-labelledby="a11y-font-label">
-        <h3 id="a11y-font-label">Tamanho da fonte</h3>
-        <div class="a11y-btn-row" role="group" aria-label="Controle de tamanho de fonte">
-          <button type="button" class="a11y-btn" data-action="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
-          <button type="button" class="a11y-btn" data-action="font-reset" aria-label="Restaurar tamanho de fonte padrão">A</button>
-          <button type="button" class="a11y-btn" data-action="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+      <section class="a11y-group">
+        <div class="a11y-btn-row" role="group" aria-label="Tamanho da fonte">
+          <button type="button" class="a11y-btn" data-action="font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
+          <button type="button" class="a11y-btn" data-action="font-reset" aria-label="Restaurar tamanho de fonte padrão" title="Fonte padrão">A</button>
+          <button type="button" class="a11y-btn" data-action="font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
         </div>
       </section>
 
-      <section class="a11y-group" aria-labelledby="a11y-contrast-label">
-        <h3 id="a11y-contrast-label">Contraste</h3>
-        <div role="group" aria-label="Alternador de temas de contraste" id="a11y-theme-group"></div>
+      <section class="a11y-group">
+        <div class="a11y-theme-row" role="group" aria-label="Contraste" id="a11y-theme-group"></div>
       </section>
 
       <section class="a11y-group">
-        <button type="button" class="a11y-btn" style="width:100%" data-action="reset-all">
-          Restaurar tudo ao padrão
-        </button>
+        <button type="button" class="a11y-reset-link" data-action="reset-all">Restaurar padrão</button>
       </section>
-
-      <p style="font-size:0.75rem; opacity:0.75; margin-top:1rem;">
-        Suas preferências ficam salvas neste navegador e são aplicadas automaticamente
-        na próxima visita.
-      </p>
     `;
 
-    // Botões de tema (gerados dinamicamente a partir de THEMES)
+    // Botões de tema (gerados dinamicamente a partir de THEMES) — só o ícone
+    // visível, com o nome completo em aria-label/title para leitor de tela e tooltip.
     const themeGroup = panel.querySelector("#a11y-theme-group");
     THEMES.forEach((theme) => {
       const btn = document.createElement("button");
@@ -161,7 +156,9 @@
       btn.className = "a11y-theme-btn";
       btn.dataset.theme = theme.id;
       btn.setAttribute("aria-pressed", "false");
-      btn.innerHTML = `<span class="a11y-swatch ${theme.swatchClass}" aria-hidden="true"></span> ${theme.label}`;
+      btn.setAttribute("aria-label", theme.label);
+      btn.title = theme.label;
+      btn.innerHTML = `<span class="a11y-swatch ${theme.swatchClass}" aria-hidden="true"></span>`;
       btn.addEventListener("click", () => applyTheme(theme.id));
       themeGroup.appendChild(btn);
     });
@@ -268,7 +265,7 @@
     initPanelBehavior(refs);
 
     // Aplica preferências salvas sem disparar anúncios de voz na carga da página
-    document.documentElement.style.setProperty("--font-scale", prefs.fontScale);
+    document.documentElement.style.fontSize = prefs.fontScale * 100 + "%";
     if (prefs.theme !== "padrao") {
       document.documentElement.setAttribute("data-a11y-theme", prefs.theme);
     }
