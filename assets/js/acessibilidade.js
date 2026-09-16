@@ -18,8 +18,21 @@
   // -------------------------------------------------
   const STORAGE_KEY = "ff193_a11y_prefs";
   const FONT_MIN = 0.8;
-  const FONT_MAX = 1.6;
   const FONT_STEP = 0.1;
+
+  // -------------------------------------------------
+  // Limite máximo de escala de fonte por largura de tela.
+  // Evita que o texto ampliado quebre o layout em telas menores —
+  // os mesmos breakpoints já usados no CSS do site (1024/768/480px).
+  // Recalculado a cada redimensionamento/rotação de tela.
+  // -------------------------------------------------
+  function getMaxScale() {
+    const w = window.innerWidth;
+    if (w <= 480) return 1.3;
+    if (w <= 768) return 1.4;
+    if (w <= 1024) return 1.5;
+    return 1.6;
+  }
 
   const THEMES = [
     { id: "padrao", label: "Contraste Padrão", swatchClass: "padrao" },
@@ -57,16 +70,33 @@
   // -------------------------------------------------
   // Aplicação visual das preferências
   // -------------------------------------------------
-  function applyFontScale(scale) {
-    scale = Math.min(FONT_MAX, Math.max(FONT_MIN, scale));
+  function applyFontScale(scale, opts) {
+    opts = opts || {};
+    scale = Math.min(getMaxScale(), Math.max(FONT_MIN, scale));
     prefs.fontScale = scale;
     // Ajusta o font-size do <html> (não do <body>): como todo o site usa
     // rem, isso escala tipografia, espaçamentos e componentes em 100% das
     // páginas — desktop e mobile — sem precisar tocar em cada elemento.
     document.documentElement.style.fontSize = scale * 100 + "%";
     savePrefs(prefs);
-    announce(`Tamanho da fonte ajustado para ${Math.round(scale * 100)}%`);
+    if (!opts.silent) {
+      announce(`Tamanho da fonte ajustado para ${Math.round(scale * 100)}%`);
+    }
   }
+
+  // Reclampa a escala salva sempre que a tela mudar de tamanho (ex.: girar
+  // o celular, ou redimensionar a janela), garantindo que o texto ampliado
+  // nunca ultrapasse o que aquele tamanho de tela comporta sem quebrar.
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      const max = getMaxScale();
+      if (prefs.fontScale > max) {
+        applyFontScale(max, { silent: true });
+      }
+    }, 200);
+  });
 
   function applyTheme(themeId) {
     prefs.theme = themeId;
@@ -265,7 +295,8 @@
     initPanelBehavior(refs);
 
     // Aplica preferências salvas sem disparar anúncios de voz na carga da página
-    document.documentElement.style.fontSize = prefs.fontScale * 100 + "%";
+    // (já reclampada ao limite seguro da tela atual, via applyFontScale)
+    applyFontScale(prefs.fontScale, { silent: true });
     if (prefs.theme !== "padrao") {
       document.documentElement.setAttribute("data-a11y-theme", prefs.theme);
     }
