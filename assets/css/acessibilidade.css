@@ -6,18 +6,20 @@
 
 /* -------------------------------------------------
    1. VARIÁVEIS DE TEMA (Padrão)
-   Tudo em rem/em para respeitar o zoom do usuário
+   Cores herdadas da paleta oficial do site (ver :root em style.css)
+   para o botão/painel abertos combinarem com a identidade visual.
 ------------------------------------------------- */
 :root {
   --a11y-bg: #ffffff;
   --a11y-text: #1a1a1a;
-  --a11y-link: #7a1f16;
-  --a11y-focus: #0b5fff;
-  --a11y-panel-bg: #1a2b4c;
+  --a11y-link: var(--red-dark, #872020);
+  --a11y-focus: var(--amber, #F8BA25);
+  --a11y-panel-bg: var(--navy, #313332);
   --a11y-panel-text: #ffffff;
-  --a11y-btn-bg: #c0392b;
+  --a11y-btn-bg: var(--red, #E12217);
+  --a11y-btn-bg-hover: var(--red-dark, #872020);
   --a11y-btn-text: #ffffff;
-  --font-scale: 1; /* multiplicador controlado via JS */
+  --a11y-accent: var(--amber, #F8BA25);
 }
 
 /* Tema Alto Contraste Escuro (fundo preto, texto branco/amarelo) */
@@ -50,9 +52,15 @@
 [data-a11y-theme] a { color: var(--a11y-link) !important; }
 [data-a11y-theme] img { filter: grayscale(0%); } /* mantém fotos legíveis */
 
-/* Escala de fonte global — aplicada no <html> via JS (font-size em %) */
-html { font-size: 100%; } /* base 1rem = 16px */
-body { font-size: calc(1rem * var(--font-scale, 1)); }
+/* -------------------------------------------------
+   Escala de fonte global — controlada via JS, que ajusta
+   diretamente o font-size do <html> (não apenas do <body>).
+   Como todo o site usa rem para tipografia, espaçamento e
+   componentes, esse ajuste no elemento raiz garante que a
+   personalização valha em 100% do site — desktop e mobile,
+   já que nenhum media query redefine o font-size do <html>.
+------------------------------------------------- */
+html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme preferência salva */
 
 /* -------------------------------------------------
    2. FOCO VISÍVEL (obrigatório WCAG 2.4.7)
@@ -99,15 +107,15 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   color: var(--a11y-btn-text);
   border: none;
   border-radius: 50%;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-md, 0 6px 24px rgba(0,0,0,.12));
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .a11y-toggle-btn:hover,
-.a11y-toggle-btn:focus { background: #8a2f24; }
+.a11y-toggle-btn:focus { background: var(--a11y-btn-bg-hover); }
 
 /* -------------------------------------------------
    4. PAINEL — cartão compacto (popover), não sidebar
@@ -122,8 +130,8 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   color: var(--a11y-panel-text);
   z-index: 9999;
   padding: 0.9rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  border-radius: var(--radius-lg, 0.75rem);
+  box-shadow: var(--shadow-lg, 0 12px 48px rgba(0,0,0,.18));
   transform: translateY(0.5rem) scale(0.97);
   opacity: 0;
   pointer-events: none;
@@ -140,7 +148,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   text-transform: uppercase;
   letter-spacing: 0.03em;
   margin: 0 0 0.6rem 0;
-  color: #ffd7a3;
+  color: var(--a11y-accent);
 }
 
 .a11y-panel .a11y-close {
@@ -153,7 +161,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   width: 1.6rem;
   height: 1.6rem;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 .a11y-panel .a11y-close:hover { color: #fff; }
 
@@ -166,7 +174,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   background: #ffffff1a;
   border: 1px solid #ffffff40;
   color: #fff;
-  border-radius: 0.4em;
+  border-radius: var(--radius, 0.4em);
   padding: 0.4em;
   font-size: 0.9rem;
   cursor: pointer;
@@ -182,12 +190,12 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   align-items: center;
   justify-content: center;
   border: 1px solid #ffffff40;
-  border-radius: 0.4em;
+  border-radius: var(--radius, 0.4em);
   padding: 0.4em;
   cursor: pointer;
   min-height: 2.5rem;
 }
-.a11y-theme-btn[aria-pressed="true"] { border-color: #ffd700; background: #ffffff22; }
+.a11y-theme-btn[aria-pressed="true"] { border-color: var(--a11y-accent); background: #ffffff22; }
 .a11y-swatch {
   width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid #fff;
 }
@@ -207,7 +215,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   cursor: pointer;
   padding: 0.3em;
 }
-.a11y-reset-link:hover { color: #fff; }
+.a11y-reset-link:hover { color: var(--a11y-accent); }
 
 /* Overlay — só ativo em telas pequenas, fecha ao tocar fora */
 .a11y-overlay {
@@ -248,7 +256,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
   font-size: 1rem;
 }
 .media-controls button:hover { background: #3a3a3a; }
-.media-controls button[aria-pressed="true"] { background: var(--a11y-btn-bg); border-color: #ffd700; }
+.media-controls button[aria-pressed="true"] { background: var(--a11y-btn-bg); border-color: var(--a11y-accent); }
 
 .media-progress {
   flex: 1;
@@ -264,7 +272,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
 .ad-live-region {
   padding: 0.5rem 0.9rem;
   background: #000;
-  color: #ffd700;
+  color: var(--a11y-accent);
   font-size: 0.9rem;
   min-height: 1.4em;
   border-top: 1px solid #333;
