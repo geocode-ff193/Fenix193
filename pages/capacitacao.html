@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
-    <link rel="preload" as="image" href="../assets/img/bomb2.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="../assets/img/bomb_02.webp" fetchpriority="high">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -283,7 +283,7 @@
         .page-hero {
             background:
                 linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-                url('../assets/img/bomb2.webp') center/cover no-repeat;
+                url('../assets/img/bomb_02.webp') center/cover no-repeat;
         }
 
     </style>
@@ -304,6 +304,8 @@
         <link rel="stylesheet" href="../assets/css/dropdown.css">
         <link rel="stylesheet" href="../assets/css/pages.css">
     </noscript>
+    <link rel="stylesheet" href="../assets/css/acessibilidade.css">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
 </head>
 
 <body>
@@ -791,6 +793,55 @@
         });
     </script>
 
+    <script defer src="../assets/js/acessibilidade.js"></script>
+    <script defer src="../assets/js/media-player.js"></script>
+
+    <!-- ===== CHATBOT FLUTUANTE ===== -->
+    <div class="chatbot-container">
+        <div class="chatbot-teaser" id="chatbotTeaser">
+            <button class="chatbot-teaser-dismiss" id="chatbotTeaserDismiss" aria-label="Dispensar">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
+            <span class="chatbot-toggle-face"><img src="../assets/img/luminia.webp" alt="" width="38" height="38"></span>
+            <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="../assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                </div>
+                <div class="chatbot-info">
+                    <h4>LuminIA</h4>
+                    <p class="chatbot-status">
+                        <span class="status-dot"></span>Online
+                    </p>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot-message">
+                    <div class="message-avatar">
+                        <img src="../assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix 193. Posso tirar dúvidas,
+                            ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
+                            começamos?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer" id="chatbotFooter">
+                <div class="chatbot-options" id="chatbotOptions"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" defer src="../assets/js/chatbot.js"></script>
 </body>
 
 </html>

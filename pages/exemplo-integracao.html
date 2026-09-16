@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exemplo — Componente de Acessibilidade | Fundação Fênix 193</title>
 
-<!-- 1. Incluir em TODAS as páginas do site, sempre nesta ordem -->
-<link rel="stylesheet" href="acessibilidade.css">
+<!-- 1. Incluir em TODAS as páginas do site, sempre nesta ordem
+     (para páginas de nível raiz: index.html, 404.html, akannihub.html) -->
+<link rel="stylesheet" href="assets/css/acessibilidade.css">
 </head>
 <body>
 
@@ -25,7 +26,7 @@
     <section aria-labelledby="video-title">
       <h2 id="video-title">Vídeo institucional</h2>
 
-      <!-- 2. Player acessível com audiodescrição -->
+      <!-- 2. Player acessível com audiodescrição — JSON de faixa AD sempre na raiz do site -->
       <div class="media-player"
            data-ad-track="ad-video-institucional.json"
            data-video-title="Vídeo institucional Fundação Fênix 193">
@@ -43,7 +44,7 @@
   </footer>
 
   <!-- 3. Scripts ao final do body, nesta ordem -->
-  <script src="acessibilidade.js" defer></script>
-  <script src="media-player.js" defer></script>
+  <script defer src="assets/js/acessibilidade.js"></script>
+  <script defer src="assets/js/media-player.js"></script>
 </body>
 </html>
