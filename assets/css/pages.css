@@ -17,7 +17,7 @@ GERAL
 .page-hero--transparencia {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb1.webp') center/cover no-repeat;
+        url('../img/bomb_01.webp') center/cover no-repeat;
 }
 
 /* ── Variantes atuação ── */
@@ -27,18 +27,18 @@ GERAL
 .page-hero--projetos {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb2.webp') center/cover no-repeat;
+        url('../img/bomb_02.webp') center/cover no-repeat;
 }
 
 /* ── Variante notícias ──
    Faltava esta regra: sem ela, a imagem definida no CSS crítico inline
-   de noticias.html (bomb7.webp) era sobrescrita pela regra genérica
+   de noticias.html (bomb_07.webp) era sobrescrita pela regra genérica
    .page-hero (sem imagem) assim que este arquivo terminava de carregar,
    fazendo o banner "piscar e sumir" após ~1s. */
 .page-hero--noticias {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb7.webp') center/cover no-repeat;
+        url('../img/bomb_07.webp') center/cover no-repeat;
 }
 
 .page-hero::after {

@@ -84,12 +84,14 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
 .skip-link:focus { top: 0.5rem; }
 
 /* -------------------------------------------------
-   3. BOTÃO FLUTUANTE (canto inferior direito — discreto)
+   3. BOTÃO FLUTUANTE (canto inferior esquerdo — discreto)
+   Fica à esquerda pois o canto inferior direito já é ocupado
+   pelo chatbot LuminIA.
 ------------------------------------------------- */
 .a11y-toggle-btn {
   position: fixed;
   bottom: 1.25rem;
-  right: 1.25rem;
+  left: 1.25rem;
   z-index: 9998;
   width: 3rem;
   height: 3rem;
@@ -113,7 +115,7 @@ body { font-size: calc(1rem * var(--font-scale, 1)); }
 .a11y-panel {
   position: fixed;
   bottom: 4.75rem;
-  right: 1.25rem;
+  left: 1.25rem;
   width: 15rem;
   max-width: 88vw;
   background: var(--a11y-panel-bg);
