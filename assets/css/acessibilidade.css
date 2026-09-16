@@ -62,6 +62,12 @@
 ------------------------------------------------- */
 html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme preferência salva */
 
+/* Rede de segurança: mesmo com a fonte ampliada, nenhuma tela deve gerar
+   rolagem horizontal indesejada. O JS já limita a escala máxima conforme a
+   largura da tela (ver getMaxScale em acessibilidade.js); isto é apenas
+   uma garantia extra contra estouro de conteúdo. */
+html, body { max-width: 100%; overflow-x: hidden; }
+
 /* -------------------------------------------------
    2. FOCO VISÍVEL (obrigatório WCAG 2.4.7)
 ------------------------------------------------- */
