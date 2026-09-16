@@ -611,7 +611,7 @@
                     <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
                     <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
                         desde nossa fundação.</p>
-                    <p class="footer-cnpj">CNPJ: —</p>
+                    <p class="footer-cnpj">CNPJ: 68.745.226/0001-55</p>
                 </div>
 
                 <!-- COLUNA 2 · Navegação -->
@@ -730,16 +730,9 @@
 
     </footer>
 
-    <button id="btn-top" aria-label="Voltar ao topo" title="Voltar ao topo">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
     <script>
         document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-        const btnTop = document.getElementById('btn-top');
-        window.addEventListener('scroll', () => btnTop.classList.toggle('visible', window.scrollY > 300));
-        btnTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').style.boxShadow =
