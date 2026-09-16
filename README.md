@@ -24,11 +24,13 @@
 - [Produtos do Ecossistema](#-produtos-do-ecossistema)
 - [Site Público](#-site-público)
 - [AkanniHub — Painel Administrativo](#-akannihub--painel-administrativo)
+- [Acessibilidade Audiovisual](#-acessibilidade-audiovisual)
 - [Chatbot LuminIA](#-chatbot-luminia)
 - [Segurança — Firestore Rules](#-segurança--firestore-rules)
 - [Estrutura de Arquivos](#-estrutura-de-arquivos)
 - [Configuração e Deploy](#-configuração-e-deploy)
 - [Versionamento](#-versionamento)
+- [Correções Recentes](#-correções-recentes)
 - [Roadmap — Próximas Atualizações](#-roadmap--próximas-atualizações)
 - [Créditos](#-créditos)
 
@@ -210,6 +212,12 @@ O projeto é composto por dois produtos integrados via Firebase, ambos em stack 
 
 </details>
 
+### Widget "Segurança & Defesa Civil"
+
+- Bloco lateral que exibe automaticamente as últimas notícias publicadas nos sites oficiais do **CBMSE** e da **Defesa Civil de Sergipe**, com abas para alternar entre as duas fontes.
+- Busca as notícias em tempo real diretamente dos feeds públicos desses órgãos — a Fundação não precisa cadastrar nada manualmente.
+- Caso os serviços externos estejam temporariamente indisponíveis, o widget exibe a última versão salva no navegador do visitante, evitando bloco vazio.
+
 ### 404 Personalizada
 
 - Animação CSS de gradiente de fogo no número "404".
@@ -295,6 +303,32 @@ SPA (Single Page Application) de gestão de conteúdo acessível em `/akannihub`
 | **Toast notifications** | Sistema success/error/default com auto-dismiss em 4 segundos |
 | **Responsividade** | Sidebar colapsável em mobile via botão hamburger |
 | **Sidebar badge** | Contagem de mensagens não lidas atualizada ao carregar |
+
+---
+
+## ♿ Acessibilidade Audiovisual
+
+Componente próprio, independente do restante do site, adicionado a todas as páginas.
+Conformidade: **WCAG 2.1 nível AA** e **eMAG**.
+
+| Arquivo | Local no projeto | Função |
+|---------|------------------|--------|
+| `acessibilidade.css` | `css/acessibilidade.css` | Botão flutuante, popover de contraste/fonte, foco visível |
+| `acessibilidade.js` | `js/acessibilidade.js` | Lógica do painel (auto-injetado via JS) |
+| `media-player.js` | `js/media-player.js` | Player de vídeo customizado com audiodescrição |
+| `*.json` de faixa AD | `assets/data/` | Faixas de audiodescrição (tempo + texto) por vídeo |
+
+**Painel de ferramentas (botão flutuante inferior direito):**
+- Tamanho de fonte (A−/A/A+) em `rem`, com persistência em `localStorage`
+- 3 temas de contraste — Padrão, Alto Contraste Escuro, Alto Contraste Amarelo/Preto
+- Design minimalista: popover compacto em vez de sidebar de tela cheia
+- Foco preso ao painel (focus trap), fecha com `Esc`, `skip link` para o conteúdo principal
+
+**Player de mídia com audiodescrição:**
+- Controles customizados 100% acessíveis via teclado (Espaço, Setas)
+- Botão dedicado de Audiodescrição (AD)
+- Narração via `window.speechSynthesis`, sincronizada aos tempos do vídeo, pausando a reprodução durante a fala
+- Texto da descrição também exposto em um container `aria-live="polite"`, garantindo acesso mesmo sem suporte à Speech API
 
 ---
 
@@ -451,7 +485,19 @@ v1.3.0
 | `v1.0.0` | Módulo de eventos, chatbot LuminIA, busca global, hero news feed |
 | `v1.1.0` | Firestore Rules v1.2.0, LGPD/cookies, headers de segurança no Vercel |
 | `v1.2.0` | GitHub Issues template, carrossel de apoiadores marquee, PWA manifest |
-| **`v1.3.0`** | **README profissional, consolidação e auditoria da base de código** |
+| `v1.3.0` | README profissional, consolidação e auditoria da base de código |
+| **`v1.4.0`** | **Componente de Acessibilidade Audiovisual (WCAG 2.1 AA / eMAG), correção de bug de banner (CSS crítico x assíncrono)** |
+
+---
+
+## 🐛 Correções Recentes
+
+**Banner de página some ~1s após o carregamento (CSS crítico x assíncrono)**
+
+O projeto usa CSS crítico inline (renderização instantânea) + `pages.css` carregado de forma assíncrona (`media="print"` com swap no `onload`). Duas inconsistências entre essas duas camadas causavam o efeito de a imagem de fundo "piscar e sumir":
+
+- `noticias.html`: a seção `.page-hero` não tinha nenhuma classe de variante (`--historia`, `--equipe` etc.). A imagem definida no CSS crítico (`bomb7.webp`) era sobrescrita pela regra genérica de `pages.css` (sem imagem) assim que este terminava de carregar. **Corrigido** com a nova classe/regra `.page-hero--noticias`.
+- `index.html`: o CSS crítico do hero referenciava `bomb_2.webp` (nome inconsistente com o resto do projeto, que usa `bomb2.webp`). **Corrigido** para manter o mesmo nome de arquivo em todas as referências.
 
 ---
 
@@ -464,13 +510,13 @@ As sugestões abaixo foram derivadas da análise da base de código atual e repr
 ### 🔴 Alta Prioridade
 
 #### `v1.4.0` — Preenchimento de Conteúdo Real
-Várias páginas ainda contêm placeholders (`DESCRIÇÃO`, `TÍTULO`, `TAGS`, `ANO`). Ações necessárias:
+Etapa natural de um projeto em desenvolvimento: a estrutura e o funcionamento das páginas já estão prontos, faltando apenas a Fundação repassar as informações finais para publicação. Itens previstos:
 - Preencher a linha do tempo em `nossa-historia.html` com os marcos reais da Fundação.
 - Completar os cards de `capacitacao.html` com cursos reais (carga horária, nível, módulos).
-- Substituir os cards placeholder em `projetos.html` pelos projetos reais.
+- Substituir os cards de exemplo em `projetos.html` pelos projetos reais.
 - Preencher os cards "Por que ser Parceiro" em `parcerias.html`.
-- Atualizar telefone, CNPJ e links de redes sociais (atualmente apontam para `?`) em todo o site.
-- Atualizar os contadores de impacto (`data-target="0"`) com os números reais da Fundação.
+- Atualizar telefone, CNPJ e links de redes sociais em todo o site.
+- Atualizar os contadores de impacto com os números reais da Fundação.
 
 #### `v1.4.1` — Segurança: App Check e Credenciais
 - Implementar **Firebase App Check** para bloquear requisições ao Firestore originárias de fora do domínio oficial.
