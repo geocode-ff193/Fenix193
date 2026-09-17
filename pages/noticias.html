@@ -387,7 +387,7 @@
         <section class="page-hero page-hero--noticias" aria-label="Blog de Notícias">
             <div class="container page-hero-content">
                 <nav class="page-breadcrumb" aria-label="Localização">
-                    <a href="index.html">Início</a>
+                    <a href="../index.html">Início</a>
                     <i class="fas fa-chevron-right"></i>
                     <span>Notícias</span>
                 </nav>
@@ -422,26 +422,6 @@
         </section>
 
     </main>
-
-    <!-- ════ NEWS DETAIL MODAL ════ -->
-    <div class="modal-overlay" id="news-modal" role="dialog" aria-modal="true" aria-labelledby="nm-title">
-        <div class="nm-modal-wrap">
-            <button class="nm-close" id="btn-close-nm" aria-label="Fechar"><i class="fas fa-times"></i></button>
-            <article class="news-modal">
-                <div id="nm-img-container"></div>
-                <div class="nm-body">
-                    <div class="nm-meta" id="nm-meta"></div>
-                    <h2 class="nm-title" id="nm-title"></h2>
-                    <div class="nm-corpo" id="nm-corpo"></div>
-                    <div class="nm-share">
-                        <span>Compartilhar:</span>
-                        <button class="nm-share-btn" id="btn-share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-                        <button class="nm-share-btn" id="btn-copy-link"><i class="fas fa-link"></i> Copiar link</button>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
 
     <!-- ===================== FOOTER ===================== -->
     <footer class="site-footer" role="contentinfo">
@@ -578,7 +558,7 @@
     <!-- ══ FIREBASE + LOGIC ══ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy, limit, startAfter }
+        import { getFirestore, collection, getDocs, query, orderBy, limit, startAfter, getCountFromServer }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -606,10 +586,9 @@
         function escHtml(s) { return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
         function buildCard(data, id, isFirst) {
-            const card = document.createElement('article');
+            const card = document.createElement('a');
             card.className = `np-card${isFirst ? ' featured' : ''} reveal`;
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'button');
+            card.href = `noticia.html?id=${encodeURIComponent(id)}`;
             card.setAttribute('aria-label', `Ler notícia: ${data.titulo}`);
 
             const imgHtml = data.imagemUrl
@@ -631,9 +610,6 @@
                 <span class="np-read-more">Ler mais <i class="fas fa-arrow-right"></i></span>
             </div>`;
 
-            const openModal = () => showNewsModal(data, id);
-            card.addEventListener('click', openModal);
-            card.addEventListener('keydown', e => { if (e.key === 'Enter') openModal(); });
             return card;
         }
 
@@ -659,9 +635,10 @@
                 const snap = await getDocs(q);
 
                 if (isInitial) {
-                    // Count total
-                    const countSnap = await getDocs(collection(db, 'news'));
-                    totalCount = countSnap.size;
+                    // Count total — agregação no servidor, não lê os documentos
+                    // (evita gastar 1 leitura por notícia só pra exibir o total).
+                    const countSnap = await getCountFromServer(collection(db, 'news'));
+                    totalCount = countSnap.data().count;
                     document.getElementById('news-count-label').innerHTML = totalCount > 0
                         ? `Exibindo <strong>${Math.min(PAGE_SIZE, totalCount)}</strong> de <strong>${totalCount}</strong> notícias`
                         : '';
@@ -714,41 +691,6 @@
 
         document.getElementById('btn-load-more').addEventListener('click', () => loadNews(false));
         loadNews(true);
-
-        // ── Modal ────────────────────────────────────────────────
-        const modal = document.getElementById('news-modal');
-        const btnClose = document.getElementById('btn-close-nm');
-
-        function showNewsModal(data, id) {
-            document.getElementById('nm-img-container').innerHTML = data.imagemUrl
-                ? `<img class="nm-hero-img" src="${escHtml(data.imagemUrl)}" alt="${escHtml(data.titulo)}">`
-                : `<div class="nm-hero-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`;
-            document.getElementById('nm-meta').innerHTML = `
-            <span><i class="fas fa-calendar-days"></i> ${fmtDate(data.createdAt)}</span>
-            <span><i class="fas fa-user"></i> ${escHtml(data.autor)}</span>`;
-            document.getElementById('nm-title').textContent = data.titulo;
-            document.getElementById('nm-corpo').textContent = data.corpo;
-
-            // Share buttons
-            const url = window.location.href.split('?')[0] + `?noticia=${id}`;
-            document.getElementById('btn-share-wa').onclick = () => {
-                window.open(`https://wa.me/?text=${encodeURIComponent(data.titulo + ' — ' + url)}`, '_blank');
-            };
-            document.getElementById('btn-copy-link').onclick = () => {
-                navigator.clipboard.writeText(url).then(() => {
-                    document.getElementById('btn-copy-link').innerHTML = '<i class="fas fa-check"></i> Copiado!';
-                    setTimeout(() => { document.getElementById('btn-copy-link').innerHTML = '<i class="fas fa-link"></i> Copiar link'; }, 2000);
-                });
-            };
-
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeNewsModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
-        btnClose.addEventListener('click', closeNewsModal);
-        modal.addEventListener('click', e => { if (e.target === modal) closeNewsModal(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNewsModal(); });
     </script>
 
     <script>
