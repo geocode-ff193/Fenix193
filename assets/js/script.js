@@ -320,7 +320,7 @@ document.addEventListener('keydown', (e) => {
                 const n = d.data();
                 const card = document.createElement('a');
                 card.className = 'news-home-card';
-                card.href = `news.html?noticia=${d.id}`;
+                card.href = `pages/noticia.html?id=${d.id}`;
                 card.setAttribute('aria-label', `Ler notícia: ${escHtml(n.titulo)}`);
                 card.innerHTML = `
                     <div style="overflow:hidden;">
@@ -465,7 +465,7 @@ document.addEventListener('keydown', (e) => {
                 const n = d.data();
                 const card = document.createElement('a');
                 card.className = 'hero-news-mini-card';
-                card.href = `pages/noticias.html?noticia=${d.id}`;
+                card.href = `pages/noticia.html?id=${d.id}`;
                 card.setAttribute('aria-label', `Ler: ${esc(n.titulo)}`);
                 const thumb = n.imagemUrl
                     ? `<img class="hero-news-mini-thumb" src="${esc(n.imagemUrl)}" alt="" loading="lazy">`
