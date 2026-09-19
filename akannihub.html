@@ -233,6 +233,35 @@
             background: var(--gray-light);
         }
 
+        .login-email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 4px;
+        }
+
+        .login-email-form .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .login-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 22px;
+            font-size: .85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-back-link:hover {
+            color: var(--red);
+        }
+
         .btn-google {
             width: 100%;
             padding: 14px 20px;
@@ -1204,13 +1233,33 @@
             <div class="login-logo">
                 <img src="assets/akanni/favicon-96x96.png" alt="Logo Fênix 193">
                 <div class="login-logo-text">
-                    <span class="login-logo-title">AkanniHub 1.1.2</span>
+                    <span class="login-logo-title">AkanniHub 1.2.0</span>
                     <span class="login-logo-sub">Painel Administrativo</span>
                 </div>
             </div>
             <h2>Acesso Restrito</h2>
-            <p>Área exclusiva para administradores da Fundação. Faça login com sua conta Google autorizada para
-                continuar.</p>
+            <p>Área exclusiva para administradores da Fundação. Entre com email e senha ou com sua conta Google
+                autorizada.</p>
+
+            <form id="form-email-login" class="login-email-form">
+                <div class="form-row" style="text-align:left;">
+                    <label class="form-label" for="login-email">Email</label>
+                    <input class="form-input" id="login-email" type="email" placeholder="seu@email.com" required
+                        autocomplete="username">
+                </div>
+                <div class="form-row" style="text-align:left;">
+                    <label class="form-label" for="login-password">Senha</label>
+                    <input class="form-input" id="login-password" type="password" placeholder="••••••••" required
+                        autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary" id="btn-email-login"
+                    style="width:100%;justify-content:center;">
+                    <i class="fas fa-right-to-bracket"></i> <span id="email-login-label">Entrar</span>
+                </button>
+            </form>
+
+            <div class="login-divider">ou</div>
+
             <button id="btn-google-login" class="btn-google">
                 <!-- Google G SVG -->
                 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -1224,11 +1273,12 @@
                         d="M24 47c5.8 0 10.7-1.9 14.2-5.1l-7.4-5.7c-2 1.3-4.5 2.1-6.8 2.1-6.2 0-11.4-4.7-13.2-11l-7.8 6.1C7 40.3 14.8 47 24 47z" />
                 </svg>
                 Entrar com Google
-            </button><br>
-            <a href="index.html"><button id="btn-google-login" class="btn-google"><i
-                        class="fas fa-right-from-bracket"></i> Sair</button></a>
+            </button>
+
             <div id="login-error"><i class="fas fa-shield-halved"></i> <span id="login-error-msg">Acesso não
                     autorizado.</span></div>
+
+            <a href="index.html" class="login-back-link"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
         </div>
     </div>
     <!-- ======================== APP SHELL ======================== -->
@@ -1243,7 +1293,7 @@
                     <img src="assets/akanni/favicon-96x96.png" alt="Logo">
                     <div class="topbar-brand-text">
                         <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
-                        <span class="topbar-brand-sub">AkanniHub 1.1.2</span>
+                        <span class="topbar-brand-sub">AkanniHub 1.2.0</span>
                     </div>
                 </div>
                 <span class="topbar-badge"><i class="fas fa-shield-halved"></i></span>
@@ -1684,7 +1734,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut, onAuthStateChanged }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
         // ── CONFIG ────────────────────────────────────────────────────
@@ -1770,6 +1820,46 @@
             }
         });
 
+        // ── Login por email/senha ────────────────────────────────────
+        document.getElementById('form-email-login').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            document.getElementById('login-error').style.display = 'none';
+
+            const btn = document.getElementById('btn-email-login');
+            const label = document.getElementById('email-login-label');
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            btn.disabled = true;
+            label.textContent = 'Entrando…';
+            try {
+                // onAuthStateChanged cuida da checagem de admins/{uid} e de mostrar o painel
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (err) {
+                showLoginError(mapAuthError(err.code));
+            } finally {
+                btn.disabled = false;
+                label.textContent = 'Entrar';
+            }
+        });
+
+        function mapAuthError(code) {
+            switch (code) {
+                case 'auth/invalid-email':
+                    return 'Email inválido.';
+                case 'auth/user-disabled':
+                    return 'Esta conta foi desativada.';
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                case 'auth/invalid-credential':
+                    return 'Email ou senha incorretos.';
+                case 'auth/too-many-requests':
+                    return 'Muitas tentativas. Tente novamente mais tarde.';
+                default:
+                    return 'Erro ao autenticar. Tente novamente.';
+            }
+        }
+
         document.getElementById('btn-logout').addEventListener('click', async () => {
             await signOut(auth);
             toast('Sessão encerrada.');
@@ -1778,6 +1868,9 @@
         function showLoginScreen() {
             document.getElementById('login-screen').style.display = 'flex';
             document.getElementById('app-shell').style.display = 'none';
+            // Limpa a senha por segurança ao voltar para a tela de login
+            const pwd = document.getElementById('login-password');
+            if (pwd) pwd.value = '';
         }
 
         function showLoginError(msg) {
