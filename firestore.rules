@@ -1,8 +1,8 @@
 rules_version = '2';
 
 // ============================================================
-//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.2.0
-//  Maio 2026
+//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.6.0
+//  Setembro 2026
 //
 //  Coleções protegidas:
 //    admins            → acesso restrito ao próprio UID
@@ -10,7 +10,11 @@ rules_version = '2';
 //    transparency_docs → leitura pública; escrita admin com validação
 //    news              → leitura pública; escrita admin com validação
 //    eventos           → leitura pública; escrita admin com validação
-//                        (NOVA — estava ausente na versão anterior)
+//    projetos          → leitura pública; escrita admin com validação
+//    capacitacao       → leitura pública; escrita admin com validação
+//    timeline          → leitura pública; escrita admin com validação
+//    apoiadores        → leitura pública; escrita admin com validação
+//                        (NOVA — painel Edição > Apoiadores)
 //
 //  Como adicionar um admin:
 //    Firebase Console → Firestore → coleção "admins"
@@ -98,6 +102,53 @@ service cloud.firestore {
           && requiredString(d.descricao) && d.descricao.size() <= 10000;
     }
 
+    /** Projeto publicado pelo painel (Atuação > Projetos) */
+    function isValidProjeto() {
+      let d = request.resource.data;
+      let statuses = ['planning', 'active', 'deactive', 'course'];
+      return d.keys().hasAll(['titulo', 'status', 'icone', 'area', 'publico', 'objetivo', 'descricao', 'createdAt'])
+          && requiredString(d.titulo)    && d.titulo.size()    <= 300
+          && d.status in statuses
+          && requiredString(d.icone)     && d.icone.size()     <= 100
+          && requiredString(d.area)      && d.area.size()      <= 200
+          && requiredString(d.publico)   && d.publico.size()   <= 200
+          && requiredString(d.objetivo)  && d.objetivo.size()  <= 2000
+          && requiredString(d.descricao) && d.descricao.size() <= 10000;
+    }
+
+    /** Curso publicado pelo painel (Atuação > Capacitação) */
+    function isValidCapacitacao() {
+      let d = request.resource.data;
+      let cores = ['red', 'fire', 'navy', 'green'];
+      return d.keys().hasAll(['titulo', 'descricao', 'cargaHoraria', 'nivel', 'icone', 'cor', 'modulos', 'createdAt'])
+          && requiredString(d.titulo)       && d.titulo.size()       <= 300
+          && requiredString(d.descricao)    && d.descricao.size()    <= 5000
+          && requiredString(d.cargaHoraria) && d.cargaHoraria.size() <= 50
+          && requiredString(d.nivel)        && d.nivel.size()        <= 50
+          && requiredString(d.icone)        && d.icone.size()        <= 100
+          && d.cor in cores
+          && d.modulos is list && d.modulos.size() > 0;
+    }
+
+    /** Marco da linha do tempo publicado pelo painel (Edição > Linha do Tempo) */
+    function isValidTimeline() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['ano', 'tag', 'titulo', 'descricao', 'createdAt'])
+          && requiredString(d.ano)       && d.ano.size()       <= 20
+          && requiredString(d.tag)       && d.tag.size()       <= 60
+          && requiredString(d.titulo)    && d.titulo.size()    <= 200
+          && requiredString(d.descricao) && d.descricao.size() <= 3000;
+    }
+
+    /** Apoiador/parceiro publicado pelo painel (Edição > Apoiadores) */
+    function isValidApoiador() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['nome', 'foto', 'createdAt'])
+          && requiredString(d.nome) && d.nome.size() <= 200
+          && requiredString(d.foto) && d.foto.size() <= 500
+          && (!('link' in d.keys()) || d.link == null || (d.link is string && d.link.size() <= 500));
+    }
+
     // ──────────────────────────────────────────────────────────
     //  ADMINS
     //  Leitura: somente o próprio usuário pode ler seu documento.
@@ -159,6 +210,58 @@ service cloud.firestore {
       allow read:   if true;
       allow create: if isAdmin() && isValidEvento();
       allow update: if isAdmin() && isValidEvento();
+      allow delete: if isAdmin();
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  PROJETOS
+    //  Leitura: pública (página de projetos do site).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
+    match /projetos/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidProjeto();
+      allow update: if isAdmin() && isValidProjeto();
+      allow delete: if isAdmin();
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  CAPACITAÇÃO
+    //  Leitura: pública (página de capacitação do site).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
+    match /capacitacao/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidCapacitacao();
+      allow update: if isAdmin() && isValidCapacitacao();
+      allow delete: if isAdmin();
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  LINHA DO TEMPO
+    //  Leitura: pública (página Nossa História).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
+    match /timeline/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidTimeline();
+      allow update: if isAdmin() && isValidTimeline();
+      allow delete: if isAdmin();
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  APOIADORES
+    //  Leitura: pública (página Parcerias).
+    //  Criação / atualização / exclusão: somente admins,
+    //           sujeita à validação de campos.
+    // ──────────────────────────────────────────────────────────
+    match /apoiadores/{docId} {
+      allow read:   if true;
+      allow create: if isAdmin() && isValidApoiador();
+      allow update: if isAdmin() && isValidApoiador();
       allow delete: if isAdmin();
     }
 
