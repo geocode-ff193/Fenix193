@@ -571,6 +571,14 @@
             display: block;
         }
 
+        /* ── Grid formulário + lista (Transparência, Notícias, Eventos, Projetos, Capacitação, Linha do Tempo, Apoiadores) ── */
+        .form-list-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 24px;
+            align-items: start;
+        }
+
         /* ── Dashboard cards ── */
         .dashboard-stats {
             display: grid;
@@ -1238,10 +1246,24 @@
                 transform: translateX(-100%);
                 width: 260px;
                 transition: transform .3s ease;
+                z-index: 700;
             }
 
             .app-sidebar.open {
                 transform: none;
+            }
+
+            .sidebar-backdrop {
+                display: none;
+                position: fixed;
+                inset: 0;
+                top: var(--header-h);
+                background: rgba(0, 0, 0, .45);
+                z-index: 650;
+            }
+
+            .sidebar-backdrop.open {
+                display: block;
             }
 
             .app-main {
@@ -1254,6 +1276,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .form-list-grid {
+                grid-template-columns: 1fr;
+            }
+
             .data-table .td-msg,
             .data-table .td-date {
                 display: none;
@@ -1261,6 +1287,47 @@
 
             .topbar-username {
                 display: none;
+            }
+
+            .topbar-brand-title {
+                font-size: .82rem;
+            }
+
+            .topbar-brand-sub {
+                font-size: .58rem;
+            }
+
+            .app-topbar {
+                padding: 0 14px;
+            }
+
+            .news-admin-item {
+                flex-wrap: wrap;
+            }
+
+            .news-admin-thumb,
+            .news-admin-thumb-placeholder {
+                width: 56px;
+                height: 56px;
+            }
+
+            .subtab-btn {
+                padding: 8px 14px;
+                font-size: .82rem;
+            }
+
+            .page-header-title {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .topbar-brand-text {
+                display: none;
+            }
+
+            .stat-card {
+                padding: 18px 16px;
             }
         }
     </style>
@@ -1274,7 +1341,7 @@
             <div class="login-logo">
                 <img src="assets/akanni/favicon-96x96.png" alt="Logo Fênix 193">
                 <div class="login-logo-text">
-                    <span class="login-logo-title">AkanniHub 1.2.0</span>
+                    <span class="login-logo-title">AkanniHub 1.3.0</span>
                     <span class="login-logo-sub">Painel Administrativo</span>
                 </div>
             </div>
@@ -1334,7 +1401,7 @@
                     <img src="assets/akanni/favicon-96x96.png" alt="Logo">
                     <div class="topbar-brand-text">
                         <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
-                        <span class="topbar-brand-sub">AkanniHub 1.2.0</span>
+                        <span class="topbar-brand-sub">AkanniHub 1.3.0</span>
                     </div>
                 </div>
                 <span class="topbar-badge"><i class="fas fa-shield-halved"></i></span>
@@ -1388,6 +1455,8 @@
                     </a>
                 </div>
             </aside>
+
+            <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
 
             <!-- Main -->
             <main class="app-main">
@@ -1466,7 +1535,7 @@
                             <p class="page-header-sub">Gerencie os documentos públicos da Fundação</p>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                    <div class="form-list-grid">
                         <!-- Form -->
                         <div class="panel">
                             <div class="panel-header">
@@ -1527,7 +1596,7 @@
                             <p class="page-header-sub">Publique e gerencie as notícias do site</p>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                    <div class="form-list-grid">
                         <!-- Form -->
                         <div class="panel">
                             <div class="panel-header">
@@ -1621,7 +1690,7 @@
 
                     <!-- ── Sub-aba: Projetos ── -->
                     <div class="subtab-panel active" id="atuacao-tab-projetos" role="tabpanel">
-                        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                        <div class="form-list-grid">
 
                             <!-- Formulário -->
                             <div class="panel">
@@ -1746,7 +1815,7 @@
 
                     <!-- ── Sub-aba: Capacitação ── -->
                     <div class="subtab-panel" id="atuacao-tab-capacitacao" role="tabpanel">
-                        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                        <div class="form-list-grid">
 
                             <!-- Formulário -->
                             <div class="panel">
@@ -1872,7 +1941,7 @@
 
                     <!-- ── Sub-aba: Eventos ── -->
                     <div class="subtab-panel" id="atuacao-tab-eventos" role="tabpanel">
-                        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                        <div class="form-list-grid">
 
                             <!-- Formulário -->
                             <div class="panel">
@@ -1988,7 +2057,7 @@
                             <p class="page-header-sub">Gerencie os marcos históricos exibidos em Nossa História</p>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                    <div class="form-list-grid">
 
                         <!-- Formulário -->
                         <div class="panel">
@@ -2074,7 +2143,7 @@
                             <p class="page-header-sub">Gerencie os apoiadores e parceiros exibidos em Parcerias</p>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+                    <div class="form-list-grid">
 
                         <!-- Formulário -->
                         <div class="panel">
@@ -2392,6 +2461,7 @@
             document.getElementById(`section-${section}`)?.classList.add('active');
             document.querySelector(`.sidebar-link[data-section="${section}"]`)?.classList.add('active');
             document.getElementById('app-sidebar').classList.remove('open');
+            document.getElementById('sidebar-backdrop')?.classList.remove('open');
         };
 
         document.querySelectorAll('.sidebar-link').forEach(link => {
@@ -2417,12 +2487,18 @@
 
         // Mobile sidebar toggle
         const sidebarToggle = document.getElementById('btn-sidebar-toggle');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
         sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
         window.addEventListener('resize', () => {
             sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
         });
         sidebarToggle.addEventListener('click', () => {
             document.getElementById('app-sidebar').classList.toggle('open');
+            sidebarBackdrop.classList.toggle('open');
+        });
+        sidebarBackdrop.addEventListener('click', () => {
+            document.getElementById('app-sidebar').classList.remove('open');
+            sidebarBackdrop.classList.remove('open');
         });
 
         // ── LOAD ALL ─────────────────────────────────────────────────
