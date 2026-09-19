@@ -530,6 +530,47 @@
             display: block;
         }
 
+        /* ── Sub-abas (ex.: Atuação > Projetos/Capacitação/Eventos) ── */
+        .subtab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .subtab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 24px;
+            border: 1.5px solid var(--gray-light);
+            background: var(--white);
+            color: var(--navy);
+            font-size: .87rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .subtab-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        .subtab-btn.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
+
+        .subtab-panel {
+            display: none;
+        }
+
+        .subtab-panel.active {
+            display: block;
+        }
+
         /* ── Dashboard cards ── */
         .dashboard-stats {
             display: grid;
@@ -1317,6 +1358,9 @@
                 </div>
                 <div class="sidebar-nav">
                     <p class="sidebar-section-label">Gestão</p>
+                    <a class="sidebar-link" data-section="atuacao" tabindex="0">
+                        <i class="fas fa-briefcase"></i> Atuação
+                    </a>
                     <a class="sidebar-link" data-section="contacts" tabindex="0">
                         <i class="fas fa-envelope"></i> Contatos
                         <span class="sidebar-badge" id="badge-contacts">0</span>
@@ -1327,8 +1371,14 @@
                     <a class="sidebar-link" data-section="news" tabindex="0">
                         <i class="fas fa-newspaper"></i> Notícias
                     </a>
-                    <a class="sidebar-link" data-section="eventos" tabindex="0">
-                        <i class="fas fa-calendar-days"></i> Eventos
+                </div>
+                <div class="sidebar-nav">
+                    <p class="sidebar-section-label">Edição</p>
+                    <a class="sidebar-link" data-section="timeline" tabindex="0">
+                        <i class="fas fa-timeline"></i> Linha do Tempo
+                    </a>
+                    <a class="sidebar-link" data-section="apoiadores" tabindex="0">
+                        <i class="fas fa-handshake"></i> Apoiadores
                     </a>
                 </div>
                 <div class="sidebar-nav">
@@ -1547,12 +1597,395 @@
                     </div>
                 </section>
 
-                <!-- ══ EVENTS ══ -->
-                <section id="section-eventos" class="app-section">
+                <!-- ══ ATUAÇÃO (Projetos / Capacitação / Eventos) ══ -->
+                <section id="section-atuacao" class="app-section">
                     <div class="page-header">
                         <div>
-                            <h2 class="page-header-title">Eventos</h2>
-                            <p class="page-header-sub">Publique e gerencie os eventos da Fundação</p>
+                            <h2 class="page-header-title">Atuação</h2>
+                            <p class="page-header-sub">Gerencie Projetos, Capacitação e Eventos da Fundação</p>
+                        </div>
+                    </div>
+
+                    <div class="subtab-nav" role="tablist" aria-label="Sub-seções de Atuação">
+                        <button class="subtab-btn active" data-atuacao-tab="projetos" role="tab"
+                            aria-selected="true">
+                            <i class="fas fa-clipboard-list"></i> Projetos
+                        </button>
+                        <button class="subtab-btn" data-atuacao-tab="capacitacao" role="tab" aria-selected="false">
+                            <i class="fas fa-graduation-cap"></i> Capacitação
+                        </button>
+                        <button class="subtab-btn" data-atuacao-tab="eventos" role="tab" aria-selected="false">
+                            <i class="fas fa-calendar-days"></i> Eventos
+                        </button>
+                    </div>
+
+                    <!-- ── Sub-aba: Projetos ── -->
+                    <div class="subtab-panel active" id="atuacao-tab-projetos" role="tabpanel">
+                        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+
+                            <!-- Formulário -->
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title" id="projeto-form-title">
+                                        <i class="fas fa-clipboard-list"></i> Novo Projeto
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <form id="form-projeto" class="form-grid">
+                                        <input type="hidden" id="projeto-edit-id" value="">
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="projeto-titulo">
+                                                Título do Projeto <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="projeto-titulo" type="text"
+                                                placeholder="Nome do projeto" required>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="projeto-status">
+                                                Status <span>*</span>
+                                            </label>
+                                            <select class="form-select" id="projeto-status" required>
+                                                <option value="">Selecione…</option>
+                                                <option value="planning">Em Planejamento</option>
+                                                <option value="active">Em Andamento</option>
+                                                <option value="deactive">Finalizado</option>
+                                                <option value="course">Curso</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="projeto-icone">
+                                                Ícone (Font Awesome) <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="projeto-icone" type="text"
+                                                placeholder="Ex: fas fa-truck-medical" required>
+                                            <span class="form-hint">
+                                                <i class="fas fa-circle-info"></i>
+                                                Classe do ícone exibido no card (fontawesome.com/icons)
+                                            </span>
+                                        </div>
+
+                                        <div class="form-grid form-grid-2">
+                                            <div class="form-row">
+                                                <label class="form-label" for="projeto-area">
+                                                    Área <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="projeto-area" type="text"
+                                                    placeholder="Ex: Saúde e Resgate" required>
+                                            </div>
+                                            <div class="form-row">
+                                                <label class="form-label" for="projeto-publico">
+                                                    Público-alvo <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="projeto-publico" type="text"
+                                                    placeholder="Ex: Comunidade de Aracaju" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="projeto-tags">
+                                                Tags
+                                            </label>
+                                            <input class="form-input" id="projeto-tags" type="text"
+                                                placeholder="Ex: Saúde, Resgate, CBMSE">
+                                            <span class="form-hint">
+                                                <i class="fas fa-circle-info"></i>
+                                                Opcional — separadas por vírgula
+                                            </span>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="projeto-objetivo">
+                                                Objetivo Principal <span>*</span>
+                                            </label>
+                                            <textarea class="form-textarea" id="projeto-objetivo"
+                                                placeholder="Objetivo principal do projeto…" required></textarea>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="projeto-descricao">
+                                                Descrição Completa <span>*</span>
+                                            </label>
+                                            <textarea class="form-textarea" id="projeto-descricao"
+                                                placeholder="Descreva o projeto com detalhes…" required></textarea>
+                                        </div>
+
+                                        <div style="display:flex;gap:10px;">
+                                            <button type="submit" class="btn btn-primary" id="btn-submit-projeto"
+                                                style="flex:1;">
+                                                <i class="fas fa-paper-plane"></i>
+                                                <span id="projeto-submit-label">Publicar</span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline" id="btn-cancel-projeto"
+                                                style="display:none;">
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Lista de projetos publicados -->
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title">
+                                        <i class="fas fa-list"></i> Projetos Publicados
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="projetos-list-wrap">
+                                        <div class="empty-state"><span class="spinner"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ── Sub-aba: Capacitação ── -->
+                    <div class="subtab-panel" id="atuacao-tab-capacitacao" role="tabpanel">
+                        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+
+                            <!-- Formulário -->
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title" id="capacitacao-form-title">
+                                        <i class="fas fa-graduation-cap"></i> Novo Curso
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <form id="form-capacitacao" class="form-grid">
+                                        <input type="hidden" id="capacitacao-edit-id" value="">
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="capacitacao-titulo">
+                                                Título do Curso <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="capacitacao-titulo" type="text"
+                                                placeholder="Nome do curso" required>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="capacitacao-descricao">
+                                                Descrição <span>*</span>
+                                            </label>
+                                            <textarea class="form-textarea" id="capacitacao-descricao"
+                                                placeholder="Descreva o curso…" required></textarea>
+                                        </div>
+
+                                        <div class="form-grid form-grid-2">
+                                            <div class="form-row">
+                                                <label class="form-label" for="capacitacao-horas">
+                                                    Carga Horária <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="capacitacao-horas" type="text"
+                                                    placeholder="Ex: 20h" required>
+                                            </div>
+                                            <div class="form-row">
+                                                <label class="form-label" for="capacitacao-nivel">
+                                                    Nível <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="capacitacao-nivel" type="text"
+                                                    placeholder="Ex: Básico" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-grid form-grid-2">
+                                            <div class="form-row">
+                                                <label class="form-label" for="capacitacao-icone">
+                                                    Ícone (Font Awesome) <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="capacitacao-icone" type="text"
+                                                    placeholder="Ex: fas fa-kit-medical" required>
+                                            </div>
+                                            <div class="form-row">
+                                                <label class="form-label" for="capacitacao-cor">
+                                                    Cor <span>*</span>
+                                                </label>
+                                                <select class="form-select" id="capacitacao-cor" required>
+                                                    <option value="">Selecione…</option>
+                                                    <option value="red">Vermelho</option>
+                                                    <option value="fire">Laranja</option>
+                                                    <option value="navy">Azul-marinho</option>
+                                                    <option value="green">Verde</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="capacitacao-modulos">
+                                                Conteúdo Programático <span>*</span>
+                                            </label>
+                                            <textarea class="form-textarea" id="capacitacao-modulos"
+                                                placeholder="Um módulo por linha…" required></textarea>
+                                            <span class="form-hint">
+                                                <i class="fas fa-circle-info"></i>
+                                                Cada linha vira um item da lista de módulos
+                                            </span>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="capacitacao-tags">
+                                                Tags
+                                            </label>
+                                            <input class="form-input" id="capacitacao-tags" type="text"
+                                                placeholder="Ex: Presencial, Certificado, CBMSE">
+                                            <span class="form-hint">
+                                                <i class="fas fa-circle-info"></i>
+                                                Opcional — separadas por vírgula
+                                            </span>
+                                        </div>
+
+                                        <div style="display:flex;gap:10px;">
+                                            <button type="submit" class="btn btn-primary" id="btn-submit-capacitacao"
+                                                style="flex:1;">
+                                                <i class="fas fa-paper-plane"></i>
+                                                <span id="capacitacao-submit-label">Publicar</span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline" id="btn-cancel-capacitacao"
+                                                style="display:none;">
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Lista de cursos publicados -->
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title">
+                                        <i class="fas fa-list"></i> Cursos Publicados
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="capacitacao-list-wrap">
+                                        <div class="empty-state"><span class="spinner"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ── Sub-aba: Eventos ── -->
+                    <div class="subtab-panel" id="atuacao-tab-eventos" role="tabpanel">
+                        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+
+                            <!-- Formulário -->
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title" id="eventos-form-title">
+                                        <i class="fas fa-calendar-plus"></i> Novo Evento
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <form id="form-eventos" class="form-grid">
+                                        <input type="hidden" id="evento-edit-id" value="">
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-titulo">
+                                                Nome do Evento <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="evento-titulo" type="text"
+                                                placeholder="Nome do evento" required>
+                                        </div>
+
+                                        <div class="form-grid form-grid-2">
+                                            <div class="form-row">
+                                                <label class="form-label" for="evento-data">
+                                                    Data <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="evento-data" type="date" required>
+                                            </div>
+                                            <div class="form-row">
+                                                <label class="form-label" for="evento-horario">
+                                                    Horário <span>*</span>
+                                                </label>
+                                                <input class="form-input" id="evento-horario" type="time" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-local">
+                                                Local <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="evento-local" type="text"
+                                                placeholder="Nome do local ou endereço completo" required>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-custo">
+                                                Custo <span>*</span>
+                                            </label>
+                                            <select class="form-select" id="evento-custo" required>
+                                                <option value="">Selecione…</option>
+                                                <option value="Gratuito">Gratuito</option>
+                                                <option value="Pago">Pago</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-link">
+                                                Link para Inscrição
+                                            </label>
+                                            <input class="form-input" id="evento-link" type="url"
+                                                placeholder="https://…">
+                                            <span class="form-hint">
+                                                <i class="fas fa-circle-info"></i>
+                                                Opcional — link externo de inscrição / formulário
+                                            </span>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <label class="form-label" for="evento-descricao">
+                                                Descrição <span>*</span>
+                                            </label>
+                                            <textarea class="form-textarea" id="evento-descricao"
+                                                placeholder="Descreva o evento com detalhes…" required></textarea>
+                                        </div>
+
+                                        <div style="display:flex;gap:10px;">
+                                            <button type="submit" class="btn btn-primary" id="btn-submit-evento"
+                                                style="flex:1;">
+                                                <i class="fas fa-paper-plane"></i>
+                                                <span id="evento-submit-label">Publicar</span>
+                                            </button>
+                                            <button type="button" class="btn btn-outline" id="btn-cancel-evento"
+                                                style="display:none;">
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Lista de eventos publicados -->
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title">
+                                        <i class="fas fa-list"></i> Eventos Publicados
+                                    </span>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="eventos-list-wrap">
+                                        <div class="empty-state"><span class="spinner"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ══ LINHA DO TEMPO ══ -->
+                <section id="section-timeline" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Linha do Tempo</h2>
+                            <p class="page-header-sub">Gerencie os marcos históricos exibidos em Nossa História</p>
                         </div>
                     </div>
                     <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
@@ -1560,82 +1993,54 @@
                         <!-- Formulário -->
                         <div class="panel">
                             <div class="panel-header">
-                                <span class="panel-title" id="eventos-form-title">
-                                    <i class="fas fa-calendar-plus"></i> Novo Evento
+                                <span class="panel-title" id="timeline-form-title">
+                                    <i class="fas fa-timeline"></i> Novo Marco
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <form id="form-eventos" class="form-grid">
-                                    <input type="hidden" id="evento-edit-id" value="">
-
-                                    <div class="form-row">
-                                        <label class="form-label" for="evento-titulo">
-                                            Nome do Evento <span>*</span>
-                                        </label>
-                                        <input class="form-input" id="evento-titulo" type="text"
-                                            placeholder="Nome do evento" required>
-                                    </div>
+                                <form id="form-timeline" class="form-grid">
+                                    <input type="hidden" id="timeline-edit-id" value="">
 
                                     <div class="form-grid form-grid-2">
                                         <div class="form-row">
-                                            <label class="form-label" for="evento-data">
-                                                Data <span>*</span>
+                                            <label class="form-label" for="timeline-ano">
+                                                Ano <span>*</span>
                                             </label>
-                                            <input class="form-input" id="evento-data" type="date" required>
+                                            <input class="form-input" id="timeline-ano" type="text"
+                                                placeholder="Ex: 2019" required>
                                         </div>
                                         <div class="form-row">
-                                            <label class="form-label" for="evento-horario">
-                                                Horário <span>*</span>
+                                            <label class="form-label" for="timeline-tag">
+                                                Tag <span>*</span>
                                             </label>
-                                            <input class="form-input" id="evento-horario" type="time" required>
+                                            <input class="form-input" id="timeline-tag" type="text"
+                                                placeholder="Ex: Fundação" required>
                                         </div>
                                     </div>
 
                                     <div class="form-row">
-                                        <label class="form-label" for="evento-local">
-                                            Local <span>*</span>
+                                        <label class="form-label" for="timeline-titulo">
+                                            Título <span>*</span>
                                         </label>
-                                        <input class="form-input" id="evento-local" type="text"
-                                            placeholder="Nome do local ou endereço completo" required>
+                                        <input class="form-input" id="timeline-titulo" type="text"
+                                            placeholder="Título do marco" required>
                                     </div>
 
                                     <div class="form-row">
-                                        <label class="form-label" for="evento-custo">
-                                            Custo <span>*</span>
-                                        </label>
-                                        <select class="form-select" id="evento-custo" required>
-                                            <option value="">Selecione…</option>
-                                            <option value="Gratuito">Gratuito</option>
-                                            <option value="Pago">Pago</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <label class="form-label" for="evento-link">
-                                            Link para Inscrição
-                                        </label>
-                                        <input class="form-input" id="evento-link" type="url" placeholder="https://…">
-                                        <span class="form-hint">
-                                            <i class="fas fa-circle-info"></i>
-                                            Opcional — link externo de inscrição / formulário
-                                        </span>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <label class="form-label" for="evento-descricao">
+                                        <label class="form-label" for="timeline-descricao">
                                             Descrição <span>*</span>
                                         </label>
-                                        <textarea class="form-textarea" id="evento-descricao"
-                                            placeholder="Descreva o evento com detalhes…" required></textarea>
+                                        <textarea class="form-textarea" id="timeline-descricao"
+                                            placeholder="Descreva o marco histórico…" required></textarea>
                                     </div>
 
                                     <div style="display:flex;gap:10px;">
-                                        <button type="submit" class="btn btn-primary" id="btn-submit-evento"
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-timeline"
                                             style="flex:1;">
                                             <i class="fas fa-paper-plane"></i>
-                                            <span id="evento-submit-label">Publicar</span>
+                                            <span id="timeline-submit-label">Publicar</span>
                                         </button>
-                                        <button type="button" class="btn btn-outline" id="btn-cancel-evento"
+                                        <button type="button" class="btn btn-outline" id="btn-cancel-timeline"
                                             style="display:none;">
                                             Cancelar
                                         </button>
@@ -1644,15 +2049,107 @@
                             </div>
                         </div>
 
-                        <!-- Lista de eventos publicados -->
+                        <!-- Lista de marcos publicados -->
                         <div class="panel">
                             <div class="panel-header">
                                 <span class="panel-title">
-                                    <i class="fas fa-list"></i> Eventos Publicados
+                                    <i class="fas fa-list"></i> Marcos Publicados
                                 </span>
                             </div>
                             <div class="panel-body">
-                                <div id="eventos-list-wrap">
+                                <div id="timeline-list-wrap">
+                                    <div class="empty-state"><span class="spinner"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- ══ APOIADORES ══ -->
+                <section id="section-apoiadores" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Apoiadores</h2>
+                            <p class="page-header-sub">Gerencie os apoiadores e parceiros exibidos em Parcerias</p>
+                        </div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:start;">
+
+                        <!-- Formulário -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title" id="apoiador-form-title">
+                                    <i class="fas fa-handshake"></i> Novo Apoiador
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-apoiador" class="form-grid">
+                                    <input type="hidden" id="apoiador-edit-id" value="">
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="apoiador-nome">
+                                            Nome <span>*</span>
+                                        </label>
+                                        <input class="form-input" id="apoiador-nome" type="text"
+                                            placeholder="Nome do apoiador ou empresa" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="apoiador-link">
+                                            Link
+                                        </label>
+                                        <input class="form-input" id="apoiador-link" type="url"
+                                            placeholder="https://…">
+                                        <span class="form-hint">
+                                            <i class="fas fa-circle-info"></i>
+                                            Opcional — site ou rede social do apoiador
+                                        </span>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label">Foto / Logo <span>*</span></label>
+                                        <div class="upload-zone" id="apoiador-upload-zone" role="button"
+                                            tabindex="0" aria-label="Área de upload de foto/logo">
+                                            <i class="fas fa-cloud-arrow-up"></i>
+                                            <p>Arraste ou <strong>clique para selecionar</strong></p>
+                                            <p style="font-size:.78rem;margin-top:4px;">JPG, PNG, WebP — máx. 5 MB</p>
+                                            <input type="file" id="apoiador-img-file" accept="image/*"
+                                                style="display:none;">
+                                        </div>
+                                        <img id="apoiador-img-preview" src="" alt="Preview">
+                                        <div class="upload-progress" id="apoiador-upload-progress">
+                                            <div class="upload-progress-bar" id="apoiador-upload-bar"></div>
+                                        </div>
+                                        <input type="hidden" id="apoiador-foto-url" value="">
+                                        <p class="form-hint"><i class="fas fa-circle-info"></i> Imagem enviada para o
+                                            Cloudinary</p>
+                                    </div>
+
+                                    <div style="display:flex;gap:10px;">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-apoiador"
+                                            style="flex:1;">
+                                            <i class="fas fa-paper-plane"></i>
+                                            <span id="apoiador-submit-label">Publicar</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline" id="btn-cancel-apoiador"
+                                            style="display:none;">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Lista de apoiadores publicados -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title">
+                                    <i class="fas fa-list"></i> Apoiadores Publicados
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                <div id="apoiadores-list-wrap">
                                     <div class="empty-state"><span class="spinner"></span></div>
                                 </div>
                             </div>
@@ -1902,6 +2399,22 @@
             link.addEventListener('keydown', e => { if (e.key === 'Enter') navigate(link.dataset.section); });
         });
 
+        // ── Sub-abas de Atuação (Projetos / Capacitação / Eventos) ────
+        window.navigateAtuacao = function (tab) {
+            document.querySelectorAll('.subtab-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.subtab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelector(`.subtab-btn[data-atuacao-tab="${tab}"]`)?.classList.add('active');
+            document.querySelector(`.subtab-btn[data-atuacao-tab="${tab}"]`)?.setAttribute('aria-selected', 'true');
+            document.getElementById(`atuacao-tab-${tab}`)?.classList.add('active');
+        };
+
+        document.querySelectorAll('.subtab-btn').forEach(btn => {
+            btn.addEventListener('click', () => navigateAtuacao(btn.dataset.atuacaoTab));
+        });
+
         // Mobile sidebar toggle
         const sidebarToggle = document.getElementById('btn-sidebar-toggle');
         sidebarToggle.style.display = window.innerWidth <= 768 ? 'inline-flex' : 'none';
@@ -1914,7 +2427,7 @@
 
         // ── LOAD ALL ─────────────────────────────────────────────────
         async function loadAllData() {
-            await Promise.all([loadContacts(), loadTransparency(), loadNews(), loadEventos()]);
+            await Promise.all([loadContacts(), loadTransparency(), loadNews(), loadEventos(), loadProjetos(), loadCapacitacao(), loadTimeline(), loadApoiadores()]);
         }
 
         // ══════════════════════════════════════════════════════════════
@@ -2125,31 +2638,35 @@
             }
         }
 
-        // ── Image upload (Cloudinary) ────────────────────────────────
-        const uploadZone = document.getElementById('upload-zone');
-        const imgFile = document.getElementById('img-file');
-        const imgPreview = document.getElementById('img-preview');
-        const imgUrlInput = document.getElementById('news-img-url');
-        const progressWrap = document.getElementById('upload-progress');
-        const progressBar = document.getElementById('upload-bar');
+        // ── Image upload (Cloudinary) — reutilizável ──────────────────
+        function setupImageUpload({ zoneId, fileId, previewId, urlInputId, progressWrapId, progressBarId }) {
+            const zone = document.getElementById(zoneId);
+            const fileInput = document.getElementById(fileId);
+            const preview = document.getElementById(previewId);
+            const urlInput = document.getElementById(urlInputId);
+            const progressWrap = document.getElementById(progressWrapId);
+            const progressBar = document.getElementById(progressBarId);
 
-        uploadZone.addEventListener('click', () => imgFile.click());
-        uploadZone.addEventListener('keydown', e => { if (e.key === 'Enter') imgFile.click(); });
-        uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
-        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-        uploadZone.addEventListener('drop', e => {
-            e.preventDefault(); uploadZone.classList.remove('dragover');
-            if (e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0]);
-        });
-        imgFile.addEventListener('change', () => { if (imgFile.files[0]) handleImageFile(imgFile.files[0]); });
+            zone.addEventListener('click', () => fileInput.click());
+            zone.addEventListener('keydown', e => { if (e.key === 'Enter') fileInput.click(); });
+            zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+            zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+            zone.addEventListener('drop', e => {
+                e.preventDefault(); zone.classList.remove('dragover');
+                if (e.dataTransfer.files[0]) handleImageFile(e.dataTransfer.files[0], { preview, urlInput, progressWrap, progressBar });
+            });
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files[0]) handleImageFile(fileInput.files[0], { preview, urlInput, progressWrap, progressBar });
+            });
+        }
 
-        async function handleImageFile(file) {
+        async function handleImageFile(file, { preview, urlInput, progressWrap, progressBar }) {
             if (!file.type.startsWith('image/')) { toast('Arquivo inválido.', 'error'); return; }
             if (file.size > 5 * 1024 * 1024) { toast('Imagem superior a 5 MB.', 'error'); return; }
 
             // Preview
             const reader = new FileReader();
-            reader.onload = e => { imgPreview.src = e.target.result; imgPreview.style.display = 'block'; };
+            reader.onload = e => { preview.src = e.target.result; preview.style.display = 'block'; };
             reader.readAsDataURL(file);
 
             // Upload to Cloudinary
@@ -2163,7 +2680,7 @@
                 const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`, { method: 'POST', body: fd });
                 const data = await res.json();
                 if (data.secure_url) {
-                    imgUrlInput.value = data.secure_url;
+                    urlInput.value = data.secure_url;
                     progressBar.style.width = '100%';
                     setTimeout(() => { progressWrap.style.display = 'none'; progressBar.style.width = '0'; }, 800);
                     toast('Imagem enviada com sucesso!', 'success');
@@ -2173,6 +2690,16 @@
                 toast('Erro no upload: ' + e.message, 'error');
             }
         }
+
+        setupImageUpload({
+            zoneId: 'upload-zone', fileId: 'img-file', previewId: 'img-preview',
+            urlInputId: 'news-img-url', progressWrapId: 'upload-progress', progressBarId: 'upload-bar'
+        });
+
+        setupImageUpload({
+            zoneId: 'apoiador-upload-zone', fileId: 'apoiador-img-file', previewId: 'apoiador-img-preview',
+            urlInputId: 'apoiador-foto-url', progressWrapId: 'apoiador-upload-progress', progressBarId: 'apoiador-upload-bar'
+        });
 
         // ── News form submit ─────────────────────────────────────────
         document.getElementById('form-news').addEventListener('submit', async (e) => {
@@ -2437,8 +2964,9 @@
             document.getElementById('evento-submit-label').textContent = 'Guardar';
             document.getElementById('btn-cancel-evento').style.display = 'inline-flex';
 
-            navigate('eventos');
-            document.getElementById('section-eventos').scrollIntoView({ behavior: 'smooth' });
+            navigate('atuacao');
+            navigateAtuacao('eventos');
+            document.getElementById('section-atuacao').scrollIntoView({ behavior: 'smooth' });
         };
 
         // ── Cancelar edição ──────────────────────────────────────────────
@@ -2459,6 +2987,689 @@
                     await deleteDoc(doc(db, 'eventos', id));
                     toast('Evento eliminado.', 'success');
                     loadEventos();
+                } catch (e) {
+                    toast('Erro: ' + e.message, 'error');
+                }
+            });
+        };
+
+        /* ═══════════════════════════════════════════════════════════
+           PROJETOS — Atuação > Projetos
+        ══════════════════════════════════════════════════════════*/
+
+        const PROJETO_STATUS_MAP = {
+            planning: { label: 'Em Planejamento', icon: 'fa-clock', color: '#D97706' },
+            active: { label: 'Em Andamento', icon: 'fa-spinner', color: '#F27613' },
+            deactive: { label: 'Finalizado', icon: 'fa-circle-check', color: 'var(--gray)' },
+            course: { label: 'Curso', icon: 'fa-graduation-cap', color: '#16A34A' },
+        };
+
+        // ── loadProjetos ─────────────────────────────────────────────
+        async function loadProjetos() {
+            const wrap = document.getElementById('projetos-list-wrap');
+            try {
+                const q = query(collection(db, 'projetos'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    wrap.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <p>Nenhum projeto publicado.</p>
+                </div>`;
+                    window._projetosCache = {};
+                    return;
+                }
+
+                const list = document.createElement('div');
+                list.className = 'news-admin-list';
+
+                snap.forEach(d => {
+                    const p = d.data();
+                    const statusInfo = PROJETO_STATUS_MAP[p.status] || { label: p.status, icon: 'fa-tag', color: 'var(--gray)' };
+
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
+                <div class="news-admin-thumb-placeholder">
+                    <i class="${escHtml(p.icone || 'fas fa-clipboard-list')}"></i>
+                </div>
+
+                <div class="news-admin-body">
+                    <div class="news-admin-title">${escHtml(p.titulo)}</div>
+                    <div class="news-admin-meta">
+                        <span style="color:${statusInfo.color};">
+                            <i class="fas ${statusInfo.icon}"></i> ${escHtml(statusInfo.label)}
+                        </span>
+                        <span><i class="fas fa-tag"></i> ${escHtml(p.area || '—')}</span>
+                        ${p.tags ? `<span><i class="fas fa-tags"></i> ${escHtml(p.tags)}</span>` : ''}
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:6px;flex-shrink:0;align-items:flex-start;">
+                    <button class="btn btn-outline btn-sm"
+                        onclick="editProjeto('${d.id}')" title="Editar">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteProjeto('${d.id}')" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>`;
+
+                    list.appendChild(item);
+                });
+
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+
+                // Cache para edição
+                window._projetosCache = {};
+                snap.forEach(d => { window._projetosCache[d.id] = d.data(); });
+
+            } catch (e) {
+                wrap.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-triangle-exclamation"></i>
+                <p>Erro ao carregar: ${e.message}</p>
+            </div>`;
+            }
+        }
+
+        // ── Submit (criar / editar) ──────────────────────────────────────
+        document.getElementById('form-projeto').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-projeto');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Salvando…';
+
+            const editId = document.getElementById('projeto-edit-id').value;
+            const isEdit = !!editId;
+
+            const payload = {
+                titulo: document.getElementById('projeto-titulo').value.trim(),
+                status: document.getElementById('projeto-status').value,
+                icone: document.getElementById('projeto-icone').value.trim(),
+                area: document.getElementById('projeto-area').value.trim(),
+                publico: document.getElementById('projeto-publico').value.trim(),
+                tags: document.getElementById('projeto-tags').value.trim(),
+                objetivo: document.getElementById('projeto-objetivo').value.trim(),
+                descricao: document.getElementById('projeto-descricao').value.trim(),
+            };
+
+            try {
+                if (isEdit) {
+                    await updateDoc(doc(db, 'projetos', editId), {
+                        ...payload,
+                        updatedAt: serverTimestamp()
+                    });
+                    toast('Projeto atualizado!', 'success');
+                    cancelEditProjeto();
+                } else {
+                    payload.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'projetos'), payload);
+                    toast('Projeto publicado com sucesso!', 'success');
+                    e.target.reset();
+                }
+                loadProjetos();
+            } catch (err) {
+                toast('Erro: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="projeto-submit-label">'
+                    + (isEdit ? 'Guardar' : 'Publicar') + '</span>';
+            }
+        });
+
+        // ── Editar projeto ────────────────────────────────────────────────
+        window.editProjeto = function (id) {
+            const p = window._projetosCache?.[id];
+            if (!p) return;
+
+            document.getElementById('projeto-edit-id').value = id;
+            document.getElementById('projeto-titulo').value = p.titulo;
+            document.getElementById('projeto-status').value = p.status;
+            document.getElementById('projeto-icone').value = p.icone;
+            document.getElementById('projeto-area').value = p.area;
+            document.getElementById('projeto-publico').value = p.publico;
+            document.getElementById('projeto-tags').value = p.tags || '';
+            document.getElementById('projeto-objetivo').value = p.objetivo;
+            document.getElementById('projeto-descricao').value = p.descricao;
+
+            document.getElementById('projeto-form-title').innerHTML =
+                '<i class="fas fa-pen"></i> Editar Projeto';
+            document.getElementById('projeto-submit-label').textContent = 'Guardar';
+            document.getElementById('btn-cancel-projeto').style.display = 'inline-flex';
+
+            navigate('atuacao');
+            navigateAtuacao('projetos');
+            document.getElementById('section-atuacao').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // ── Cancelar edição ──────────────────────────────────────────────
+        function cancelEditProjeto() {
+            document.getElementById('projeto-edit-id').value = '';
+            document.getElementById('form-projeto').reset();
+            document.getElementById('projeto-form-title').innerHTML =
+                '<i class="fas fa-clipboard-list"></i> Novo Projeto';
+            document.getElementById('projeto-submit-label').textContent = 'Publicar';
+            document.getElementById('btn-cancel-projeto').style.display = 'none';
+        }
+        document.getElementById('btn-cancel-projeto').addEventListener('click', cancelEditProjeto);
+
+        // ── Eliminar projeto ──────────────────────────────────────────────
+        window.deleteProjeto = function (id) {
+            confirmDelete('Deseja eliminar este projeto permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'projetos', id));
+                    toast('Projeto eliminado.', 'success');
+                    loadProjetos();
+                } catch (e) {
+                    toast('Erro: ' + e.message, 'error');
+                }
+            });
+        };
+
+        /* ═══════════════════════════════════════════════════════════
+           CAPACITAÇÃO — Atuação > Capacitação
+        ══════════════════════════════════════════════════════════*/
+
+        const CAPACITACAO_COR_MAP = {
+            red: { label: 'Vermelho', hex: 'var(--red)' },
+            fire: { label: 'Laranja', hex: 'var(--fire)' },
+            navy: { label: 'Azul-marinho', hex: 'var(--navy)' },
+            green: { label: 'Verde', hex: '#16A34A' },
+        };
+
+        // ── Helpers de texto ↔ lista ────────────────────────────────
+        function linesToArray(str) {
+            return str.split('\n').map(s => s.trim()).filter(Boolean);
+        }
+        function csvToArray(str) {
+            return str.split(',').map(s => s.trim()).filter(Boolean);
+        }
+
+        // ── loadCapacitacao ──────────────────────────────────────────
+        async function loadCapacitacao() {
+            const wrap = document.getElementById('capacitacao-list-wrap');
+            try {
+                const q = query(collection(db, 'capacitacao'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    wrap.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-graduation-cap"></i>
+                    <p>Nenhum curso publicado.</p>
+                </div>`;
+                    window._capacitacaoCache = {};
+                    return;
+                }
+
+                const list = document.createElement('div');
+                list.className = 'news-admin-list';
+
+                snap.forEach(d => {
+                    const c = d.data();
+                    const corInfo = CAPACITACAO_COR_MAP[c.cor] || { label: c.cor, hex: 'var(--gray)' };
+                    const tags = Array.isArray(c.tags) ? c.tags : [];
+
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
+                <div class="news-admin-thumb-placeholder" style="background:${corInfo.hex};color:var(--white);">
+                    <i class="${escHtml(c.icone || 'fas fa-graduation-cap')}"></i>
+                </div>
+
+                <div class="news-admin-body">
+                    <div class="news-admin-title">${escHtml(c.titulo)}</div>
+                    <div class="news-admin-meta">
+                        <span><i class="fas fa-clock"></i> ${escHtml(c.cargaHoraria || '—')}</span>
+                        <span><i class="fas fa-signal"></i> ${escHtml(c.nivel || '—')}</span>
+                        <span><i class="fas fa-list-check"></i> ${(c.modulos || []).length} módulo(s)</span>
+                        ${tags.map(t => `<span><i class="fas fa-tag"></i> ${escHtml(t)}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:6px;flex-shrink:0;align-items:flex-start;">
+                    <button class="btn btn-outline btn-sm"
+                        onclick="editCapacitacao('${d.id}')" title="Editar">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteCapacitacao('${d.id}')" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>`;
+
+                    list.appendChild(item);
+                });
+
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+
+                // Cache para edição
+                window._capacitacaoCache = {};
+                snap.forEach(d => { window._capacitacaoCache[d.id] = d.data(); });
+
+            } catch (e) {
+                wrap.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-triangle-exclamation"></i>
+                <p>Erro ao carregar: ${e.message}</p>
+            </div>`;
+            }
+        }
+
+        // ── Submit (criar / editar) ──────────────────────────────────────
+        document.getElementById('form-capacitacao').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-capacitacao');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Salvando…';
+
+            const editId = document.getElementById('capacitacao-edit-id').value;
+            const isEdit = !!editId;
+
+            const payload = {
+                titulo: document.getElementById('capacitacao-titulo').value.trim(),
+                descricao: document.getElementById('capacitacao-descricao').value.trim(),
+                cargaHoraria: document.getElementById('capacitacao-horas').value.trim(),
+                nivel: document.getElementById('capacitacao-nivel').value.trim(),
+                icone: document.getElementById('capacitacao-icone').value.trim(),
+                cor: document.getElementById('capacitacao-cor').value,
+                modulos: linesToArray(document.getElementById('capacitacao-modulos').value),
+                tags: csvToArray(document.getElementById('capacitacao-tags').value),
+            };
+
+            try {
+                if (isEdit) {
+                    await updateDoc(doc(db, 'capacitacao', editId), {
+                        ...payload,
+                        updatedAt: serverTimestamp()
+                    });
+                    toast('Curso atualizado!', 'success');
+                    cancelEditCapacitacao();
+                } else {
+                    payload.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'capacitacao'), payload);
+                    toast('Curso publicado com sucesso!', 'success');
+                    e.target.reset();
+                }
+                loadCapacitacao();
+            } catch (err) {
+                toast('Erro: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="capacitacao-submit-label">'
+                    + (isEdit ? 'Guardar' : 'Publicar') + '</span>';
+            }
+        });
+
+        // ── Editar curso ────────────────────────────────────────────────
+        window.editCapacitacao = function (id) {
+            const c = window._capacitacaoCache?.[id];
+            if (!c) return;
+
+            document.getElementById('capacitacao-edit-id').value = id;
+            document.getElementById('capacitacao-titulo').value = c.titulo;
+            document.getElementById('capacitacao-descricao').value = c.descricao;
+            document.getElementById('capacitacao-horas').value = c.cargaHoraria;
+            document.getElementById('capacitacao-nivel').value = c.nivel;
+            document.getElementById('capacitacao-icone').value = c.icone;
+            document.getElementById('capacitacao-cor').value = c.cor;
+            document.getElementById('capacitacao-modulos').value = (c.modulos || []).join('\n');
+            document.getElementById('capacitacao-tags').value = (c.tags || []).join(', ');
+
+            document.getElementById('capacitacao-form-title').innerHTML =
+                '<i class="fas fa-pen"></i> Editar Curso';
+            document.getElementById('capacitacao-submit-label').textContent = 'Guardar';
+            document.getElementById('btn-cancel-capacitacao').style.display = 'inline-flex';
+
+            navigate('atuacao');
+            navigateAtuacao('capacitacao');
+            document.getElementById('section-atuacao').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // ── Cancelar edição ──────────────────────────────────────────────
+        function cancelEditCapacitacao() {
+            document.getElementById('capacitacao-edit-id').value = '';
+            document.getElementById('form-capacitacao').reset();
+            document.getElementById('capacitacao-form-title').innerHTML =
+                '<i class="fas fa-graduation-cap"></i> Novo Curso';
+            document.getElementById('capacitacao-submit-label').textContent = 'Publicar';
+            document.getElementById('btn-cancel-capacitacao').style.display = 'none';
+        }
+        document.getElementById('btn-cancel-capacitacao').addEventListener('click', cancelEditCapacitacao);
+
+        // ── Eliminar curso ──────────────────────────────────────────────
+        window.deleteCapacitacao = function (id) {
+            confirmDelete('Deseja eliminar este curso permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'capacitacao', id));
+                    toast('Curso eliminado.', 'success');
+                    loadCapacitacao();
+                } catch (e) {
+                    toast('Erro: ' + e.message, 'error');
+                }
+            });
+        };
+
+        /* ═══════════════════════════════════════════════════════════
+           LINHA DO TEMPO — Edição > Linha do Tempo
+        ══════════════════════════════════════════════════════════*/
+
+        // ── loadTimeline ─────────────────────────────────────────────
+        async function loadTimeline() {
+            const wrap = document.getElementById('timeline-list-wrap');
+            try {
+                const q = query(collection(db, 'timeline'), orderBy('ano', 'asc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    wrap.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-timeline"></i>
+                    <p>Nenhum marco publicado.</p>
+                </div>`;
+                    window._timelineCache = {};
+                    return;
+                }
+
+                const list = document.createElement('div');
+                list.className = 'news-admin-list';
+
+                snap.forEach(d => {
+                    const t = d.data();
+
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
+                <div class="news-admin-thumb-placeholder">
+                    <i class="fas fa-fire-flame-curved"></i>
+                </div>
+
+                <div class="news-admin-body">
+                    <div class="news-admin-title">${escHtml(t.ano)} — ${escHtml(t.titulo)}</div>
+                    <div class="news-admin-meta">
+                        <span><i class="fas fa-tag"></i> ${escHtml(t.tag)}</span>
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:6px;flex-shrink:0;align-items:flex-start;">
+                    <button class="btn btn-outline btn-sm"
+                        onclick="editTimeline('${d.id}')" title="Editar">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteTimeline('${d.id}')" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>`;
+
+                    list.appendChild(item);
+                });
+
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+
+                // Cache para edição
+                window._timelineCache = {};
+                snap.forEach(d => { window._timelineCache[d.id] = d.data(); });
+
+            } catch (e) {
+                wrap.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-triangle-exclamation"></i>
+                <p>Erro ao carregar: ${e.message}</p>
+            </div>`;
+            }
+        }
+
+        // ── Submit (criar / editar) ──────────────────────────────────────
+        document.getElementById('form-timeline').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-timeline');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Salvando…';
+
+            const editId = document.getElementById('timeline-edit-id').value;
+            const isEdit = !!editId;
+
+            const payload = {
+                ano: document.getElementById('timeline-ano').value.trim(),
+                tag: document.getElementById('timeline-tag').value.trim(),
+                titulo: document.getElementById('timeline-titulo').value.trim(),
+                descricao: document.getElementById('timeline-descricao').value.trim(),
+            };
+
+            try {
+                if (isEdit) {
+                    await updateDoc(doc(db, 'timeline', editId), {
+                        ...payload,
+                        updatedAt: serverTimestamp()
+                    });
+                    toast('Marco atualizado!', 'success');
+                    cancelEditTimeline();
+                } else {
+                    payload.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'timeline'), payload);
+                    toast('Marco publicado com sucesso!', 'success');
+                    e.target.reset();
+                }
+                loadTimeline();
+            } catch (err) {
+                toast('Erro: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="timeline-submit-label">'
+                    + (isEdit ? 'Guardar' : 'Publicar') + '</span>';
+            }
+        });
+
+        // ── Editar marco ────────────────────────────────────────────────
+        window.editTimeline = function (id) {
+            const t = window._timelineCache?.[id];
+            if (!t) return;
+
+            document.getElementById('timeline-edit-id').value = id;
+            document.getElementById('timeline-ano').value = t.ano;
+            document.getElementById('timeline-tag').value = t.tag;
+            document.getElementById('timeline-titulo').value = t.titulo;
+            document.getElementById('timeline-descricao').value = t.descricao;
+
+            document.getElementById('timeline-form-title').innerHTML =
+                '<i class="fas fa-pen"></i> Editar Marco';
+            document.getElementById('timeline-submit-label').textContent = 'Guardar';
+            document.getElementById('btn-cancel-timeline').style.display = 'inline-flex';
+
+            navigate('timeline');
+            document.getElementById('section-timeline').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // ── Cancelar edição ──────────────────────────────────────────────
+        function cancelEditTimeline() {
+            document.getElementById('timeline-edit-id').value = '';
+            document.getElementById('form-timeline').reset();
+            document.getElementById('timeline-form-title').innerHTML =
+                '<i class="fas fa-timeline"></i> Novo Marco';
+            document.getElementById('timeline-submit-label').textContent = 'Publicar';
+            document.getElementById('btn-cancel-timeline').style.display = 'none';
+        }
+        document.getElementById('btn-cancel-timeline').addEventListener('click', cancelEditTimeline);
+
+        // ── Eliminar marco ──────────────────────────────────────────────
+        window.deleteTimeline = function (id) {
+            confirmDelete('Deseja eliminar este marco permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'timeline', id));
+                    toast('Marco eliminado.', 'success');
+                    loadTimeline();
+                } catch (e) {
+                    toast('Erro: ' + e.message, 'error');
+                }
+            });
+        };
+
+        /* ═══════════════════════════════════════════════════════════
+           APOIADORES — Edição > Apoiadores
+        ══════════════════════════════════════════════════════════*/
+
+        // ── loadApoiadores ───────────────────────────────────────────
+        async function loadApoiadores() {
+            const wrap = document.getElementById('apoiadores-list-wrap');
+            try {
+                const q = query(collection(db, 'apoiadores'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    wrap.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-handshake"></i>
+                    <p>Nenhum apoiador publicado.</p>
+                </div>`;
+                    window._apoiadoresCache = {};
+                    return;
+                }
+
+                const list = document.createElement('div');
+                list.className = 'news-admin-list';
+
+                snap.forEach(d => {
+                    const a = d.data();
+
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
+                <img src="${escHtml(a.foto)}" alt="${escHtml(a.nome)}"
+                    style="width:56px;height:56px;object-fit:contain;border-radius:8px;background:var(--bg-light);flex-shrink:0;">
+
+                <div class="news-admin-body">
+                    <div class="news-admin-title">${escHtml(a.nome)}</div>
+                    <div class="news-admin-meta">
+                        ${a.link ? `<span><i class="fas fa-link"></i> ${escHtml(a.link)}</span>` : '<span>Sem link</span>'}
+                    </div>
+                </div>
+
+                <div style="display:flex;gap:6px;flex-shrink:0;align-items:flex-start;">
+                    <button class="btn btn-outline btn-sm"
+                        onclick="editApoiador('${d.id}')" title="Editar">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                        onclick="deleteApoiador('${d.id}')" title="Eliminar">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>`;
+
+                    list.appendChild(item);
+                });
+
+                wrap.innerHTML = '';
+                wrap.appendChild(list);
+
+                // Cache para edição
+                window._apoiadoresCache = {};
+                snap.forEach(d => { window._apoiadoresCache[d.id] = d.data(); });
+
+            } catch (e) {
+                wrap.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-triangle-exclamation"></i>
+                <p>Erro ao carregar: ${e.message}</p>
+            </div>`;
+            }
+        }
+
+        // ── Submit (criar / editar) ──────────────────────────────────────
+        document.getElementById('form-apoiador').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const fotoUrl = document.getElementById('apoiador-foto-url').value;
+            if (!fotoUrl) { toast('Envie uma foto/logo antes de publicar.', 'error'); return; }
+
+            const btn = document.getElementById('btn-submit-apoiador');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span> Salvando…';
+
+            const editId = document.getElementById('apoiador-edit-id').value;
+            const isEdit = !!editId;
+
+            const payload = {
+                nome: document.getElementById('apoiador-nome').value.trim(),
+                link: document.getElementById('apoiador-link').value.trim() || null,
+                foto: fotoUrl,
+            };
+
+            try {
+                if (isEdit) {
+                    await updateDoc(doc(db, 'apoiadores', editId), {
+                        ...payload,
+                        updatedAt: serverTimestamp()
+                    });
+                    toast('Apoiador atualizado!', 'success');
+                    cancelEditApoiador();
+                } else {
+                    payload.createdAt = serverTimestamp();
+                    await addDoc(collection(db, 'apoiadores'), payload);
+                    toast('Apoiador publicado com sucesso!', 'success');
+                    e.target.reset();
+                    document.getElementById('apoiador-img-preview').style.display = 'none';
+                    document.getElementById('apoiador-foto-url').value = '';
+                }
+                loadApoiadores();
+            } catch (err) {
+                toast('Erro: ' + err.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="apoiador-submit-label">'
+                    + (isEdit ? 'Guardar' : 'Publicar') + '</span>';
+            }
+        });
+
+        // ── Editar apoiador ────────────────────────────────────────────────
+        window.editApoiador = function (id) {
+            const a = window._apoiadoresCache?.[id];
+            if (!a) return;
+
+            document.getElementById('apoiador-edit-id').value = id;
+            document.getElementById('apoiador-nome').value = a.nome;
+            document.getElementById('apoiador-link').value = a.link || '';
+            document.getElementById('apoiador-foto-url').value = a.foto;
+
+            const preview = document.getElementById('apoiador-img-preview');
+            preview.src = a.foto;
+            preview.style.display = 'block';
+
+            document.getElementById('apoiador-form-title').innerHTML =
+                '<i class="fas fa-pen"></i> Editar Apoiador';
+            document.getElementById('apoiador-submit-label').textContent = 'Guardar';
+            document.getElementById('btn-cancel-apoiador').style.display = 'inline-flex';
+
+            navigate('apoiadores');
+            document.getElementById('section-apoiadores').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // ── Cancelar edição ──────────────────────────────────────────────
+        function cancelEditApoiador() {
+            document.getElementById('apoiador-edit-id').value = '';
+            document.getElementById('form-apoiador').reset();
+            document.getElementById('apoiador-img-preview').style.display = 'none';
+            document.getElementById('apoiador-foto-url').value = '';
+            document.getElementById('apoiador-form-title').innerHTML =
+                '<i class="fas fa-handshake"></i> Novo Apoiador';
+            document.getElementById('apoiador-submit-label').textContent = 'Publicar';
+            document.getElementById('btn-cancel-apoiador').style.display = 'none';
+        }
+        document.getElementById('btn-cancel-apoiador').addEventListener('click', cancelEditApoiador);
+
+        // ── Eliminar apoiador ──────────────────────────────────────────────
+        window.deleteApoiador = function (id) {
+            confirmDelete('Deseja eliminar este apoiador permanentemente?', async () => {
+                try {
+                    await deleteDoc(doc(db, 'apoiadores', id));
+                    toast('Apoiador eliminado.', 'success');
+                    loadApoiadores();
                 } catch (e) {
                     toast('Erro: ' + e.message, 'error');
                 }
