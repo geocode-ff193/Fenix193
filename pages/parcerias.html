@@ -488,29 +488,10 @@
                     </div>
 
                     <div class="parceiros-grupo">
-                        <span class="section-label">Instituidores</span>
-                        <div class="parceiros-logo-grid">
-                            <div class="parceiro-logo-slot">
-                                <img src="../assets/img/logoILBJ.webp" alt="ILBJ" width="120" height="72" loading="lazy">
-                                <span>Inst. Luciano Barreto Jr.</span>
-                            </div>
-                            <div class="parceiro-logo-slot">
-                                <img src="../assets/img/logoPRIMAVERA.webp" alt="Rede Primavera" width="120" height="72" loading="lazy">
-                                <span>Rede Primavera</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="parceiros-grupo">
-                        <span class="section-label">Apoiadores &amp; Doadores</span>
-                        <div class="parceiros-logo-grid">
-                            <div class="parceiro-logo-slot">
-                                <img src="../assets/img/logoSHOPJARDINS.webp" alt="Shopping Jardins" width="120" height="72" loading="lazy">
-                                <span>Shopping Jardins</span>
-                            </div>
-                            <div class="parceiro-logo-slot">
-                                <img src="../assets/img/logoUNIT.webp" alt="Universidade Tiradentes" width="120" height="72" loading="lazy">
-                                <span>Universidade Tiradentes</span>
+                        <span class="section-label">Quem já apoia a Fundação</span>
+                        <div class="parceiros-logo-grid" id="apoiadores-grid">
+                            <div class="empty-state" style="grid-column:1/-1;text-align:center;padding:40px 20px;">
+                                <span class="spinner"></span>
                             </div>
                         </div>
                     </div>
@@ -726,6 +707,72 @@
 
     <script defer src="../assets/js/acessibilidade.js"></script>
     <script defer src="../assets/js/media-player.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        /* ── Config Firebase ─────────────────────────────────────── */
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        /* ── Helpers ─────────────────────────────────────────────── */
+        function escHtml(s) {
+            return String(s || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function escAttr(s) {
+            return escHtml(s).replace(/"/g, '&quot;');
+        }
+
+        function buildApoiadorSlot(a) {
+            const tag = a.link ? 'a' : 'div';
+            const attrs = a.link ? `href="${escAttr(a.link)}" target="_blank" rel="noopener noreferrer"` : '';
+            return `
+            <${tag} class="parceiro-logo-slot" ${attrs}>
+                <img src="${escAttr(a.foto)}" alt="${escAttr(a.nome)}" width="120" height="72" loading="lazy">
+                <span>${escHtml(a.nome)}</span>
+            </${tag}>`;
+        }
+
+        /* ── Função principal ────────────────────────────────────── */
+        async function loadApoiadoresPublic() {
+            const grid = document.getElementById('apoiadores-grid');
+
+            try {
+                const q = query(collection(db, 'apoiadores'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:40px 20px;">
+                        <p style="color:var(--text-muted);">Em breve, novos apoiadores.</p>
+                    </div>`;
+                    return;
+                }
+
+                grid.innerHTML = snap.docs.map(d => buildApoiadorSlot(d.data())).join('');
+
+            } catch (err) {
+                grid.innerHTML = `
+                <div style="grid-column:1/-1;text-align:center;padding:40px 20px;">
+                    <p>Não foi possível carregar os apoiadores: ${escHtml(err.message)}</p>
+                </div>`;
+                console.error('[FF193] Apoiadores:', err);
+            }
+        }
+
+        loadApoiadoresPublic();
+    </script>
 
     <!-- ===== CHATBOT FLUTUANTE ===== -->
     <div class="chatbot-container">

@@ -410,99 +410,15 @@
                         <button class="filter-btn" data-filter="course">Cursos</button>
                     </div>
                     <p class="projects-count">
-                        Exibindo <strong id="count-visible">3</strong> de <strong>3</strong> projetos
+                        Exibindo <strong id="count-visible">0</strong> de <strong id="count-total">0</strong> projetos
                     </p>
                 </div>
 
                 <!-- Grid -->
                 <div class="projects-page-grid" id="projects-grid">
-                    <article class="proj-card reveal" data-category="planning" data-title="TÍTULO DO PROJETO"
-                        data-desc="DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE IMPLEMENTAÇÃO E IMPACTO ESPERADO. ESTA DESCRIÇÃO DEVE SER DETALHADA O SUFICIENTE PARA FORNECER UMA VISÃO CLARA E COMPREENSIVA DO PROJETO, INCLUINDO INFORMAÇÕES SOBRE AS ATIVIDADES PREVISTAS, OS RESULTADOS ALMEJADOS E A IMPORTÂNCIA DO PROJETO PARA A COMUNIDADE E PARA O CBMSE."
-                        data-area="ÁREA" data-status="planning" data-publico="PÚBLICO ALVO"
-                        data-objetivo="OBJETIVO PRINCIPAL">
-                        <div class="proj-card-top color-navy">
-                            <i class="fas fa-truck-medical proj-card-icon"></i>
-                        </div>
-                        <div class="proj-card-body">
-                            <span class="tag tag-planning"><i class="fas fa-clock"></i> Em Planejamento</span>
-                            <h3>TÍTULO DO PROJETO</h3>
-                            <p>DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE
-                                IMPLEMENTAÇÃO E IMPACTO
-                                ESPERADO.</p>
-                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
-                                Saiba mais <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                        <div class="proj-card-footer">
-                            <span class="proj-card-area"><i class="fas fa-tag"></i> TAGS</span>
-                        </div>
-                    </article>
-
-                    <article class="proj-card reveal" data-category="active" data-title="TÍTULO DO PROJETO"
-                        data-desc="DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE IMPLEMENTAÇÃO E IMPACTO ESPERADO. ESTA DESCRIÇÃO DEVE SER DETALHADA O SUFICIENTE PARA FORNECER UMA VISÃO CLARA E COMPREENSIVA DO PROJETO, INCLUINDO INFORMAÇÕES SOBRE AS ATIVIDADES PREVISTAS, OS RESULTADOS ALMEJADOS E A IMPORTÂNCIA DO PROJETO PARA A COMUNIDADE E PARA O CBMSE."
-                        data-area="ÁREA" data-status="active" data-publico="PÚBLICO ALVO"
-                        data-objetivo="OBJETIVO PRINCIPAL">
-                        <div class="proj-card-top color-fire">
-                            <i class="fas fa-truck-medical proj-card-icon"></i>
-                        </div>
-                        <div class="proj-card-body">
-                            <span class="tag tag-active"><i class="fas fa-clock"></i> Em Andamento</span>
-                            <h3>TÍTULO DO PROJETO</h3>
-                            <p>DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE
-                                IMPLEMENTAÇÃO E IMPACTO
-                                ESPERADO.</p>
-                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
-                                Saiba mais <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                        <div class="proj-card-footer">
-                            <span class="proj-card-area"><i class="fas fa-tag"></i> TAGS</span>
-                        </div>
-                    </article>
-
-                    <article class="proj-card reveal" data-category="deactive" data-title="TÍTULO DO PROJETO"
-                        data-desc="DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE IMPLEMENTAÇÃO E IMPACTO ESPERADO. ESTA DESCRIÇÃO DEVE SER DETALHADA O SUFICIENTE PARA FORNECER UMA VISÃO CLARA E COMPREENSIVA DO PROJETO, INCLUINDO INFORMAÇÕES SOBRE AS ATIVIDADES PREVISTAS, OS RESULTADOS ALMEJADOS E A IMPORTÂNCIA DO PROJETO PARA A COMUNIDADE E PARA O CBMSE."
-                        data-area="ÁREA" data-status="deactive" data-publico="PÚBLICO ALVO"
-                        data-objetivo="OBJETIVO PRINCIPAL">
-                        <div class="proj-card-top color-red">
-                            <i class="fas fa-truck-medical proj-card-icon"></i>
-                        </div>
-                        <div class="proj-card-body">
-                            <span class="tag tag-deactive"><i class="fas fa-clock"></i> Finalizado</span>
-                            <h3>TÍTULO DO PROJETO</h3>
-                            <p>DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE
-                                IMPLEMENTAÇÃO E IMPACTO
-                                ESPERADO.</p>
-                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
-                                Saiba mais <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                        <div class="proj-card-footer">
-                            <span class="proj-card-area"><i class="fas fa-tag"></i> TAGS</span>
-                        </div>
-                    </article>
-
-                    <article class="proj-card reveal" data-category="course" data-title="TÍTULO DO PROJETO"
-                        data-desc="DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE IMPLEMENTAÇÃO E IMPACTO ESPERADO. ESTA DESCRIÇÃO DEVE SER DETALHADA O SUFICIENTE PARA FORNECER UMA VISÃO CLARA E COMPREENSIVA DO PROJETO, INCLUINDO INFORMAÇÕES SOBRE AS ATIVIDADES PREVISTAS, OS RESULTADOS ALMEJADOS E A IMPORTÂNCIA DO PROJETO PARA A COMUNIDADE E PARA O CBMSE."
-                        data-area="ÁREA" data-status="course" data-publico="PÚBLICO ALVO"
-                        data-objetivo="OBJETIVO PRINCIPAL">
-                        <div class="proj-card-top color-green">
-                            <i class="fas fa-truck-medical proj-card-icon"></i>
-                        </div>
-                        <div class="proj-card-body">
-                            <span class="tag tag-course"><i class="fas fa-clock"></i> Curso</span>
-                            <h3>TÍTULO DO PROJETO</h3>
-                            <p>DESCRIÇÃO COMPLETA DO PROJETO, ABORDANDO SEUS OBJETIVOS, PÚBLICO-ALVO, METODOLOGIA DE
-                                IMPLEMENTAÇÃO E IMPACTO
-                                ESPERADO.</p>
-                            <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
-                                Saiba mais <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                        <div class="proj-card-footer">
-                            <span class="proj-card-area"><i class="fas fa-tag"></i> TAGS</span>
-                        </div>
-                    </article>
+                    <div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px 20px;">
+                        <span class="spinner"></span>
+                    </div>
                 </div>
 
                 <!-- CTA -->
@@ -700,7 +616,6 @@
 
         // ── Filtros ──────────────────────────────────────────
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.proj-card');
         const countEl = document.getElementById('count-visible');
 
         filterBtns.forEach(btn => {
@@ -708,6 +623,7 @@
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
+                const cards = document.querySelectorAll('.proj-card'); // re-consulta: cards são dinâmicos
                 let visible = 0;
 
                 cards.forEach(card => {
@@ -816,6 +732,111 @@
 
     <script defer src="../assets/js/acessibilidade.js"></script>
     <script defer src="../assets/js/media-player.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        /* ── Config Firebase ─────────────────────────────────────── */
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        /* ── Helpers ─────────────────────────────────────────────── */
+        function escHtml(s) {
+            return String(s || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function escAttr(s) {
+            return escHtml(s).replace(/"/g, '&quot;');
+        }
+
+        const STATUS_MAP = {
+            planning: { color: 'color-navy', tagClass: 'tag-planning', label: 'Em Planejamento' },
+            active: { color: 'color-fire', tagClass: 'tag-active', label: 'Em Andamento' },
+            deactive: { color: 'color-red', tagClass: 'tag-deactive', label: 'Finalizado' },
+            course: { color: 'color-green', tagClass: 'tag-course', label: 'Curso' },
+        };
+
+        /* ── Constrói um card de projeto ──────────────────────────── */
+        function buildProjCard(p) {
+            const s = STATUS_MAP[p.status] || STATUS_MAP.planning;
+            return `
+            <article class="proj-card reveal" data-category="${escAttr(p.status)}" data-title="${escAttr(p.titulo)}"
+                data-desc="${escAttr(p.descricao)}" data-area="${escAttr(p.area)}" data-status="${escAttr(p.status)}"
+                data-publico="${escAttr(p.publico)}" data-objetivo="${escAttr(p.objetivo)}">
+                <div class="proj-card-top ${s.color}">
+                    <i class="${escAttr(p.icone || 'fas fa-clipboard-list')} proj-card-icon"></i>
+                </div>
+                <div class="proj-card-body">
+                    <span class="tag ${s.tagClass}"><i class="fas fa-clock"></i> ${s.label}</span>
+                    <h3>${escHtml(p.titulo)}</h3>
+                    <p>${escHtml(p.descricao)}</p>
+                    <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="proj-card-footer">
+                    <span class="proj-card-area"><i class="fas fa-tag"></i> ${escHtml(p.tags || p.area)}</span>
+                </div>
+            </article>`;
+        }
+
+        function applyReveal(container) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.06 });
+            container.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+        }
+
+        /* ── Função principal ────────────────────────────────────── */
+        async function loadProjetosPublic() {
+            const grid = document.getElementById('projects-grid');
+            const countVisible = document.getElementById('count-visible');
+            const countTotal = document.getElementById('count-total');
+
+            try {
+                const q = query(collection(db, 'projetos'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+                        <i class="fas fa-clipboard-list" style="font-size:2rem;opacity:.2;display:block;margin-bottom:12px;"></i>
+                        <p style="color:var(--text-muted);">Nenhum projeto publicado no momento.</p>
+                    </div>`;
+                    countVisible.textContent = '0';
+                    countTotal.textContent = '0';
+                    return;
+                }
+
+                grid.innerHTML = snap.docs.map(d => buildProjCard(d.data())).join('');
+                applyReveal(grid);
+                countVisible.textContent = snap.size;
+                countTotal.textContent = snap.size;
+
+            } catch (err) {
+                grid.innerHTML = `
+                <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+                    <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:var(--red);display:block;margin-bottom:12px;"></i>
+                    <p>Não foi possível carregar os projetos: ${escHtml(err.message)}</p>
+                </div>`;
+                console.error('[FF193] Projetos:', err);
+            }
+        }
+
+        loadProjetosPublic();
+    </script>
 
     <!-- ===== CHATBOT FLUTUANTE ===== -->
     <div class="chatbot-container">

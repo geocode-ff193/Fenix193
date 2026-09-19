@@ -439,108 +439,12 @@
                     <div class="section-bar"></div>
                 </div>
 
-                <!-- Curso -->
-                <article class="curso-card reveal">
-                    <div class="curso-card-inner">
-                        <div class="curso-card-aside red">
-                            <i class="fas fa-kit-medical curso-aside-icon"></i>
-                            <span class="curso-aside-ch">HORAS</span>
-                            <span class="curso-aside-nivel">NÍVEL</span>
-                        </div>
-                        <div class="curso-card-body">
-                            <h3>TÍTULO DO CURSO</h3>
-                            <p>DESCRIÇÃO DO CURSO</p>
-
-                            <div class="curso-modulos">
-                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
-                                </p>
-                                <div class="modulos-list">
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                </div>
-                            </div>
-
-                            <div class="curso-infos">
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                            </div>
-
-                            <a href="../index.html#contato" class="btn-inscricao">
-                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
-                            </a>
-                        </div>
+                <!-- Cursos (carregados dinamicamente) -->
+                <div id="cursos-grid">
+                    <div class="empty-state" style="text-align:center;padding:60px 20px;">
+                        <span class="spinner"></span>
                     </div>
-                </article>
-
-                <article class="curso-card reveal">
-                    <div class="curso-card-inner">
-                        <div class="curso-card-aside red">
-                            <i class="fas fa-kit-medical curso-aside-icon"></i>
-                            <span class="curso-aside-ch">HORAS</span>
-                            <span class="curso-aside-nivel">NÍVEL</span>
-                        </div>
-                        <div class="curso-card-body">
-                            <h3>TÍTULO DO CURSO</h3>
-                            <p>DESCRIÇÃO DO CURSO</p>
-                
-                            <div class="curso-modulos">
-                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
-                                </p>
-                                <div class="modulos-list">
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                </div>
-                            </div>
-                
-                            <div class="curso-infos">
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                            </div>
-                
-                            <a href="../index.html#contato" class="btn-inscricao">
-                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
-                            </a>
-                        </div>
-                    </div>
-                </article>
-                
-                <article class="curso-card reveal">
-                    <div class="curso-card-inner">
-                        <div class="curso-card-aside red">
-                            <i class="fas fa-kit-medical curso-aside-icon"></i>
-                            <span class="curso-aside-ch">HORAS</span>
-                            <span class="curso-aside-nivel">NÍVEL</span>
-                        </div>
-                        <div class="curso-card-body">
-                            <h3>TÍTULO DO CURSO</h3>
-                            <p>DESCRIÇÃO DO CURSO</p>
-                
-                            <div class="curso-modulos">
-                                <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático
-                                </p>
-                                <div class="modulos-list">
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                    <div class="modulo-item"><i class="fas fa-circle-dot"></i> -</div>
-                                </div>
-                            </div>
-                
-                            <div class="curso-infos">
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                                <span class="curso-info-badge"><i class="fas fa-layer-group"></i> TAGS</span>
-                            </div>
-                
-                            <a href="../index.html#contato" class="btn-inscricao">
-                                <i class="fas fa-paper-plane"></i> Solicitar Inscrição
-                            </a>
-                        </div>
-                    </div>
-                </article>
+                </div>
 
                 <!-- Como funciona -->
                 <div class="como-funciona reveal">
@@ -788,6 +692,109 @@
 
     <script defer src="../assets/js/acessibilidade.js"></script>
     <script defer src="../assets/js/media-player.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        /* ── Config Firebase ─────────────────────────────────────── */
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        /* ── Helpers ─────────────────────────────────────────────── */
+        function escHtml(s) {
+            return String(s || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        /* ── Constrói um card de curso ─────────────────────────────── */
+        function buildCursoCard(c) {
+            const modulos = Array.isArray(c.modulos) ? c.modulos : [];
+            const tags = Array.isArray(c.tags) ? c.tags : [];
+
+            return `
+            <article class="curso-card reveal">
+                <div class="curso-card-inner">
+                    <div class="curso-card-aside ${escHtml(c.cor || 'red')}">
+                        <i class="${escHtml(c.icone || 'fas fa-graduation-cap')} curso-aside-icon"></i>
+                        <span class="curso-aside-ch">${escHtml(c.cargaHoraria)}</span>
+                        <span class="curso-aside-nivel">${escHtml(c.nivel)}</span>
+                    </div>
+                    <div class="curso-card-body">
+                        <h3>${escHtml(c.titulo)}</h3>
+                        <p>${escHtml(c.descricao)}</p>
+
+                        ${modulos.length ? `
+                        <div class="curso-modulos">
+                            <p class="curso-modulos-title"><i class="fas fa-list-check"></i> Conteúdo Programático</p>
+                            <div class="modulos-list">
+                                ${modulos.map(m => `<div class="modulo-item"><i class="fas fa-circle-dot"></i> ${escHtml(m)}</div>`).join('')}
+                            </div>
+                        </div>` : ''}
+
+                        ${tags.length ? `
+                        <div class="curso-infos">
+                            ${tags.map(t => `<span class="curso-info-badge"><i class="fas fa-layer-group"></i> ${escHtml(t)}</span>`).join('')}
+                        </div>` : ''}
+
+                        <a href="../index.html#contato" class="btn-inscricao">
+                            <i class="fas fa-paper-plane"></i> Solicitar Inscrição
+                        </a>
+                    </div>
+                </div>
+            </article>`;
+        }
+
+        function applyReveal(container) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.06 });
+            container.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+        }
+
+        /* ── Função principal ────────────────────────────────────── */
+        async function loadCapacitacaoPublic() {
+            const grid = document.getElementById('cursos-grid');
+
+            try {
+                const q = query(collection(db, 'capacitacao'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    grid.innerHTML = `
+                    <div style="text-align:center;padding:60px 24px;">
+                        <i class="fas fa-graduation-cap" style="font-size:2rem;opacity:.2;display:block;margin-bottom:12px;"></i>
+                        <p style="color:var(--text-muted);">Nenhum curso publicado no momento.</p>
+                    </div>`;
+                    return;
+                }
+
+                grid.innerHTML = snap.docs.map(d => buildCursoCard(d.data())).join('');
+                applyReveal(grid);
+
+            } catch (err) {
+                grid.innerHTML = `
+                <div style="text-align:center;padding:60px 24px;">
+                    <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:var(--red);display:block;margin-bottom:12px;"></i>
+                    <p>Não foi possível carregar os cursos: ${escHtml(err.message)}</p>
+                </div>`;
+                console.error('[FF193] Capacitação:', err);
+            }
+        }
+
+        loadCapacitacaoPublic();
+    </script>
 
     <!-- ===== CHATBOT FLUTUANTE ===== -->
     <div class="chatbot-container">

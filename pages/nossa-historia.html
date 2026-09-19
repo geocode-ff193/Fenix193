@@ -413,78 +413,10 @@
                     <div class="section-bar"></div>
                 </div>
 
-                <div class="timeline">
-
-                    <div class="timeline-item reveal">
-                        <div class="timeline-side">
-                            <span class="timeline-year">ANO</span>
-                        </div>
-                        <div class="timeline-center">
-                            <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
-                        </div>
-                        <div class="timeline-card">
-                            <span class="timeline-tag">TAG</span>
-                            <h3>TÍTULO</h3>
-                            <p>DESCRIÇÃO</p>
-                        </div>
+                <div class="timeline" id="timeline-grid">
+                    <div class="empty-state" style="text-align:center;padding:60px 20px;">
+                        <span class="spinner"></span>
                     </div>
-
-                    <div class="timeline-item reveal">
-                        <div class="timeline-side">
-                            <span class="timeline-year">ANO</span>
-                        </div>
-                        <div class="timeline-center">
-                            <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
-                        </div>
-                        <div class="timeline-card">
-                            <span class="timeline-tag">TAG</span>
-                            <h3>TÍTULO</h3>
-                            <p>DESCRIÇÃO</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal">
-                        <div class="timeline-side">
-                            <span class="timeline-year">ANO</span>
-                        </div>
-                        <div class="timeline-center">
-                            <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
-                        </div>
-                        <div class="timeline-card">
-                            <span class="timeline-tag">TAG</span>
-                            <h3>TÍTULO</h3>
-                            <p>DESCRIÇÃO</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal">
-                        <div class="timeline-side">
-                            <span class="timeline-year">ANO</span>
-                        </div>
-                        <div class="timeline-center">
-                            <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
-                        </div>
-                        <div class="timeline-card">
-                            <span class="timeline-tag">TAG</span>
-                            <h3>TÍTULO</h3>
-                            <p>DESCRIÇÃO</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item reveal">
-                        <div class="timeline-side">
-                            <span class="timeline-year">ANO</span>
-                        </div>
-                        <div class="timeline-center">
-                            <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
-                        </div>
-                        <div class="timeline-card">
-                            <span class="timeline-tag">TAG</span>
-                            <h3>TÍTULO</h3>
-                            <p>DESCRIÇÃO</p>
-                        </div>
-                    </div>
-
                 </div>
 
                 <!-- Pilares Fundadores -->
@@ -730,6 +662,88 @@
 
     <script defer src="../assets/js/acessibilidade.js"></script>
     <script defer src="../assets/js/media-player.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        /* ── Config Firebase ─────────────────────────────────────── */
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        /* ── Helpers ─────────────────────────────────────────────── */
+        function escHtml(s) {
+            return String(s || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function buildTimelineItem(t) {
+            return `
+            <div class="timeline-item reveal">
+                <div class="timeline-side">
+                    <span class="timeline-year">${escHtml(t.ano)}</span>
+                </div>
+                <div class="timeline-center">
+                    <div class="timeline-dot"><i class="fas fa-fire-flame-curved"></i></div>
+                </div>
+                <div class="timeline-card">
+                    <span class="timeline-tag">${escHtml(t.tag)}</span>
+                    <h3>${escHtml(t.titulo)}</h3>
+                    <p>${escHtml(t.descricao)}</p>
+                </div>
+            </div>`;
+        }
+
+        function applyReveal(container) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.06 });
+            container.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+        }
+
+        /* ── Função principal ────────────────────────────────────── */
+        async function loadTimelinePublic() {
+            const grid = document.getElementById('timeline-grid');
+
+            try {
+                const q = query(collection(db, 'timeline'), orderBy('ano', 'asc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    grid.innerHTML = `
+                    <div style="text-align:center;padding:60px 24px;">
+                        <i class="fas fa-timeline" style="font-size:2rem;opacity:.2;display:block;margin-bottom:12px;"></i>
+                        <p style="color:var(--text-muted);">Linha do tempo em construção.</p>
+                    </div>`;
+                    return;
+                }
+
+                grid.innerHTML = snap.docs.map(d => buildTimelineItem(d.data())).join('');
+                applyReveal(grid);
+
+            } catch (err) {
+                grid.innerHTML = `
+                <div style="text-align:center;padding:60px 24px;">
+                    <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:var(--red);display:block;margin-bottom:12px;"></i>
+                    <p>Não foi possível carregar a linha do tempo: ${escHtml(err.message)}</p>
+                </div>`;
+                console.error('[FF193] Linha do tempo:', err);
+            }
+        }
+
+        loadTimelinePublic();
+    </script>
 
     <!-- ===== CHATBOT FLUTUANTE ===== -->
     <div class="chatbot-container">
