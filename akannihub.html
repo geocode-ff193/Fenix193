@@ -1341,7 +1341,7 @@
             <div class="login-logo">
                 <img src="assets/akanni/favicon-96x96.png" alt="Logo Fênix 193">
                 <div class="login-logo-text">
-                    <span class="login-logo-title">AkanniHub 1.3.0</span>
+                    <span class="login-logo-title">AkanniHub 1.4.0</span>
                     <span class="login-logo-sub">Painel Administrativo</span>
                 </div>
             </div>
@@ -1401,7 +1401,7 @@
                     <img src="assets/akanni/favicon-96x96.png" alt="Logo">
                     <div class="topbar-brand-text">
                         <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
-                        <span class="topbar-brand-sub">AkanniHub 1.3.0</span>
+                        <span class="topbar-brand-sub">AkanniHub 1.4.0</span>
                     </div>
                 </div>
                 <span class="topbar-badge"><i class="fas fa-shield-halved"></i></span>
@@ -1417,40 +1417,40 @@
 
             <!-- Sidebar -->
             <aside class="app-sidebar" id="app-sidebar">
-                <div class="sidebar-nav">
+                <div class="sidebar-nav" id="nav-group-painel">
                     <p class="sidebar-section-label">Painel</p>
                     <a class="sidebar-link active" data-section="dashboard" tabindex="0">
                         <i class="fas fa-gauge-high"></i> Dashboard
                     </a>
                 </div>
-                <div class="sidebar-nav">
+                <div class="sidebar-nav" id="nav-group-gestao">
                     <p class="sidebar-section-label">Gestão</p>
-                    <a class="sidebar-link" data-section="atuacao" tabindex="0">
+                    <a class="sidebar-link" data-section="atuacao" data-grau="5" tabindex="0">
                         <i class="fas fa-briefcase"></i> Atuação
                     </a>
-                    <a class="sidebar-link" data-section="contacts" tabindex="0">
+                    <a class="sidebar-link" data-section="contacts" data-grau="4" tabindex="0">
                         <i class="fas fa-envelope"></i> Contatos
                         <span class="sidebar-badge" id="badge-contacts">0</span>
                     </a>
-                    <a class="sidebar-link" data-section="transparency" tabindex="0">
+                    <a class="sidebar-link" data-section="transparency" data-grau="3" tabindex="0">
                         <i class="fas fa-folder-open"></i> Transparência
                     </a>
-                    <a class="sidebar-link" data-section="news" tabindex="0">
+                    <a class="sidebar-link" data-section="news" data-grau="2" tabindex="0">
                         <i class="fas fa-newspaper"></i> Notícias
                     </a>
                 </div>
-                <div class="sidebar-nav">
+                <div class="sidebar-nav" id="nav-group-edicao">
                     <p class="sidebar-section-label">Edição</p>
-                    <a class="sidebar-link" data-section="timeline" tabindex="0">
+                    <a class="sidebar-link" data-section="timeline" data-grau="1" tabindex="0">
                         <i class="fas fa-timeline"></i> Linha do Tempo
                     </a>
-                    <a class="sidebar-link" data-section="apoiadores" tabindex="0">
+                    <a class="sidebar-link" data-section="apoiadores" data-grau="1" tabindex="0">
                         <i class="fas fa-handshake"></i> Apoiadores
                     </a>
                 </div>
-                <div class="sidebar-nav">
+                <div class="sidebar-nav" id="nav-group-suporte">
                     <p class="sidebar-section-label">Suporte</p>
-                    <a class="sidebar-link" data-section="suporte" tabindex="0">
+                    <a class="sidebar-link" data-section="suporte" data-grau="1" tabindex="0">
                         <i class="fas fa-headset"></i> Suporte Técnico
                     </a>
                 </div>
@@ -1470,21 +1470,21 @@
                         </div>
                     </div>
                     <div class="dashboard-stats">
-                        <div class="stat-card">
+                        <div class="stat-card" data-grau="4">
                             <div class="stat-card-icon red"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <div class="stat-card-val" id="stat-contacts">—</div>
                                 <div class="stat-card-label">Mensagens</div>
                             </div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card" data-grau="3">
                             <div class="stat-card-icon navy"><i class="fas fa-folder-open"></i></div>
                             <div>
                                 <div class="stat-card-val" id="stat-transp">—</div>
                                 <div class="stat-card-label">Docs. Transparência</div>
                             </div>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-card" data-grau="2">
                             <div class="stat-card-icon amber"><i class="fas fa-newspaper"></i></div>
                             <div>
                                 <div class="stat-card-val" id="stat-news">—</div>
@@ -1492,16 +1492,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel">
+                    <div class="panel" id="dashboard-quick-panel">
                         <div class="panel-header">
                             <span class="panel-title"><i class="fas fa-bolt"></i> Acesso Rápido</span>
                         </div>
                         <div class="panel-body" style="display:flex;gap:12px;flex-wrap:wrap;">
-                            <button class="btn btn-primary" onclick="navigate('contacts')"><i
+                            <button class="btn btn-primary" data-grau="4" onclick="navigate('contacts')"><i
                                     class="fas fa-envelope"></i> Ver Mensagens</button>
-                            <button class="btn btn-outline" onclick="navigate('transparency')"><i
+                            <button class="btn btn-outline" data-grau="3" onclick="navigate('transparency')"><i
                                     class="fas fa-plus"></i> Novo Documento</button>
-                            <button class="btn btn-outline" onclick="navigate('news')"><i class="fas fa-plus"></i> Nova
+                            <button class="btn btn-outline" data-grau="2" onclick="navigate('news')"><i class="fas fa-plus"></i> Nova
                                 Notícia</button>
                         </div>
                     </div>
@@ -2342,6 +2342,43 @@
         function closeModal(id) { document.getElementById(id).classList.remove('open'); }
         window.closeModal = closeModal;
 
+        // ── GRAU DE ADMINISTRAÇÃO (1 a 5) ──────────────────────────────
+        // Grau 1 = acesso a tudo. Grau 2 = Notícias. Grau 3 = Transparência.
+        // Grau 4 = Contatos. Grau 5 = Atuação. Um admin pode ter vários graus.
+        // Linha do Tempo, Apoiadores e Suporte Técnico exigem Grau 1.
+        // Definidos em Firestore, doc admins/{uid}, campo "graus" (array de números).
+        // Sem o campo "graus" (contas antigas), assume-se [1] — acesso total.
+        let currentGraus = [1];
+
+        function hasGrau(g) {
+            return currentGraus.includes(1) || currentGraus.includes(g);
+        }
+        window.hasGrau = hasGrau;
+
+        function applyAccessControl() {
+            // Itens do sidebar, stat cards e botões de acesso rápido com data-grau
+            document.querySelectorAll('[data-grau]').forEach(el => {
+                const required = Number(el.dataset.grau);
+                el.style.display = hasGrau(required) ? '' : 'none';
+            });
+
+            // Esconde grupos do sidebar sem nenhum item visível
+            document.querySelectorAll('.sidebar-nav').forEach(group => {
+                const links = group.querySelectorAll('.sidebar-link');
+                const anyVisible = links.length === 0 ||
+                    Array.from(links).some(l => l.style.display !== 'none');
+                group.style.display = anyVisible ? '' : 'none';
+            });
+
+            // Esconde o painel de Acesso Rápido se nenhum botão estiver visível
+            const quickPanel = document.getElementById('dashboard-quick-panel');
+            if (quickPanel) {
+                const btns = quickPanel.querySelectorAll('[data-grau]');
+                const anyBtn = Array.from(btns).some(b => b.style.display !== 'none');
+                quickPanel.style.display = anyBtn ? '' : 'none';
+            }
+        }
+
         let confirmCallback = null;
         document.getElementById('btn-confirm-delete').addEventListener('click', () => {
             if (confirmCallback) { confirmCallback(); confirmCallback = null; }
@@ -2366,6 +2403,12 @@
                         await signOut(auth);
                         return;
                     }
+                    const adminData = adminSnap.data();
+                    // Sem o campo "graus" definido, assume-se acesso total (Grau 1)
+                    currentGraus = Array.isArray(adminData.graus) && adminData.graus.length
+                        ? adminData.graus
+                        : [1];
+                    applyAccessControl();
                     showApp(user);
                 } catch (e) {
                     console.error('[FF193] Erro ao verificar permissões:', e.message);
@@ -2456,10 +2499,16 @@
 
         // ── NAVIGATION ───────────────────────────────────────────────
         window.navigate = function (section) {
+            const link = document.querySelector(`.sidebar-link[data-section="${section}"]`);
+            const required = link?.dataset.grau ? Number(link.dataset.grau) : null;
+            if (required && !hasGrau(required)) {
+                toast('Você não tem permissão para acessar esta área.', 'error');
+                return;
+            }
             document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
             document.getElementById(`section-${section}`)?.classList.add('active');
-            document.querySelector(`.sidebar-link[data-section="${section}"]`)?.classList.add('active');
+            link?.classList.add('active');
             document.getElementById('app-sidebar').classList.remove('open');
             document.getElementById('sidebar-backdrop')?.classList.remove('open');
         };
@@ -2503,7 +2552,13 @@
 
         // ── LOAD ALL ─────────────────────────────────────────────────
         async function loadAllData() {
-            await Promise.all([loadContacts(), loadTransparency(), loadNews(), loadEventos(), loadProjetos(), loadCapacitacao(), loadTimeline(), loadApoiadores()]);
+            const tasks = [];
+            if (hasGrau(4)) tasks.push(loadContacts());
+            if (hasGrau(3)) tasks.push(loadTransparency());
+            if (hasGrau(2)) tasks.push(loadNews());
+            if (hasGrau(5)) tasks.push(loadEventos(), loadProjetos(), loadCapacitacao());
+            if (hasGrau(1)) tasks.push(loadTimeline(), loadApoiadores());
+            await Promise.all(tasks);
         }
 
         // ══════════════════════════════════════════════════════════════
