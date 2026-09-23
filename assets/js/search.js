@@ -2,7 +2,8 @@
  * ============================================================
  *  FF193 — Hero Search
  *  Módulo isolado · Firebase v9 CDN ESM · Vanilla JS
- *  Coleções: news, transparency_docs
+ *  Coleções: news, transparency_docs, projetos, capacitacao,
+ *            eventos, timeline, apoiadores
  *  Conteúdo estático: páginas e âncoras do site
  * ============================================================
  */
@@ -169,6 +170,11 @@ const STATIC_INDEX = [
 /* ── Cache dinâmico (carregado uma vez) ──────────────────── */
 let newsCache = null;
 let docsCache = null;
+let projetosCache = null;
+let capacitacaoCache = null;
+let eventosCache = null;
+let timelineCache = null;
+let apoiadoresCache = null;
 let cacheLoading = false;
 let cacheReady = false;
 
@@ -176,9 +182,14 @@ async function loadCache() {
     if (cacheReady || cacheLoading) return;
     cacheLoading = true;
     try {
-        const [newsSnap, docsSnap] = await Promise.all([
+        const [newsSnap, docsSnap, projetosSnap, capacitacaoSnap, eventosSnap, timelineSnap, apoiadoresSnap] = await Promise.all([
             getDocs(query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(30))),
-            getDocs(query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc')))
+            getDocs(query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'))),
+            getDocs(query(collection(db, 'projetos'), orderBy('createdAt', 'desc'))),
+            getDocs(query(collection(db, 'capacitacao'), orderBy('createdAt', 'desc'))),
+            getDocs(query(collection(db, 'eventos'), orderBy('createdAt', 'desc'))),
+            getDocs(query(collection(db, 'timeline'), orderBy('ano', 'asc'))),
+            getDocs(query(collection(db, 'apoiadores'), orderBy('createdAt', 'desc'))),
         ]);
 
         newsCache = newsSnap.docs.map(d => {
@@ -189,7 +200,7 @@ async function loadCache() {
                 sub: data.autor ? `Por ${data.autor}` : '',
                 category: 'Notícia',
                 icon: 'fa-newspaper',
-                link: `pages/noticias.html?noticia=${d.id}`,
+                link: `pages/noticia.html?id=${d.id}`,
                 keywords: normalize(`${data.titulo} ${data.autor} ${data.corpo || ''}`)
             };
         });
@@ -208,11 +219,76 @@ async function loadCache() {
             };
         });
 
+        projetosCache = projetosSnap.docs.map(d => {
+            const data = d.data();
+            return {
+                id: d.id,
+                title: data.titulo || '',
+                sub: data.area || 'Projeto',
+                category: 'Atuação',
+                icon: 'fa-clipboard-list',
+                link: 'pages/projetos.html',
+                keywords: normalize(`${data.titulo} ${data.area} ${data.publico} ${data.objetivo} ${data.descricao} ${data.tags || ''}`)
+            };
+        });
+
+        capacitacaoCache = capacitacaoSnap.docs.map(d => {
+            const data = d.data();
+            return {
+                id: d.id,
+                title: data.titulo || '',
+                sub: data.nivel ? `Curso · ${data.nivel}` : 'Curso',
+                category: 'Atuação',
+                icon: 'fa-graduation-cap',
+                link: 'pages/capacitacao.html',
+                keywords: normalize(`${data.titulo} ${data.descricao} ${data.nivel} ${(data.modulos || []).join(' ')} ${(data.tags || []).join(' ')}`)
+            };
+        });
+
+        eventosCache = eventosSnap.docs.map(d => {
+            const data = d.data();
+            return {
+                id: d.id,
+                title: data.titulo || '',
+                sub: data.local || 'Evento',
+                category: 'Atuação',
+                icon: 'fa-calendar-days',
+                link: 'pages/eventos.html',
+                keywords: normalize(`${data.titulo} ${data.local} ${data.descricao}`)
+            };
+        });
+
+        timelineCache = timelineSnap.docs.map(d => {
+            const data = d.data();
+            return {
+                id: d.id,
+                title: `${data.ano} — ${data.titulo}`,
+                sub: data.tag || 'Nossa História',
+                category: 'Atuação',
+                icon: 'fa-timeline',
+                link: 'pages/nossa-historia.html',
+                keywords: normalize(`${data.ano} ${data.tag} ${data.titulo} ${data.descricao}`)
+            };
+        });
+
+        apoiadoresCache = apoiadoresSnap.docs.map(d => {
+            const data = d.data();
+            return {
+                id: d.id,
+                title: data.nome || '',
+                sub: 'Apoiador & Parceiro',
+                category: 'Atuação',
+                icon: 'fa-handshake',
+                link: 'pages/parcerias.html',
+                keywords: normalize(`${data.nome}`)
+            };
+        });
+
         cacheReady = true;
     } catch (e) {
         console.warn('[FF193 Search] Falha ao carregar cache:', e.message);
-        newsCache = [];
-        docsCache = [];
+        newsCache = []; docsCache = []; projetosCache = []; capacitacaoCache = [];
+        eventosCache = []; timelineCache = []; apoiadoresCache = [];
         cacheReady = true;
     } finally {
         cacheLoading = false;
@@ -285,7 +361,30 @@ function search(q) {
         .filter(item => item.keywords.includes(norm))
         .slice(0, 4);
 
-    return { staticResults, newsResults, docsResults };
+    const projetosResults = (projetosCache || [])
+        .filter(item => item.keywords.includes(norm))
+        .slice(0, 3);
+
+    const capacitacaoResults = (capacitacaoCache || [])
+        .filter(item => item.keywords.includes(norm))
+        .slice(0, 3);
+
+    const eventosResults = (eventosCache || [])
+        .filter(item => item.keywords.includes(norm))
+        .slice(0, 3);
+
+    const timelineResults = (timelineCache || [])
+        .filter(item => item.keywords.includes(norm))
+        .slice(0, 3);
+
+    const apoiadoresResults = (apoiadoresCache || [])
+        .filter(item => item.keywords.includes(norm))
+        .slice(0, 3);
+
+    return {
+        staticResults, newsResults, docsResults,
+        projetosResults, capacitacaoResults, eventosResults, timelineResults, apoiadoresResults
+    };
 }
 
 /* ── Renderização do dropdown ────────────────────────────── */
@@ -340,15 +439,26 @@ function renderResults(dropdown, results, q) {
 
     if (!results) { closeDropdown(dropdown); return; }
 
-    const { staticResults, newsResults, docsResults } = results;
+    const {
+        staticResults, newsResults, docsResults,
+        projetosResults, capacitacaoResults, eventosResults, timelineResults, apoiadoresResults
+    } = results;
 
     /* Separar por categoria */
-    const pages = staticResults.filter(r => r.category !== 'Contato' && r.category !== 'Documento');
+    const staticPages = staticResults.filter(r => r.category !== 'Contato' && r.category !== 'Documento');
     const docs = staticResults.filter(r => r.category === 'Documento');
     const contacts = staticResults.filter(r => r.category === 'Contato');
     const allDocs = [...docs, ...docsResults];
 
-    const total = staticResults.length + newsResults.length + docsResults.length;
+    /* Conteúdo dinâmico de Atuação (Projetos, Capacitação, Eventos, Linha do Tempo, Apoiadores) */
+    const atuacaoDynamic = [
+        ...projetosResults, ...capacitacaoResults, ...eventosResults, ...timelineResults, ...apoiadoresResults
+    ].slice(0, 6);
+    const pages = [...staticPages, ...atuacaoDynamic];
+
+    const total = staticResults.length + newsResults.length + docsResults.length
+        + projetosResults.length + capacitacaoResults.length + eventosResults.length
+        + timelineResults.length + apoiadoresResults.length;
 
     if (total === 0) {
         dropdown.innerHTML = `

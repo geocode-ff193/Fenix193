@@ -244,43 +244,110 @@ document.addEventListener('keydown', (e) => {
 })();
 
 /* =============================================================
-   6. TOGGLE — VER MAIS PROJETOS
+   6. PROJETOS EM DESTAQUE (dinâmico — coleção "projetos")
    ============================================================= */
-(function initProjectsToggle() {
+(function initHomeProjects() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+
+    const toggleWrap = document.getElementById('projects-toggle-wrap');
     const btn = document.getElementById('btn-toggle-projects');
-    const extraCards = document.querySelectorAll('.project-card.extra');
     const toggleLabel = document.getElementById('toggle-label');
     const toggleIcon = document.getElementById('toggle-icon');
 
-    if (!btn || !extraCards.length) return;
+    const STATUS_MAP = {
+        planning: { tagClass: 'tag-planning', label: 'Em Planejamento' },
+        active: { tagClass: 'tag-active', label: 'Em Andamento' },
+        deactive: { tagClass: 'tag-deactive', label: 'Finalizado' },
+        course: { tagClass: 'tag-course', label: 'Curso' },
+    };
+    const FEATURED_COUNT = 3;
 
-    let expanded = false;
+    function escHtml(s) {
+        return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
 
-    btn.addEventListener('click', () => {
-        expanded = !expanded;
-        btn.setAttribute('aria-expanded', String(expanded));
+    function buildProjectCard(p, isFeatured) {
+        const s = STATUS_MAP[p.status] || STATUS_MAP.planning;
+        const card = document.createElement('div');
+        card.className = isFeatured ? 'project-card featured' : 'project-card extra hidden';
+        card.innerHTML = `
+            <div class="project-img-area">
+                <i class="${escHtml(p.icone || 'fas fa-clipboard-list')}"></i>
+            </div>
+            <div class="project-body">
+                <span class="tag ${s.tagClass}">${s.label}</span>
+                <h4>${escHtml(p.titulo)}</h4>
+                <p>${escHtml(p.descricao)}</p>
+                <a href="pages/projetos.html" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+            </div>`;
+        return card;
+    }
 
-        extraCards.forEach((card, i) => {
-            if (expanded) {
-                setTimeout(() => {
-                    card.classList.remove('hidden');
-                    // Força reflow para animação
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    requestAnimationFrame(() => {
-                        card.style.transition = 'opacity .4s ease, transform .4s ease';
-                        card.style.opacity = '1';
-                        card.style.transform = 'none';
-                    });
-                }, i * 80);
-            } else {
-                card.classList.add('hidden');
-            }
+    function bindToggle() {
+        const extraCards = document.querySelectorAll('.project-card.extra');
+        if (!btn || !extraCards.length) {
+            if (toggleWrap) toggleWrap.style.display = 'none';
+            return;
+        }
+        if (toggleWrap) toggleWrap.style.display = '';
+
+        let expanded = false;
+        btn.addEventListener('click', () => {
+            expanded = !expanded;
+            btn.setAttribute('aria-expanded', String(expanded));
+
+            extraCards.forEach((card, i) => {
+                if (expanded) {
+                    setTimeout(() => {
+                        card.classList.remove('hidden');
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        requestAnimationFrame(() => {
+                            card.style.transition = 'opacity .4s ease, transform .4s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'none';
+                        });
+                    }, i * 80);
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            toggleLabel.textContent = expanded ? 'Mostrar menos projetos' : 'Ver todos os projetos';
+            toggleIcon.className = expanded ? 'fas fa-minus-circle' : 'fas fa-plus-circle';
         });
+    }
 
-        toggleLabel.textContent = expanded ? 'Mostrar menos projetos' : 'Ver todos os projetos';
-        toggleIcon.className = expanded ? 'fas fa-minus-circle' : 'fas fa-plus-circle';
-    });
+    async function fetchHomeProjects() {
+        try {
+            const q = query(collection(db, 'projetos'), orderBy('createdAt', 'desc'), limit(9));
+            const snap = await getDocs(q);
+
+            grid.innerHTML = '';
+
+            if (snap.empty) {
+                grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:40px 24px;color:var(--text-muted);">
+                        <i class="fas fa-clipboard-list" style="font-size:2rem;opacity:.2;display:block;margin-bottom:12px;"></i>
+                        <p>Nenhum projeto publicado ainda.</p>
+                    </div>`;
+                if (toggleWrap) toggleWrap.style.display = 'none';
+                return;
+            }
+
+            snap.docs.forEach((d, i) => grid.appendChild(buildProjectCard(d.data(), i < FEATURED_COUNT)));
+            bindToggle();
+
+        } catch (e) {
+            console.error('[Fênix 193] Erro ao carregar projetos home:', e);
+            grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">
+                <p>Não foi possível carregar os projetos.</p></div>`;
+            if (toggleWrap) toggleWrap.style.display = 'none';
+        }
+    }
+
+    fetchHomeProjects();
 })();
 
 /* =============================================================
@@ -348,6 +415,66 @@ document.addEventListener('keydown', (e) => {
     }
 
     fetchHomeNews();
+})();
+
+/* =============================================================
+   7.5 APOIADORES & DOADORES (dinâmico — coleção "apoiadores")
+       Instituidores permanecem fixos no HTML (não vêm do Firestore).
+   ============================================================= */
+(function initHomeApoiadores() {
+    const track = document.getElementById('track-apoiadores');
+    if (!track) return;
+
+    const wrap = track.closest('.apoiadores-track-wrap');
+    const MINIMUM_FOR_ANIMATION = 5;
+
+    function escHtml(s) {
+        return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    function escAttr(s) {
+        return escHtml(s).replace(/"/g, '&quot;');
+    }
+
+    async function fetchHomeApoiadores() {
+        try {
+            const q = query(collection(db, 'apoiadores'), orderBy('createdAt', 'desc'));
+            const snap = await getDocs(q);
+
+            if (snap.empty) {
+                track.innerHTML = `<p style="padding:12px 20px;color:var(--text-muted);">Em breve, novos apoiadores.</p>`;
+                return;
+            }
+
+            track.innerHTML = snap.docs.map(d => {
+                const a = d.data();
+                const tag = a.link ? 'a' : 'div';
+                const attrs = a.link ? `href="${escAttr(a.link)}" target="_blank" rel="noopener noreferrer"` : '';
+                return `
+                    <${tag} ${attrs}>
+                        <div class="apoiador-card">
+                            <div class="apoiador-img-wrap">
+                                <img src="${escAttr(a.foto)}" alt="${escAttr(a.nome)}" width="60" height="60" loading="lazy">
+                            </div>
+                            <span class="apoiador-name">${escHtml(a.nome)}</span>
+                        </div>
+                    </${tag}>`;
+            }).join('');
+
+            // Classifica animação/estático agora que o conteúdo real está no DOM
+            const cards = track.querySelectorAll('.apoiador-card');
+            if (cards.length >= MINIMUM_FOR_ANIMATION) {
+                track.classList.add('apoiadores-track--animated');
+            } else if (wrap) {
+                wrap.classList.add('apoiadores-track-wrap--static');
+            }
+
+        } catch (e) {
+            console.error('[Fênix 193] Erro ao carregar apoiadores home:', e);
+            track.innerHTML = `<p style="padding:12px 20px;color:var(--text-muted);">Não foi possível carregar os apoiadores.</p>`;
+        }
+    }
+
+    fetchHomeApoiadores();
 })();
 
 /* =============================================================
