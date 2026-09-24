@@ -1341,7 +1341,7 @@
             <div class="login-logo">
                 <img src="assets/akanni/favicon-96x96.png" alt="Logo Fênix 193">
                 <div class="login-logo-text">
-                    <span class="login-logo-title">AkanniHub 1.4.0</span>
+                    <span class="login-logo-title">AkanniHub 1.5.0</span>
                     <span class="login-logo-sub">Painel Administrativo</span>
                 </div>
             </div>
@@ -1401,10 +1401,11 @@
                     <img src="assets/akanni/favicon-96x96.png" alt="Logo">
                     <div class="topbar-brand-text">
                         <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
-                        <span class="topbar-brand-sub">AkanniHub 1.4.0</span>
+                        <span class="topbar-brand-sub">AkanniHub 1.5.0</span>
                     </div>
                 </div>
                 <span class="topbar-badge"><i class="fas fa-shield-halved"></i></span>
+                <span class="topbar-badge" id="topbar-grau-badge" title="Grau de Administração" style="display:none;"></span>
             </div>
             <div class="topbar-user">
                 <img id="user-avatar" class="topbar-avatar" src="" alt="Avatar" style="display:none;">
@@ -1441,16 +1442,16 @@
                 </div>
                 <div class="sidebar-nav" id="nav-group-edicao">
                     <p class="sidebar-section-label">Edição</p>
-                    <a class="sidebar-link" data-section="timeline" data-grau="1" tabindex="0">
+                    <a class="sidebar-link" data-section="timeline" data-grau="6" tabindex="0">
                         <i class="fas fa-timeline"></i> Linha do Tempo
                     </a>
-                    <a class="sidebar-link" data-section="apoiadores" data-grau="1" tabindex="0">
+                    <a class="sidebar-link" data-section="apoiadores" data-grau="6" tabindex="0">
                         <i class="fas fa-handshake"></i> Apoiadores
                     </a>
                 </div>
                 <div class="sidebar-nav" id="nav-group-suporte">
                     <p class="sidebar-section-label">Suporte</p>
-                    <a class="sidebar-link" data-section="suporte" data-grau="1" tabindex="0">
+                    <a class="sidebar-link" data-section="suporte" tabindex="0">
                         <i class="fas fa-headset"></i> Suporte Técnico
                     </a>
                 </div>
@@ -2342,10 +2343,11 @@
         function closeModal(id) { document.getElementById(id).classList.remove('open'); }
         window.closeModal = closeModal;
 
-        // ── GRAU DE ADMINISTRAÇÃO (1 a 5) ──────────────────────────────
+        // ── GRAU DE ADMINISTRAÇÃO (1 a 6) ──────────────────────────────
         // Grau 1 = acesso a tudo. Grau 2 = Notícias. Grau 3 = Transparência.
-        // Grau 4 = Contatos. Grau 5 = Atuação. Um admin pode ter vários graus.
-        // Linha do Tempo, Apoiadores e Suporte Técnico exigem Grau 1.
+        // Grau 4 = Contatos. Grau 5 = Atuação. Grau 6 = Edição (Linha do
+        // Tempo e Apoiadores). Um admin pode ter vários graus.
+        // Suporte Técnico e o Dashboard são acessíveis a qualquer grau.
         // Definidos em Firestore, doc admins/{uid}, campo "graus" (array de números).
         // Sem o campo "graus" (contas antigas), assume-se [1] — acesso total.
         let currentGraus = [1];
@@ -2356,6 +2358,16 @@
         window.hasGrau = hasGrau;
 
         function applyAccessControl() {
+            // Badge de Grau na topbar
+            const grauBadge = document.getElementById('topbar-grau-badge');
+            if (grauBadge) {
+                const sorted = [...currentGraus].sort((a, b) => a - b);
+                grauBadge.textContent = currentGraus.includes(1)
+                    ? 'Grau 1'
+                    : `Grau ${sorted.join(', ')}`;
+                grauBadge.style.display = 'inline-flex';
+            }
+
             // Itens do sidebar, stat cards e botões de acesso rápido com data-grau
             document.querySelectorAll('[data-grau]').forEach(el => {
                 const required = Number(el.dataset.grau);
@@ -2557,7 +2569,7 @@
             if (hasGrau(3)) tasks.push(loadTransparency());
             if (hasGrau(2)) tasks.push(loadNews());
             if (hasGrau(5)) tasks.push(loadEventos(), loadProjetos(), loadCapacitacao());
-            if (hasGrau(1)) tasks.push(loadTimeline(), loadApoiadores());
+            if (hasGrau(6)) tasks.push(loadTimeline(), loadApoiadores());
             await Promise.all(tasks);
         }
 

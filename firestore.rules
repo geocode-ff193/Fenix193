@@ -1,7 +1,7 @@
 rules_version = '2';
 
 // ============================================================
-//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.7.0
+//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.8.0
 //  Setembro 2026
 //
 //  Coleções protegidas:
@@ -12,16 +12,16 @@ rules_version = '2';
 //    eventos           → leitura pública; escrita Grau 1/5 (Atuação)
 //    projetos          → leitura pública; escrita Grau 1/5 (Atuação)
 //    capacitacao       → leitura pública; escrita Grau 1/5 (Atuação)
-//    timeline          → leitura pública; escrita somente Grau 1
-//    apoiadores        → leitura pública; escrita somente Grau 1
+//    timeline          → leitura pública; escrita Grau 1/6 (Edição)
+//    apoiadores        → leitura pública; escrita Grau 1/6 (Edição)
 //
-//  Grau de Administração (NOVO):
+//  Grau de Administração:
 //    Cada admin pode ter um ou mais graus, em admins/{uid}.graus
 //    (array de números). Grau 1 dá acesso a tudo.
 //      1 = Acesso a Tudo        4 = Contatos
 //      2 = Notícias             5 = Atuação (Projetos/Capacitação/Eventos)
-//      3 = Transparência
-//    Linha do Tempo e Apoiadores exigem Grau 1 (fora do esquema 2–5).
+//      3 = Transparência        6 = Edição (Linha do Tempo/Apoiadores)
+//    Suporte Técnico é liberado a qualquer grau.
 //    Sem o campo "graus" (contas antigas), assume-se [1] — acesso total.
 //
 //  Como adicionar um admin:
@@ -55,12 +55,12 @@ service cloud.firestore {
     }
 
     /**
-     * Grau de Administração (1 a 5), definido manualmente em
+     * Grau de Administração (1 a 6), definido manualmente em
      * admins/{uid}.graus (array de números). Um admin pode ter
      * vários graus. Grau 1 = acesso a tudo.
-     *   2 = Notícias · 3 = Transparência · 4 = Contatos · 5 = Atuação
-     * Linha do Tempo e Apoiadores exigem Grau 1 (não listados
-     * individualmente no esquema pedido).
+     *   2 = Notícias · 3 = Transparência · 4 = Contatos
+     *   5 = Atuação · 6 = Edição (Linha do Tempo e Apoiadores)
+     * Suporte Técnico é liberado a qualquer grau (não requer checagem).
      * Sem o campo "graus" (contas antigas), assume-se [1] — total.
      */
     function myGraus() {
@@ -70,11 +70,6 @@ service cloud.firestore {
 
     function hasGrau(g) {
       return isAdmin() && myGraus().hasAny([1, g]);
-    }
-
-    /** Grau 1 apenas — usado por Linha do Tempo e Apoiadores */
-    function isFullAdmin() {
-      return isAdmin() && myGraus().hasAny([1]);
     }
 
     /** Campo obrigatório é string não-vazia? */
@@ -274,29 +269,27 @@ service cloud.firestore {
     // ──────────────────────────────────────────────────────────
     //  LINHA DO TEMPO
     //  Leitura: pública (página Nossa História).
-    //  Criação / atualização / exclusão: somente admins Grau 1
-    //           (não faz parte do esquema de graus 2–5),
-    //           sujeita à validação de campos.
+    //  Criação / atualização / exclusão: admins com Grau 1 ou 6
+    //           (Edição), sujeita à validação de campos.
     // ──────────────────────────────────────────────────────────
     match /timeline/{docId} {
       allow read:   if true;
-      allow create: if isFullAdmin() && isValidTimeline();
-      allow update: if isFullAdmin() && isValidTimeline();
-      allow delete: if isFullAdmin();
+      allow create: if hasGrau(6) && isValidTimeline();
+      allow update: if hasGrau(6) && isValidTimeline();
+      allow delete: if hasGrau(6);
     }
 
     // ──────────────────────────────────────────────────────────
     //  APOIADORES
     //  Leitura: pública (página Parcerias).
-    //  Criação / atualização / exclusão: somente admins Grau 1
-    //           (não faz parte do esquema de graus 2–5),
-    //           sujeita à validação de campos.
+    //  Criação / atualização / exclusão: admins com Grau 1 ou 6
+    //           (Edição), sujeita à validação de campos.
     // ──────────────────────────────────────────────────────────
     match /apoiadores/{docId} {
       allow read:   if true;
-      allow create: if isFullAdmin() && isValidApoiador();
-      allow update: if isFullAdmin() && isValidApoiador();
-      allow delete: if isFullAdmin();
+      allow create: if hasGrau(6) && isValidApoiador();
+      allow update: if hasGrau(6) && isValidApoiador();
+      allow delete: if hasGrau(6);
     }
 
   }
