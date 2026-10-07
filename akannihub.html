@@ -360,6 +360,9 @@
         }
 
         .topbar-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-size: .68rem;
             padding: 3px 10px;
             background: rgba(225, 34, 23, .25);
@@ -1404,7 +1407,6 @@
                         <span class="topbar-brand-sub">AkanniHub 1.5.0</span>
                     </div>
                 </div>
-                <span class="topbar-badge"><i class="fas fa-shield-halved"></i></span>
                 <span class="topbar-badge" id="topbar-grau-badge" title="Grau de Administração" style="display:none;"></span>
             </div>
             <div class="topbar-user">
@@ -2362,9 +2364,10 @@
             const grauBadge = document.getElementById('topbar-grau-badge');
             if (grauBadge) {
                 const sorted = [...currentGraus].sort((a, b) => a - b);
-                grauBadge.textContent = currentGraus.includes(1)
+                const textoGrau = currentGraus.includes(1)
                     ? 'Grau 1'
                     : `Grau ${sorted.join(', ')}`;
+                grauBadge.innerHTML = `<i class="fas fa-shield-halved"></i> ${textoGrau}`;
                 grauBadge.style.display = 'inline-flex';
             }
 
