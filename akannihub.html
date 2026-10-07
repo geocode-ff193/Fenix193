@@ -1404,7 +1404,7 @@
                         <span class="topbar-brand-sub">AkanniHub 1.5.0</span>
                     </div>
                 </div>
-                <span class="topbar-badge" id="topbar-grau-badge"><i class="fas fa-shield-halved"></i></span>
+                <span class="topbar-badge"><i class="fas fa-shield-halved"></i></span>
                 <span class="topbar-badge" id="topbar-grau-badge" title="Grau de Administração" style="display:none;"></span>
             </div>
             <div class="topbar-user">
@@ -2363,7 +2363,7 @@
             if (grauBadge) {
                 const sorted = [...currentGraus].sort((a, b) => a - b);
                 grauBadge.textContent = currentGraus.includes(1)
-                    ? 'Grau 1'
+                    ? '<i class="fas fa-shield-halved"></i> Grau 1'
                     : `Grau ${sorted.join(', ')}`;
                 grauBadge.style.display = 'inline-flex';
             }
