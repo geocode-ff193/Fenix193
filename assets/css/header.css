@@ -452,39 +452,3 @@
         color: var(--white);
     }
 }
-
-/* -------------------------------------------------
-   5. TEMAS DE ALTO CONTRASTE (widget de acessibilidade)
-   As camadas são <div> e o acessibilidade.css só repinta
-   header/nav/section...; sem isto o topo ficaria claro com texto claro.
-------------------------------------------------- */
-[data-a11y-theme] .header--top,
-[data-a11y-theme] .header--main {
-    background: var(--a11y-bg) !important;
-    border-color: var(--a11y-link) !important;
-}
-
-[data-a11y-theme] #menu {
-    background: var(--a11y-bg) !important;
-}
-
-[data-a11y-theme] .header-search-input {
-    background: var(--a11y-bg) !important;
-    color: var(--a11y-text) !important;
-    border: 2px solid var(--a11y-link) !important;
-}
-
-[data-a11y-theme] .header-search-btn {
-    background: var(--a11y-link) !important;
-    color: var(--a11y-bg) !important;
-}
-
-[data-a11y-theme] .header-hub-btn,
-[data-a11y-theme] .header-social a {
-    background: transparent !important;
-    border-color: var(--a11y-link) !important;
-}
-
-[data-a11y-theme] .header-hub-btn i {
-    color: inherit !important;
-}

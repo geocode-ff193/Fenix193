@@ -130,6 +130,7 @@
     else el.removeAttribute(name);
   }
 
+  let appliedTheme = null; // tema cuja paleta já foi calculada
   let readableFontRequested = false;
   function loadReadableFont() {
     if (readableFontRequested) return;
@@ -148,9 +149,13 @@
     setAttr(root, "data-a11y-readable", prefs.readable);
 
     // Alto contraste (escuro/amarelo) e Fundo claro usam o mesmo atributo de paleta
-    const theme = prefs.contrast !== "off" ? prefs.contrast : prefs.light ? "claro" : null;
+    const theme = currentTheme();
     if (theme) root.setAttribute("data-a11y-theme", theme);
     else root.removeAttribute("data-a11y-theme");
+    if (theme !== appliedTheme) {
+      appliedTheme = theme;
+      refreshPalette();
+    }
 
     if (prefs.readable) loadReadableFont();
     updateControlsState();
@@ -222,6 +227,190 @@
     savePrefs();
     applyVisualPrefs();
     announce("Preferências de acessibilidade restauradas ao padrão.");
+  }
+
+  // -------------------------------------------------
+  // PALETA INTELIGENTE (Alto contraste e Fundo claro)
+  //
+  // Em vez de pintar TODOS os elementos com a mesma cor (o que deixava o
+  // site uma tela chapada, sem hero, sem botões coloridos e sem separação
+  // entre cartões), olhamos a cor de fundo ORIGINAL de cada elemento:
+  //
+  //   imagem ou degradê ............ "keep"    → preservado (hero, números, fotos)
+  //   cor viva da marca (vermelho…)  "keep"    → preservado (botões, selos)
+  //   fundo claro / cinza neutro ... "recolor" → vira fundo da paleta
+  //        (pequeno e branco = "card", com contorno; o resto = "page")
+  //   fundo escuro neutro .......... "recolor" → vira "surface" (menu, rodapé)
+  //   sem fundo (transparente) ..... herda o contexto do elemento pai
+  //
+  // Só elementos "recolor" recebem texto/borda da paleta (data-a11y-ctx);
+  // o CSS faz o resto a partir dos atributos data-a11y-ctx / data-a11y-bg.
+  // Conteúdo inserido depois (ex.: notícias vindas do Firebase) é
+  // classificado por um MutationObserver.
+  // -------------------------------------------------
+  const PALETTE_IGNORE = ".a11y-panel, .a11y-toggle-btn, .a11y-overlay, .skip-link";
+  const PALETTE_SKIP_TAGS = new Set([
+    "SCRIPT", "STYLE", "LINK", "META", "NOSCRIPT", "TEMPLATE", "IMG", "VIDEO",
+    "CANVAS", "IFRAME", "PICTURE", "SOURCE", "BR", "HR", "OPTION",
+  ]);
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  function parseColor(str) {
+    const m = /rgba?\(([^)]+)\)/.exec(str || "");
+    if (!m) return null;
+    const parts = m[1].split(/[\s,/]+/).filter(Boolean).map(parseFloat);
+    if (parts.length < 3 || parts.slice(0, 3).some(Number.isNaN)) return null;
+    return { r: parts[0], g: parts[1], b: parts[2], a: parts.length > 3 ? parts[3] : 1 };
+  }
+
+  function luminance(c) {
+    const lin = (v) => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    };
+    return 0.2126 * lin(c.r) + 0.7152 * lin(c.g) + 0.0722 * lin(c.b);
+  }
+
+  // Saturação HSL (0 = cinza, 1 = cor pura)
+  function saturation(c) {
+    const r = c.r / 255, g = c.g / 255, b = c.b / 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    const l = (max + min) / 2;
+    if (max === min) return 0;
+    return (max - min) / (1 - Math.abs(2 * l - 1));
+  }
+
+  function currentTheme() {
+    return prefs.contrast !== "off" ? prefs.contrast : prefs.light ? "claro" : null;
+  }
+
+  // Lê estilos de `root` e de todos os descendentes (só leitura — sem escrever no DOM)
+  function analyzeTree(root) {
+    const results = [];
+    const ctxMap = new Map();
+    const vw = window.innerWidth;
+
+    function parentCtx(el) {
+      const p = el.parentElement;
+      if (!p || p === document.documentElement) return "recolor";
+      if (ctxMap.has(p)) return ctxMap.get(p);
+      return p.hasAttribute("data-a11y-ctx") ? "recolor" : "keep";
+    }
+
+    function process(el) {
+      let ctx = parentCtx(el);
+      let bg = null;
+
+      if (el === document.body) {
+        ctx = "recolor"; // o fundo do <body> é definido direto pelo CSS
+      } else {
+        const cs = getComputedStyle(el);
+        const c = parseColor(cs.backgroundColor);
+        if (cs.backgroundImage && cs.backgroundImage !== "none") {
+          ctx = "keep";
+        } else if (c && c.a >= 0.5) {
+          const L = luminance(c);
+          const S = saturation(c);
+          if (S > 0.35 && L > 0.04 && L < 0.8) {
+            ctx = "keep"; // cor viva da marca
+          } else {
+            ctx = "recolor";
+            if (L >= 0.5) {
+              const w = el.getBoundingClientRect().width;
+              bg = L >= 0.97 && w > 0 && w < vw * 0.9 ? "card" : "page";
+            } else {
+              bg = "surface";
+            }
+          }
+        }
+      }
+      ctxMap.set(el, ctx);
+      results.push({ el, ctx, bg });
+    }
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT, {
+      acceptNode(n) {
+        if (n !== root) {
+          if (n.matches && n.matches(PALETTE_IGNORE)) return NodeFilter.FILTER_REJECT;
+          if (PALETTE_SKIP_TAGS.has(n.tagName)) return NodeFilter.FILTER_REJECT;
+          // Filhos internos de <svg> (path, g…) não precisam de classificação
+          if (n.namespaceURI === SVG_NS && n.tagName.toLowerCase() !== "svg") return NodeFilter.FILTER_REJECT;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      },
+    });
+
+    if (root.matches && root.matches(PALETTE_IGNORE)) return results;
+    let node = walker.currentNode; // = root
+    while (node) {
+      if (node.nodeType === 1 && !PALETTE_SKIP_TAGS.has(node.tagName)) process(node);
+      node = walker.nextNode();
+    }
+    return results;
+  }
+
+  // Escreve os atributos (fase separada da leitura, para evitar recálculo de layout em loop)
+  function applyAnalysis(results) {
+    results.forEach(({ el, ctx, bg }) => {
+      if (ctx === "recolor") el.setAttribute("data-a11y-ctx", "recolor");
+      else el.removeAttribute("data-a11y-ctx");
+      if (bg) el.setAttribute("data-a11y-bg", bg);
+      else el.removeAttribute("data-a11y-bg");
+    });
+  }
+
+  function clearPalette() {
+    document.querySelectorAll("[data-a11y-ctx], [data-a11y-bg]").forEach((el) => {
+      el.removeAttribute("data-a11y-ctx");
+      el.removeAttribute("data-a11y-bg");
+    });
+  }
+
+  // Observa conteúdo inserido depois da carga (ex.: cards vindos do Firebase)
+  let paletteObserver = null;
+  let pendingNodes = [];
+  let flushTimer;
+
+  function startPaletteObserver() {
+    if (paletteObserver || !document.body) return;
+    paletteObserver = new MutationObserver((mutations) => {
+      mutations.forEach((m) =>
+        m.addedNodes.forEach((n) => {
+          if (n.nodeType === 1 && !(n.closest && n.closest(PALETTE_IGNORE))) pendingNodes.push(n);
+        })
+      );
+      if (!pendingNodes.length) return;
+      clearTimeout(flushTimer);
+      flushTimer = window.setTimeout(() => {
+        const nodes = pendingNodes;
+        pendingNodes = [];
+        nodes.forEach((n) => {
+          if (document.body.contains(n)) applyAnalysis(analyzeTree(n));
+        });
+      }, 120);
+    });
+    paletteObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  function stopPaletteObserver() {
+    if (paletteObserver) paletteObserver.disconnect();
+    paletteObserver = null;
+    pendingNodes = [];
+  }
+
+  // Recalcula a paleta do zero (ao trocar de tema ou quando os CSS terminam de carregar)
+  function refreshPalette() {
+    if (!document.body) {
+      document.addEventListener("DOMContentLoaded", refreshPalette, { once: true });
+      return;
+    }
+    clearPalette();
+    if (!currentTheme()) {
+      stopPaletteObserver();
+      return;
+    }
+    applyAnalysis(analyzeTree(document.body));
+    startPaletteObserver();
   }
 
   // -------------------------------------------------
@@ -435,6 +624,12 @@
     // seguro da tela atual, via applyFontScale)
     applyFontScale(prefs.fontScale, { silent: true });
     applyVisualPrefs();
+
+    // style.css e outros CSS carregam de forma assíncrona (media="print" → "all"):
+    // ao terminar, recalcula a paleta com as cores finais de cada elemento.
+    const onFullLoad = () => window.setTimeout(() => currentTheme() && refreshPalette(), 150);
+    if (document.readyState === "complete") onFullLoad();
+    else window.addEventListener("load", onFullLoad, { once: true });
   }
 
   if (document.readyState === "loading") {

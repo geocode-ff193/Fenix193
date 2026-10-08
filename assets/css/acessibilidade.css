@@ -36,10 +36,17 @@
   --a11y-readable-font: "Atkinson Hyperlegible", Verdana, Tahoma, "Segoe UI", Arial, sans-serif;
 }
 
-/* Paletas aplicadas à página inteira */
+/* Paletas — variáveis usadas pelas regras da seção 1.1
+   --a11y-bg .......... fundo da página
+   --a11y-card ........ fundo de cartões/campos (elementos "soltos" sobre a página)
+   --a11y-surface ..... fundo de áreas que eram escuras (barra de menu, rodapé)
+   --a11y-outline ..... contorno que separa os cartões do fundo            */
 html[data-a11y-theme="escuro"] {
   /* Alto contraste: fundo preto, texto branco, links dourados */
   --a11y-bg: #000000;
+  --a11y-card: #121212;
+  --a11y-surface: #1c1c1c;
+  --a11y-outline: #ffffff;
   --a11y-text: #ffffff;
   --a11y-link: #ffd700;
   --a11y-focus: #ffd700;
@@ -48,6 +55,9 @@ html[data-a11y-theme="escuro"] {
 html[data-a11y-theme="amarelo"] {
   /* Alto contraste amarelo/preto (exigência clássica eMAG) */
   --a11y-bg: #000000;
+  --a11y-card: #121212;
+  --a11y-surface: #1c1c1c;
+  --a11y-outline: #ffff00;
   --a11y-text: #ffff00;
   --a11y-link: #ffffff;
   --a11y-focus: #ffffff;
@@ -56,43 +66,53 @@ html[data-a11y-theme="amarelo"] {
 html[data-a11y-theme="claro"] {
   /* Fundo claro: branco, texto escuro, links azuis */
   --a11y-bg: #ffffff;
+  --a11y-card: #ffffff;
+  --a11y-surface: #e9e9e9;
+  --a11y-outline: #555555;
   --a11y-text: #111111;
   --a11y-link: #0033cc;
   --a11y-focus: #0033cc;
 }
 
 /* -------------------------------------------------
-   1.1 PALETAS (alto contraste / fundo claro)
-   Aplicadas a TODOS os elementos (não só às seções), senão cartões
-   com fundo próprio ficam com texto herdado ilegível. :where() mantém
-   a especificidade baixa para os links poderem ter cor própria.
-   O painel de acessibilidade e o botão flutuante são preservados.
+   1.1 PALETAS (alto contraste / fundo claro) — recoloração "inteligente"
+   O acessibilidade.js analisa a cor de fundo ORIGINAL de cada elemento e
+   marca (data-a11y-ctx / data-a11y-bg):
+     • fundo claro ou cinza neutro ......... recolorido (preto no escuro, branco no claro)
+     • fundo escuro neutro (menu, rodapé) .. vira "superfície" (cinza muito escuro / claro)
+     • imagem, degradê ou cor da marca ..... PRESERVADO (hero, números, botões
+       vermelhos, fotos) — esses já têm texto claro sobre fundo escuro.
+   Assim o site mantém identidade e estrutura em vez de virar uma tela chapada.
 ------------------------------------------------- */
 html[data-a11y-theme],
 html[data-a11y-theme] body {
   background-color: var(--a11y-bg) !important;
-  background-image: none !important;
   color: var(--a11y-text) !important;
 }
 
-html[data-a11y-theme] body :where(*:not(.a11y-panel):not(.a11y-panel *):not(.a11y-toggle-btn):not(.skip-link):not(img):not(video):not(canvas):not(iframe):not(picture)) {
-  background-color: var(--a11y-bg) !important;
-  background-image: none !important;
+/* Texto e bordas de tudo que está sobre fundo recolorido */
+html[data-a11y-theme] [data-a11y-ctx="recolor"] {
   color: var(--a11y-text) !important;
   border-color: var(--a11y-text) !important;
   text-shadow: none !important;
-  box-shadow: none !important;
 }
 
-/* Sobreposições decorativas (gradientes em ::before/::after) */
-html[data-a11y-theme] body :where(*:not(.a11y-panel):not(.a11y-panel *))::before,
-html[data-a11y-theme] body :where(*:not(.a11y-panel):not(.a11y-panel *))::after {
-  background-image: none !important;
+html[data-a11y-theme] [data-a11y-bg="page"] {
+  background-color: var(--a11y-bg) !important;
 }
 
-/* Links (e tudo dentro deles) usam a cor de link da paleta */
-html[data-a11y-theme] body a,
-html[data-a11y-theme] body a * {
+html[data-a11y-theme] [data-a11y-bg="card"] {
+  background-color: var(--a11y-card) !important;
+  box-shadow: 0 0 0 1px var(--a11y-outline) !important;
+}
+
+html[data-a11y-theme] [data-a11y-bg="surface"] {
+  background-color: var(--a11y-surface) !important;
+}
+
+/* Links (e ícones/spans dentro deles) usam a cor de link da paleta */
+html[data-a11y-theme] a[data-a11y-ctx="recolor"],
+html[data-a11y-theme] a[data-a11y-ctx="recolor"] [data-a11y-ctx="recolor"] {
   color: var(--a11y-link) !important;
 }
 
