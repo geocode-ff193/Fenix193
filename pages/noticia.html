@@ -311,75 +311,155 @@
     <link rel="stylesheet" href="../assets/css/acessibilidade.css">
     <link rel="stylesheet" href="../assets/css/chatbot.css">
     <link rel="stylesheet" href="../assets/css/back-to-top.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
 </head>
 
 <body>
     <header id="main-header">
-        <div class="container nav-wrapper">
-            <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
-                <div class="logo-icon" aria-hidden="true">
-                    <img src="../assets/img/ff193_transp.webp" alt="Logo Transparente" width="50" height="50">
+    
+        <!-- ===== HEADER--TOP ===== -->
+        <div class="header--top">
+            <div class="container header-top-inner">
+    
+                <!-- Logo -->
+                <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                    </div>
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                    </div>
+                </a>
+    
+                <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
+                <form class="header-search header-search--top" role="search" action="../pesquisa.html" method="get">
+                    <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                        aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                    <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                </form>
+    
+                <!-- AkanniHUB + Redes sociais (desktop) -->
+                <div class="header-top-actions">
+                    <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                        <span class="header-hub-label">AkanniHUB</span>
+                    </a>
+                    <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
+                    <ul class="header-social" role="list" aria-label="Redes sociais">
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
                 </div>
-                <div class="logo-text">
-                    <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
-                </div>
-                <div class="logo-icon" aria-hidden="true">
-                    <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="50" height="50">
-                </div>
-            </a>
-            <nav id="nav-menu" aria-label="Navegação principal">
-                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false">
+    
+                <!-- Hambúrguer (mobile) -->
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
                     <span class="hamburger-bar"></span>
                 </button>
-                <ul id="menu" role="list">
-                    <li><a href="../index.html">Início</a></li>
-                    <li class="has-dropdown">
-                        <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-                            Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="../index.html#quem-somos" role="menuitem">
-                                    <i class="fas fa-landmark"></i> Quem Somos
-                                </a></li>
-                            <li><a href="nossa-historia.html" role="menuitem">
-                                    <i class="fas fa-book-open"></i> Nossa História
-                                </a></li>
-                            <li><a href="missao-valores.html" role="menuitem">
-                                    <i class="fas fa-bullseye"></i> Missão e Valores
-                                </a></li>
-                            <li><a href="equipe.html" role="menuitem">
-                                    <i class="fas fa-users"></i> Equipe
-                                </a></li>
-                        </ul>
-                    </li>
-                    <li class="has-dropdown">
-                        <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
-                            Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="projetos.html" role="menuitem">
-                                    <i class="fas fa-clipboard-list"></i> Projetos
-                                </a></li>
-                            <li><a href="capacitacao.html" role="menuitem">
-                                    <i class="fas fa-graduation-cap"></i> Capacitação
-                                </a></li>
-                            <li><a href="eventos.html" role="menuitem">
-                                    <i class="fas fa-calendar-days"></i> Eventos
-                                </a></li>
-                            <li><a href="parcerias.html" role="menuitem">
-                                    <i class="fas fa-handshake"></i> Parcerias
-                                </a></li>
-                        </ul>
-                    </li>
-                    <li><a href="transparencia.html">Transparência</a></li>
-                    <li><a href="../index.html#stats">Impacto</a></li>
-                    <li><a href="noticias.html">Notícias</a></li>
-                    <li><a href="../index.html#contato">Contato</a></li>
-                    <li><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
-                </ul>
-            </nav>
+            </div>
+        </div>
+    
+        <!-- ===== HEADER--MAIN ===== -->
+        <div class="header--main">
+            <div class="container">
+                <nav id="nav-menu" aria-label="Navegação principal">
+                    <ul id="menu" role="list">
+    
+                        <!-- Pesquisa (somente no menu mobile) -->
+                        <li class="menu-mobile-search">
+                            <form class="header-search header-search--menu" role="search" action="../pesquisa.html"
+                                method="get">
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
+                                <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </li>
+    
+                        <li><a href="../index.html">Início</a></li>
+    
+                        <!-- DROPDOWN: Institucional -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                                Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../index.html#quem-somos" role="menuitem">
+                                        <i class="fas fa-landmark"></i> Quem Somos
+                                    </a></li>
+                                <li><a href="nossa-historia.html" role="menuitem">
+                                        <i class="fas fa-book-open"></i> Nossa História
+                                    </a></li>
+                                <li><a href="missao-valores.html" role="menuitem">
+                                        <i class="fas fa-bullseye"></i> Missão e Valores
+                                    </a></li>
+                                <li><a href="equipe.html" role="menuitem">
+                                        <i class="fas fa-users"></i> Equipe
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <!-- DROPDOWN: Atuação -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                                Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="projetos.html" role="menuitem">
+                                        <i class="fas fa-clipboard-list"></i> Projetos
+                                    </a></li>
+                                <li><a href="capacitacao.html" role="menuitem">
+                                        <i class="fas fa-graduation-cap"></i> Capacitação
+                                    </a></li>
+                                <li><a href="eventos.html" role="menuitem">
+                                        <i class="fas fa-calendar-days"></i> Eventos
+                                    </a></li>
+                                <li><a href="parcerias.html" role="menuitem">
+                                        <i class="fas fa-handshake"></i> Parcerias
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <li><a href="transparencia.html">Transparência</a></li>
+                        <li><a href="../index.html#stats">Impacto</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                        <li class="menu-item-cta"><a href="../index.html#como-ajudar" class="btn-cta-nav">Colabore</a></li>
+    
+                        <!-- AkanniHUB + Redes (somente no menu mobile) -->
+                        <li class="menu-mobile-extras">
+                            <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                                <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                                <span class="header-hub-label">AkanniHUB</span>
+                            </a>
+                            <ul class="header-social" role="list" aria-label="Redes sociais">
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
