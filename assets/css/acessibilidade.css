@@ -1,13 +1,26 @@
 /* ==========================================================================
    ACESSIBILIDADE.CSS — Fundação Fênix 193
-   Painel de ferramentas de acessibilidade (fonte, contraste) + player AD
+   Painel de ferramentas de acessibilidade + player AD
    Conformidade: WCAG 2.1 AA / eMAG
+
+   Recursos do painel (todos salvos no LocalStorage — ver acessibilidade.js):
+   - Aumentar / Diminuir texto ........ font-size do <html> (via JS)
+   - Escala de cinza .................. html[data-a11y-gray]
+   - Alto contraste (escuro/amarelo) .. html[data-a11y-theme="escuro|amarelo"]
+   - Fundo claro ...................... html[data-a11y-theme="claro"]
+   - Controle negativo (inverter) ..... html[data-a11y-negative]
+   - Links sublinhados ................ html[data-a11y-underline]
+   - Fonte legível .................... html[data-a11y-readable]
+   - Redefinir
+
+   Alto contraste, Fundo claro e Controle negativo são mutuamente exclusivos
+   (o JS garante isso); os demais combinam livremente.
    ========================================================================== */
 
 /* -------------------------------------------------
-   1. VARIÁVEIS DE TEMA (Padrão)
+   1. VARIÁVEIS DE TEMA
    Cores herdadas da paleta oficial do site (ver :root em style.css)
-   para o botão/painel abertos combinarem com a identidade visual.
+   para o botão/painel combinarem com a identidade visual.
 ------------------------------------------------- */
 :root {
   --a11y-bg: #ffffff;
@@ -20,37 +33,115 @@
   --a11y-btn-bg-hover: var(--red-dark, #872020);
   --a11y-btn-text: #ffffff;
   --a11y-accent: var(--amber, #F8BA25);
+  --a11y-readable-font: "Atkinson Hyperlegible", Verdana, Tahoma, "Segoe UI", Arial, sans-serif;
 }
 
-/* Tema Alto Contraste Escuro (fundo preto, texto branco/amarelo) */
-[data-a11y-theme="escuro"] {
+/* Paletas aplicadas à página inteira */
+html[data-a11y-theme="escuro"] {
+  /* Alto contraste: fundo preto, texto branco, links dourados */
   --a11y-bg: #000000;
   --a11y-text: #ffffff;
   --a11y-link: #ffd700;
   --a11y-focus: #ffd700;
 }
 
-/* Tema Alto Contraste Amarelo/Preto (exigência clássica eMAG) */
-[data-a11y-theme="amarelo"] {
+html[data-a11y-theme="amarelo"] {
+  /* Alto contraste amarelo/preto (exigência clássica eMAG) */
   --a11y-bg: #000000;
   --a11y-text: #ffff00;
   --a11y-link: #ffffff;
   --a11y-focus: #ffffff;
 }
 
-/* Aplica o tema ativo em toda a página */
-[data-a11y-theme] body,
-[data-a11y-theme] header,
-[data-a11y-theme] main,
-[data-a11y-theme] footer,
-[data-a11y-theme] section,
-[data-a11y-theme] nav,
-[data-a11y-theme] aside {
+html[data-a11y-theme="claro"] {
+  /* Fundo claro: branco, texto escuro, links azuis */
+  --a11y-bg: #ffffff;
+  --a11y-text: #111111;
+  --a11y-link: #0033cc;
+  --a11y-focus: #0033cc;
+}
+
+/* -------------------------------------------------
+   1.1 PALETAS (alto contraste / fundo claro)
+   Aplicadas a TODOS os elementos (não só às seções), senão cartões
+   com fundo próprio ficam com texto herdado ilegível. :where() mantém
+   a especificidade baixa para os links poderem ter cor própria.
+   O painel de acessibilidade e o botão flutuante são preservados.
+------------------------------------------------- */
+html[data-a11y-theme],
+html[data-a11y-theme] body {
   background-color: var(--a11y-bg) !important;
+  background-image: none !important;
   color: var(--a11y-text) !important;
 }
-[data-a11y-theme] a { color: var(--a11y-link) !important; }
-[data-a11y-theme] img { filter: grayscale(0%); } /* mantém fotos legíveis */
+
+html[data-a11y-theme] body :where(*:not(.a11y-panel):not(.a11y-panel *):not(.a11y-toggle-btn):not(.skip-link):not(img):not(video):not(canvas):not(iframe):not(picture)) {
+  background-color: var(--a11y-bg) !important;
+  background-image: none !important;
+  color: var(--a11y-text) !important;
+  border-color: var(--a11y-text) !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Sobreposições decorativas (gradientes em ::before/::after) */
+html[data-a11y-theme] body :where(*:not(.a11y-panel):not(.a11y-panel *))::before,
+html[data-a11y-theme] body :where(*:not(.a11y-panel):not(.a11y-panel *))::after {
+  background-image: none !important;
+}
+
+/* Links (e tudo dentro deles) usam a cor de link da paleta */
+html[data-a11y-theme] body a,
+html[data-a11y-theme] body a * {
+  color: var(--a11y-link) !important;
+}
+
+html[data-a11y-theme] ::placeholder {
+  color: var(--a11y-text) !important;
+  opacity: 0.75;
+}
+
+/* -------------------------------------------------
+   1.2 ESCALA DE CINZA e CONTROLE NEGATIVO
+   O filtro vai no <html>: no elemento raiz ele NÃO quebra elementos
+   position: fixed/sticky (header, chatbot, botões flutuantes).
+   No negativo, imagens/vídeos são "re-invertidos" para manter a aparência.
+------------------------------------------------- */
+html[data-a11y-gray] {
+  filter: grayscale(1);
+}
+
+html[data-a11y-negative] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html[data-a11y-gray][data-a11y-negative] {
+  filter: grayscale(1) invert(1) hue-rotate(180deg);
+}
+
+html[data-a11y-negative] :where(img, video, canvas, iframe, picture) {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* -------------------------------------------------
+   1.3 LINKS SUBLINHADOS
+------------------------------------------------- */
+html[data-a11y-underline] a,
+html[data-a11y-underline] a:hover,
+html[data-a11y-underline] a:focus {
+  text-decoration: underline !important;
+  text-decoration-thickness: 0.08em !important;
+  text-underline-offset: 0.18em !important;
+}
+
+/* -------------------------------------------------
+   1.4 FONTE LEGÍVEL
+   Atkinson Hyperlegible (carregada sob demanda pelo JS) com fallback
+   para Verdana/Tahoma. Ícones do Font Awesome são preservados.
+------------------------------------------------- */
+html[data-a11y-readable] body :where(*:not(.fa):not(.fas):not(.far):not(.fab):not(.fa-solid):not(.fa-regular):not(.fa-brands)) {
+  font-family: var(--a11y-readable-font) !important;
+}
 
 /* -------------------------------------------------
    Escala de fonte global — controlada via JS, que ajusta
@@ -60,7 +151,11 @@
    personalização valha em 100% do site — desktop e mobile,
    já que nenhum media query redefine o font-size do <html>.
 ------------------------------------------------- */
-html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme preferência salva */
+html {
+  font-size: 100%;
+}
+
+/* base: 1rem = 16px; alterado via JS conforme preferência salva */
 
 /* NOTA: não adicionamos overflow-x:hidden aqui. O próprio style.css do site
    já protege contra rolagem horizontal aplicando isso apenas ao <body>
@@ -68,7 +163,7 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
    comportamento de propagação do scroll para a viewport, do qual depende
    o position: sticky do cabeçalho. A proteção contra estouro de layout ao
    ampliar a fonte já é feita pelo limite adaptativo em getMaxScale()
-   (acessibilidade.js).
+   (acessibilidade.js). */
 
 /* -------------------------------------------------
    2. FOCO VISÍVEL (obrigatório WCAG 2.4.7)
@@ -77,11 +172,21 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   outline: 3px solid var(--a11y-focus) !important;
   outline-offset: 2px !important;
 }
+
 /* Remove outline apenas para mouse, mantém para teclado */
-:focus:not(:focus-visible) { outline: none !important; }
+:focus:not(:focus-visible) {
+  outline: none !important;
+}
+
 :focus-visible {
   outline: 3px solid var(--a11y-focus) !important;
   outline-offset: 2px !important;
+}
+
+/* Dentro do painel (fundo escuro) o anel de foco é sempre âmbar */
+.a11y-panel :focus-visible,
+.a11y-toggle-btn:focus-visible {
+  outline-color: var(--a11y-accent) !important;
 }
 
 /* Link "pular para o conteúdo" */
@@ -97,7 +202,10 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   font-weight: bold;
   transition: top 0.2s ease;
 }
-.skip-link:focus { top: 0.5rem; }
+
+.skip-link:focus {
+  top: 0.5rem;
+}
 
 /* -------------------------------------------------
    3. BOTÃO FLUTUANTE (canto inferior esquerdo — discreto)
@@ -117,13 +225,16 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   border-radius: 50%;
   font-size: 1.2rem;
   cursor: pointer;
-  box-shadow: var(--shadow-md, 0 6px 24px rgba(0,0,0,.12));
+  box-shadow: var(--shadow-md, 0 6px 24px rgba(0, 0, 0, .12));
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .a11y-toggle-btn:hover,
-.a11y-toggle-btn:focus { background: var(--a11y-btn-bg-hover); }
+.a11y-toggle-btn:focus {
+  background: var(--a11y-btn-bg-hover);
+}
 
 /* -------------------------------------------------
    4. PAINEL — cartão compacto (popover), não sidebar
@@ -132,22 +243,29 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   position: fixed;
   bottom: 4.75rem;
   left: 1.25rem;
-  width: 15rem;
+  width: 18rem;
   max-width: 88vw;
+  max-height: calc(100vh - 6.5rem);
+  /* telas baixas / paisagem: rola dentro do painel */
+  overflow-y: auto;
   background: var(--a11y-panel-bg);
   color: var(--a11y-panel-text);
   z-index: 9999;
   padding: 0.9rem;
   border-radius: var(--radius-lg, 0.75rem);
-  box-shadow: var(--shadow-lg, 0 12px 48px rgba(0,0,0,.18));
+  box-shadow: var(--shadow-lg, 0 12px 48px rgba(0, 0, 0, .18));
   transform: translateY(0.5rem) scale(0.97);
   opacity: 0;
+  visibility: hidden;
+  /* fora de foco quando fechado */
   pointer-events: none;
-  transition: transform 0.18s ease, opacity 0.18s ease;
+  transition: transform 0.18s ease, opacity 0.18s ease, visibility 0.18s;
 }
+
 .a11y-panel[data-open="true"] {
   transform: translateY(0) scale(1);
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -171,12 +289,41 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   cursor: pointer;
   font-size: 0.85rem;
 }
-.a11y-panel .a11y-close:hover { color: #fff; }
 
-.a11y-group { margin-bottom: 0.75rem; }
-.a11y-group:last-child { margin-bottom: 0; }
+.a11y-panel .a11y-close:hover {
+  color: #fff;
+}
 
-.a11y-btn-row { display: flex; gap: 0.4rem; }
+.a11y-group {
+  margin-bottom: 0.75rem;
+}
+
+.a11y-group:last-child {
+  margin-bottom: 0;
+}
+
+.a11y-group-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #ffffffcc;
+  margin-bottom: 0.35rem;
+}
+
+.a11y-font-readout {
+  font-weight: 700;
+  color: var(--a11y-accent);
+}
+
+/* Tamanho do texto: A− | A | A+ */
+.a11y-btn-row {
+  display: flex;
+  gap: 0.4rem;
+}
+
 .a11y-btn {
   flex: 1;
   background: #ffffff1a;
@@ -186,51 +333,106 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   padding: 0.4em;
   font-size: 0.9rem;
   cursor: pointer;
-  min-height: 2.5rem; /* alvo de toque acessível */
+  min-height: 2.5rem;
+  /* alvo de toque acessível */
 }
-.a11y-btn:hover { background: #ffffff33; }
 
-/* Contraste: 3 botões-ícone lado a lado, com o rótulo em tooltip/aria-label */
-.a11y-theme-row { display: flex; gap: 0.4rem; }
-.a11y-theme-btn {
-  flex: 1;
+.a11y-btn:hover {
+  background: #ffffff33;
+}
+
+/* Opções liga/desliga: grade 2 colunas, ícone + rótulo */
+.a11y-option-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.a11y-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 4.2rem;
+  padding: 0.5rem 0.35rem;
+  background: #ffffff1a;
+  border: 1px solid #ffffff40;
+  color: #fff;
+  border-radius: var(--radius, 0.4em);
+  font-family: inherit;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.a11y-option i {
+  font-size: 1.15rem;
+}
+
+.a11y-option:hover {
+  background: #ffffff33;
+}
+
+.a11y-option-state {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+/* Ativo: fundo âmbar + ✓ (não depende só de cor — WCAG 1.4.1) */
+.a11y-option[aria-pressed="true"] {
+  background: var(--a11y-accent);
+  border-color: var(--a11y-accent);
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.a11y-option[aria-pressed="true"]::after {
+  content: "✓";
+  position: absolute;
+  top: 0.15rem;
+  right: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.a11y-reset-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ffffff40;
-  border-radius: var(--radius, 0.4em);
-  padding: 0.4em;
-  cursor: pointer;
-  min-height: 2.5rem;
-}
-.a11y-theme-btn[aria-pressed="true"] { border-color: var(--a11y-accent); background: #ffffff22; }
-.a11y-swatch {
-  width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 1px solid #fff;
-}
-.a11y-swatch.padrao { background: linear-gradient(#fff 50%, #1a1a1a 50%); }
-.a11y-swatch.escuro { background: #000; border-color: #ffd700; }
-.a11y-swatch.amarelo { background: #000; box-shadow: inset 0 0 0 2px #ffff00; }
-
-.a11y-reset-link {
-  display: block;
+  gap: 0.4rem;
   width: 100%;
   text-align: center;
   background: none;
-  border: none;
-  color: #ffffffaa;
-  font-size: 0.75rem;
-  text-decoration: underline;
+  border: 1px solid #ffffff40;
+  border-radius: var(--radius, 0.4em);
+  color: #ffffffdd;
+  font-size: 0.8rem;
   cursor: pointer;
-  padding: 0.3em;
+  padding: 0.55em;
+  min-height: 2.5rem;
 }
-.a11y-reset-link:hover { color: var(--a11y-accent); }
 
-/* Overlay — só ativo em telas pequenas, fecha ao tocar fora */
+.a11y-reset-link:hover {
+  color: var(--a11y-accent);
+  border-color: var(--a11y-accent);
+}
+
+/* Overlay — fecha o painel ao tocar fora */
 .a11y-overlay {
-  position: fixed; inset: 0; background: transparent; z-index: 9997;
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 9997;
   display: none;
 }
-.a11y-overlay[data-open="true"] { display: block; }
+
+.a11y-overlay[data-open="true"] {
+  display: block;
+}
 
 /* -------------------------------------------------
    5. PLAYER DE MÍDIA ACESSÍVEL
@@ -243,7 +445,12 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   overflow: hidden;
   color: #fff;
 }
-.media-player video { width: 100%; display: block; background: #000; }
+
+.media-player video {
+  width: 100%;
+  display: block;
+  background: #000;
+}
 
 .media-controls {
   display: flex;
@@ -253,6 +460,7 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   background: #1a1a1a;
   flex-wrap: wrap;
 }
+
 .media-controls button {
   background: #2a2a2a;
   border: 1px solid #444;
@@ -263,8 +471,15 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   cursor: pointer;
   font-size: 1rem;
 }
-.media-controls button:hover { background: #3a3a3a; }
-.media-controls button[aria-pressed="true"] { background: var(--a11y-btn-bg); border-color: var(--a11y-accent); }
+
+.media-controls button:hover {
+  background: #3a3a3a;
+}
+
+.media-controls button[aria-pressed="true"] {
+  background: var(--a11y-btn-bg);
+  border-color: var(--a11y-accent);
+}
 
 .media-progress {
   flex: 1;
@@ -272,9 +487,17 @@ html { font-size: 100%; } /* base: 1rem = 16px; alterado via JS conforme prefer�
   accent-color: var(--a11y-btn-bg);
   height: 1.2rem;
 }
-.media-volume { width: 5rem; accent-color: var(--a11y-btn-bg); }
 
-.media-time { font-size: 0.8rem; min-width: 5.5rem; text-align: center; }
+.media-volume {
+  width: 5rem;
+  accent-color: var(--a11y-btn-bg);
+}
+
+.media-time {
+  font-size: 0.8rem;
+  min-width: 5.5rem;
+  text-align: center;
+}
 
 /* Container da audiodescrição textual (para leitores de tela / legenda visual) */
 .ad-live-region {

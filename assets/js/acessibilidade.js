@@ -1,13 +1,26 @@
 /**
  * ACESSIBILIDADE.JS — Fundação Fênix 193
  * Painel de Ferramentas de Acessibilidade
- * - Controle de tamanho de fonte (rem, com persistência)
- * - Alternador de contraste (Padrão / Escuro / Amarelo-Preto)
- * - Navegação 100% funcional via teclado
  *
- * Como usar: incluir <script src="acessibilidade.js" defer></script>
+ * Recursos:
+ *  - Aumentar / Diminuir texto (escala no <html>, com limite por tela)
+ *  - Escala de cinza
+ *  - Alto contraste (cicla: desligado → escuro → amarelo/preto → desligado)
+ *  - Controle negativo (inverte as cores)
+ *  - Fundo claro
+ *  - Links sublinhados
+ *  - Fonte legível (Atkinson Hyperlegible, carregada sob demanda)
+ *  - Redefinir tudo
+ *  - Todas as preferências são salvas no LocalStorage e reaplicadas
+ *    em todas as páginas do site.
+ *
+ * Regra: Alto contraste, Controle negativo e Fundo claro são mutuamente
+ * exclusivos (ligar um desliga os outros). Os demais combinam livremente.
+ *
+ * Como usar: incluir <script defer src="acessibilidade.js"></script>
  * em todas as páginas do site, junto com acessibilidade.css.
- * O componente injeta seu próprio HTML — não é necessário copiar markup manualmente.
+ * O componente injeta seu próprio HTML — não é necessário copiar markup.
+ * Requer Font Awesome (já carregado em todas as páginas) para os ícones.
  */
 
 (function () {
@@ -16,9 +29,34 @@
   // -------------------------------------------------
   // Configuração
   // -------------------------------------------------
-  const STORAGE_KEY = "ff193_a11y_prefs";
+  const STORAGE_KEY = "ff193_a11y_prefs"; // mesma chave da versão anterior (migração automática)
   const FONT_MIN = 0.8;
   const FONT_STEP = 0.1;
+  const READABLE_FONT_URL =
+    "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap";
+
+  const DEFAULT_PREFS = {
+    fontScale: 1,
+    grayscale: false,
+    contrast: "off", // "off" | "escuro" | "amarelo"
+    negative: false,
+    light: false,
+    underline: false,
+    readable: false,
+  };
+
+  const CONTRAST_STEPS = ["off", "escuro", "amarelo"];
+  const CONTRAST_LABELS = { off: "Desligado", escuro: "Escuro", amarelo: "Amarelo/preto" };
+
+  // Opções liga/desliga exibidas na grade do painel (ordem = ordem na tela)
+  const OPTIONS = [
+    { id: "grayscale", label: "Escala de cinza", icon: "fa-droplet-slash" },
+    { id: "contrast", label: "Alto contraste", icon: "fa-circle-half-stroke" },
+    { id: "negative", label: "Controle negativo", icon: "fa-moon" },
+    { id: "light", label: "Fundo claro", icon: "fa-sun" },
+    { id: "underline", label: "Links sublinhados", icon: "fa-underline" },
+    { id: "readable", label: "Fonte legível", icon: "fa-font" },
+  ];
 
   // -------------------------------------------------
   // Limite máximo de escala de fonte por largura de tela.
@@ -34,30 +72,36 @@
     return 1.6;
   }
 
-  const THEMES = [
-    { id: "padrao", label: "Contraste Padrão", swatchClass: "padrao" },
-    { id: "escuro", label: "Alto Contraste Escuro", swatchClass: "escuro" },
-    { id: "amarelo", label: "Alto Contraste Amarelo/Preto", swatchClass: "amarelo" },
-  ];
-
   // -------------------------------------------------
-  // Estado / Persistência
+  // Estado / Persistência (LocalStorage)
   // -------------------------------------------------
   function loadPrefs() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return { fontScale: 1, theme: "padrao" };
-      const parsed = JSON.parse(raw);
-      return {
-        fontScale: typeof parsed.fontScale === "number" ? parsed.fontScale : 1,
-        theme: THEMES.some((t) => t.id === parsed.theme) ? parsed.theme : "padrao",
+      if (!raw) return { ...DEFAULT_PREFS };
+      const p = JSON.parse(raw);
+
+      const loaded = {
+        fontScale: typeof p.fontScale === "number" ? p.fontScale : 1,
+        grayscale: p.grayscale === true,
+        // Migração: a versão anterior guardava o tema em "theme"
+        contrast: CONTRAST_STEPS.includes(p.contrast)
+          ? p.contrast
+          : CONTRAST_STEPS.includes(p.theme)
+            ? p.theme
+            : "off",
+        negative: p.negative === true,
+        light: p.light === true,
+        underline: p.underline === true,
+        readable: p.readable === true,
       };
+      return enforceExclusive(loaded);
     } catch (e) {
-      return { fontScale: 1, theme: "padrao" };
+      return { ...DEFAULT_PREFS };
     }
   }
 
-  function savePrefs(prefs) {
+  function savePrefs() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     } catch (e) {
@@ -65,22 +109,65 @@
     }
   }
 
+  // Garante que só um entre contraste / negativo / fundo claro esteja ativo
+  function enforceExclusive(p) {
+    if (p.contrast !== "off") {
+      p.negative = false;
+      p.light = false;
+    } else if (p.negative) {
+      p.light = false;
+    }
+    return p;
+  }
+
   let prefs = loadPrefs();
 
   // -------------------------------------------------
   // Aplicação visual das preferências
   // -------------------------------------------------
+  function setAttr(el, name, on) {
+    if (on) el.setAttribute(name, "");
+    else el.removeAttribute(name);
+  }
+
+  let readableFontRequested = false;
+  function loadReadableFont() {
+    if (readableFontRequested) return;
+    readableFontRequested = true;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = READABLE_FONT_URL;
+    document.head.appendChild(link);
+  }
+
+  function applyVisualPrefs() {
+    const root = document.documentElement;
+    setAttr(root, "data-a11y-gray", prefs.grayscale);
+    setAttr(root, "data-a11y-negative", prefs.negative);
+    setAttr(root, "data-a11y-underline", prefs.underline);
+    setAttr(root, "data-a11y-readable", prefs.readable);
+
+    // Alto contraste (escuro/amarelo) e Fundo claro usam o mesmo atributo de paleta
+    const theme = prefs.contrast !== "off" ? prefs.contrast : prefs.light ? "claro" : null;
+    if (theme) root.setAttribute("data-a11y-theme", theme);
+    else root.removeAttribute("data-a11y-theme");
+
+    if (prefs.readable) loadReadableFont();
+    updateControlsState();
+  }
+
   function applyFontScale(scale, opts) {
     opts = opts || {};
     scale = Math.min(getMaxScale(), Math.max(FONT_MIN, scale));
-    prefs.fontScale = scale;
+    prefs.fontScale = Math.round(scale * 100) / 100;
     // Ajusta o font-size do <html> (não do <body>): como todo o site usa
     // rem, isso escala tipografia, espaçamentos e componentes em 100% das
     // páginas — desktop e mobile — sem precisar tocar em cada elemento.
-    document.documentElement.style.fontSize = scale * 100 + "%";
-    savePrefs(prefs);
+    document.documentElement.style.fontSize = prefs.fontScale * 100 + "%";
+    savePrefs();
+    updateControlsState();
     if (!opts.silent) {
-      announce(`Tamanho da fonte ajustado para ${Math.round(scale * 100)}%`);
+      announce(`Tamanho da fonte ajustado para ${Math.round(prefs.fontScale * 100)}%`);
     }
   }
 
@@ -98,22 +185,42 @@
     }, 200);
   });
 
-  function applyTheme(themeId) {
-    prefs.theme = themeId;
-    if (themeId === "padrao") {
-      document.documentElement.removeAttribute("data-a11y-theme");
+  // Alterna uma opção do painel, respeitando as exclusões mútuas
+  function toggleOption(id) {
+    let message = "";
+    const option = OPTIONS.find((o) => o.id === id);
+
+    if (id === "contrast") {
+      const next = CONTRAST_STEPS[(CONTRAST_STEPS.indexOf(prefs.contrast) + 1) % CONTRAST_STEPS.length];
+      prefs.contrast = next;
+      if (next !== "off") {
+        prefs.negative = false;
+        prefs.light = false;
+      }
+      message = `Alto contraste: ${CONTRAST_LABELS[next]}`;
     } else {
-      document.documentElement.setAttribute("data-a11y-theme", themeId);
+      prefs[id] = !prefs[id];
+      if (prefs[id] && id === "negative") {
+        prefs.contrast = "off";
+        prefs.light = false;
+      }
+      if (prefs[id] && id === "light") {
+        prefs.contrast = "off";
+        prefs.negative = false;
+      }
+      message = `${option.label} ${prefs[id] ? "ativado" : "desativado"}`;
     }
-    savePrefs(prefs);
-    updateThemeButtonsState();
-    const theme = THEMES.find((t) => t.id === themeId);
-    announce(`Tema alterado para ${theme.label}`);
+
+    savePrefs();
+    applyVisualPrefs();
+    announce(message);
   }
 
   function resetPrefs() {
-    applyFontScale(1);
-    applyTheme("padrao");
+    prefs = { ...DEFAULT_PREFS };
+    document.documentElement.style.fontSize = "100%";
+    savePrefs();
+    applyVisualPrefs();
     announce("Preferências de acessibilidade restauradas ao padrão.");
   }
 
@@ -160,37 +267,42 @@
       </button>
       <h2 id="a11y-panel-title">Acessibilidade</h2>
 
-      <section class="a11y-group">
+      <section class="a11y-group" aria-label="Tamanho do texto">
+        <div class="a11y-group-label">
+          <span>Tamanho do texto</span>
+          <span class="a11y-font-readout" data-role="font-readout" aria-hidden="true">100%</span>
+        </div>
         <div class="a11y-btn-row" role="group" aria-label="Tamanho da fonte">
-          <button type="button" class="a11y-btn" data-action="font-decrease" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A−</button>
-          <button type="button" class="a11y-btn" data-action="font-reset" aria-label="Restaurar tamanho de fonte padrão" title="Fonte padrão">A</button>
-          <button type="button" class="a11y-btn" data-action="font-increase" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+          <button type="button" class="a11y-btn" data-action="font-decrease" aria-label="Diminuir texto" title="Diminuir texto">A−</button>
+          <button type="button" class="a11y-btn" data-action="font-reset" aria-label="Tamanho de texto padrão" title="Texto padrão">A</button>
+          <button type="button" class="a11y-btn" data-action="font-increase" aria-label="Aumentar texto" title="Aumentar texto">A+</button>
         </div>
       </section>
 
-      <section class="a11y-group">
-        <div class="a11y-theme-row" role="group" aria-label="Contraste" id="a11y-theme-group"></div>
+      <section class="a11y-group" aria-label="Exibição">
+        <div class="a11y-option-grid" id="a11y-option-grid"></div>
       </section>
 
       <section class="a11y-group">
-        <button type="button" class="a11y-reset-link" data-action="reset-all">Restaurar padrão</button>
+        <button type="button" class="a11y-reset-link" data-action="reset-all">
+          <i class="fas fa-rotate-left" aria-hidden="true"></i> Redefinir
+        </button>
       </section>
     `;
 
-    // Botões de tema (gerados dinamicamente a partir de THEMES) — só o ícone
-    // visível, com o nome completo em aria-label/title para leitor de tela e tooltip.
-    const themeGroup = panel.querySelector("#a11y-theme-group");
-    THEMES.forEach((theme) => {
+    // Botões de opção gerados a partir de OPTIONS
+    const grid = panel.querySelector("#a11y-option-grid");
+    OPTIONS.forEach((opt) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "a11y-theme-btn";
-      btn.dataset.theme = theme.id;
+      btn.className = "a11y-option";
+      btn.dataset.option = opt.id;
       btn.setAttribute("aria-pressed", "false");
-      btn.setAttribute("aria-label", theme.label);
-      btn.title = theme.label;
-      btn.innerHTML = `<span class="a11y-swatch ${theme.swatchClass}" aria-hidden="true"></span>`;
-      btn.addEventListener("click", () => applyTheme(theme.id));
-      themeGroup.appendChild(btn);
+      btn.innerHTML =
+        `<i class="fas ${opt.icon}" aria-hidden="true"></i>` +
+        `<span>${opt.label}</span>` +
+        (opt.id === "contrast" ? '<span class="a11y-option-state" data-role="contrast-state"></span>' : "");
+      grid.appendChild(btn);
     });
 
     // Região viva de anúncios (visualmente oculta, lida por leitores de tela)
@@ -218,9 +330,23 @@
     return { overlay, toggleBtn, panel };
   }
 
-  function updateThemeButtonsState() {
-    document.querySelectorAll(".a11y-theme-btn").forEach((btn) => {
-      btn.setAttribute("aria-pressed", String(btn.dataset.theme === prefs.theme));
+  // Sincroniza botões/rótulos do painel com o estado atual (prefs)
+  function updateControlsState() {
+    const readout = document.querySelector('[data-role="font-readout"]');
+    if (readout) readout.textContent = Math.round(prefs.fontScale * 100) + "%";
+
+    document.querySelectorAll(".a11y-option").forEach((btn) => {
+      const id = btn.dataset.option;
+      const opt = OPTIONS.find((o) => o.id === id);
+      const on = id === "contrast" ? prefs.contrast !== "off" : prefs[id] === true;
+      btn.setAttribute("aria-pressed", String(on));
+
+      if (id === "contrast") {
+        const state = CONTRAST_LABELS[prefs.contrast];
+        const stateEl = btn.querySelector('[data-role="contrast-state"]');
+        if (stateEl) stateEl.textContent = state;
+        btn.setAttribute("aria-label", `${opt.label}: ${state}. Clique para alternar.`);
+      }
     });
   }
 
@@ -255,10 +381,9 @@
         return;
       }
       if (e.key === "Tab") {
-        const focusables = panel.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        const list = Array.from(
+          panel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
         );
-        const list = Array.from(focusables);
         if (!list.length) return;
         const first = list[0];
         const last = list[list.length - 1];
@@ -276,8 +401,13 @@
     overlay.addEventListener("click", closePanel);
     panel.querySelector(".a11y-close").addEventListener("click", closePanel);
 
-    // Ações dos botões de fonte / reset (delegação de evento)
+    // Ações do painel (delegação de evento)
     panel.addEventListener("click", (e) => {
+      const optionBtn = e.target.closest("[data-option]");
+      if (optionBtn) {
+        toggleOption(optionBtn.dataset.option);
+        return;
+      }
       const action = e.target.closest("[data-action]")?.dataset.action;
       if (!action) return;
       if (action === "font-increase") applyFontScale(prefs.fontScale + FONT_STEP);
@@ -290,17 +420,21 @@
   // -------------------------------------------------
   // Inicialização
   // -------------------------------------------------
+  // Aplica as preferências salvas o mais cedo possível (antes mesmo de o
+  // painel existir) para reduzir o "flash" do tema padrão ao trocar de página.
+  applyVisualPrefs();
+  document.documentElement.style.fontSize =
+    Math.min(getMaxScale(), Math.max(FONT_MIN, prefs.fontScale)) * 100 + "%";
+
   function init() {
     const refs = buildPanel();
     initPanelBehavior(refs);
 
-    // Aplica preferências salvas sem disparar anúncios de voz na carga da página
-    // (já reclampada ao limite seguro da tela atual, via applyFontScale)
+    // Sincroniza o painel recém-criado com as preferências salvas, sem
+    // disparar anúncios de voz na carga da página (já reclampada ao limite
+    // seguro da tela atual, via applyFontScale)
     applyFontScale(prefs.fontScale, { silent: true });
-    if (prefs.theme !== "padrao") {
-      document.documentElement.setAttribute("data-a11y-theme", prefs.theme);
-    }
-    updateThemeButtonsState();
+    applyVisualPrefs();
   }
 
   if (document.readyState === "loading") {
