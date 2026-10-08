@@ -25,8 +25,10 @@
    ========================================================================== */
 
 :root {
-    --header-top-h: 76px;   /* altura da camada superior (desktop) */
-    --header-main-h: 48px;  /* altura da barra de navegação (desktop) */
+    --header-top-h: 76px;
+    /* altura da camada superior (desktop) */
+    --header-main-h: 48px;
+    /* altura da barra de navegação (desktop) */
 }
 
 /* -------------------------------------------------
@@ -74,7 +76,8 @@
     flex: 1 1 200px;
     min-width: 140px;
     max-width: 460px;
-    margin: 0 auto; /* centraliza entre logo e ações */
+    margin: 0 auto;
+    /* centraliza entre logo e ações */
 }
 
 .header-search-input {
@@ -206,10 +209,25 @@
 }
 
 /* Hover por rede (mesmas cores do rodapé) */
-.header-social a[aria-label="Instagram"]:hover { background: #c13584; border-color: #c13584; }
-.header-social a[aria-label="Facebook"]:hover  { background: #1877f2; border-color: #1877f2; }
-.header-social a[aria-label="WhatsApp"]:hover  { background: #25d366; border-color: #25d366; }
-.header-social a[aria-label="YouTube"]:hover   { background: #ff0000; border-color: #ff0000; }
+.header-social a[aria-label="Instagram"]:hover {
+    background: #c13584;
+    border-color: #c13584;
+}
+
+.header-social a[aria-label="Facebook"]:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+}
+
+.header-social a[aria-label="WhatsApp"]:hover {
+    background: #25d366;
+    border-color: #25d366;
+}
+
+.header-social a[aria-label="YouTube"]:hover {
+    background: #ff0000;
+    border-color: #ff0000;
+}
 
 /* Itens exclusivos do menu mobile: escondidos no desktop */
 .menu-mobile-search,
@@ -241,13 +259,21 @@
         gap: 2px;
     }
 
-    #main-header #menu > li {
+    #main-header #menu>li {
         display: flex;
         align-items: stretch;
     }
 
+    /* Itens exclusivos do menu mobile: SEMPRE escondidos no desktop.
+       Precisa vir depois (e com mais especificidade) da regra acima,
+       senão o display:flex do li vence o display:none. */
+    #main-header #menu>li.menu-mobile-search,
+    #main-header #menu>li.menu-mobile-extras {
+        display: none;
+    }
+
     /* Links de primeiro nível (não afeta os itens dos dropdowns) */
-    #main-header #menu > li > a {
+    #main-header #menu>li>a {
         position: relative;
         display: flex;
         align-items: center;
@@ -259,13 +285,13 @@
         letter-spacing: .03em;
     }
 
-    #main-header #menu > li > a:hover {
+    #main-header #menu>li>a:hover {
         color: var(--amber);
         background: rgba(255, 255, 255, .07);
     }
 
     /* Traço âmbar: hover/foco e página atual (aria-current="page") */
-    #main-header #menu > li > a:not(.btn-cta-nav)::after {
+    #main-header #menu>li>a:not(.btn-cta-nav)::after {
         content: '';
         position: absolute;
         left: 14px;
@@ -278,20 +304,14 @@
         transition: transform var(--transition);
     }
 
-    #main-header #menu > li > a:hover::after,
-    #main-header #menu > li.has-dropdown:hover > a::after,
-    #main-header #menu > li > a[aria-current="page"]::after {
+    #main-header #menu>li>a:hover::after,
+    #main-header #menu>li.has-dropdown:hover>a::after,
+    #main-header #menu>li>a[aria-current="page"]::after {
         transform: scaleX(1);
     }
 
-    #main-header #menu > li > a[aria-current="page"] {
+    #main-header #menu>li>a[aria-current="page"] {
         color: var(--amber);
-    }
-
-    /* Botão "Colabore" (CTA) alinhado à direita da barra */
-    #main-header #menu > li.menu-item-cta {
-        align-items: center;
-        margin-left: auto;
     }
 
     /* Dropdown encostado na barra (substitui o offset de 10px do dropdown.css) */
@@ -312,6 +332,7 @@
 }
 
 @media (min-width: 769px) and (max-width: 900px) {
+
     /* AkanniHUB vira botão só com ícone (o aria-label mantém o nome acessível) */
     .header-hub-label {
         display: none;
@@ -371,7 +392,8 @@
 
     #main-header .menu-mobile-search .header-search-input {
         height: 48px;
-        font-size: 1rem; /* ≥16px evita zoom automático no iOS */
+        font-size: 1rem;
+        /* ≥16px evita zoom automático no iOS */
     }
 
     #main-header .menu-mobile-search .header-search-btn {

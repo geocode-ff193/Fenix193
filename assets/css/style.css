@@ -241,21 +241,6 @@ HEADER
     background: var(--gray-light);
 }
 
-.btn-cta-nav {
-    background: var(--red) !important;
-    color: var(--white) !important;
-    border-radius: var(--radius) !important;
-    padding: 8px 16px !important;
-    font-weight: 600 !important;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.btn-cta-nav:hover {
-    background: var(--red-dark) !important;
-}
-
 /* Hamburger */
 #btn-mobile {
     display: none;
@@ -1426,14 +1411,6 @@ HEADER
     #menu a:hover {
         color: var(--red);
         background: none;
-    }
-
-    .btn-cta-nav {
-        margin: 26px 2px 0;
-        justify-content: center !important;
-        border-radius: 999px !important;
-        padding: 13px 20px !important;
-        font-size: 1rem;
     }
 
     /* Hero */
