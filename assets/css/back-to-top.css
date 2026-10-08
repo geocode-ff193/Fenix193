@@ -1,0 +1,133 @@
+/* ==========================================================================
+   BACK-TO-TOP.CSS — Fundação Fênix 193
+   Botão flutuante "Voltar ao topo" (usado em todas as páginas do site
+   e no painel AkanniHUB). Markup injetado por back-to-top.js.
+
+   Posicionamento:
+   - Canto inferior DIREITO, logo ACIMA do botão do chatbot LuminIA
+     (o canto inferior esquerdo é do botão de acessibilidade).
+   - Em páginas sem chatbot (ex.: AkanniHUB) o JS adiciona o modificador
+     .back-to-top--solo e o botão desce para o canto.
+   Usa as mesmas variáveis da identidade visual (--red, --red-dark, --amber),
+   com fallback para os valores oficiais caso a página não as defina.
+   ========================================================================== */
+
+.back-to-top {
+    position: fixed;
+    right: 31px;
+    /* 24px (margem do chatbot) + 62px (botão) + 14px (respiro) = 100px */
+    bottom: 100px;
+    z-index: 790;
+    /* abaixo de modais (800) e do chatbot/cookies (9999) */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+
+    background: linear-gradient(135deg, var(--red, #E12217) 0%, var(--red-dark, #872020) 100%);
+    color: var(--white, #FFFFFF);
+    border: 2px solid rgba(255, 255, 255, .85);
+    border-radius: 50%;
+    box-shadow: var(--shadow-md, 0 6px 24px rgba(0, 0, 0, .12));
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+
+    /* Estado inicial: escondido (visibility impede foco por teclado) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px) scale(.9);
+    transition: opacity .3s ease, transform .3s ease, visibility .3s,
+        background .25s ease, box-shadow .25s ease;
+}
+
+/* Sem chatbot na página: encosta no canto inferior direito */
+.back-to-top--solo {
+    right: 24px;
+    bottom: 24px;
+}
+
+/* Visível após rolar a página */
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+    background: linear-gradient(135deg, var(--fire, #F27613) 0%, var(--red, #E12217) 100%);
+    box-shadow: var(--shadow-lg, 0 12px 48px rgba(0, 0, 0, .18));
+    transform: translateY(-3px) scale(1);
+}
+
+.back-to-top:active {
+    transform: translateY(0) scale(.94);
+}
+
+/* Foco visível (WCAG 2.4.7) — cor do anel segue o tema de acessibilidade */
+.back-to-top:focus-visible {
+    outline: 3px solid var(--a11y-focus, var(--amber, #F8BA25)) !important;
+    outline-offset: 3px !important;
+}
+
+.back-to-top i {
+    pointer-events: none;
+    transition: transform .25s ease;
+}
+
+.back-to-top:hover i {
+    transform: translateY(-2px);
+}
+
+/* Foco programático no <body> após voltar ao topo: sem contorno estranho */
+body[tabindex="-1"]:focus {
+    outline: none !important;
+}
+
+/* Esconde com o menu mobile em tela cheia aberto */
+body.menu-open .back-to-top {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Temas de alto contraste do widget de acessibilidade */
+[data-a11y-theme] .back-to-top {
+    background: var(--a11y-text) !important;
+    color: var(--a11y-bg) !important;
+    border: 2px solid var(--a11y-link) !important;
+}
+
+/* Telas pequenas: um pouco menor e mais rente à borda */
+@media (max-width: 480px) {
+    .back-to-top {
+        right: 29px;
+        width: 42px;
+        height: 42px;
+        font-size: .95rem;
+    }
+
+    .back-to-top--solo {
+        right: 16px;
+        bottom: 16px;
+    }
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+
+    .back-to-top,
+    .back-to-top i {
+        transition: opacity .01s, visibility .01s;
+        transform: none !important;
+    }
+}
+
+/* Não imprime o botão */
+@media print {
+    .back-to-top {
+        display: none !important;
+    }
+}
