@@ -1096,6 +1096,141 @@
             font-size: .95rem;
         }
 
+        /* ── Suporte Técnico (formulário de chamado) ── */
+        .support-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .support-grid .panel {
+            margin-bottom: 0;
+        }
+
+        .support-side {
+            display: grid;
+            gap: 24px;
+        }
+
+        /* Campo-armadilha (honeypot): fora da tela, invisível para pessoas */
+        .support-honey {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
+        .support-counter {
+            align-self: flex-end;
+            font-size: .75rem;
+            color: var(--gray);
+        }
+
+        .support-counter.near-limit {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .support-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: .88rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .support-check input {
+            margin-top: 3px;
+            accent-color: var(--red);
+            flex-shrink: 0;
+        }
+
+        .support-status {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: var(--radius);
+            font-size: .9rem;
+            line-height: 1.5;
+        }
+
+        .support-status[hidden] {
+            display: none;
+        }
+
+        .support-status i {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .support-status.success {
+            background: var(--green-bg);
+            border: 1px solid #BBF7D0;
+            color: #166534;
+        }
+
+        .support-status.error {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            color: #991B1B;
+        }
+
+        .support-status a {
+            color: inherit;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .support-status code {
+            font-family: monospace;
+            font-weight: 700;
+            background: rgba(0, 0, 0, .06);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        .support-tips {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            font-size: .9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .support-tips li {
+            display: flex;
+            gap: 10px;
+        }
+
+        .support-tips i {
+            color: var(--red);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .support-note {
+            font-size: .9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .support-grid .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* ── Loading spinner ── */
         .spinner {
             display: inline-block;
@@ -1335,7 +1470,6 @@
         }
     </style>
     <link rel="stylesheet" href="assets/css/acessibilidade.css">
-    <link rel="stylesheet" href="assets/css/back-to-top.css">
 </head>
 
 <body>
@@ -1408,7 +1542,8 @@
                         <span class="topbar-brand-sub">AkanniHub 1.5.0</span>
                     </div>
                 </div>
-                <span class="topbar-badge" id="topbar-grau-badge" title="Grau de Administração" style="display:none;"></span>
+                <span class="topbar-badge" id="topbar-grau-badge" title="Grau de Administração"
+                    style="display:none;"></span>
             </div>
             <div class="topbar-user">
                 <img id="user-avatar" class="topbar-avatar" src="" alt="Avatar" style="display:none;">
@@ -1505,7 +1640,8 @@
                                     class="fas fa-envelope"></i> Ver Mensagens</button>
                             <button class="btn btn-outline" data-grau="3" onclick="navigate('transparency')"><i
                                     class="fas fa-plus"></i> Novo Documento</button>
-                            <button class="btn btn-outline" data-grau="2" onclick="navigate('news')"><i class="fas fa-plus"></i> Nova
+                            <button class="btn btn-outline" data-grau="2" onclick="navigate('news')"><i
+                                    class="fas fa-plus"></i> Nova
                                 Notícia</button>
                         </div>
                     </div>
@@ -1680,8 +1816,7 @@
                     </div>
 
                     <div class="subtab-nav" role="tablist" aria-label="Sub-seções de Atuação">
-                        <button class="subtab-btn active" data-atuacao-tab="projetos" role="tab"
-                            aria-selected="true">
+                        <button class="subtab-btn active" data-atuacao-tab="projetos" role="tab" aria-selected="true">
                             <i class="fas fa-clipboard-list"></i> Projetos
                         </button>
                         <button class="subtab-btn" data-atuacao-tab="capacitacao" role="tab" aria-selected="false">
@@ -2172,8 +2307,7 @@
                                         <label class="form-label" for="apoiador-link">
                                             Link
                                         </label>
-                                        <input class="form-input" id="apoiador-link" type="url"
-                                            placeholder="https://…">
+                                        <input class="form-input" id="apoiador-link" type="url" placeholder="https://…">
                                         <span class="form-hint">
                                             <i class="fas fa-circle-info"></i>
                                             Opcional — site ou rede social do apoiador
@@ -2182,8 +2316,8 @@
 
                                     <div class="form-row">
                                         <label class="form-label">Foto / Logo <span>*</span></label>
-                                        <div class="upload-zone" id="apoiador-upload-zone" role="button"
-                                            tabindex="0" aria-label="Área de upload de foto/logo">
+                                        <div class="upload-zone" id="apoiador-upload-zone" role="button" tabindex="0"
+                                            aria-label="Área de upload de foto/logo">
                                             <i class="fas fa-cloud-arrow-up"></i>
                                             <p>Arraste ou <strong>clique para selecionar</strong></p>
                                             <p style="font-size:.78rem;margin-top:4px;">JPG, PNG, WebP — máx. 5 MB</p>
@@ -2236,35 +2370,155 @@
                     <div class="page-header">
                         <div>
                             <h2 class="page-header-title">Suporte Técnico</h2>
-                            <p class="page-header-sub">Informações para suporte e manutenção do site</p>
+                            <p class="page-header-sub">Abra um chamado para a equipe de suporte e manutenção do site e
+                                do
+                                AkanniHUB</p>
                         </div>
                     </div>
-                    <div class="panel">
-                        <div class="panel-header">
-                            <span class="panel-title"><i class="fas fa-headset"></i> Contatos de Suporte</span>
+
+                    <div class="support-grid">
+
+                        <!-- ── Formulário do chamado ── -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-headset"></i> Abrir chamado</span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-suporte" class="form-grid" autocomplete="off">
+
+                                    <!-- Campo-armadilha anti-robô: humanos não veem nem preenchem -->
+                                    <div class="support-honey" aria-hidden="true">
+                                        <label for="sup-website">Não preencha este campo</label>
+                                        <input type="text" id="sup-website" name="website" tabindex="-1"
+                                            autocomplete="off">
+                                    </div>
+
+                                    <div class="form-grid form-grid-2">
+                                        <div class="form-row">
+                                            <label class="form-label" for="sup-nome">Seu nome <span>*</span></label>
+                                            <input class="form-input" id="sup-nome" type="text" maxlength="100"
+                                                placeholder="Nome completo" required autocomplete="name">
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="sup-email">E-mail para resposta
+                                                <span>*</span></label>
+                                            <input class="form-input" id="sup-email" type="email" maxlength="120"
+                                                placeholder="seu@email.com" required autocomplete="email">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-grid form-grid-2">
+                                        <div class="form-row">
+                                            <label class="form-label" for="sup-tipo">Tipo de solicitação
+                                                <span>*</span></label>
+                                            <select class="form-select" id="sup-tipo" required>
+                                                <option value="" disabled selected>Selecione…</option>
+                                                <option>Problema técnico / erro</option>
+                                                <option>Dúvida de uso do painel</option>
+                                                <option>Alteração no site público</option>
+                                                <option>Solicitar nova funcionalidade</option>
+                                                <option>Acesso / permissões (graus)</option>
+                                                <option>Outro assunto</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="sup-area">Área afetada</label>
+                                            <select class="form-select" id="sup-area">
+                                                <option value="">Não sei / geral</option>
+                                                <option>Login e acesso</option>
+                                                <option>Dashboard</option>
+                                                <option>Contatos</option>
+                                                <option>Transparência</option>
+                                                <option>Notícias</option>
+                                                <option>Atuação (Projetos, Capacitação, Eventos)</option>
+                                                <option>Edição (Linha do Tempo, Apoiadores)</option>
+                                                <option>Site público</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="sup-prioridade">Prioridade</label>
+                                        <select class="form-select" id="sup-prioridade">
+                                            <option>Baixa</option>
+                                            <option selected>Normal</option>
+                                            <option>Alta</option>
+                                            <option>Urgente (site ou painel fora do ar)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="sup-assunto">Assunto <span>*</span></label>
+                                        <input class="form-input" id="sup-assunto" type="text" maxlength="120"
+                                            placeholder="Resumo do problema em uma frase" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="sup-mensagem">Descrição <span>*</span></label>
+                                        <textarea class="form-textarea" id="sup-mensagem" maxlength="4000"
+                                            minlength="20" required aria-describedby="sup-contador"
+                                            placeholder="O que você estava fazendo, o que esperava que acontecesse e o que aconteceu de fato?"></textarea>
+                                        <div class="support-counter" id="sup-contador" aria-live="off">0 / 4000</div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="sup-anexo">Link de print ou vídeo</label>
+                                        <input class="form-input" id="sup-anexo" type="url" maxlength="500"
+                                            placeholder="https://drive.google.com/…">
+                                        <p class="form-hint">Opcional. Cole o link de uma imagem ou vídeo (Google Drive,
+                                            por exemplo) que mostre o problema.</p>
+                                    </div>
+
+                                    <label class="support-check" for="sup-tecnico">
+                                        <input type="checkbox" id="sup-tecnico" checked>
+                                        <span>Anexar informações técnicas do meu navegador (ajuda a encontrar a
+                                            causa mais rápido).</span>
+                                    </label>
+
+                                    <!-- Resultado do envio (sucesso / erro) -->
+                                    <div id="sup-status" class="support-status" role="status" aria-live="polite"
+                                        tabindex="-1" hidden></div>
+
+                                    <div>
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-suporte">
+                                            <i class="fas fa-paper-plane"></i> Enviar chamado
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <div class="empty-state" style="text-align: center; padding: 20px;">
-                                <i class="fas fa-headset" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                                <p>Para suporte técnico, abra um chamado no GitHub utilizando as credenciais de acesso
-                                    ao suporte:</p>
 
-                                <a href="https://github.com/eusougeovani/FF193/issues/new?template=solicitacao_cliente.yml"
-                                    target="_blank" rel="noopener noreferrer" class="btn btn-green"
-                                    style="text-decoration: none; display: inline-block; margin: 15px 0;">
-                                    <i class="fab fa-github"></i> Contatar Suporte via GitHub
-                                </a>
-
-                                <div
-                                    style="background: #f4f4f4; padding: 10px; border-radius: 5px; font-size: 0.9rem; border: 1px dashed #ccc;">
-                                    <strong>Credenciais de Suporte:</strong><br>
-                                    <span>Email: geocode.ff193@gmail.com</span> | <span>Senha: <em>Senha
-                                            Padrão</em></span>
+                        <!-- ── Orientações ── -->
+                        <div class="support-side">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title"><i class="fas fa-lightbulb"></i> Para agilizar o
+                                        atendimento</span>
                                 </div>
-
-                                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">
-                                    * Certifique-se de estar logado no GitHub com os dados acima antes de abrir a issue.
-                                </p>
+                                <div class="panel-body">
+                                    <ul class="support-tips">
+                                        <li><i class="fas fa-circle-check"></i> Diga em qual aba ou página aconteceu
+                                            (ex.: Notícias › Publicar).</li>
+                                        <li><i class="fas fa-circle-check"></i> Conte os passos que levaram ao problema
+                                            e a mensagem de erro, se houver.</li>
+                                        <li><i class="fas fa-circle-check"></i> Se possível, envie o link de um print ou
+                                            vídeo.</li>
+                                        <li><i class="fas fa-circle-check"></i> Confira se o e-mail para resposta está
+                                            correto.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <span class="panel-title"><i class="fas fa-envelope-circle-check"></i> Como
+                                        funciona</span>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="support-note">Seu chamado é enviado por e-mail à equipe de suporte
+                                        técnico, com um número de protocolo. A resposta chega no e-mail que você
+                                        informou. Em caso de falha no envio, o painel oferece abrir a mensagem no seu
+                                        próprio aplicativo de e-mail.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3822,9 +4076,187 @@
                 }
             });
         };
+
+        // ══════════════════════════════════════════════════════════════
+        //  SUPORTE TÉCNICO — formulário de chamado enviado por e-mail
+        //
+        //  Envio: serviço FormSubmit (https://formsubmit.co), sem backend
+        //  próprio. Na PRIMEIRA vez que um chamado for enviado, o FormSubmit
+        //  manda um e-mail de ativação para SUPPORT_EMAIL — é só clicar no
+        //  link de confirmação. Depois disso, todo chamado chega na caixa.
+        //  Se o envio falhar, o painel oferece abrir a mensagem no app de
+        //  e-mail da própria pessoa (mailto:), então nada se perde.
+        // ══════════════════════════════════════════════════════════════
+        (function initSupportForm() {
+            const SUPPORT_EMAIL = 'geocodeprogrammer@gmail.com';
+            const ENDPOINT = `https://formsubmit.co/ajax/${SUPPORT_EMAIL}`;
+            const COOLDOWN_MS = 30000;   // intervalo mínimo entre envios (anti-spam)
+            const TIMEOUT_MS = 15000;    // tempo máximo de espera pelo envio
+            const COOLDOWN_KEY = 'ff193_support_last_sent';
+
+            const form = document.getElementById('form-suporte');
+            if (!form) return;
+
+            const el = id => document.getElementById(id);
+            const btn = el('btn-submit-suporte');
+            const statusBox = el('sup-status');
+            const counter = el('sup-contador');
+            const msgField = el('sup-mensagem');
+            const MSG_MAX = Number(msgField.getAttribute('maxlength')) || 4000;
+
+            // ── Preenche nome e e-mail com os dados de quem está logado ──
+            function prefill(user) {
+                user = user || auth.currentUser;
+                if (!user) return;
+                if (!el('sup-nome').value) el('sup-nome').value = user.displayName || '';
+                if (!el('sup-email').value) el('sup-email').value = user.email || '';
+            }
+            onAuthStateChanged(auth, prefill);
+
+            // ── Contador de caracteres ──
+            function updateCounter() {
+                const n = msgField.value.length;
+                counter.textContent = `${n} / ${MSG_MAX}`;
+                counter.classList.toggle('near-limit', n >= MSG_MAX * 0.9);
+            }
+            msgField.addEventListener('input', updateCounter);
+            updateCounter();
+
+            // ── Caixa de resultado (usa textContent para o texto digitado) ──
+            function showStatus(type, iconClass, build) {
+                statusBox.className = `support-status ${type}`;
+                statusBox.innerHTML = `<i class="fas ${iconClass}" aria-hidden="true"></i><div></div>`;
+                build(statusBox.lastElementChild);
+                statusBox.hidden = false;
+                statusBox.focus();
+            }
+
+            function newProtocol() {
+                const d = new Date();
+                const ymd = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+                const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+                return `FF193-${ymd}-${rand}`;
+            }
+
+            function techInfo() {
+                return [
+                    `Página: ${location.href}`,
+                    `Navegador: ${navigator.userAgent}`,
+                    `Idioma: ${navigator.language}`,
+                    `Tela: ${screen.width}x${screen.height} (janela ${innerWidth}x${innerHeight})`,
+                    `Enviado em: ${new Date().toLocaleString('pt-BR')}`
+                ].join('\n');
+            }
+
+            // ── Envio ──
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Robô preencheu o campo-armadilha: finge sucesso e descarta
+                if (el('sup-website').value.trim() !== '') {
+                    showStatus('success', 'fa-circle-check', box => { box.textContent = 'Chamado enviado.'; });
+                    form.reset(); prefill(); updateCounter();
+                    return;
+                }
+
+                // Intervalo mínimo entre envios
+                const last = Number(sessionStorage.getItem(COOLDOWN_KEY) || 0);
+                const wait = COOLDOWN_MS - (Date.now() - last);
+                if (wait > 0) {
+                    toast(`Aguarde ${Math.ceil(wait / 1000)}s antes de enviar outro chamado.`, 'error');
+                    return;
+                }
+
+                const user = auth.currentUser;
+                const protocolo = newProtocol();
+                const nome = el('sup-nome').value.trim();
+                const email = el('sup-email').value.trim();
+                const prioridade = el('sup-prioridade').value;
+                const assunto = el('sup-assunto').value.trim();
+                const subject = `[AkanniHUB] [${prioridade.split(' ')[0]}] ${assunto} — ${protocolo}`;
+
+                // Campos exibidos na tabela do e-mail (as chaves viram os rótulos)
+                const fields = {
+                    'Protocolo': protocolo,
+                    'Nome': nome,
+                    'E-mail para resposta': email,
+                    'Tipo de solicitação': el('sup-tipo').value,
+                    'Área afetada': el('sup-area').value || 'Não informada',
+                    'Prioridade': prioridade,
+                    'Assunto': assunto,
+                    'Descrição': msgField.value.trim(),
+                    'Link de print/vídeo': el('sup-anexo').value.trim() || 'Não informado',
+                    'Conta no painel': user ? `${user.email || '—'} (UID ${user.uid})` : '—',
+                    'Graus de acesso': (typeof currentGraus !== 'undefined' ? currentGraus : []).join(', ') || '—'
+                };
+                if (el('sup-tecnico').checked) fields['Informações técnicas'] = techInfo();
+
+                const payload = {
+                    ...fields,
+                    name: nome,
+                    email: email,                 // vira o "responder para" do e-mail
+                    _subject: subject,
+                    _template: 'table',
+                    _captcha: 'false',
+                    _honey: ''
+                };
+
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span> Enviando…';
+                statusBox.hidden = true;
+
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+                try {
+                    const res = await fetch(ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload),
+                        signal: controller.signal
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    const ok = res.ok && (data.success === true || data.success === 'true');
+                    if (!ok) throw new Error(data.message || `Falha no envio (HTTP ${res.status})`);
+
+                    sessionStorage.setItem(COOLDOWN_KEY, String(Date.now()));
+                    toast('Chamado enviado com sucesso!', 'success');
+                    showStatus('success', 'fa-circle-check', box => {
+                        box.append('Chamado enviado! Guarde o protocolo ');
+                        const code = document.createElement('code');
+                        code.textContent = protocolo;
+                        box.append(code, `. A resposta será enviada para ${email}.`);
+                    });
+                    form.reset();
+                    prefill();
+                    updateCounter();
+                } catch (err) {
+                    console.error('[FF193] Suporte — falha no envio:', err);
+
+                    // Plano B: abrir a mensagem no app de e-mail da pessoa
+                    const body = Object.entries(fields).map(([k, v]) => `${k}: ${v}`).join('\n\n');
+                    const mailto = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`
+                        + `&body=${encodeURIComponent(body.slice(0, 1800))}`;
+
+                    const reason = err.name === 'AbortError' ? 'O envio demorou demais.' : 'Não foi possível enviar o chamado agora.';
+                    toast('Erro ao enviar o chamado.', 'error');
+                    showStatus('error', 'fa-circle-xmark', box => {
+                        box.append(`${reason} Seus dados continuam no formulário. `);
+                        const link = document.createElement('a');
+                        link.href = mailto;
+                        link.textContent = 'Enviar pelo meu aplicativo de e-mail';
+                        box.append(link, '.');
+                    });
+                } finally {
+                    clearTimeout(timer);
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar chamado';
+                }
+            });
+        })();
     </script>
     <script defer src="assets/js/acessibilidade.js"></script>
     <script defer src="assets/js/media-player.js"></script>
-    <script defer src="assets/js/back-to-top.js"></script>
 </body>
+
 </html>
