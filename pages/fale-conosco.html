@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/../assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/../assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/../assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/../assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <title>Fale Conosco · Fundação Fênix 193</title>
+    <meta name="description"
+        content="Fale com a Fundação Fênix 193: envie dúvidas, sugestões, propostas de parceria ou denúncias (inclusive de forma anônima). Atendemos todos os municípios de Sergipe.">
+    <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- LCP desta página: fundo do .page-hero (banner interno) -->
+    <link rel="preload" as="image" href="../assets/img/bomb_01.webp" fetchpriority="high">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- ===================== CRITICAL CSS (inline) =====================
+         Header/nav + banner interno (.page-hero) — o suficiente para renderizar
+         a primeira dobra sem esperar o style.css/pages.css completos. -->
+    <style>
+        :root {
+            --red: #E12217;
+            --red-dark: #872020;
+            --red-light: #ED4C43;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
+            --navy-light: #505251;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
+            --gray-light: #E8E5DE;
+            --gray: #9CA3AF;
+            --text: #313332;
+            --text-muted: #636665;
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, .18);
+            --transition: 0.3s ease;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+        #main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .04em;
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #menu a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #btn-mobile {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--amber);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+
+        /* PAGE HERO (banner interno) */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%) center/cover no-repeat;
+            background-color: var(--navy);
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/bomb_01.webp') center/cover no-repeat;
+        }
+
+    </style>
+
+    <!-- ===================== CSS NÃO CRÍTICO (assíncrono) ===================== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="../assets/css/style.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="../assets/css/dropdown.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="../assets/css/pages.css" media="print"
+        onload="this.media='all'; this.onload=null;">
+
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="stylesheet" href="../assets/css/dropdown.css">
+        <link rel="stylesheet" href="../assets/css/pages.css">
+    </noscript>
+    <link rel="stylesheet" href="../assets/css/acessibilidade.css">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/back-to-top.css">
+    <link rel="stylesheet" href="../assets/css/contato.css">
+</head>
+
+<body>
+    <!-- ==========================================================
+         HEADER PADRONIZADO · Fundação Fênix 193
+         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
+         header--main → Navegação principal (com dropdowns)
+         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
+         os scripts de menu/dropdown existentes continuam funcionando.
+         ========================================================== -->
+    <header id="main-header">
+
+        <!-- ===== HEADER--TOP ===== -->
+        <div class="header--top">
+            <div class="container header-top-inner">
+
+                <!-- Logo -->
+                <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                    </div>
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                    </div>
+                </a>
+
+                <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
+                <form class="header-search header-search--top" role="search" action="../pesquisa.html" method="get">
+                    <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                        aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                    <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- AkanniHUB + Redes sociais (desktop) -->
+                <div class="header-top-actions">
+                    <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                        <span class="header-hub-label">AkanniHUB</span>
+                    </a>
+                    <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
+                    <ul class="header-social" role="list" aria-label="Redes sociais">
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Hambúrguer (mobile) -->
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== HEADER--MAIN ===== -->
+        <div class="header--main">
+            <div class="container">
+                <nav id="nav-menu" aria-label="Navegação principal">
+                    <ul id="menu" role="list">
+
+                        <!-- Pesquisa (somente no menu mobile) -->
+                        <li class="menu-mobile-search">
+                            <form class="header-search header-search--menu" role="search" action="../pesquisa.html" method="get">
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                                <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </li>
+
+                        <li><a href="../index.html">Início</a></li>
+
+                        <!-- DROPDOWN: Institucional -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                                Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../index.html#quem-somos" role="menuitem">
+                                        <i class="fas fa-landmark"></i> Quem Somos
+                                    </a></li>
+                                <li><a href="nossa-historia.html" role="menuitem">
+                                        <i class="fas fa-book-open"></i> Nossa História
+                                    </a></li>
+                                <li><a href="missao-valores.html" role="menuitem">
+                                        <i class="fas fa-bullseye"></i> Missão e Valores
+                                    </a></li>
+                                <li><a href="equipe.html" role="menuitem">
+                                        <i class="fas fa-users"></i> Equipe
+                                    </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- DROPDOWN: Atuação -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                                Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="projetos.html" role="menuitem">
+                                        <i class="fas fa-clipboard-list"></i> Projetos
+                                    </a></li>
+                                <li><a href="capacitacao.html" role="menuitem">
+                                        <i class="fas fa-graduation-cap"></i> Capacitação
+                                    </a></li>
+                                <li><a href="eventos.html" role="menuitem">
+                                        <i class="fas fa-calendar-days"></i> Eventos
+                                    </a></li>
+                                <li><a href="parcerias.html" role="menuitem">
+                                        <i class="fas fa-handshake"></i> Parcerias
+                                    </a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="transparencia.html">Transparência</a></li>
+                        <li><a href="../index.html#stats">Impacto</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                        <li><a href="fale-conosco.html" aria-current="page">Contato</a></li>
+                        <li><a href="../index.html#como-ajudar">Colabore</a></li>
+
+                        <!-- AkanniHUB + Redes (somente no menu mobile) -->
+                        <li class="menu-mobile-extras">
+                            <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                                <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                                <span class="header-hub-label">AkanniHUB</span>
+                            </a>
+                            <ul class="header-social" role="list" aria-label="Redes sociais">
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+        <main id="main-content">
+        <section class="page-hero page-hero--contato" aria-label="Fale Conosco">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="../index.html">Início</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <span>Fale Conosco</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Fale Conosco</h1>
+                <p>Dúvidas, sugestões, parcerias ou denúncias: escreva para a Fundação Fênix 193. Sua mensagem chega
+                    direto à nossa equipe.</p>
+            </div>
+        </section>
+
+        <div class="section-padding">
+            <div class="container">
+                <div class="contact-page-grid">
+
+                    <!-- ===== COLUNA ESQUERDA · Informações ===== -->
+                    <aside class="contact-aside reveal" aria-label="Informações de contato">
+                        <span class="section-label">Canais de atendimento</span>
+                        <h2>Estamos aqui para ouvir você</h2>
+                        <p>Escolha o seu município, conte o que precisa e retornaremos o mais breve possível. Se
+                            preferir, você também pode falar conosco pelos canais abaixo.</p>
+
+                        <ul class="contact-list">
+                            <li>
+                                <div class="contact-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></div>
+                                <div>
+                                    <strong>Endereço Postal e Fiscal</strong>
+                                    <span>Rua Honor Gregório Santos, N° 44<br>Bairro Grageru - Aracaju-SE<br>CEP:
+                                        49027-130</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
+                                <div>
+                                    <strong>Telefone</strong>
+                                    <span>(79) XXXX-XXXX<br>Seg à Sex: 8h às 18h</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+                                <div>
+                                    <strong>E-mail</strong>
+                                    <span>contato@fundacaofenix193.org.br</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="contact-notice">
+                            <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                            <p><strong>Denúncias</strong> podem ser enviadas sem identificação: marque a opção
+                                &ldquo;Quero enviar sem me identificar&rdquo; no formulário.</p>
+                        </div>
+                        <div class="contact-emergency">
+                            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                            <p><strong>Emergência?</strong> Ligue <strong>193</strong> (Corpo de Bombeiros). Este
+                                formulário não atende ocorrências em andamento.</p>
+                        </div>
+                    </aside>
+
+                    <!-- ===== COLUNA DIREITA · Formulário ===== -->
+                    <form id="contact-page-form" class="contact-form contact-form--page reveal">
+                        <h2>Envie sua mensagem</h2>
+                        <p class="form-instruction">Os campos marcados com <span style="color:var(--red)">*</span> são
+                            obrigatórios.</p>
+
+                        <!-- Campo-armadilha anti-robô: pessoas não veem nem preenchem -->
+                        <div class="contact-honey" aria-hidden="true">
+                            <label for="cp-website">Não preencha este campo</label>
+                            <input type="text" id="cp-website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+
+                        <label class="check-row check-row--anon" for="cp-anonimo">
+                            <input type="checkbox" id="cp-anonimo" name="anonimo">
+                            <span>Quero enviar sem me identificar
+                                <small>Não coletamos seu nome, e-mail nem telefone. Sem e-mail, não conseguimos
+                                    responder.</small></span>
+                        </label>
+
+                        <fieldset class="form-fieldset" id="cp-identidade">
+                            <div class="form-group">
+                                <label for="cp-nome">Nome completo <span class="req">*</span></label>
+                                <input type="text" id="cp-nome" name="nome" maxlength="100" autocomplete="name"
+                                    placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="cp-email">E-mail <span class="req">*</span></label>
+                                    <input type="email" id="cp-email" name="email" maxlength="120"
+                                        autocomplete="email" placeholder="seu@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cp-telefone">WhatsApp / Telefone</label>
+                                    <input type="tel" id="cp-telefone" name="telefone" maxlength="16"
+                                        autocomplete="tel" inputmode="tel" placeholder="(79) 99999-9999">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="cp-cidade">Município <span class="req">*</span></label>
+                                <select id="cp-cidade" name="cidade" required>
+                                    <option value="" disabled selected>Selecione seu município</option>
+                                    <option value="Amparo do São Francisco">Amparo do São Francisco</option>
+                                    <option value="Aquidabã">Aquidabã</option>
+                                    <option value="Aracaju">Aracaju</option>
+                                    <option value="Arauá">Arauá</option>
+                                    <option value="Areia Branca">Areia Branca</option>
+                                    <option value="Barra dos Coqueiros">Barra dos Coqueiros</option>
+                                    <option value="Boquim">Boquim</option>
+                                    <option value="Brejo Grande">Brejo Grande</option>
+                                    <option value="Campo do Brito">Campo do Brito</option>
+                                    <option value="Canhoba">Canhoba</option>
+                                    <option value="Canindé de São Francisco">Canindé de São Francisco</option>
+                                    <option value="Capela">Capela</option>
+                                    <option value="Carira">Carira</option>
+                                    <option value="Carmópolis">Carmópolis</option>
+                                    <option value="Cedro de São João">Cedro de São João</option>
+                                    <option value="Cristinápolis">Cristinápolis</option>
+                                    <option value="Cumbe">Cumbe</option>
+                                    <option value="Divina Pastora">Divina Pastora</option>
+                                    <option value="Estância">Estância</option>
+                                    <option value="Feira Nova">Feira Nova</option>
+                                    <option value="Frei Paulo">Frei Paulo</option>
+                                    <option value="Gararu">Gararu</option>
+                                    <option value="General Maynard">General Maynard</option>
+                                    <option value="Gracho Cardoso">Gracho Cardoso</option>
+                                    <option value="Ilha das Flores">Ilha das Flores</option>
+                                    <option value="Indiaroba">Indiaroba</option>
+                                    <option value="Itabaiana">Itabaiana</option>
+                                    <option value="Itabaianinha">Itabaianinha</option>
+                                    <option value="Itabi">Itabi</option>
+                                    <option value="Itaporanga d&#x27;Ajuda">Itaporanga d&#x27;Ajuda</option>
+                                    <option value="Japaratuba">Japaratuba</option>
+                                    <option value="Japoatã">Japoatã</option>
+                                    <option value="Lagarto">Lagarto</option>
+                                    <option value="Laranjeiras">Laranjeiras</option>
+                                    <option value="Macambira">Macambira</option>
+                                    <option value="Malhada dos Bois">Malhada dos Bois</option>
+                                    <option value="Malhador">Malhador</option>
+                                    <option value="Maruim">Maruim</option>
+                                    <option value="Moita Bonita">Moita Bonita</option>
+                                    <option value="Monte Alegre de Sergipe">Monte Alegre de Sergipe</option>
+                                    <option value="Muribeca">Muribeca</option>
+                                    <option value="Neópolis">Neópolis</option>
+                                    <option value="Nossa Senhora Aparecida">Nossa Senhora Aparecida</option>
+                                    <option value="Nossa Senhora da Glória">Nossa Senhora da Glória</option>
+                                    <option value="Nossa Senhora das Dores">Nossa Senhora das Dores</option>
+                                    <option value="Nossa Senhora de Lourdes">Nossa Senhora de Lourdes</option>
+                                    <option value="Nossa Senhora do Socorro">Nossa Senhora do Socorro</option>
+                                    <option value="Pacatuba">Pacatuba</option>
+                                    <option value="Pedra Mole">Pedra Mole</option>
+                                    <option value="Pedrinhas">Pedrinhas</option>
+                                    <option value="Pinhão">Pinhão</option>
+                                    <option value="Pirambu">Pirambu</option>
+                                    <option value="Poço Redondo">Poço Redondo</option>
+                                    <option value="Poço Verde">Poço Verde</option>
+                                    <option value="Porto da Folha">Porto da Folha</option>
+                                    <option value="Propriá">Propriá</option>
+                                    <option value="Riachão do Dantas">Riachão do Dantas</option>
+                                    <option value="Riachuelo">Riachuelo</option>
+                                    <option value="Ribeirópolis">Ribeirópolis</option>
+                                    <option value="Rosário do Catete">Rosário do Catete</option>
+                                    <option value="Salgado">Salgado</option>
+                                    <option value="Santa Luzia do Itanhy">Santa Luzia do Itanhy</option>
+                                    <option value="Santa Rosa de Lima">Santa Rosa de Lima</option>
+                                    <option value="Santana do São Francisco">Santana do São Francisco</option>
+                                    <option value="Santo Amaro das Brotas">Santo Amaro das Brotas</option>
+                                    <option value="São Cristóvão">São Cristóvão</option>
+                                    <option value="São Domingos">São Domingos</option>
+                                    <option value="São Francisco">São Francisco</option>
+                                    <option value="São Miguel do Aleixo">São Miguel do Aleixo</option>
+                                    <option value="Simão Dias">Simão Dias</option>
+                                    <option value="Siriri">Siriri</option>
+                                    <option value="Telha">Telha</option>
+                                    <option value="Tobias Barreto">Tobias Barreto</option>
+                                    <option value="Tomar do Geru">Tomar do Geru</option>
+                                    <option value="Umbaúba">Umbaúba</option>
+                                    <option value="Outro estado ou país">Outro estado ou país</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cp-assunto">Assunto <span class="req">*</span></label>
+                                <select id="cp-assunto" name="assunto" required>
+                                    <option value="" disabled selected>Selecione um assunto</option>
+                                    <option value="denuncia">Denúncia</option>
+                                    <option value="doacao">Doação</option>
+                                    <option value="parceria">Parceria empresarial</option>
+                                    <option value="voluntariado">Voluntariado</option>
+                                    <option value="imprensa">Imprensa</option>
+                                    <option value="duvida">Dúvida ou informação</option>
+                                    <option value="sugestao">Sugestão ou elogio</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cp-mensagem">Mensagem <span class="req">*</span></label>
+                            <textarea id="cp-mensagem" name="mensagem" rows="6" minlength="10" maxlength="4000"
+                                aria-describedby="cp-contador" placeholder="Escreva sua mensagem aqui..."
+                                required></textarea>
+                            <span class="char-counter" id="cp-contador">0 / 4000</span>
+                        </div>
+
+                        <label class="check-row" for="cp-consent" id="cp-consent-row">
+                            <input type="checkbox" id="cp-consent" name="consent" required>
+                            <span>Autorizo o uso dos meus dados apenas para responder a esta mensagem, conforme a
+                                <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank"
+                                    rel="noopener">Política de Privacidade</a>.</span>
+                        </label>
+
+                        <p id="cp-status" class="form-status" role="status" aria-live="polite" tabindex="-1" hidden>
+                        </p>
+
+                        <button type="submit" class="btn-primary btn-submit" id="cp-submit">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <!-- COLUNA 1 · Marca -->
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36" loading="lazy">
+                        <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
+                    </a>
+                    <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
+                    <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
+                        desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: 68.745.226/0001-55</p>
+                </div>
+
+                <!-- COLUNA 2 · Navegação -->
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title">Navegação</h4>
+                    <ul class="footer-nav-grid">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a>
+                        </li>
+                        <li><a href="../index.html#quem-somos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Quem
+                                Somos</a>
+                        </li>
+                        <li><a href="nossa-historia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Nossa História</a></li>
+                        <li><a href="missao-valores.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Missão e Valores</a></li>
+                        <li><a href="equipe.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Equipe</a>
+                        </li>
+                        <li><a href="transparencia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Transparência</a></li>
+                        <li><a href="projetos.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Projetos</a></li>
+                        <li><a href="capacitacao.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Capacitação</a></li>
+                        <li><a href="eventos.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Eventos</a>
+                        </li>
+                        <li><a href="parcerias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Parcerias</a></li>
+                        <li><a href="noticias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Notícias</a></li>
+                        <li><a href="fale-conosco.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- COLUNA 3 · Redes Sociais -->
+                <div class="footer-social-col">
+                    <h4 class="footer-col-title">Siga-nos</h4>
+                    <div class="footer-social-links">
+                        <a href="?" class="footer-social-btn" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="?" class="footer-social-btn" aria-label="Facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="?" class="footer-social-btn" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                        <a href="?" class="footer-social-btn" aria-label="YouTube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- COLUNA 4 · Fale Conosco -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-col-title">Fale Conosco</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:contato@fenix193.org.br">contato@fenix193.org.br</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+55799????????">+55 (79) 9 ????-????</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <a href="https://share.google/aknj98wt8Moh0ghdJ">R. Honor Gregório Santos, 44 - Grageru</a>
+                        </li>
+                    </ul>
+                    <!-- Acesso rápido de administração -->
+                    <div class="footer-admin-links">
+                        <a href="../akannihub.html" class="footer-admin-btn">
+                            <i class="fa-solid fa-user-lock" aria-hidden="true"></i> Acesso Restrito
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=5579988663905&text=Suporte%20Tecnico%20PsiMF"
+                            class="footer-admin-btn">
+                            <i class="fa-solid fa-headset" aria-hidden="true"></i> Suporte Técnico
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SUB-FOOTER ── -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+
+                <!-- Esquerda: copyright + créditos -->
+                <p class="footer-copy">
+                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.
+                    &mdash; Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café"
+                        style="color:var(--red)"></i>
+                    por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a>
+                </p>
+
+                <!-- Direita: links legais -->
+                <nav class="footer-legal-links" aria-label="Links legais">
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank" rel="noopener">Política
+                        de
+                        Privacidade</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="https://eusougeovani.vercel.app/termos.html" target="_blank" rel="noopener">Termos de
+                        Uso</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="#cookie-banner">Cookies</a>
+                </nav>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+    <script defer src="../assets/js/acessibilidade.js"></script>
+    <script defer src="../assets/js/back-to-top.js"></script>
+    <script defer src="../assets/js/media-player.js"></script>
+
+    <!-- ===== CHATBOT FLUTUANTE ===== -->
+    <div class="chatbot-container">
+        <div class="chatbot-teaser" id="chatbotTeaser">
+            <button class="chatbot-teaser-dismiss" id="chatbotTeaserDismiss" aria-label="Dispensar">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
+            <span class="chatbot-toggle-face"><img src="../assets/img/luminia.webp" alt="" width="38" height="38"></span>
+            <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="../assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                </div>
+                <div class="chatbot-info">
+                    <h4>LuminIA</h4>
+                    <p class="chatbot-status">
+                        <span class="status-dot"></span>Online
+                    </p>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot-message">
+                    <div class="message-avatar">
+                        <img src="../assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix 193. Posso tirar dúvidas,
+                            ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
+                            começamos?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer" id="chatbotFooter">
+                <div class="chatbot-options" id="chatbotOptions"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" defer src="../assets/js/chatbot.js"></script>
+
+    <!-- ===================== FORMULÁRIO FALE CONOSCO ===================== -->
+    <script>
+        /* ==============================================================
+           FALE CONOSCO — envia a mensagem por e-mail para a Fundação e
+           guarda uma cópia no Firestore (coleção "contacts"), que aparece
+           na aba Contatos do AkanniHUB.
+
+           • E-mail: serviço FormSubmit (https://formsubmit.co), sem servidor.
+             No PRIMEIRO envio ele manda um e-mail de ativação para
+             FOUNDATION_EMAIL — basta clicar no link de confirmação.
+           • Cópia no Firestore: usa as mesmas regras do formulário da home.
+           • Sucesso = pelo menos um dos dois funcionou. Se ambos falharem,
+             a pessoa pode abrir a mensagem pronta no próprio app de e-mail.
+           ============================================================== */
+        (function () {
+            'use strict';
+
+            const FOUNDATION_EMAIL = 'contato@fundacaofenix193.org.br';      // ← destino das mensagens
+            const ENDPOINT = 'https://formsubmit.co/ajax/' + FOUNDATION_EMAIL;
+            const ANON_EMAIL = 'anonimo@anonimo.invalid';        // exigido pelas regras do Firestore
+            const COOLDOWN_MS = 30000;                           // intervalo mínimo entre envios
+            const TIMEOUT_MS = 15000;                            // tempo máximo de espera por envio
+            const COOLDOWN_KEY = 'ff193_contact_last_sent';
+            const FIREBASE_CONFIG = {
+                apiKey: 'AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M',
+                authDomain: 'fundacaofenix193.firebaseapp.com',
+                projectId: 'fundacaofenix193',
+                storageBucket: 'fundacaofenix193.firebasestorage.app',
+                messagingSenderId: '263835472373',
+                appId: '1:263835472373:web:492921e00e51a1e74750bc'
+            };
+            const FB = 'https://www.gstatic.com/firebasejs/9.15.0/';
+
+            const form = document.getElementById('contact-page-form');
+            if (!form) return;
+            const $ = id => document.getElementById(id);
+            const status = $('cp-status');
+            const submitBtn = $('cp-submit');
+            const msg = $('cp-mensagem');
+            const counter = $('cp-contador');
+            const anon = $('cp-anonimo');
+            const identity = $('cp-identidade');
+            const MAX = Number(msg.getAttribute('maxlength')) || 4000;
+            const BTN_HTML = submitBtn.innerHTML;
+
+            /* ── Contador de caracteres ── */
+            function updateCounter() {
+                const n = msg.value.length;
+                counter.textContent = n + ' / ' + MAX;
+                counter.classList.toggle('near-limit', n >= MAX * 0.9);
+            }
+            msg.addEventListener('input', updateCounter);
+
+            /* ── Máscara de telefone: (79) 99999-9999 ── */
+            $('cp-telefone').addEventListener('input', e => {
+                const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+                let out = d;
+                if (d.length > 6) out = '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length - 4) + '-' + d.slice(-4);
+                else if (d.length > 2) out = '(' + d.slice(0, 2) + ') ' + d.slice(2);
+                else if (d.length > 0) out = '(' + d;
+                e.target.value = out;
+            });
+
+            /* ── "Enviar sem me identificar": desativa os dados pessoais ── */
+            function applyAnon() {
+                const on = anon.checked;
+                identity.disabled = on;                      // campos desativados não são validados
+                $('cp-consent').required = !on;              // sem dados pessoais, sem consentimento
+                $('cp-consent-row').hidden = on;
+                if (on) {
+                    ['cp-nome', 'cp-email', 'cp-telefone'].forEach(id => { $(id).value = ''; });
+                    $('cp-consent').checked = false;
+                }
+            }
+            anon.addEventListener('change', applyAnon);
+            applyAnon();
+
+            /* ── Utilidades ── */
+            function showStatus(type, build) {
+                status.className = 'form-status ' + type;
+                status.textContent = '';
+                build(status);
+                status.hidden = false;
+                status.focus();
+            }
+
+            function newProtocol() {
+                const d = new Date();
+                const ymd = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+                return 'FF193-' + ymd + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+            }
+
+            function withTimeout(promise, ms) {
+                return Promise.race([
+                    promise,
+                    new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), ms))
+                ]);
+            }
+
+            /* ── Canal 1: e-mail (FormSubmit) ── */
+            async function sendEmail(payload) {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+                try {
+                    const res = await fetch(ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify(payload),
+                        signal: controller.signal
+                    });
+                    const data = await res.json().catch(() => ({}));
+                    if (!(res.ok && (data.success === true || data.success === 'true'))) {
+                        throw new Error(data.message || ('HTTP ' + res.status));
+                    }
+                } finally {
+                    clearTimeout(timer);
+                }
+            }
+
+            /* ── Canal 2: cópia no Firestore (aparece no AkanniHUB › Contatos) ── */
+            async function saveCopy(doc) {
+                const [{ initializeApp }, fs] = await Promise.all([
+                    import(FB + 'firebase-app.js'),
+                    import(FB + 'firebase-firestore.js')
+                ]);
+                const db = fs.getFirestore(initializeApp(FIREBASE_CONFIG));
+                await fs.addDoc(fs.collection(db, 'contacts'), { ...doc, read: false, createdAt: fs.serverTimestamp() });
+            }
+
+            /* ── Envio ── */
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Robô preencheu o campo-armadilha: finge sucesso e descarta
+                if ($('cp-website').value.trim() !== '') {
+                    showStatus('success', box => { box.textContent = '✔ Mensagem enviada.'; });
+                    form.reset(); applyAnon(); updateCounter();
+                    return;
+                }
+
+                if (!form.reportValidity()) return;          // mostra o que falta preencher
+
+                const wait = COOLDOWN_MS - (Date.now() - Number(sessionStorage.getItem(COOLDOWN_KEY) || 0));
+                if (wait > 0) {
+                    showStatus('error', box => { box.textContent = '⚠ Aguarde ' + Math.ceil(wait / 1000) + 's antes de enviar outra mensagem.'; });
+                    return;
+                }
+
+                const anonimo = anon.checked;
+                const protocolo = newProtocol();
+                const assuntoSel = $('cp-assunto');
+                const assuntoLabel = assuntoSel.options[assuntoSel.selectedIndex].text;
+                const cidade = $('cp-cidade').value;
+                const nome = anonimo ? '' : $('cp-nome').value.trim();
+                const email = anonimo ? '' : $('cp-email').value.trim();
+                const telefone = anonimo ? '' : $('cp-telefone').value.trim();
+                const mensagem = msg.value.trim();
+                const subject = '[Site] ' + assuntoLabel + ' — ' + cidade + ' — ' + protocolo;
+
+                // Campos exibidos na tabela do e-mail (as chaves viram os rótulos)
+                const fields = {
+                    'Protocolo': protocolo,
+                    'Assunto': assuntoLabel,
+                    'Município': cidade,
+                    'Identificação': anonimo ? 'Anônimo (não informou dados)' : 'Identificado',
+                    'Nome': nome || '—',
+                    'E-mail': email || '—',
+                    'WhatsApp / Telefone': telefone || '—',
+                    'Mensagem': mensagem,
+                    'Enviado em': new Date().toLocaleString('pt-BR')
+                };
+                const emailPayload = { ...fields, _subject: subject, _template: 'table', _captcha: 'false', _honey: '' };
+                if (!anonimo) { emailPayload.name = nome; emailPayload.email = email; }   // "responder para"
+
+                const dbDoc = {
+                    nome, email: anonimo ? ANON_EMAIL : email, telefone, cidade,
+                    assunto: assuntoSel.value, mensagem, protocolo, anonimo
+                };
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Enviando…';
+                status.hidden = true;
+
+                const [mail, copia] = await Promise.allSettled([
+                    sendEmail(emailPayload),
+                    withTimeout(saveCopy(dbDoc), TIMEOUT_MS)
+                ]);
+                if (mail.status === 'rejected') console.warn('[FF193] Contato — e-mail não enviado:', mail.reason);
+                if (copia.status === 'rejected') console.warn('[FF193] Contato — cópia no Firestore não salva:', copia.reason);
+
+                if (mail.status === 'fulfilled' || copia.status === 'fulfilled') {
+                    sessionStorage.setItem(COOLDOWN_KEY, String(Date.now()));
+                    showStatus('success', box => {
+                        box.append('✔ Mensagem enviada! Protocolo ');
+                        const code = document.createElement('code');
+                        code.textContent = protocolo;
+                        box.append(code, anonimo
+                            ? '. Obrigado por colaborar com a Fundação Fênix 193.'
+                            : '. Em breve entraremos em contato pelo e-mail informado.');
+                    });
+                    form.reset(); applyAnon(); updateCounter();
+                } else {
+                    // Plano B: abrir a mensagem pronta no app de e-mail da pessoa
+                    const body = Object.entries(fields).map(([k, v]) => k + ': ' + v).join('\n\n');
+                    const mailto = 'mailto:' + FOUNDATION_EMAIL + '?subject=' + encodeURIComponent(subject)
+                        + '&body=' + encodeURIComponent(body.slice(0, 1800));
+                    showStatus('error', box => {
+                        box.append('✖ Não foi possível enviar agora. Seus dados continuam no formulário. ');
+                        const a = document.createElement('a');
+                        a.href = mailto;
+                        a.textContent = 'Enviar pelo meu aplicativo de e-mail';
+                        box.append(a, '.');
+                    });
+                }
+
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = BTN_HTML;
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

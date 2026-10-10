@@ -1,0 +1,220 @@
+/* ==========================================================================
+   CONTATO.CSS — Fundação Fênix 193
+   Página "Fale Conosco" (pages/fale-conosco.html).
+   Reaproveita .contact-list, .contact-icon, .contact-form, .form-group,
+   .btn-submit e .form-status do style.css; aqui ficam só os acréscimos.
+   ========================================================================== */
+
+.contact-page-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr);
+    gap: 48px;
+    align-items: start;
+}
+
+/* ── Coluna de informações ── */
+.contact-aside h2 {
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    color: var(--navy);
+    margin-bottom: 14px;
+}
+
+.contact-aside>p {
+    color: var(--text-muted);
+    margin-bottom: 28px;
+}
+
+.contact-notice,
+.contact-emergency {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 18px;
+    border-radius: var(--radius);
+    font-size: .92rem;
+    line-height: 1.55;
+    color: var(--text);
+}
+
+.contact-notice {
+    background: rgba(248, 186, 37, .14);
+    border: 1px solid rgba(248, 186, 37, .55);
+    margin-bottom: 16px;
+}
+
+.contact-emergency {
+    background: rgba(225, 34, 23, .07);
+    border: 1px solid rgba(225, 34, 23, .25);
+}
+
+.contact-notice i,
+.contact-emergency i {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.contact-notice i {
+    color: var(--amber);
+}
+
+.contact-emergency i {
+    color: var(--red);
+}
+
+/* ── Formulário ── */
+.contact-form--page {
+    padding: 34px 32px;
+    gap: 18px;
+}
+
+.contact-form--page h2 {
+    font-size: 1.7rem;
+    color: var(--navy);
+    margin: 0;
+}
+
+.contact-form--page .form-instruction {
+    margin: -8px 0 0;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group label span.req {
+    color: var(--red);
+}
+
+.form-hint {
+    font-size: .78rem;
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+/* Bloco "dados pessoais": desabilita tudo ao enviar sem identificação */
+.form-fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    transition: opacity var(--transition);
+}
+
+.form-fieldset:disabled {
+    opacity: .45;
+}
+
+.form-fieldset:disabled input {
+    cursor: not-allowed;
+}
+
+/* Cartões de marcação (anônimo / consentimento) */
+.check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: .9rem;
+    line-height: 1.5;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.check-row input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--red);
+}
+
+.check-row a {
+    color: var(--red);
+    text-decoration: underline;
+}
+
+.check-row--anon {
+    padding: 14px 16px;
+    background: rgba(248, 186, 37, .12);
+    border: 1px solid rgba(248, 186, 37, .5);
+    border-radius: var(--radius);
+}
+
+.check-row--anon small {
+    display: block;
+    color: var(--text-muted);
+    font-size: .8rem;
+    margin-top: 2px;
+}
+
+.char-counter {
+    align-self: flex-end;
+    font-size: .75rem;
+    color: var(--text-muted);
+}
+
+.char-counter.near-limit {
+    color: var(--red);
+    font-weight: 700;
+}
+
+/* Campo-armadilha anti-robô */
+.contact-honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Mensagens de resultado: texto alinhado à esquerda e links legíveis */
+.contact-form--page .form-status {
+    text-align: left;
+    line-height: 1.55;
+}
+
+.contact-form--page .form-status[hidden] {
+    display: none;
+}
+
+.contact-form--page .form-status a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.contact-form--page .form-status code {
+    font-family: monospace;
+    font-weight: 700;
+    background: rgba(0, 0, 0, .07);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+    .contact-page-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+}
+
+@media (max-width: 560px) {
+    .form-row-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form--page {
+        padding: 24px 18px;
+    }
+}
+
+/* "hidden" precisa vencer o display:flex do cartão de consentimento */
+.check-row[hidden] {
+    display: none;
+}
