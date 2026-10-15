@@ -291,7 +291,7 @@
     }
 
     /* Traço âmbar: hover/foco e página atual (aria-current="page") */
-    #main-header #menu>li>a:not(.btn-cta-nav)::after {
+    #main-header #menu>li>a::after {
         content: '';
         position: absolute;
         left: 14px;

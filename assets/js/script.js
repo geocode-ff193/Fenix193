@@ -13,11 +13,9 @@ import {
     getFirestore,
     collection,
     getDocs,
-    addDoc,
     query,
     orderBy,
-    limit,
-    serverTimestamp
+    limit
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import {
     getAnalytics,
@@ -475,65 +473,6 @@ document.addEventListener('keydown', (e) => {
     }
 
     fetchHomeApoiadores();
-})();
-
-/* =============================================================
-   8. FORMULÁRIO DE CONTATO
-   ============================================================= */
-(function initContactForm() {
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('form-status');
-    if (!form || !status) return;
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const btn = form.querySelector('.btn-submit');
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando…';
-
-        const telefoneEl = form.querySelector('#telefone');
-
-        const payload = {
-            nome: form.nome.value.trim(),
-            email: form.email.value.trim(),
-            assunto: form.assunto?.value || '',
-            mensagem: form.mensagem.value.trim(),
-            ...(telefoneEl && { telefone: telefoneEl.value.trim() }),
-            read: false,           // flag para admin saber se já leu
-            createdAt: serverTimestamp()
-        };
-
-        // Basic validation
-        if (!payload.mensagem) {
-            status.textContent = '⚠ Preencha todos os campos obrigatórios.';
-            status.className = 'form-status error';
-            status.hidden = false;
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
-            return;
-        }
-
-        try {
-            await addDoc(collection(db, 'contacts'), payload);
-
-            status.textContent = '✔ Mensagem enviada com sucesso! Em breve entraremos em contato.';
-            status.className = 'form-status success';
-            status.hidden = false;
-            form.reset();
-
-        } catch (err) {
-            console.error('[Fênix 193] Erro ao enviar contato:', err);
-            status.textContent = '✖ Falha ao enviar. Por favor, tente novamente.';
-            status.className = 'form-status error';
-            status.hidden = false;
-
-        } finally {
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
-            setTimeout(() => { status.hidden = true; }, 6000);
-        }
-    });
 })();
 
 /* =============================================================

@@ -171,6 +171,17 @@
             transition: var(--transition);
         }
 
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         #btn-mobile {
             display: none;
             background: none;
@@ -447,8 +458,7 @@
     <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'; this.onload=null;">
     <link rel="stylesheet" href="assets/css/dropdown.css" media="print" onload="this.media='all'; this.onload=null;">
     <link rel="stylesheet" href="assets/css/chatbot.css" media="print" onload="this.media='all'; this.onload=null;">
-    <link rel="stylesheet" href="assets/css/cbmse-feed.css" media="print"
-        onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="assets/css/cbmse-feed.css" media="print" onload="this.media='all'; this.onload=null;">
 
     <!-- Fallback para navegadores/robôs sem JS -->
     <noscript>
@@ -459,11 +469,18 @@
         <link rel="stylesheet" href="assets/css/cbmse-feed.css">
     </noscript>
     <link rel="stylesheet" href="assets/css/acessibilidade.css">
-    <link rel="stylesheet" href="assets/css/back-to-top.css">
     <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/back-to-top.css">
 </head>
 
 <body>
+    <!-- ==========================================================
+             HEADER PADRONIZADO · Fundação Fênix 193
+             header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
+             header--main → Navegação principal (com dropdowns)
+             IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
+             os scripts de menu/dropdown existentes continuam funcionando.
+             ========================================================== -->
     <header id="main-header">
     
         <!-- ===== HEADER--TOP ===== -->
@@ -856,7 +873,7 @@
                             <li><i class="fas fa-check"></i> Boleto bancário</li>
                             <li><i class="fas fa-check"></i> Transferência TED/DOC</li>
                         </ul>
-                        <a href="pages/fale-conosco.html" class="btn-help">Fazer Doação</a>
+                        <a href="pages/fale-conosco.html?assunto=doacao" class="btn-help">Fazer Doação</a>
                     </div>
                     <div class="help-card">
                         <div class="help-icon"><i class="fas fa-handshake"></i></div>
@@ -868,7 +885,7 @@
                             <li><i class="fas fa-check"></i> Doação de equipamentos</li>
                             <li><i class="fas fa-check"></i> Apoio institucional</li>
                         </ul>
-                        <a href="pages/fale-conosco.html" class="btn-help">Ser Parceiro</a>
+                        <a href="pages/fale-conosco.html?assunto=parceria" class="btn-help">Ser Parceiro</a>
                     </div>
                     <div class="help-card">
                         <div class="help-icon"><i class="fas fa-people-carry-box"></i></div>
@@ -880,7 +897,7 @@
                             <li><i class="fas fa-check"></i> Suporte administrativo</li>
                             <li><i class="fas fa-check"></i> Comunicação e marketing</li>
                         </ul>
-                        <a href="pages/fale-conosco.html" class="btn-help">Ser Voluntário</a>
+                        <a href="pages/fale-conosco.html?assunto=voluntariado" class="btn-help">Ser Voluntário</a>
                     </div>
                 </div>
             </div>
@@ -975,7 +992,8 @@
                                 <a href="https://www.ilbj.org.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoILBJ.webp" alt="ILBJ" width="60" height="60" loading="lazy">
+                                            <img src="assets/img/logoILBJ.webp" alt="ILBJ" width="60" height="60"
+                                                loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Inst. Luciano Barreto Jr.</span>
                                     </div>
@@ -1012,7 +1030,7 @@
 
                 <div class="apoiadores-cta">
                     <p>Quer fazer parte deste grupo?</p>
-                    <a href="pages/fale-conosco.html" class="btn-outline">
+                    <a href="pages/fale-conosco.html?assunto=parceria" class="btn-outline">
                         <i class="fas fa-handshake"></i> Torne-se um Apoiador
                     </a>
                 </div>
@@ -1030,8 +1048,8 @@
                 <div class="grid-2 contact-grid">
                     <div class="contact-info">
                         <p>Tem dúvidas, denúncias ou propostas? A <strong>Fundação Fênix 193</strong> ouve você.
-                            Preencha o formulário; se se identificar, retornaremos em breve. Denúncias podem ser
-                            anônimas deixando os dados em branco.<br><em>( * obrigatório)</em></p>
+                            Use o formulário da página Fale Conosco: se se identificar, retornaremos em breve.
+                            Denúncias podem ser enviadas sem identificação.</p>
                         <ul class="contact-list">
                             <li>
                                 <div class="contact-icon"><i class="fas fa-location-dot"></i></div>
@@ -1058,43 +1076,15 @@
                         </ul>
                     </div>
 
-                    <form id="contact-form" class="contact-form" novalidate>
-                        <div class="form-group">
-                            <label for="nome">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" placeholder="opcional para denúncias anônimas"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="opcional para denúncias anônimas"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefone">WhatsApp</label>
-                            <input type="tel" id="telefone" name="telefone"
-                                placeholder="opcional para denúncias anônimas">
-                        </div>
-                        <div class="form-group">
-                            <label for="assunto">Assunto *</label>
-                            <select id="assunto" name="assunto">
-                                <option value="">Selecione um assunto</option>
-                                <option value="denuncia">Denúncia</option>
-                                <option value="doacao">Doação</option>
-                                <option value="parceria">Parceria Empresarial</option>
-                                <option value="voluntariado">Voluntariado</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="mensagem">Mensagem *</label>
-                            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem aqui..."
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary btn-submit">
-                            <i class="fas fa-paper-plane"></i> Enviar Mensagem
-                        </button>
-                        <p id="form-status" class="form-status" aria-live="polite" hidden></p>
-                    </form>
+                    <!-- Formulário migrou para a página Fale Conosco -->
+                    <div class="contact-form contact-cta">
+                        <h3>Prefere escrever para a gente?</h3>
+                        <p>Na página Fale Conosco você escolhe o seu município e o assunto, e pode enviar sua
+                            mensagem sem se identificar.</p>
+                        <a href="pages/fale-conosco.html" class="btn-primary btn-submit">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Ir para o Fale Conosco
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1144,7 +1134,8 @@
                                 Parcerias</a></li>
                         <li><a href="pages/noticias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Notícias</a></li>
-                        <li><a href="pages/fale-conosco.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Contato</a></li>
+                        <li><a href="pages/fale-conosco.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Contato</a></li>
                     </ul>
                 </div>
 
@@ -1314,12 +1305,12 @@
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-new window.VLibras.Widget({
-      rootPath: 'https://vlibras.gov.br/app',
-      personalization: 'https://vlibras.gov.br/config/default_logo.json',
-      avatar: 'random',
-      position: 'R',
-  });
+        new window.VLibras.Widget({
+            rootPath: 'https://vlibras.gov.br/app',
+            personalization: 'https://vlibras.gov.br/config/default_logo.json',
+            avatar: 'random',
+            position: 'R',
+        });
     </script>
 
     <script>
@@ -1397,8 +1388,8 @@ new window.VLibras.Widget({
         })();
     </script>
     <script defer src="assets/js/acessibilidade.js"></script>
-    <script defer src="assets/js/media-player.js"></script>
     <script defer src="assets/js/back-to-top.js"></script>
+    <script defer src="assets/js/media-player.js"></script>
 </body>
 
 </html>

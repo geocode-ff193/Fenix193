@@ -457,7 +457,7 @@ class Chatbot {
 
     handleContatoForm() {
         this.addMessage('Você pode enviar uma mensagem diretamente pelo formulário na seção de Contato da página inicial.');
-        setTimeout(() => this.addLinkMessage('Ir para o Formulário de Contato', 'fas fa-paper-plane', this._href('index.html#contato')), 400);
+        setTimeout(() => this.addLinkMessage('Ir para o Formulário de Contato', 'fas fa-paper-plane', this._href('pages/fale-conosco.html')), 400);
         setTimeout(() => this.showBackToMenuOptions(), 1200);
     }
 

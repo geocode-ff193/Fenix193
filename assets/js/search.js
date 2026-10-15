@@ -134,11 +134,11 @@ const STATIC_INDEX = [
         keywords: 'doação voluntariado parcerias ajudar colaborar contribuir pix transferência como ajudar'
     },
     {
-        title: 'Entre em Contato',
-        sub: 'Formulário e endereço',
+        title: 'Fale Conosco',
+        sub: 'Formulário, município e endereço',
         category: 'Contato',
         icon: 'fa-envelope',
-        link: 'index.html#contato',
+        link: 'pages/fale-conosco.html',
         keywords: 'contato fale conosco endereço email telefone formulário mensagem denúncia'
     },
     {
