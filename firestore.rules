@@ -1,7 +1,7 @@
 rules_version = '2';
 
 // ============================================================
-//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.8.0
+//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.9.0
 //  Setembro 2026
 //
 //  Coleções protegidas:
@@ -14,13 +14,14 @@ rules_version = '2';
 //    capacitacao       → leitura pública; escrita Grau 1/5 (Atuação)
 //    timeline          → leitura pública; escrita Grau 1/6 (Edição)
 //    apoiadores        → leitura pública; escrita Grau 1/6 (Edição)
+//    site_stats        → leitura pública; escrita Grau 1/6 (Edição > Números)
 //
 //  Grau de Administração:
 //    Cada admin pode ter um ou mais graus, em admins/{uid}.graus
 //    (array de números). Grau 1 dá acesso a tudo.
 //      1 = Acesso a Tudo        4 = Contatos
 //      2 = Notícias             5 = Atuação (Projetos/Capacitação/Eventos)
-//      3 = Transparência        6 = Edição (Linha do Tempo/Apoiadores)
+//      3 = Transparência        6 = Edição (Linha do Tempo/Apoiadores/Números)
 //    Suporte Técnico é liberado a qualquer grau.
 //    Sem o campo "graus" (contas antigas), assume-se [1] — acesso total.
 //
@@ -59,7 +60,7 @@ service cloud.firestore {
      * admins/{uid}.graus (array de números). Um admin pode ter
      * vários graus. Grau 1 = acesso a tudo.
      *   2 = Notícias · 3 = Transparência · 4 = Contatos
-     *   5 = Atuação · 6 = Edição (Linha do Tempo e Apoiadores)
+     *   5 = Atuação · 6 = Edição (Linha do Tempo, Apoiadores e Números)
      * Suporte Técnico é liberado a qualquer grau (não requer checagem).
      * Sem o campo "graus" (contas antigas), assume-se [1] — total.
      */
@@ -174,6 +175,19 @@ service cloud.firestore {
           && requiredString(d.nome) && d.nome.size() <= 200
           && requiredString(d.foto) && d.foto.size() <= 500
           && (!('link' in d.keys()) || d.link == null || (d.link is string && d.link.size() <= 500));
+    }
+
+    /** Números de impacto da página inicial (Edição > Números) */
+    function isValidStats() {
+      let d = request.resource.data;
+      let keys = ['pessoasBeneficiadas', 'projetosRealizados', 'bombeirosApoiados', 'acoesEducativas'];
+      return d.keys().hasAll(keys.concat(['updatedAt']))
+          && d.keys().hasOnly(keys.concat(['updatedAt', 'updatedBy']))
+          && d.pessoasBeneficiadas is int && d.pessoasBeneficiadas >= 0 && d.pessoasBeneficiadas <= 100000000
+          && d.projetosRealizados  is int && d.projetosRealizados  >= 0 && d.projetosRealizados  <= 100000000
+          && d.bombeirosApoiados   is int && d.bombeirosApoiados   >= 0 && d.bombeirosApoiados   <= 100000000
+          && d.acoesEducativas     is int && d.acoesEducativas     >= 0 && d.acoesEducativas     <= 100000000
+          && (!('updatedBy' in d) || (d.updatedBy is string && d.updatedBy.size() <= 120));
     }
 
     // ──────────────────────────────────────────────────────────
@@ -292,5 +306,19 @@ service cloud.firestore {
       allow delete: if hasGrau(6);
     }
 
+
+    // ──────────────────────────────────────────────────────────
+    //  SITE_STATS
+    //  Leitura: pública (a página inicial exibe os números).
+    //  Criação / atualização: admins com Grau 1 ou 6 (Edição),
+    //           somente no documento "impacto" e com validação.
+    //  Exclusão: bloqueada.
+    // ──────────────────────────────────────────────────────────
+    match /site_stats/{docId} {
+      allow read:   if true;
+      allow create: if docId == 'impacto' && hasGrau(6) && isValidStats();
+      allow update: if docId == 'impacto' && hasGrau(6) && isValidStats();
+      allow delete: if false;
+    }
   }
 }

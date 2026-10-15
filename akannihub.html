@@ -1096,6 +1096,95 @@
             font-size: .95rem;
         }
 
+        /* ── Números (Edição > Números de impacto) ── */
+        .numeros-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .numeros-grid .panel {
+            margin-bottom: 0;
+        }
+
+        .numeros-grid .form-input[type="number"] {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .numeros-grid .form-input.invalid {
+            border-color: var(--red);
+            background: #FEF2F2;
+        }
+
+        .numeros-meta {
+            font-size: .82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .numeros-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .numeros-preview-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 22px 12px;
+            text-align: center;
+            color: var(--white);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--navy) 0%, var(--red-dark) 100%);
+        }
+
+        .numeros-preview-item i {
+            color: var(--amber);
+            font-size: 1.3rem;
+        }
+
+        .numeros-preview-item strong {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            line-height: 1;
+            letter-spacing: .02em;
+            font-variant-numeric: tabular-nums;
+            word-break: break-all;
+        }
+
+        .numeros-preview-item span {
+            font-size: .72rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            opacity: .85;
+        }
+
+        .numeros-note {
+            margin-top: 14px;
+            font-size: .85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1024px) {
+            .numeros-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .numeros-grid .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .numeros-preview-item strong {
+                font-size: 1.8rem;
+            }
+        }
+
         /* ── Suporte Técnico (formulário de chamado) ── */
         .support-grid {
             display: grid;
@@ -1585,6 +1674,9 @@
                     </a>
                     <a class="sidebar-link" data-section="apoiadores" data-grau="6" tabindex="0">
                         <i class="fas fa-handshake"></i> Apoiadores
+                    </a>
+                    <a class="sidebar-link" data-section="numeros" data-grau="6" tabindex="0">
+                        <i class="fas fa-chart-simple"></i> Números
                     </a>
                 </div>
                 <div class="sidebar-nav" id="nav-group-suporte">
@@ -2365,6 +2457,119 @@
                     </div>
                 </section>
 
+                <!-- ══ NÚMEROS ══ -->
+                <section id="section-numeros" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Números</h2>
+                            <p class="page-header-sub">Edite as estatísticas exibidas em &ldquo;Números que
+                                Impactam&rdquo; na página inicial do site</p>
+                        </div>
+                    </div>
+
+                    <div class="numeros-grid">
+
+                        <!-- ── Formulário ── -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-chart-simple"></i> Estatísticas de
+                                    impacto</span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-numeros" class="form-grid" novalidate>
+
+                                    <div class="form-grid form-grid-2">
+                                        <div class="form-row">
+                                            <label class="form-label" for="num-pessoas">
+                                                Pessoas Beneficiadas <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="num-pessoas" data-stat="pessoasBeneficiadas"
+                                                type="number" inputmode="numeric" min="0" max="100000000" step="1"
+                                                placeholder="Ex: 1250" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="num-projetos">
+                                                Projetos Realizados <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="num-projetos" data-stat="projetosRealizados"
+                                                type="number" inputmode="numeric" min="0" max="100000000" step="1"
+                                                placeholder="Ex: 32" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="num-bombeiros">
+                                                Bombeiros Apoiados <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="num-bombeiros" data-stat="bombeirosApoiados"
+                                                type="number" inputmode="numeric" min="0" max="100000000" step="1"
+                                                placeholder="Ex: 480" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="num-acoes">
+                                                Ações Educativas <span>*</span>
+                                            </label>
+                                            <input class="form-input" id="num-acoes" data-stat="acoesEducativas"
+                                                type="number" inputmode="numeric" min="0" max="100000000" step="1"
+                                                placeholder="Ex: 75" required>
+                                        </div>
+                                    </div>
+
+                                    <span class="form-hint">
+                                        <i class="fas fa-circle-info"></i>
+                                        Use números inteiros. No site, cada valor aparece com um &ldquo;+&rdquo; no
+                                        final (ex.: 1.250+).
+                                    </span>
+
+                                    <p class="numeros-meta" id="num-meta" aria-live="polite">Carregando…</p>
+
+                                    <div style="display:flex;gap:10px;">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-numeros"
+                                            style="flex:1;" disabled>
+                                            <i class="fas fa-floppy-disk"></i>
+                                            <span id="numeros-submit-label">Salvar números</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline" id="btn-reset-numeros" disabled>
+                                            <i class="fas fa-rotate-left"></i> Desfazer
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- ── Prévia ── -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-eye"></i> Prévia no site</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="numeros-preview" aria-label="Prévia dos números">
+                                    <div class="numeros-preview-item" data-preview="pessoasBeneficiadas">
+                                        <i class="fas fa-people-group"></i>
+                                        <strong>—</strong>
+                                        <span>Pessoas Beneficiadas</span>
+                                    </div>
+                                    <div class="numeros-preview-item" data-preview="projetosRealizados">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <strong>—</strong>
+                                        <span>Projetos Realizados</span>
+                                    </div>
+                                    <div class="numeros-preview-item" data-preview="bombeirosApoiados">
+                                        <i class="fas fa-helmet-safety"></i>
+                                        <strong>—</strong>
+                                        <span>Bombeiros Apoiados</span>
+                                    </div>
+                                    <div class="numeros-preview-item" data-preview="acoesEducativas">
+                                        <i class="fas fa-chalkboard-teacher"></i>
+                                        <strong>—</strong>
+                                        <span>Ações Educativas</span>
+                                    </div>
+                                </div>
+                                <p class="numeros-note">A prévia muda enquanto você digita, mas o site só é atualizado
+                                    depois de clicar em <strong>Salvar números</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- ══ SUPORTE TÉCNICO ══ -->
                 <section id="section-suporte" class="app-section">
                     <div class="page-header">
@@ -2556,7 +2761,7 @@
     ══════════════════════════════════════════════════════════ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
+        import { getFirestore, collection, getDocs, getDoc, addDoc, setDoc, updateDoc, deleteDoc, doc, query, orderBy, limit, serverTimestamp }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, signOut, onAuthStateChanged }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
@@ -2827,7 +3032,7 @@
             if (hasGrau(3)) tasks.push(loadTransparency());
             if (hasGrau(2)) tasks.push(loadNews());
             if (hasGrau(5)) tasks.push(loadEventos(), loadProjetos(), loadCapacitacao());
-            if (hasGrau(6)) tasks.push(loadTimeline(), loadApoiadores());
+            if (hasGrau(6)) tasks.push(loadTimeline(), loadApoiadores(), loadNumeros());
             await Promise.all(tasks);
         }
 
@@ -4078,6 +4283,144 @@
         };
 
         // ══════════════════════════════════════════════════════════════
+        //  NÚMEROS (Edição) — estatísticas de impacto da página inicial
+        //  Banco: coleção "site_stats", documento "impacto"
+        //    { pessoasBeneficiadas, projetosRealizados, bombeirosApoiados,
+        //      acoesEducativas  → inteiros ≥ 0,
+        //      updatedAt, updatedBy }
+        //  Leitura pública (a home lê esses valores); escrita só Grau 1 ou 6.
+        // ══════════════════════════════════════════════════════════════
+        const NUM_KEYS = ['pessoasBeneficiadas', 'projetosRealizados', 'bombeirosApoiados', 'acoesEducativas'];
+        const NUM_MAX = 100000000;
+        let numerosSaved = null;     // valores que estão no banco (null = ainda não existe documento)
+        let numerosBusy = false;
+
+        const numForm = () => document.getElementById('form-numeros');
+        const numInputs = () => NUM_KEYS.map(k => numForm().querySelector(`[data-stat="${k}"]`));
+        const numFmt = n => Number(n).toLocaleString('pt-BR') + '+';
+
+        // Lê um campo: inteiro entre 0 e NUM_MAX, ou null se vazio/inválido
+        function numParse(input) {
+            const raw = input.value.trim();
+            if (!/^\d+$/.test(raw)) return null;
+            const n = Number(raw);
+            return n <= NUM_MAX ? n : null;
+        }
+
+        function numCurrent() {
+            const values = {};
+            let valid = true;
+            numInputs().forEach((input, i) => {
+                const v = numParse(input);
+                values[NUM_KEYS[i]] = v;
+                if (v === null) valid = false;
+            });
+            return { values, valid };
+        }
+
+        // Atualiza prévia, marcação de erro e estado dos botões
+        function numRender() {
+            const { values, valid } = numCurrent();
+            const inputs = numInputs();
+
+            NUM_KEYS.forEach((k, i) => {
+                const strong = document.querySelector(`[data-preview="${k}"] strong`);
+                if (strong) strong.textContent = values[k] === null ? '—' : numFmt(values[k]);
+                const empty = inputs[i].value.trim() === '';
+                inputs[i].classList.toggle('invalid', !empty && values[k] === null);
+            });
+
+            const dirty = numerosSaved
+                ? NUM_KEYS.some(k => values[k] !== numerosSaved[k])
+                : inputs.some(inp => inp.value.trim() !== '');
+            document.getElementById('btn-submit-numeros').disabled = numerosBusy || !(valid && dirty);
+            document.getElementById('btn-reset-numeros').disabled = numerosBusy || !dirty;
+        }
+
+        function numFillInputs(values) {
+            numInputs().forEach((input, i) => {
+                const v = values ? values[NUM_KEYS[i]] : null;
+                input.value = (v === null || v === undefined) ? '' : String(v);
+            });
+            numRender();
+        }
+
+        function numSetMeta(date, who) {
+            const el = document.getElementById('num-meta');
+            if (!date) {
+                el.textContent = 'Ainda não há números salvos: a página inicial mostra “—” até você salvar.';
+                return;
+            }
+            const when = date.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+            el.textContent = `Última atualização: ${when}${who ? ' por ' + who : ''}.`;
+        }
+
+        async function loadNumeros() {
+            if (!numForm()) return;
+            try {
+                const snap = await getDoc(doc(db, 'site_stats', 'impacto'));
+                if (snap.exists()) {
+                    const d = snap.data();
+                    numerosSaved = {};
+                    NUM_KEYS.forEach(k => { numerosSaved[k] = Math.max(0, Math.floor(Number(d[k]) || 0)); });
+                    numFillInputs(numerosSaved);
+                    numSetMeta(d.updatedAt?.toDate?.() || null, d.updatedBy || '');
+                    if (!d.updatedAt) document.getElementById('num-meta').textContent = 'Números carregados do banco.';
+                } else {
+                    numerosSaved = null;
+                    numFillInputs(null);
+                    numSetMeta(null);
+                }
+            } catch (err) {
+                console.error('[AkanniHUB] Números — erro ao carregar:', err);
+                document.getElementById('num-meta').textContent = 'Não foi possível carregar os números salvos.';
+                toast('Erro ao carregar os números.', 'error');
+            }
+        }
+
+        numForm()?.addEventListener('input', numRender);
+
+        document.getElementById('btn-reset-numeros')?.addEventListener('click', () => numFillInputs(numerosSaved));
+
+        numForm()?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!hasGrau(6)) { toast('Você não tem permissão para editar os números.', 'error'); return; }
+
+            const { values, valid } = numCurrent();
+            if (!valid) {
+                toast('Preencha os quatro números com valores inteiros de 0 a 100.000.000.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn-submit-numeros');
+            const label = document.getElementById('numeros-submit-label');
+            numerosBusy = true;
+            btn.disabled = true;
+            label.textContent = 'Salvando…';
+
+            try {
+                const email = auth.currentUser?.email || '';
+                await setDoc(doc(db, 'site_stats', 'impacto'), {
+                    ...values,
+                    updatedAt: serverTimestamp(),
+                    updatedBy: email
+                });
+                numerosSaved = { ...values };
+                numSetMeta(new Date(), email);
+                toast('Números atualizados! A página inicial já exibe os novos valores.', 'success');
+            } catch (err) {
+                console.error('[AkanniHUB] Números — erro ao salvar:', err);
+                toast(err.code === 'permission-denied'
+                    ? 'Sem permissão para salvar. Confira se as regras do Firestore foram publicadas.'
+                    : 'Erro ao salvar os números. Tente novamente.', 'error');
+            } finally {
+                numerosBusy = false;
+                label.textContent = 'Salvar números';
+                numRender();
+            }
+        });
+
+        // ══════════════════════════════════════════════════════════════
         //  SUPORTE TÉCNICO — formulário de chamado enviado por e-mail
         //
         //  Envio: serviço FormSubmit (https://formsubmit.co), sem backend
@@ -4088,7 +4431,7 @@
         //  e-mail da própria pessoa (mailto:), então nada se perde.
         // ══════════════════════════════════════════════════════════════
         (function initSupportForm() {
-            const SUPPORT_EMAIL = '695e616169a30c1d1065b1aa58dc784b';
+            const SUPPORT_EMAIL = 'geocodeprogrammer@gmail.com';
             const ENDPOINT = `https://formsubmit.co/ajax/${SUPPORT_EMAIL}`;
             const COOLDOWN_MS = 30000;   // intervalo mínimo entre envios (anti-spam)
             const TIMEOUT_MS = 15000;    // tempo máximo de espera pelo envio

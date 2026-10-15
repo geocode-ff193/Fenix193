@@ -13,6 +13,8 @@ import {
     getFirestore,
     collection,
     getDocs,
+    getDoc,
+    doc,
     query,
     orderBy,
     limit
@@ -208,6 +210,31 @@ document.addEventListener('keydown', (e) => {
     const statsSection = document.querySelector('.stats-container');
     if (!statsSection) return;
 
+    // Ordem usada se o item não tiver o atributo data-stat
+    const STAT_KEYS = ['pessoasBeneficiadas', 'projetosRealizados', 'bombeirosApoiados', 'acoesEducativas'];
+    const items = Array.from(document.querySelectorAll('.stat-item'));
+    const statKey = (item, i) => item.dataset.stat || STAT_KEYS[i];
+
+    // Valores editados no AkanniHUB (aba Números): coleção "site_stats", documento "impacto".
+    // Se o documento não existir ou a leitura falhar, usa o data-target do HTML (se for > 0)
+    // ou mostra "—" — nunca um "0+" enganoso.
+    const statsReady = (async () => {
+        try {
+            const snap = await getDoc(doc(db, 'site_stats', 'impacto'));
+            if (!snap.exists()) return;
+            const data = snap.data();
+            items.forEach((item, i) => {
+                const value = Number(data[statKey(item, i)]);
+                if (Number.isFinite(value) && value >= 0) {
+                    item.setAttribute('data-target', String(Math.floor(value)));
+                    item.dataset.loaded = '1';
+                }
+            });
+        } catch (e) {
+            console.error('[Fênix 193] Erro ao carregar números de impacto:', e);
+        }
+    })();
+
     let started = false;
 
     const animateCounter = (el, target, duration = 1800) => {
@@ -227,13 +254,16 @@ document.addEventListener('keydown', (e) => {
         requestAnimationFrame(step);
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver(async (entries) => {
         if (entries[0].isIntersecting && !started) {
             started = true;
-            document.querySelectorAll('.stat-item').forEach((item) => {
+            await statsReady;                       // garante que os números do banco já chegaram
+            items.forEach((item) => {
                 const target = parseInt(item.getAttribute('data-target'), 10) || 0;
                 const counter = item.querySelector('.counter');
-                if (counter) animateCounter(counter, target);
+                if (!counter) return;
+                if (item.dataset.loaded || target > 0) animateCounter(counter, target);
+                else counter.textContent = '—';
             });
         }
     }, { threshold: 0.4 });
