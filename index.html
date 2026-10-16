@@ -292,59 +292,6 @@
             z-index: 1;
         }
 
-        /* Busca no hero */
-        .hero-search-center-wrap {
-            display: flex;
-            justify-content: center;
-            padding: 44px 0 16px;
-        }
-
-        .hero-search {
-            position: relative;
-            max-width: 540px;
-        }
-
-        .hero-search-center-wrap .hero-search {
-            width: 100%;
-            max-width: 620px;
-            margin: 0;
-        }
-
-        .hero-search-input-wrap {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 16px;
-            background: rgba(255, 255, 255, .1);
-            border: 1.5px solid rgba(255, 255, 255, .22);
-            border-radius: 50px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .hero-search-icon {
-            color: rgba(255, 255, 255, .55);
-            font-size: .95rem;
-            flex-shrink: 0;
-            pointer-events: none;
-        }
-
-        .hero-search-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            outline: none;
-            padding: 14px 0;
-            font-family: var(--font-body);
-            font-size: .97rem;
-            color: var(--white);
-            font-weight: 400;
-        }
-
-        .hero-search-input::placeholder {
-            color: rgba(255, 255, 255, .45);
-        }
-
         /* Feed de notícias no hero (skeleton evita CLS) */
         .hero-news-feed {
             margin-top: 28px;
@@ -423,14 +370,6 @@
                 grid-template-columns: 1fr;
                 gap: 28px;
                 text-align: center;
-            }
-
-            .hero-search-center-wrap {
-                padding: 52px 0 20px;
-            }
-
-            .hero-search-center-wrap .hero-search {
-                max-width: 100%;
             }
 
             .hero-text p {
@@ -633,24 +572,6 @@
         <section id="hero" aria-label="Banner principal">
             <div class="hero-overlay"></div>
             <div class="container">
-                <div class="hero-search-center-wrap">
-                    <div class="hero-search" id="hero-search" role="search" aria-label="Busca no site">
-                        <div class="hero-search-input-wrap">
-                            <i class="fas fa-magnifying-glass hero-search-icon" aria-hidden="true"></i>
-                            <input type="search" id="hero-search-input" class="hero-search-input"
-                                placeholder="Buscar notícias, projetos, documentos…" autocomplete="off"
-                                spellcheck="false" aria-label="Campo de busca" aria-autocomplete="list"
-                                aria-controls="search-dropdown" aria-expanded="false" aria-haspopup="listbox">
-                            <button class="hero-search-clear" id="hero-search-clear" type="button"
-                                aria-label="Limpar busca" hidden>
-                                <i class="fas fa-times" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                        <div class="search-dropdown" id="search-dropdown" role="listbox"
-                            aria-label="Resultados da busca" aria-hidden="true" hidden>
-                        </div>
-                    </div>
-                </div>
                 <div class="hero-grid">
                     <div class="hero-img">
                         <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380" height="380">
