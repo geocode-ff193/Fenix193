@@ -652,11 +652,16 @@
     applyFontScale(prefs.fontScale, { silent: true });
     applyVisualPrefs();
 
-    // style.css e outros CSS carregam de forma assíncrona (media="print" → "all"):
-    // ao terminar, recalcula a paleta com as cores finais de cada elemento.
-    const onFullLoad = () => window.setTimeout(() => currentTheme() && refreshPalette(), 150);
-    if (document.readyState === "complete") onFullLoad();
-    else window.addEventListener("load", onFullLoad, { once: true });
+    // Rede de segurança para páginas que AINDA carregam algum CSS de forma assíncrona
+    // (<link media="print" onload="…">): ao terminar de carregar, recalcula a paleta
+    // com as cores finais de cada elemento. Com os CSS normais (bloqueantes), as
+    // cores já estão definitivas quando este script roda e nada precisa ser refeito.
+    const hasAsyncCss = !!document.querySelector('link[rel="stylesheet"][media="print"]');
+    if (hasAsyncCss) {
+      const onFullLoad = () => window.setTimeout(() => currentTheme() && refreshPalette(), 150);
+      if (document.readyState === "complete") onFullLoad();
+      else window.addEventListener("load", onFullLoad, { once: true });
+    }
   }
 
   if (document.readyState === "loading") {
