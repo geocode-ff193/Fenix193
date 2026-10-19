@@ -18,6 +18,72 @@
    ========================================================================== */
 
 /* -------------------------------------------------
+   0. GUARDA ANTI-FLASH (FOUC)
+   Este arquivo é CARREGADO ANTES da primeira pintura (link normal, sem
+   media="print"), ao contrário de style.css / dropdown.css / chatbot.css,
+   que chegam depois. Sem estas regras, chat da LuminIA e menus dropdown
+   aparecem abertos e sem estilo por alguns instantes.
+
+   Aqui ficam só os estados INICIAIS "fechados" desses widgets, escritos
+   com :where() (especificidade ZERO): enquanto o CSS definitivo não chega
+   valem estas; quando ele chega, ele sobrepõe tudo sem exceção. Não
+   copiar propriedades que o CSS definitivo não redefine (ex.: pointer-events
+   no chatbot), senão elas "grudariam".
+------------------------------------------------- */
+:where(.chatbot-container) {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+}
+
+:where(.chatbot-box) {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+:where(.chatbot-teaser) {
+  position: absolute;
+  bottom: 10px;
+  right: 76px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+:where(.has-dropdown) {
+  position: relative;
+}
+
+:where(.dropdown-menu) {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* VLibras (widget de terceiros): fica invisível até a página terminar de
+   carregar (classe .ff-ready, adicionada por acessibilidade.js). O fallback
+   por animação libera o widget após 5 s mesmo se o JS falhar. */
+html:not(.ff-ready) [vw] {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  animation: ff-reveal-widget 0s linear 5s forwards;
+}
+
+@keyframes ff-reveal-widget {
+  to {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* -------------------------------------------------
    1. VARIÁVEIS DE TEMA
    Cores herdadas da paleta oficial do site (ver :root em style.css)
    para o botão/painel combinarem com a identidade visual.

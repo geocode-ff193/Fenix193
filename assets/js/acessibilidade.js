@@ -502,6 +502,10 @@
     liveRegion.style.cssText =
       "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;";
 
+    // Painel e overlay nascem ocultos (hidden) e só são liberados quando a página
+    // terminou de carregar (releaseWidgets) — evita que apareçam sem estilo.
+    panel.hidden = true;
+    overlay.hidden = true;
     document.body.prepend(overlay);
     document.body.prepend(panel);
     document.body.prepend(toggleBtn);
@@ -615,8 +619,31 @@
   document.documentElement.style.fontSize =
     Math.min(getMaxScale(), Math.max(FONT_MIN, prefs.fontScale)) * 100 + "%";
 
+  // Marca a página como "pronta" (todos os CSS carregados) e libera os widgets.
+  // Fallback de 3 s: nunca deixa o botão/painel presos caso o evento load atrase.
+  function releaseWidgets() {
+    document.documentElement.classList.add("ff-ready");
+    const panel = document.getElementById("a11y-panel");
+    const overlay = document.querySelector(".a11y-overlay");
+    if (panel) panel.hidden = false;
+    if (overlay) overlay.hidden = false;
+  }
+
+  function scheduleRelease() {
+    let done = false;
+    const go = () => {
+      if (done) return;
+      done = true;
+      window.requestAnimationFrame(() => window.setTimeout(releaseWidgets, 150));
+    };
+    if (document.readyState === "complete") go();
+    else window.addEventListener("load", go, { once: true });
+    window.setTimeout(go, 3000);
+  }
+
   function init() {
     const refs = buildPanel();
+    scheduleRelease();
     initPanelBehavior(refs);
 
     // Sincroniza o painel recém-criado com as preferências salvas, sem
