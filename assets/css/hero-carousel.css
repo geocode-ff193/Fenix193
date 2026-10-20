@@ -1,6 +1,8 @@
 /* ==========================================================================
    HERO-CAROUSEL.CSS — Fundação Fênix 193
    Hero em carrossel: slide 1 = apresentação; demais = últimas notícias.
+   Troca automática (pausa com o mouse em cima) e guia de pontos, centralizado
+   embaixo, que também serve de navegação.
    Carregar DEPOIS de style.css (e do CSS crítico inline), como link normal.
 
    Os slides ficam empilhados na MESMA célula de uma grade (grid-area 1/1),
@@ -46,8 +48,8 @@
     display: flex;
     align-items: center;
     min-height: inherit;
-    padding-bottom: 76px;
-    /* espaço para os controles */
+    padding: 64px 0;
+    /* simétrico: o conteúdo fica centralizado; os pontos ficam na faixa de baixo */
     opacity: 0;
     visibility: hidden;
     /* fora da ordem de tabulação e dos leitores de tela */
@@ -66,7 +68,7 @@
 .hero-slide>.container {
     position: relative;
     z-index: 1;
-    width: 100%;
+    /* a largura e a margem lateral vêm do .container padrão do site */
 }
 
 /* ── Slide 1 · apresentação ── */
@@ -82,6 +84,63 @@
     inset: 0;
     background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(242, 118, 19, .12) 0%, transparent 70%);
     pointer-events: none;
+}
+
+/* Escurece levemente a foto atrás do texto para ele ganhar destaque */
+.hero-slide--intro::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 58% 72% at 62% 50%, rgba(0, 0, 0, .46) 0%, transparent 72%);
+    pointer-events: none;
+}
+
+/* Logo + texto formam um conjunto centralizado na tela */
+.hero-slide--intro .hero-grid {
+    grid-template-columns: auto minmax(0, 680px);
+    justify-content: center;
+    align-items: center;
+    gap: clamp(32px, 6vw, 88px);
+    padding: 0 !important;
+}
+
+.hero-slide--intro .hero-img img {
+    width: clamp(220px, 27vw, 400px);
+    height: auto;
+}
+
+.hero-slide--intro .hero-text {
+    max-width: 680px;
+    text-align: center;
+}
+
+/* Detalhe âmbar acima do título */
+.hero-slide--intro .hero-text h1::before {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 5px;
+    margin: 0 auto 22px;
+    border-radius: 3px;
+    background: var(--amber);
+}
+
+.hero-slide--intro .hero-text h1 {
+    margin-bottom: 22px;
+    font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: .01em;
+    text-shadow: 0 3px 22px rgba(0, 0, 0, .6);
+}
+
+.hero-slide--intro .hero-text p {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: clamp(1.02rem, 1.45vw, 1.22rem);
+    font-weight: 500;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, .95);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, .7);
 }
 
 /* ── Slides de notícia ── */
@@ -224,7 +283,7 @@
     border-color: var(--white);
 }
 
-/* ── Controles (anterior · pontos · próximo · pausar) ── */
+/* ── Guia de slides (pontos): centralizado embaixo e navegável ── */
 .hero-controls {
     position: absolute;
     left: 0;
@@ -232,54 +291,31 @@
     bottom: 24px;
     z-index: 3;
     pointer-events: none;
-    /* só a barra de controles recebe clique */
+    /* só os pontos recebem clique */
 }
 
-.hero-controls-bar {
+.hero-dots {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 8px;
     width: fit-content;
-    padding: 8px 14px;
-    background: rgba(0, 0, 0, .45);
-    border: 1px solid rgba(255, 255, 255, .15);
+    margin: 0 auto;
+    padding: 9px 14px;
+    background: rgba(0, 0, 0, .4);
+    border: 1px solid rgba(255, 255, 255, .14);
     border-radius: 999px;
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     pointer-events: auto;
 }
 
-.hero-ctrl-btn {
-    display: grid;
-    place-items: center;
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    background: rgba(255, 255, 255, .14);
-    border: 0;
-    border-radius: 50%;
-    color: var(--white);
-    font-size: .85rem;
-    cursor: pointer;
-    transition: background var(--transition);
-}
-
-.hero-ctrl-btn:hover {
-    background: var(--red);
-}
-
-.hero-dots {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
 .hero-dot {
     position: relative;
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
     padding: 0;
-    background: rgba(255, 255, 255, .45);
+    background: rgba(255, 255, 255, .5);
     border: 0;
     border-radius: 999px;
     cursor: pointer;
@@ -290,11 +326,11 @@
     /* área de toque maior que o ponto visível */
     content: '';
     position: absolute;
-    inset: -10px -4px;
+    inset: -12px -5px;
 }
 
 .hero-dot[aria-current="true"] {
-    width: 30px;
+    width: 34px;
     background: var(--amber);
 }
 
@@ -307,20 +343,6 @@
     display: none;
 }
 
-/* ── Telas médias e pequenas ──
-   Os botões flutuantes de acessibilidade (esquerda) e da LuminIA (direita) ficam
-   fixos nos cantos inferiores; aqui a barra de controles sobe para não ficar
-   embaixo deles. */
-@media (max-width: 1100px) {
-    .hero-controls {
-        bottom: 94px;
-    }
-
-    .hero-slide {
-        padding-bottom: 150px;
-    }
-}
-
 /* ── Telas pequenas ── */
 @media (max-width: 768px) {
     #hero.hero-carousel {
@@ -328,12 +350,30 @@
         /* no mobile o header tem só a barra de 70px */
     }
 
-    /* Logo menor no celular: sem isso o slide de abertura passa da altura da tela
-       e os controles do carrossel ficam abaixo da dobra */
+    .hero-slide {
+        padding: 56px 0 72px;
+    }
+
+    /* Slide 1 empilhado: logo em cima, texto embaixo, tudo centralizado */
+    .hero-slide--intro .hero-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 22px;
+    }
+
     .hero-slide--intro .hero-img img {
-        width: min(230px, 58vw);
-        height: auto;
+        width: min(210px, 54vw);
         margin: 0 auto;
+    }
+
+    .hero-slide--intro .hero-text h1 {
+        font-size: clamp(1.7rem, 7vw, 2.3rem);
+        margin-bottom: 16px;
+    }
+
+    .hero-slide--intro .hero-text h1::before {
+        width: 52px;
+        margin-bottom: 16px;
     }
 
     .hero-slide--news::after {
@@ -356,41 +396,6 @@
         -webkit-line-clamp: 3;
         line-clamp: 3;
         font-size: .95rem;
-    }
-
-    .hero-controls-bar {
-        margin: 0 auto;
-    }
-}
-
-/* Celulares pequenos (≈360px): barra mais compacta para caber entre os botões flutuantes */
-@media (max-width: 400px) {
-    .hero-controls {
-        bottom: 104px;
-    }
-
-    .hero-slide {
-        padding-bottom: 160px;
-    }
-
-    .hero-controls-bar {
-        gap: 6px;
-        padding: 5px 8px;
-    }
-
-    .hero-ctrl-btn {
-        width: 30px;
-        height: 30px;
-        font-size: .75rem;
-    }
-
-    .hero-dot {
-        width: 9px;
-        height: 9px;
-    }
-
-    .hero-dot[aria-current="true"] {
-        width: 24px;
     }
 }
 

@@ -7,13 +7,14 @@
  *
  *  - Sem notícias (ou sem Firebase) o hero fica só com o slide 1 e os
  *    controles não aparecem.
- *  - Troca automática (data-autoplay em #hero, em ms; 0 desliga) com
- *    PAUSAR/RETOMAR (WCAG 2.2.2). Pausa sozinho quando o mouse está em
- *    cima, o foco está dentro do hero, a aba fica oculta ou a pessoa
- *    prefere menos movimento.
- *  - Setas, pontos, teclado (← → Home End) e arrastar o dedo no celular.
+ *  - Troca automática (data-autoplay em #hero, em ms; 0 desliga). Ela PAUSA
+ *    sozinha enquanto o mouse está sobre o hero, o foco está dentro dele, a
+ *    aba fica oculta ou há toque na tela; e nem começa se a pessoa prefere
+ *    menos movimento.
+ *  - Guia de pontos centralizado embaixo, clicável (e acessível por teclado
+ *    com ← → Home End). No celular também dá para arrastar o dedo.
  *  - Acessível: padrão "carousel" do ARIA (roledescription, "n de N",
- *    região viva só quando a rotação automática está parada).
+ *    região viva só quando a troca automática está parada).
  * ============================================================
  */
 
@@ -104,81 +105,57 @@ function startCarousel() {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const interval = Number(root.dataset.autoplay ?? 7000);
-    const autoplayEnabled = interval > 0;
+    const autoplay = interval > 0 && !reduceMotion;
 
     let current = Math.max(0, slides.findIndex(s => s.classList.contains('is-active')));
-    let userWantsPlay = autoplayEnabled && !reduceMotion;   // escolha da pessoa (botão pausar)
-    let hovering = false;
+    let hovering = false;        // mouse sobre o hero (ou toque recente)
     let focusInside = false;
     let timer = null;
+    let touchTimer = null;
 
     /* Numeração acessível: "2 de 4" */
     slides.forEach((s, i) => s.setAttribute('aria-label', `${i + 1} de ${slides.length}`));
 
-    /* Controles */
+    /* Guia de pontos */
     const controls = document.createElement('div');
     controls.className = 'hero-controls';
-    controls.innerHTML = `
-        <div class="container">
-            <div class="hero-controls-bar" role="group" aria-label="Controles do carrossel">
-                <button type="button" class="hero-ctrl-btn" data-act="prev" aria-label="Slide anterior" aria-controls="hero-slides">
-                    <i class="fas fa-chevron-left" aria-hidden="true"></i></button>
-                <div class="hero-dots"></div>
-                <button type="button" class="hero-ctrl-btn" data-act="next" aria-label="Próximo slide" aria-controls="hero-slides">
-                    <i class="fas fa-chevron-right" aria-hidden="true"></i></button>
-                ${autoplayEnabled ? `<button type="button" class="hero-ctrl-btn" data-act="toggle" aria-controls="hero-slides">
-                    <i class="fas fa-pause" aria-hidden="true"></i></button>` : ''}
-            </div>
-        </div>`;
+    controls.innerHTML = `<div class="hero-dots" role="group" aria-label="Escolher slide"></div>`;
     root.appendChild(controls);
     root.classList.add('has-controls');
 
-    const dotsWrap = controls.querySelector('.hero-dots');
-    const toggleBtn = controls.querySelector('[data-act="toggle"]');
+    const dotsWrap = controls.firstElementChild;
     slides.forEach((s, i) => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.className = 'hero-dot';
         dot.setAttribute('aria-label', `Ir para o slide ${i + 1}: ${s.dataset.title || 'Apresentação'}`);
-        dot.addEventListener('click', () => goTo(i, true));
+        dot.setAttribute('aria-controls', 'hero-slides');
+        dot.addEventListener('click', () => goTo(i));
         dotsWrap.appendChild(dot);
     });
     const dots = Array.from(dotsWrap.children);
 
-    function isRunning() {
-        return userWantsPlay && !hovering && !focusInside && !document.hidden;
-    }
+    const isRunning = () => autoplay && !hovering && !focusInside && !document.hidden;
 
     function syncUi() {
         slides.forEach((s, i) => s.classList.toggle('is-active', i === current));
         dots.forEach((d, i) => d.setAttribute('aria-current', String(i === current)));
-        // Enquanto gira sozinho, NÃO anunciar a troca (seria ruído); parado, anuncia.
-        track.setAttribute('aria-live', userWantsPlay ? 'off' : 'polite');
-        if (toggleBtn) {
-            toggleBtn.querySelector('i').className = userWantsPlay ? 'fas fa-pause' : 'fas fa-play';
-            toggleBtn.setAttribute('aria-label', userWantsPlay ? 'Pausar troca automática' : 'Retomar troca automática');
-        }
     }
 
     function schedule() {
         clearTimeout(timer);
-        if (isRunning()) timer = setTimeout(() => goTo(current + 1, false), interval);
+        // Girando sozinho NÃO se anuncia a troca (seria ruído); parado, anuncia.
+        track.setAttribute('aria-live', isRunning() ? 'off' : 'polite');
+        if (isRunning()) timer = setTimeout(() => goTo(current + 1), interval);
     }
 
-    function goTo(index, byUser) {
+    function goTo(index) {
         current = (index + slides.length) % slides.length;
         syncUi();
         schedule();
     }
 
-    controls.addEventListener('click', e => {
-        const act = e.target.closest('[data-act]')?.dataset.act;
-        if (act === 'prev') goTo(current - 1, true);
-        if (act === 'next') goTo(current + 1, true);
-        if (act === 'toggle') { userWantsPlay = !userWantsPlay; syncUi(); schedule(); }
-    });
-
-    /* Pausa automática: mouse, foco e aba oculta */
+    /* Pausa automática: mouse em cima, foco dentro, aba oculta */
     root.addEventListener('mouseenter', () => { hovering = true; schedule(); });
     root.addEventListener('mouseleave', () => { hovering = false; schedule(); });
     root.addEventListener('focusin', () => { focusInside = true; schedule(); });
@@ -191,25 +168,32 @@ function startCarousel() {
     root.addEventListener('keydown', e => {
         if (e.target.closest('input, textarea, select')) return;
         const map = {
-            ArrowLeft: () => goTo(current - 1, true), ArrowRight: () => goTo(current + 1, true),
-            Home: () => goTo(0, true), End: () => goTo(slides.length - 1, true)
+            ArrowLeft: () => goTo(current - 1), ArrowRight: () => goTo(current + 1),
+            Home: () => goTo(0), End: () => goTo(slides.length - 1)
         };
         if (map[e.key]) { e.preventDefault(); map[e.key](); }
     });
 
-    /* Arrastar o dedo (toque/caneta): troca de slide sem atrapalhar a rolagem vertical */
+    /* Toque/caneta: segurar a tela pausa (como o mouse em cima) e arrastar troca de slide */
     let startX = 0, startY = 0, tracking = false;
     track.addEventListener('pointerdown', e => {
         if (e.pointerType === 'mouse') return;
+        clearTimeout(touchTimer);
+        hovering = true; schedule();
         tracking = true; startX = e.clientX; startY = e.clientY;
     });
+    const releaseTouch = () => {
+        clearTimeout(touchTimer);
+        touchTimer = setTimeout(() => { hovering = false; schedule(); }, 6000);   // volta a girar depois de 6 s
+    };
     track.addEventListener('pointerup', e => {
         if (!tracking) return;
         tracking = false;
         const dx = e.clientX - startX, dy = e.clientY - startY;
-        if (Math.abs(dx) >= SWIPE_MIN_PX && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(current + (dx < 0 ? 1 : -1), true);
+        if (Math.abs(dx) >= SWIPE_MIN_PX && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(current + (dx < 0 ? 1 : -1));
+        releaseTouch();
     });
-    track.addEventListener('pointercancel', () => { tracking = false; });
+    track.addEventListener('pointercancel', () => { tracking = false; releaseTouch(); });
 
     syncUi();
     schedule();
