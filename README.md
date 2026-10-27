@@ -631,7 +631,7 @@ ff193/
 │
 └── .github/
     └── ISSUE_TEMPLATE/
-        └── solicitacao_cliente.yml    # Template legado de chamado (o painel não aponta mais para ele)
+        └── solicitacao_cliente.yml    # Template legado de chamado
 ```
 
 ---
