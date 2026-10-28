@@ -300,33 +300,12 @@
 </head>
 
 <body>
-    <!-- ==========================================================
-         HEADER PADRONIZADO · Fundação Fênix 193
-         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
-         header--main → Navegação principal (com dropdowns)
-         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
-         os scripts de menu/dropdown existentes continuam funcionando.
-         ========================================================== -->
-    <!-- ==========================================================
-         HEADER PADRONIZADO · Fundação Fênix 193
-         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
-         header--main → Navegação principal (com dropdowns)
-         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
-         os scripts de menu/dropdown existentes continuam funcionando.
-         ========================================================== -->
-    <!-- ==========================================================
-         HEADER PADRONIZADO · Fundação Fênix 193
-         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
-         header--main → Navegação principal (com dropdowns)
-         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
-         os scripts de menu/dropdown existentes continuam funcionando.
-         ========================================================== -->
     <header id="main-header">
-
+    
         <!-- ===== HEADER--TOP ===== -->
         <div class="header--top">
             <div class="container header-top-inner">
-
+    
                 <!-- Logo -->
                 <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                     <div class="logo-icon" aria-hidden="true">
@@ -339,7 +318,7 @@
                         <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
-
+    
                 <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
                 <form class="header-search header-search--top" role="search" action="pesquisa.html" method="get">
                     <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
@@ -348,7 +327,7 @@
                         <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
                 </form>
-
+    
                 <!-- AkanniHUB + Redes sociais (desktop) -->
                 <div class="header-top-actions">
                     <a href="akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -367,7 +346,7 @@
                                     class="fab fa-youtube" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
-
+    
                 <!-- Hambúrguer (mobile) -->
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
@@ -376,28 +355,28 @@
                 </button>
             </div>
         </div>
-
+    
         <!-- ===== HEADER--MAIN ===== -->
         <div class="header--main">
             <div class="container">
                 <nav id="nav-menu" aria-label="Navegação principal">
                     <ul id="menu" role="list">
-
+    
                         <!-- Pesquisa (somente no menu mobile) -->
                         <li class="menu-mobile-search">
                             <form class="header-search header-search--menu" role="search" action="pesquisa.html"
                                 method="get">
-                                <input type="search" name="q" class="header-search-input"
-                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
-                                    spellcheck="false" minlength="2" required>
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
                                 <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                                     <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </li>
-
+    
                         <li><a href="index.html">Início</a></li>
-
+    
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -418,7 +397,7 @@
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -434,18 +413,21 @@
                                 <li><a href="pages/eventos.html" role="menuitem">
                                         <i class="fas fa-calendar-days"></i> Eventos
                                     </a></li>
+                                <li><a href="pages/galeria.html" role="menuitem">
+                                        <i class="fas fa-images"></i> Galeria
+                                    </a></li>
                                 <li><a href="pages/parcerias.html" role="menuitem">
                                         <i class="fas fa-handshake"></i> Parcerias
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <li><a href="pages/transparencia.html">Transparência</a></li>
                         <li><a href="#stats">Impacto</a></li>
                         <li><a href="pages/noticias.html">Notícias</a></li>
                         <li><a href="pages/fale-conosco.html">Contato</a></li>
                         <li><a href="#como-ajudar">Colabore</a></li>
-
+    
                         <!-- AkanniHUB + Redes (somente no menu mobile) -->
                         <li class="menu-mobile-extras">
                             <a href="akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
