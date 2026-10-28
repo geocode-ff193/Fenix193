@@ -1,8 +1,8 @@
 rules_version = '2';
 
 // ============================================================
-//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.9.0
-//  Setembro 2026
+//  FUNDAÇÃO FÊNIX 193 — Firestore Security Rules  v1.10.0
+//  Outubro 2026
 //
 //  Coleções protegidas:
 //    admins            → acesso restrito ao próprio UID
@@ -15,13 +15,14 @@ rules_version = '2';
 //    timeline          → leitura pública; escrita Grau 1/6 (Edição)
 //    apoiadores        → leitura pública; escrita Grau 1/6 (Edição)
 //    site_stats        → leitura pública; escrita Grau 1/6 (Edição > Números)
+//    galeria           → leitura pública SÓ de álbuns publicados; escrita Grau 1/6 (Edição > Galeria)
 //
 //  Grau de Administração:
 //    Cada admin pode ter um ou mais graus, em admins/{uid}.graus
 //    (array de números). Grau 1 dá acesso a tudo.
 //      1 = Acesso a Tudo        4 = Contatos
 //      2 = Notícias             5 = Atuação (Projetos/Capacitação/Eventos)
-//      3 = Transparência        6 = Edição (Linha do Tempo/Apoiadores/Números)
+//      3 = Transparência        6 = Edição (Linha do Tempo/Apoiadores/Números/Galeria)
 //    Suporte Técnico é liberado a qualquer grau.
 //    Sem o campo "graus" (contas antigas), assume-se [1] — acesso total.
 //
@@ -177,6 +178,26 @@ service cloud.firestore {
           && (!('link' in d.keys()) || d.link == null || (d.link is string && d.link.size() <= 500));
     }
 
+    /** Álbum da galeria publicado pelo painel (Edição > Galeria)
+     *  fotos = lista de mapas { id (public_id do Cloudinary), w, h, alt }.
+     *  As regras não conseguem percorrer a lista inteira; validam o tamanho
+     *  (até 300 fotos) e a forma do primeiro item. */
+    function isValidGaleria() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['titulo', 'dataEvento', 'publicado', 'fotos', 'createdAt'])
+          && d.keys().hasOnly(['titulo', 'descricao', 'dataEvento', 'local', 'capa',
+                               'publicado', 'fotos', 'totalFotos', 'createdAt', 'updatedAt'])
+          && requiredString(d.titulo) && d.titulo.size() <= 150
+          && d.dataEvento is string && d.dataEvento.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+          && d.publicado is bool
+          && d.fotos is list && d.fotos.size() <= 300
+          && (d.fotos.size() == 0 || (d.fotos[0] is map && d.fotos[0].id is string && d.fotos[0].id.size() <= 300))
+          && (!('descricao' in d.keys()) || (d.descricao is string && d.descricao.size() <= 2000))
+          && (!('local' in d.keys()) || (d.local is string && d.local.size() <= 150))
+          && (!('capa' in d.keys()) || (d.capa is string && d.capa.size() <= 300))
+          && (!('totalFotos' in d.keys()) || (d.totalFotos is int && d.totalFotos >= 0 && d.totalFotos <= 300));
+    }
+
     /** Números de impacto da página inicial (Edição > Números) */
     function isValidStats() {
       let d = request.resource.data;
@@ -319,6 +340,22 @@ service cloud.firestore {
       allow create: if docId == 'impacto' && hasGrau(6) && isValidStats();
       allow update: if docId == 'impacto' && hasGrau(6) && isValidStats();
       allow delete: if false;
+    }
+
+    // ──────────────────────────────────────────────────────────
+    //  GALERIA
+    //  Leitura: pública apenas para álbuns com publicado == true;
+    //           admins Grau 1/6 também enxergam rascunhos.
+    //  ATENÇÃO: a página pública consulta com
+    //           where('publicado', '==', true). Sem esse filtro a
+    //           consulta é NEGADA (as regras não filtram resultados).
+    //  Criação / atualização / exclusão: Grau 1 ou 6 (Edição).
+    // ──────────────────────────────────────────────────────────
+    match /galeria/{docId} {
+      allow read:   if resource.data.publicado == true || hasGrau(6);
+      allow create: if hasGrau(6) && isValidGaleria();
+      allow update: if hasGrau(6) && isValidGaleria();
+      allow delete: if hasGrau(6);
     }
   }
 }

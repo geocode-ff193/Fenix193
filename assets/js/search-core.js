@@ -27,7 +27,8 @@ import {
     getDocs,
     query,
     orderBy,
-    limit
+    limit,
+    where
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 /* ── Re-usa instância já inicializada em script.js ───────── */
@@ -45,6 +46,14 @@ const db = getFirestore(firebaseApp);
 
 /* ── Índice estático do site ─────────────────────────────── */
 export const STATIC_INDEX = [
+    {
+        title: 'Galeria de Fotos',
+        sub: 'Álbuns de eventos e ações',
+        category: 'Atuação',
+        icon: 'fa-images',
+        link: 'pages/galeria.html',
+        keywords: 'galeria fotos fotografias imagens albuns album registros eventos acoes momentos',
+    },
     {
         title: 'Início',
         sub: 'Página principal da Fundação',
@@ -286,7 +295,7 @@ export function getCatIcon(cat) {
    ═══════════════════════════════════════════════════════════ */
 export const cache = {
     news: null, docs: null, projetos: null, capacitacao: null,
-    eventos: null, timeline: null, apoiadores: null,
+    eventos: null, timeline: null, apoiadores: null, galeria: null,
     ready: false, failed: false
 };
 
@@ -300,7 +309,7 @@ export function loadCache() {
 
 async function doLoadCache() {
     try {
-        const [newsSnap, docsSnap, projetosSnap, capacitacaoSnap, eventosSnap, timelineSnap, apoiadoresSnap] = await Promise.all([
+        const [newsSnap, docsSnap, projetosSnap, capacitacaoSnap, eventosSnap, timelineSnap, apoiadoresSnap, galeriaSnap] = await Promise.all([
             getDocs(query(collection(db, 'news'), orderBy('createdAt', 'desc'), limit(30))),
             getDocs(query(collection(db, 'transparency_docs'), orderBy('createdAt', 'desc'))),
             getDocs(query(collection(db, 'projetos'), orderBy('createdAt', 'desc'))),
@@ -308,6 +317,7 @@ async function doLoadCache() {
             getDocs(query(collection(db, 'eventos'), orderBy('createdAt', 'desc'))),
             getDocs(query(collection(db, 'timeline'), orderBy('ano', 'asc'))),
             getDocs(query(collection(db, 'apoiadores'), orderBy('createdAt', 'desc'))),
+            getDocs(query(collection(db, 'galeria'), where('publicado', '==', true))),
         ]);
 
         // "keywords" (texto normalizado) alimenta o dropdown do hero;
@@ -414,10 +424,28 @@ async function doLoadCache() {
                 keywords: normalize(`${data.nome}`)
             };
         });
+
+        cache.galeria = galeriaSnap.docs.map(d => {
+            const data = d.data();
+            const [y, m, dia] = String(data.dataEvento || '').split('-').map(Number);
+            const date = y && m && dia ? new Date(y, m - 1, dia) : null;
+            const total = (data.fotos || []).length;
+            return {
+                id: d.id,
+                title: data.titulo || '',
+                sub: [date ? date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '', data.local, `${total} foto${total === 1 ? '' : 's'}`].filter(Boolean).join(' · '),
+                category: 'Atuação',
+                icon: 'fa-images',
+                link: `pages/galeria.html?album=${d.id}`,
+                body: [data.local, data.descricao].filter(Boolean).join('. '),
+                date, timestamp: date ? date.getTime() : 0,
+                keywords: normalize(`${data.titulo} ${data.local} ${data.descricao} galeria fotos`)
+            };
+        });
     } catch (e) {
         console.warn('[FF193 Search] Falha ao carregar o Firestore:', e.message);
         cache.news = []; cache.docs = []; cache.projetos = []; cache.capacitacao = [];
-        cache.eventos = []; cache.timeline = []; cache.apoiadores = [];
+        cache.eventos = []; cache.timeline = []; cache.apoiadores = []; cache.galeria = [];
         cache.failed = true;
     } finally {
         cache.ready = true;
@@ -599,7 +627,7 @@ export async function searchAll(q) {
 
     const dynamic = [
         ...dyn.news, ...dyn.docs, ...dyn.projetos, ...dyn.capacitacao,
-        ...dyn.eventos, ...dyn.timeline, ...dyn.apoiadores
+        ...dyn.eventos, ...dyn.timeline, ...dyn.apoiadores, ...dyn.galeria
     ];
 
     const results = rankItems([...curated, ...crawled, ...dynamic], terms);

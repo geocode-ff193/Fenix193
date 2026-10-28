@@ -1,0 +1,492 @@
+/* ==========================================================================
+   GALERIA.CSS — Fundação Fênix 193
+   Página pages/galeria.html: lista de álbuns, grade de fotos e visualizador
+   ampliado (lightbox). Usa as variáveis do style.css.
+   ========================================================================== */
+
+/* ── Barra de filtros ── */
+.gal-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 20px;
+    margin-bottom: 28px;
+}
+
+.gal-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.gal-chip {
+    padding: 8px 18px;
+    background: var(--white);
+    color: var(--text);
+    border: 1.5px solid var(--gray-light);
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.gal-chip:hover {
+    border-color: var(--navy);
+}
+
+.gal-chip[aria-pressed="true"] {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+}
+
+.gal-count {
+    font-size: .9rem;
+    color: var(--text-muted);
+}
+
+/* ── Cartões de álbum ── */
+.gal-albums {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 26px;
+}
+
+.gal-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, .06);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    color: inherit;
+    text-decoration: none;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.gal-card:hover,
+.gal-card:focus-visible {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.gal-card-media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--navy), var(--red-dark));
+    overflow: hidden;
+}
+
+.gal-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+
+.gal-card:hover .gal-card-media img {
+    transform: scale(1.06);
+}
+
+.gal-card-count {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: linear-gradient(rgba(0, 0, 0, .62), rgba(0, 0, 0, .62));
+    color: #fff;
+    border-radius: 999px;
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.gal-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px 22px;
+}
+
+.gal-card-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.2;
+    color: var(--navy);
+    overflow-wrap: anywhere;
+}
+
+.gal-card-meta {
+    font-size: .85rem;
+    color: var(--text-muted);
+}
+
+/* ── Cabeçalho do álbum ── */
+.gal-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    font-size: .92rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.gal-back:hover {
+    color: var(--red);
+}
+
+.gal-album-desc {
+    max-width: 780px;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    white-space: pre-line;
+}
+
+/* ── Grade de fotos ── */
+.gal-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.gal-thumb {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    background: var(--gray-light);
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.gal-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease, filter .3s ease;
+}
+
+.gal-thumb:hover img,
+.gal-thumb:focus-visible img {
+    transform: scale(1.07);
+    filter: brightness(.85);
+}
+
+.gal-thumb::after {
+    content: '\f00e';
+    /* lupa (Font Awesome) */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.gal-thumb:hover::after,
+.gal-thumb:focus-visible::after {
+    opacity: 1;
+}
+
+.gal-more-wrap {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.gal-more-wrap [hidden] {
+    display: none;
+}
+
+/* ── Estados ── */
+.gal-state {
+    text-align: center;
+    padding: 70px 24px;
+    background: var(--white);
+    border: 1px dashed var(--gray-light);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+}
+
+.gal-state>i {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 3rem;
+    color: var(--gray);
+}
+
+.gal-state h2 {
+    margin-bottom: 8px;
+    font-size: 1.6rem;
+    color: var(--navy);
+}
+
+.gal-state .btn-outline {
+    margin-top: 18px;
+}
+
+.gal-skeleton {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(90deg, #f0f0f0 25%, #f7f7f7 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: gal-shimmer 1.4s infinite;
+}
+
+@keyframes gal-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ==========================================================================
+   VISUALIZADOR (LIGHTBOX)
+   Fundo com degradê (e não cor sólida) de propósito: o painel de
+   acessibilidade trata "fundo com imagem/degradê" como área a PRESERVAR.
+   ========================================================================== */
+html.gal-lb-open {
+    overflow: hidden;
+}
+
+.gal-lb {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    /* acima do chatbot (9999) e dos botões flutuantes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(8, 8, 8, .94), rgba(8, 8, 8, .94));
+    opacity: 0;
+    transition: opacity .2s ease;
+    /* sem transição de visibility: o foco precisa funcionar na hora de abrir */
+}
+
+.gal-lb.is-open {
+    opacity: 1;
+}
+
+.gal-lb[hidden] {
+    display: none;
+}
+
+.gal-lb-figure {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: min(96vw, 1500px);
+    max-height: 100%;
+    margin: 0;
+    padding: 64px 70px 78px;
+    box-sizing: border-box;
+}
+
+.gal-lb-img {
+    width: auto;
+    /* anula os atributos width/height do HTML: a caixa acompanha a proporção real da foto */
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 150px);
+    max-height: calc(100dvh - 150px);
+    object-fit: contain;
+    border-radius: 4px;
+    background: #111;
+    transition: opacity .2s ease;
+}
+
+.gal-lb-img.is-loading {
+    opacity: .25;
+}
+
+.gal-lb-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 42px;
+    height: 42px;
+    margin: -21px 0 0 -21px;
+    border: 3px solid rgba(255, 255, 255, .25);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: gal-spin .8s linear infinite;
+    display: none;
+}
+
+.gal-lb.is-loading .gal-lb-spinner {
+    display: block;
+}
+
+@keyframes gal-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.gal-lb-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 18px;
+    background: linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .75));
+    color: #fff;
+    border-radius: 8px;
+    font-size: .95rem;
+}
+
+.gal-lb-error[hidden] {
+    display: none;
+}
+
+.gal-lb-caption {
+    margin-top: 14px;
+    max-width: 900px;
+    font-size: .98rem;
+    line-height: 1.55;
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.gal-lb-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-size: .85rem;
+    color: #d6d6d6;
+}
+
+.gal-lb-count {
+    font-variant-numeric: tabular-nums;
+}
+
+.gal-lb-download {
+    color: #ffd24a;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.gal-lb-btn {
+    position: absolute;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    background: linear-gradient(rgba(255, 255, 255, .14), rgba(255, 255, 255, .14));
+    color: #fff;
+    border: 0;
+    border-radius: 50%;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+.gal-lb-btn:hover {
+    background: linear-gradient(var(--red), var(--red));
+}
+
+.gal-lb-close {
+    top: 16px;
+    right: 16px;
+}
+
+.gal-lb-prev {
+    left: 14px;
+    top: 50%;
+    margin-top: -24px;
+}
+
+.gal-lb-next {
+    right: 14px;
+    top: 50%;
+    margin-top: -24px;
+}
+
+@media (max-width: 700px) {
+    .gal-lb-figure {
+        padding: 60px 8px 76px;
+    }
+
+    .gal-lb-prev,
+    .gal-lb-next {
+        top: auto;
+        bottom: 14px;
+        margin-top: 0;
+        width: 44px;
+        height: 44px;
+    }
+
+    .gal-lb-prev {
+        left: 14px;
+    }
+
+    .gal-lb-next {
+        right: 14px;
+    }
+
+    .gal-lb-bar {
+        bottom: 22px;
+    }
+
+    .gal-albums {
+        grid-template-columns: 1fr;
+    }
+
+    .gal-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .gal-card,
+    .gal-card-media img,
+    .gal-thumb img,
+    .gal-lb,
+    .gal-lb-img {
+        transition: none;
+    }
+
+    .gal-skeleton,
+    .gal-lb-spinner {
+        animation: none;
+    }
+}

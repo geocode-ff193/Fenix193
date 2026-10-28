@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/../assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/../assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/../assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/../assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <link rel="manifest" href="../site.webmanifest" />
+    <title>Galeria · Fundação Fênix 193</title>
+    <meta name="description"
+        content="Galeria de fotos da Fundação Fênix 193: registros de ações, eventos e projetos de apoio ao Corpo de Bombeiros Militar de Sergipe e à Defesa Civil.">
+    <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- LCP desta página: fundo do .page-hero (banner interno) -->
+    <link rel="preload" as="image" href="../assets/img/bomb_01.webp" fetchpriority="high">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- ===================== CRITICAL CSS (inline) =====================
+         Header/nav + banner interno (.page-hero) — o suficiente para renderizar
+         a primeira dobra sem esperar o style.css/pages.css completos. -->
+    <style>
+        :root {
+            --red: #E12217;
+            --red-dark: #872020;
+            --red-light: #ED4C43;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
+            --navy-light: #505251;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
+            --gray-light: #E8E5DE;
+            --gray: #9CA3AF;
+            --text: #313332;
+            --text-muted: #636665;
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, .18);
+            --transition: 0.3s ease;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+        #main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .04em;
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #menu a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #btn-mobile {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--amber);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+
+        /* PAGE HERO (banner interno) */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%) center/cover no-repeat;
+            background-color: var(--navy);
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('../assets/img/bomb_01.webp') center/cover no-repeat;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dropdown.css">
+    <link rel="stylesheet" href="../assets/css/pages.css">
+    <link rel="stylesheet" href="../assets/css/acessibilidade.css">
+    <link rel="stylesheet" href="../assets/css/chatbot.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/back-to-top.css">
+    <link rel="stylesheet" href="../assets/css/galeria.css">
+</head>
+
+<body>
+    <!-- ==========================================================
+         HEADER PADRONIZADO · Fundação Fênix 193
+         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
+         header--main → Navegação principal (com dropdowns)
+         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
+         os scripts de menu/dropdown existentes continuam funcionando.
+         ========================================================== -->
+    <!-- ==========================================================
+         HEADER PADRONIZADO · Fundação Fênix 193
+         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
+         header--main → Navegação principal (com dropdowns)
+         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
+         os scripts de menu/dropdown existentes continuam funcionando.
+         ========================================================== -->
+    <!-- ==========================================================
+         HEADER PADRONIZADO · Fundação Fênix 193
+         header--top  → Logo · Pesquisa · AkanniHUB · Redes Sociais
+         header--main → Navegação principal (com dropdowns)
+         IDs mantidos (#main-header, #nav-menu, #menu, #btn-mobile):
+         os scripts de menu/dropdown existentes continuam funcionando.
+         ========================================================== -->
+    <header id="main-header">
+
+        <!-- ===== HEADER--TOP ===== -->
+        <div class="header--top">
+            <div class="container header-top-inner">
+
+                <!-- Logo -->
+                <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                    </div>
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                    </div>
+                </a>
+
+                <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
+                <form class="header-search header-search--top" role="search" action="../pesquisa.html" method="get">
+                    <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                        aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                    <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+                <!-- AkanniHUB + Redes sociais (desktop) -->
+                <div class="header-top-actions">
+                    <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                        <span class="header-hub-label">AkanniHUB</span>
+                    </a>
+                    <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
+                    <ul class="header-social" role="list" aria-label="Redes sociais">
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Hambúrguer (mobile) -->
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== HEADER--MAIN ===== -->
+        <div class="header--main">
+            <div class="container">
+                <nav id="nav-menu" aria-label="Navegação principal">
+                    <ul id="menu" role="list">
+
+                        <!-- Pesquisa (somente no menu mobile) -->
+                        <li class="menu-mobile-search">
+                            <form class="header-search header-search--menu" role="search" action="../pesquisa.html"
+                                method="get">
+                                <input type="search" name="q" class="header-search-input"
+                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
+                                    spellcheck="false" minlength="2" required>
+                                <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </li>
+
+                        <li><a href="../index.html">Início</a></li>
+
+                        <!-- DROPDOWN: Institucional -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                                Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="../index.html#quem-somos" role="menuitem">
+                                        <i class="fas fa-landmark"></i> Quem Somos
+                                    </a></li>
+                                <li><a href="nossa-historia.html" role="menuitem">
+                                        <i class="fas fa-book-open"></i> Nossa História
+                                    </a></li>
+                                <li><a href="missao-valores.html" role="menuitem">
+                                        <i class="fas fa-bullseye"></i> Missão e Valores
+                                    </a></li>
+                                <li><a href="equipe.html" role="menuitem">
+                                        <i class="fas fa-users"></i> Equipe
+                                    </a></li>
+                            </ul>
+                        </li>
+
+                        <!-- DROPDOWN: Atuação -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                                Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="projetos.html" role="menuitem">
+                                        <i class="fas fa-clipboard-list"></i> Projetos
+                                    </a></li>
+                                <li><a href="capacitacao.html" role="menuitem">
+                                        <i class="fas fa-graduation-cap"></i> Capacitação
+                                    </a></li>
+                                <li><a href="eventos.html" role="menuitem">
+                                        <i class="fas fa-calendar-days"></i> Eventos
+                                    </a></li>
+                                <li><a href="galeria.html" role="menuitem" aria-current="page">
+                                        <i class="fas fa-images"></i> Galeria
+                                    </a></li>
+                                <li><a href="parcerias.html" role="menuitem">
+                                        <i class="fas fa-handshake"></i> Parcerias
+                                    </a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="transparencia.html">Transparência</a></li>
+                        <li><a href="../index.html#stats">Impacto</a></li>
+                        <li><a href="noticias.html">Notícias</a></li>
+                        <li><a href="fale-conosco.html">Contato</a></li>
+                        <li><a href="../index.html#como-ajudar">Colabore</a></li>
+
+                        <!-- AkanniHUB + Redes (somente no menu mobile) -->
+                        <li class="menu-mobile-extras">
+                            <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                                <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                                <span class="header-hub-label">AkanniHUB</span>
+                            </a>
+                            <ul class="header-social" role="list" aria-label="Redes sociais">
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="page-hero page-hero--galeria" aria-label="Galeria">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" id="gal-breadcrumb" aria-label="Localização">
+                    <a href="../index.html">Início</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <span>Galeria</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1 id="gal-h1">Galeria</h1>
+                <p id="gal-hero-sub">Momentos de ações, eventos e projetos da Fundação Fênix 193.</p>
+            </div>
+        </section>
+
+        <div class="section-padding">
+            <div class="container">
+                <!-- Lista de álbuns ou fotos de um álbum (galeria.js) -->
+                <div id="gal-content" aria-live="polite" aria-busy="true">
+                    <noscript>A galeria precisa de JavaScript ativado no navegador.</noscript>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <!-- COLUNA 1 · Marca -->
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36"
+                            loading="lazy">
+                        <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
+                    </a>
+                    <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
+                    <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
+                        desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: 68.745.226/0001-55</p>
+                </div>
+
+                <!-- COLUNA 2 · Navegação -->
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title">Navegação</h4>
+                    <ul class="footer-nav-grid">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a>
+                        </li>
+                        <li><a href="../index.html#quem-somos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Quem
+                                Somos</a>
+                        </li>
+                        <li><a href="nossa-historia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Nossa História</a></li>
+                        <li><a href="missao-valores.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Missão e Valores</a></li>
+                        <li><a href="equipe.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Equipe</a>
+                        </li>
+                        <li><a href="transparencia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Transparência</a></li>
+                        <li><a href="projetos.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Projetos</a></li>
+                        <li><a href="capacitacao.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Capacitação</a></li>
+                        <li><a href="eventos.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Eventos</a>
+                        </li>
+                        <li><a href="parcerias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Parcerias</a></li>
+                        <li><a href="noticias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Notícias</a></li>
+                        <li><a href="fale-conosco.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- COLUNA 3 · Redes Sociais -->
+                <div class="footer-social-col">
+                    <h4 class="footer-col-title">Siga-nos</h4>
+                    <div class="footer-social-links">
+                        <a href="?" class="footer-social-btn" aria-label="Instagram">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="?" class="footer-social-btn" aria-label="Facebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="?" class="footer-social-btn" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                        <a href="?" class="footer-social-btn" aria-label="YouTube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- COLUNA 4 · Fale Conosco -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-col-title">Fale Conosco</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:contato@fenix193.org.br">contato@fenix193.org.br</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+55799????????">+55 (79) 9 ????-????</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <a href="https://share.google/aknj98wt8Moh0ghdJ">R. Honor Gregório Santos, 44 - Grageru</a>
+                        </li>
+                    </ul>
+                    <!-- Acesso rápido de administração -->
+                    <div class="footer-admin-links">
+                        <a href="../akannihub.html" class="footer-admin-btn">
+                            <i class="fa-solid fa-user-lock" aria-hidden="true"></i> Acesso Restrito
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=5579988663905&text=Suporte%20Tecnico%20PsiMF"
+                            class="footer-admin-btn">
+                            <i class="fa-solid fa-headset" aria-hidden="true"></i> Suporte Técnico
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SUB-FOOTER ── -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+
+                <!-- Esquerda: copyright + créditos -->
+                <p class="footer-copy">
+                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    reservados.
+                    &mdash; Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café"
+                        style="color:var(--red)"></i>
+                    por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a>
+                </p>
+
+                <!-- Direita: links legais -->
+                <nav class="footer-legal-links" aria-label="Links legais">
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank" rel="noopener">Política
+                        de
+                        Privacidade</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="https://eusougeovani.vercel.app/termos.html" target="_blank" rel="noopener">Termos de
+                        Uso</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="#cookie-banner">Cookies</a>
+                </nav>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+    <script defer src="../assets/js/acessibilidade.js"></script>
+    <script defer src="../assets/js/back-to-top.js"></script>
+    <script defer src="../assets/js/media-player.js"></script>
+
+    <!-- ===== CHATBOT FLUTUANTE ===== -->
+    <div class="chatbot-container">
+        <div class="chatbot-teaser" id="chatbotTeaser">
+            <button class="chatbot-teaser-dismiss" id="chatbotTeaserDismiss" aria-label="Dispensar">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
+            <span class="chatbot-toggle-face"><img src="../assets/img/luminia.webp" alt="" width="38"
+                    height="38"></span>
+            <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="../assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                </div>
+                <div class="chatbot-info">
+                    <h4>LuminIA</h4>
+                    <p class="chatbot-status">
+                        <span class="status-dot"></span>Online
+                    </p>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot-message">
+                    <div class="message-avatar">
+                        <img src="../assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix 193. Posso tirar dúvidas,
+                            ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
+                            começamos?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer" id="chatbotFooter">
+                <div class="chatbot-options" id="chatbotOptions"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" defer src="../assets/js/chatbot.js"></script>
+
+    <!-- ===================== VISUALIZADOR DE FOTOS (lightbox) ===================== -->
+    <div class="gal-lb" id="gal-lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de fotos" hidden>
+        <button type="button" class="gal-lb-btn gal-lb-close" id="gal-lb-close" aria-label="Fechar visualizador">
+            <i class="fas fa-xmark" aria-hidden="true"></i></button>
+        <button type="button" class="gal-lb-btn gal-lb-prev" id="gal-lb-prev" aria-label="Foto anterior">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+        <button type="button" class="gal-lb-btn gal-lb-next" id="gal-lb-next" aria-label="Próxima foto">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+        <figure class="gal-lb-figure">
+            <img class="gal-lb-img" id="gal-lb-img" alt="">
+            <span class="gal-lb-spinner" aria-hidden="true"></span>
+            <span class="gal-lb-error" id="gal-lb-error" hidden>Não foi possível carregar esta foto.</span>
+            <figcaption class="gal-lb-caption" id="gal-lb-caption"></figcaption>
+        </figure>
+        <div class="gal-lb-bar">
+            <span class="gal-lb-count" id="gal-lb-count" aria-live="polite"></span>
+            <a class="gal-lb-download" id="gal-lb-download" href="#" target="_blank" rel="noopener">Baixar foto</a>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/galeria.js"></script>
+
+</body>
+
+</html>

@@ -1185,6 +1185,203 @@
             }
         }
 
+        /* ── Galeria (Edição > Galeria) ── */
+        .galeria-queue {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .galeria-queue:empty {
+            display: none;
+        }
+
+        .galeria-queue-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 10px;
+            align-items: center;
+            padding: 8px 12px;
+            background: var(--off-white);
+            border-radius: var(--radius);
+            font-size: .82rem;
+        }
+
+        .galeria-queue-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--text);
+        }
+
+        .galeria-queue-status {
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .galeria-queue-item.is-error .galeria-queue-status {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .galeria-queue-item.is-ok .galeria-queue-status {
+            color: #166534;
+            font-weight: 700;
+        }
+
+        .galeria-queue-bar {
+            grid-column: 1 / -1;
+            height: 4px;
+            background: var(--gray-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .galeria-queue-bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--red);
+            transition: width .2s ease;
+        }
+
+        .galeria-fotos-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .galeria-contador {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .galeria-fotos {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .galeria-fotos:empty {
+            display: none;
+        }
+
+        .galeria-foto {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+            background: var(--white);
+            border: 1.5px solid var(--gray-light);
+            border-radius: var(--radius);
+        }
+
+        .galeria-foto.is-capa {
+            border-color: var(--amber);
+            box-shadow: 0 0 0 2px rgba(248, 186, 37, .35);
+        }
+
+        .galeria-foto-img {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border-radius: 4px;
+            background: var(--gray-light);
+        }
+
+        .galeria-foto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .galeria-capa-badge {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            padding: 2px 8px;
+            background: var(--amber);
+            color: var(--navy);
+            border-radius: 999px;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .galeria-foto-alt {
+            padding: 6px 8px;
+            font-size: .78rem;
+        }
+
+        .galeria-foto-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .galeria-foto-actions .btn {
+            flex: 1;
+            padding: 6px 0;
+            justify-content: center;
+        }
+
+        .galeria-foto-actions .btn[disabled] {
+            opacity: .35;
+            cursor: not-allowed;
+        }
+
+        .galeria-publicar {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 12px 14px;
+            background: rgba(248, 186, 37, .12);
+            border: 1px solid rgba(248, 186, 37, .5);
+            border-radius: var(--radius);
+            font-size: .9rem;
+            cursor: pointer;
+        }
+
+        .galeria-publicar input {
+            margin-top: 3px;
+            accent-color: var(--red);
+        }
+
+        .galeria-publicar small {
+            display: block;
+            color: var(--text-muted);
+            font-size: .78rem;
+            margin-top: 2px;
+        }
+
+        .galeria-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 9px;
+            border-radius: 999px;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .galeria-badge.on {
+            background: var(--green-bg);
+            color: #166534;
+        }
+
+        .galeria-badge.off {
+            background: var(--gray-light);
+            color: var(--text-muted);
+        }
+
         /* ── Suporte Técnico (formulário de chamado) ── */
         .support-grid {
             display: grid;
@@ -1677,6 +1874,9 @@
                     </a>
                     <a class="sidebar-link" data-section="numeros" data-grau="6" tabindex="0">
                         <i class="fas fa-chart-simple"></i> Números
+                    </a>
+                    <a class="sidebar-link" data-section="galeria" data-grau="6" tabindex="0">
+                        <i class="fas fa-images"></i> Galeria
                     </a>
                 </div>
                 <div class="sidebar-nav" id="nav-group-suporte">
@@ -2570,6 +2770,115 @@
                     </div>
                 </section>
 
+                <!-- ══ GALERIA ══ -->
+                <section id="section-galeria" class="app-section">
+                    <div class="page-header">
+                        <div>
+                            <h2 class="page-header-title">Galeria</h2>
+                            <p class="page-header-sub">Gerencie os álbuns de fotos exibidos na página Galeria do site
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-list-grid">
+
+                        <!-- ── Formulário do álbum ── -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title" id="galeria-form-title">
+                                    <i class="fas fa-images"></i> Novo álbum
+                                </span>
+                            </div>
+                            <div class="panel-body">
+                                <form id="form-galeria" class="form-grid">
+                                    <input type="hidden" id="galeria-edit-id" value="">
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="galeria-titulo">Título do álbum
+                                            <span>*</span></label>
+                                        <input class="form-input" id="galeria-titulo" type="text" maxlength="150"
+                                            placeholder="Ex: Mutirão de Prevenção 2026" required>
+                                    </div>
+
+                                    <div class="form-grid form-grid-2">
+                                        <div class="form-row">
+                                            <label class="form-label" for="galeria-data">Data do evento
+                                                <span>*</span></label>
+                                            <input class="form-input" id="galeria-data" type="date" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <label class="form-label" for="galeria-local">Local</label>
+                                            <input class="form-input" id="galeria-local" type="text" maxlength="150"
+                                                placeholder="Ex: Aracaju - SE">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label" for="galeria-descricao">Descrição</label>
+                                        <textarea class="form-textarea" id="galeria-descricao" maxlength="2000"
+                                            placeholder="Conte rapidamente sobre o evento (opcional)"></textarea>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <label class="form-label">Fotos</label>
+                                        <div class="upload-zone" id="galeria-upload-zone" role="button" tabindex="0"
+                                            aria-label="Área de envio de fotos: arraste ou clique para selecionar">
+                                            <i class="fas fa-cloud-arrow-up"></i>
+                                            <p>Arraste as fotos ou <strong>clique para selecionar</strong></p>
+                                            <p style="font-size:.78rem;margin-top:4px;">Várias de uma vez · JPG, PNG,
+                                                WebP ·
+                                                reduzidas automaticamente para até 2.400 px</p>
+                                            <input type="file" id="galeria-file" accept="image/*" multiple
+                                                style="display:none;">
+                                        </div>
+                                        <ul class="galeria-queue" id="galeria-queue" aria-live="polite"></ul>
+                                        <p class="form-hint"><i class="fas fa-circle-info"></i>
+                                            As fotos vão para o Cloudinary. Remover uma foto daqui só a tira do álbum;
+                                            o arquivo continua no Cloudinary.</p>
+                                    </div>
+
+                                    <div class="galeria-fotos-head">
+                                        <span class="galeria-contador" id="galeria-contador">0 / 300 fotos</span>
+                                        <span class="form-hint"><i class="fas fa-star"></i> A estrela define a capa do
+                                            álbum</span>
+                                    </div>
+                                    <ul class="galeria-fotos" id="galeria-fotos"></ul>
+
+                                    <label class="galeria-publicar" for="galeria-publicado">
+                                        <input type="checkbox" id="galeria-publicado" checked>
+                                        <span>Publicar no site
+                                            <small>Desmarcado, o álbum fica como rascunho e só aparece aqui no
+                                                painel.</small></span>
+                                    </label>
+
+                                    <div style="display:flex;gap:10px;">
+                                        <button type="submit" class="btn btn-primary" id="btn-submit-galeria"
+                                            style="flex:1;">
+                                            <i class="fas fa-floppy-disk"></i>
+                                            <span id="galeria-submit-label">Salvar álbum</span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline" id="btn-cancel-galeria"
+                                            style="display:none;">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- ── Lista de álbuns ── -->
+                        <div class="panel">
+                            <div class="panel-header">
+                                <span class="panel-title"><i class="fas fa-list"></i> Álbuns</span>
+                            </div>
+                            <div class="panel-body">
+                                <div id="galeria-list-wrap">
+                                    <div class="empty-state"><span class="spinner"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
                 <!-- ══ SUPORTE TÉCNICO ══ -->
                 <section id="section-suporte" class="app-section">
                     <div class="page-header">
@@ -3032,7 +3341,7 @@
             if (hasGrau(3)) tasks.push(loadTransparency());
             if (hasGrau(2)) tasks.push(loadNews());
             if (hasGrau(5)) tasks.push(loadEventos(), loadProjetos(), loadCapacitacao());
-            if (hasGrau(6)) tasks.push(loadTimeline(), loadApoiadores(), loadNumeros());
+            if (hasGrau(6)) tasks.push(loadTimeline(), loadApoiadores(), loadNumeros(), loadGaleria());
             await Promise.all(tasks);
         }
 
@@ -4419,6 +4728,405 @@
                 numRender();
             }
         });
+
+        // ══════════════════════════════════════════════════════════════
+        //  GALERIA (Edição) — álbuns de fotos de eventos
+        //  Banco: coleção "galeria" (1 documento por álbum)
+        //    { titulo, descricao, dataEvento "AAAA-MM-DD", local, capa,
+        //      publicado, totalFotos, createdAt, updatedAt,
+        //      fotos: [{ id (public_id do Cloudinary), w, h, alt }] }
+        //  Fotos: enviadas ao Cloudinary pelo preset já usado nas notícias.
+        //  Antes de enviar, cada foto é REDUZIDA no navegador (lado maior de
+        //  2.400 px, JPEG 86%): sobe mais rápido e poupa os créditos do plano.
+        //  O site guarda só o public_id e monta as URLs (miniatura, ampliada)
+        //  com transformações f_auto,q_auto do Cloudinary.
+        // ══════════════════════════════════════════════════════════════
+        const GAL_MAX_FOTOS = 300;          // mesmo limite das regras do Firestore
+        const GAL_MAX_LADO = 2400;
+        const GAL_MAX_BYTES = 10 * 1024 * 1024;   // limite de imagem do plano gratuito do Cloudinary
+        const GAL_PARALELO = 3;
+
+        let galFotos = [];                  // fotos do álbum em edição: [{id, w, h, alt}]
+        let galCapa = '';                   // public_id da capa
+        let galEnviando = 0;                // envios pendentes (na fila ou em andamento)
+        let galUsarTags = true;             // se o preset recusar "tags", repete sem elas
+        let galAlbuns = {};                 // cache da lista: id → dados
+
+        const galEl = id => document.getElementById(id);
+        const galUrl = (publicId, t) => `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/${t}/${String(publicId).split('/').map(encodeURIComponent).join('/')}`;
+        const galThumb = (publicId, w = 280) => galUrl(publicId, `c_fill,g_auto,w_${w},h_${Math.round(w * 0.75)},f_auto,q_auto`);
+        const galData = iso => { const [y, m, d] = String(iso || '').split('-'); return d ? `${d}/${m}/${y}` : ''; };
+
+        // ── Redução da foto no navegador ──
+        async function galPreparar(file) {
+            try {
+                const bmp = await createImageBitmap(file, { imageOrientation: 'from-image' });   // respeita a rotação do celular
+                const escala = Math.min(1, GAL_MAX_LADO / Math.max(bmp.width, bmp.height));
+                const w = Math.round(bmp.width * escala), h = Math.round(bmp.height * escala);
+                if (escala === 1 && file.size <= 1.5 * 1024 * 1024 && /^image\/(jpeg|webp)$/.test(file.type)) {
+                    bmp.close?.();
+                    return file;                              // já é pequena e leve: envia como está
+                }
+                const canvas = document.createElement('canvas');
+                canvas.width = w; canvas.height = h;
+                canvas.getContext('2d').drawImage(bmp, 0, 0, w, h);
+                bmp.close?.();
+                const blob = await new Promise(res => canvas.toBlob(res, 'image/jpeg', 0.86));
+                if (blob && (escala < 1 || blob.size < file.size)) {
+                    return new File([blob], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' });
+                }
+                return file;
+            } catch {
+                return file;                                  // formato que o navegador não decodifica (ex.: HEIC): o Cloudinary converte
+            }
+        }
+
+        // ── Envio ao Cloudinary (XHR, para ter progresso) ──
+        function galPostar(file, comTags, onProgress) {
+            return new Promise((resolve, reject) => {
+                const fd = new FormData();
+                fd.append('file', file);
+                fd.append('upload_preset', CLOUDINARY_PRESET);
+                if (comTags) fd.append('tags', 'galeria');
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`);
+                xhr.upload.onprogress = e => { if (e.lengthComputable) onProgress(Math.round(e.loaded / e.total * 100)); };
+                xhr.onload = () => {
+                    let data = {};
+                    try { data = JSON.parse(xhr.responseText); } catch { /* resposta sem JSON */ }
+                    if (xhr.status >= 200 && xhr.status < 300 && data.public_id) {
+                        resolve({ id: data.public_id, w: Number(data.width) || 0, h: Number(data.height) || 0 });
+                    } else {
+                        const err = new Error(data.error?.message || `HTTP ${xhr.status}`);
+                        err.status = xhr.status;
+                        reject(err);
+                    }
+                };
+                xhr.onerror = () => reject(new Error('Falha de rede'));
+                xhr.send(fd);
+            });
+        }
+
+        async function galEnviar(file, onProgress) {
+            try {
+                return await galPostar(file, galUsarTags, onProgress);
+            } catch (err) {
+                // Alguns presets não aceitam o parâmetro "tags": só nesse caso (mensagem de erro sobre
+                // parâmetro/tag) repete sem ele. Um 400 qualquer (ex.: "imagem inválida") NÃO desliga as tags.
+                if (galUsarTags && err.status === 400 && /tag|param|allowed|whitelist|unsigned/i.test(err.message)) {
+                    galUsarTags = false;
+                    return await galPostar(file, false, onProgress);
+                }
+                throw err;
+            }
+        }
+
+        function galSubmitState() {
+            const btn = galEl('btn-submit-galeria');
+            const lbl = galEl('galeria-submit-label');
+            btn.disabled = galEnviando > 0;
+            if (galEnviando > 0) lbl.textContent = `Enviando fotos (${galEnviando})…`;
+            else lbl.textContent = galEl('galeria-edit-id').value ? 'Atualizar álbum' : 'Salvar álbum';
+        }
+
+        // Processa UMA foto da fila (preparar → enviar → entrar no álbum)
+        async function galProcessar(job) {
+            const { file, li } = job;
+            const status = li.querySelector('.galeria-queue-status');
+            const barra = li.querySelector('.galeria-queue-bar span');
+            li.className = 'galeria-queue-item';
+            status.textContent = 'Preparando…';
+            try {
+                const pronto = await galPreparar(file);
+                if (pronto.size > GAL_MAX_BYTES) throw new Error('foto maior que 10 MB mesmo depois de reduzida');
+                status.textContent = '0%';
+                const foto = await galEnviar(pronto, p => { barra.style.width = p + '%'; status.textContent = p + '%'; });
+                galFotos.push({ id: foto.id, w: foto.w, h: foto.h, alt: '' });
+                if (!galCapa) galCapa = foto.id;
+                barra.style.width = '100%';
+                li.classList.add('is-ok');
+                status.textContent = 'Enviada ✓';
+                galRenderFotos();
+                setTimeout(() => li.remove(), 1500);
+            } catch (err) {
+                console.error('[AkanniHUB] Galeria — erro no envio:', err);
+                li.classList.add('is-error');
+                status.innerHTML = '';
+                status.append(`Falhou (${err.message}) `);
+                const retry = document.createElement('button');
+                retry.type = 'button';
+                retry.className = 'btn btn-outline btn-sm';
+                retry.textContent = 'Tentar de novo';
+                retry.addEventListener('click', async () => {
+                    galEnviando++; galSubmitState();
+                    await galProcessar(job);
+                });
+                status.appendChild(retry);
+            } finally {
+                galEnviando = Math.max(0, galEnviando - 1);
+                galSubmitState();
+            }
+        }
+
+        async function galEnfileirar(lista) {
+            let arquivos = Array.from(lista).filter(f => f.type.startsWith('image/') || /\.(heic|heif)$/i.test(f.name));
+            if (!arquivos.length) { toast('Nenhuma imagem válida selecionada.', 'error'); return; }
+
+            const livres = Math.max(0, GAL_MAX_FOTOS - galFotos.length - galEnviando);
+            if (arquivos.length > livres) {
+                toast(`Limite de ${GAL_MAX_FOTOS} fotos por álbum: ${livres ? `enviando só as ${livres} primeiras` : 'nenhuma foto nova cabe'}.`, 'error');
+                arquivos = arquivos.slice(0, livres);
+                if (!arquivos.length) return;
+            }
+
+            const fila = galEl('galeria-queue');
+            const jobs = arquivos.map(file => {
+                const li = document.createElement('li');
+                li.className = 'galeria-queue-item';
+                li.innerHTML = `<span class="galeria-queue-name"></span><span class="galeria-queue-status">Na fila</span>
+                                <div class="galeria-queue-bar"><span></span></div>`;
+                li.querySelector('.galeria-queue-name').textContent = file.name;
+                fila.appendChild(li);
+                return { file, li };
+            });
+
+            galEnviando += jobs.length;
+            galSubmitState();
+
+            let proximo = 0;
+            const trabalhador = async () => { while (proximo < jobs.length) await galProcessar(jobs[proximo++]); };
+            await Promise.all(Array.from({ length: Math.min(GAL_PARALELO, jobs.length) }, trabalhador));
+        }
+
+        // ── Grade de fotos do álbum em edição ──
+        function galRenderFotos() {
+            galEl('galeria-contador').textContent = `${galFotos.length} / ${GAL_MAX_FOTOS} fotos`;
+            const grade = galEl('galeria-fotos');
+            grade.innerHTML = galFotos.map((f, i) => `
+                <li class="galeria-foto${f.id === galCapa ? ' is-capa' : ''}" data-i="${i}">
+                    <div class="galeria-foto-img">
+                        <img src="${escHtml(galThumb(f.id))}" alt="Foto ${i + 1}" loading="lazy" width="140" height="105">
+                        ${f.id === galCapa ? '<span class="galeria-capa-badge"><i class="fas fa-star"></i> Capa</span>' : ''}
+                    </div>
+                    <input class="form-input galeria-foto-alt" type="text" maxlength="200"
+                        value="${escHtml(f.alt || '')}" placeholder="Descrição da foto (opcional)"
+                        aria-label="Descrição da foto ${i + 1}">
+                    <div class="galeria-foto-actions">
+                        <button type="button" class="btn btn-outline btn-sm" data-act="capa" title="Usar como capa" aria-label="Usar a foto ${i + 1} como capa"><i class="fas fa-star"></i></button>
+                        <button type="button" class="btn btn-outline btn-sm" data-act="antes" title="Mover para antes" aria-label="Mover a foto ${i + 1} para antes" ${i === 0 ? 'disabled' : ''}><i class="fas fa-arrow-left"></i></button>
+                        <button type="button" class="btn btn-outline btn-sm" data-act="depois" title="Mover para depois" aria-label="Mover a foto ${i + 1} para depois" ${i === galFotos.length - 1 ? 'disabled' : ''}><i class="fas fa-arrow-right"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" data-act="remover" title="Remover do álbum" aria-label="Remover a foto ${i + 1} do álbum"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>`).join('');
+        }
+
+        galEl('galeria-fotos')?.addEventListener('click', e => {
+            const btn = e.target.closest('[data-act]');
+            if (!btn || btn.disabled) return;
+            const i = Number(btn.closest('.galeria-foto').dataset.i);
+            const act = btn.dataset.act;
+            if (act === 'capa') galCapa = galFotos[i].id;
+            if (act === 'antes' && i > 0) [galFotos[i - 1], galFotos[i]] = [galFotos[i], galFotos[i - 1]];
+            if (act === 'depois' && i < galFotos.length - 1) [galFotos[i + 1], galFotos[i]] = [galFotos[i], galFotos[i + 1]];
+            if (act === 'remover') {
+                const [removida] = galFotos.splice(i, 1);
+                if (removida.id === galCapa) galCapa = galFotos[0]?.id || '';
+            }
+            galRenderFotos();
+        });
+
+        galEl('galeria-fotos')?.addEventListener('input', e => {
+            if (!e.target.classList.contains('galeria-foto-alt')) return;
+            const i = Number(e.target.closest('.galeria-foto').dataset.i);
+            galFotos[i].alt = e.target.value;            // sem re-render: não perde o foco ao digitar
+        });
+
+        // ── Zona de envio (clique, teclado e arrastar) ──
+        {
+            const zona = galEl('galeria-upload-zone');
+            const input = galEl('galeria-file');
+            if (zona && input) {
+                zona.addEventListener('click', () => input.click());
+                zona.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+                input.addEventListener('change', () => { galEnfileirar(input.files); input.value = ''; });
+                ['dragenter', 'dragover'].forEach(ev => zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.add('dragover'); }));
+                ['dragleave', 'drop'].forEach(ev => zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.remove('dragover'); }));
+                zona.addEventListener('drop', e => galEnfileirar(e.dataTransfer.files));
+            }
+        }
+
+        window.addEventListener('beforeunload', e => { if (galEnviando > 0) { e.preventDefault(); e.returnValue = ''; } });
+
+        // ── Formulário (criar / editar) ──
+        function galLimparForm() {
+            galEl('form-galeria').reset();
+            galEl('galeria-edit-id').value = '';
+            galEl('galeria-publicado').checked = true;
+            galFotos = []; galCapa = '';
+            galEl('galeria-queue').innerHTML = '';
+            galEl('galeria-form-title').innerHTML = '<i class="fas fa-images"></i> Novo álbum';
+            galEl('btn-cancel-galeria').style.display = 'none';
+            galRenderFotos();
+            galSubmitState();
+        }
+
+        galEl('btn-cancel-galeria')?.addEventListener('click', galLimparForm);
+
+        window.editGaleria = (id) => {
+            const a = galAlbuns[id];
+            if (!a) return;
+            galLimparForm();
+            galEl('galeria-edit-id').value = id;
+            galEl('galeria-titulo').value = a.titulo || '';
+            galEl('galeria-data').value = a.dataEvento || '';
+            galEl('galeria-local').value = a.local || '';
+            galEl('galeria-descricao').value = a.descricao || '';
+            galEl('galeria-publicado').checked = a.publicado === true;
+            galFotos = (a.fotos || []).map(f => ({ id: f.id, w: f.w || 0, h: f.h || 0, alt: f.alt || '' }));
+            galCapa = a.capa || galFotos[0]?.id || '';
+            galEl('galeria-form-title').innerHTML = '<i class="fas fa-pen"></i> Editar álbum';
+            galEl('btn-cancel-galeria').style.display = '';
+            galRenderFotos();
+            galSubmitState();
+            galEl('form-galeria').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        galEl('form-galeria')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!hasGrau(6)) { toast('Você não tem permissão para editar a galeria.', 'error'); return; }
+            if (galEnviando > 0) { toast('Aguarde o envio das fotos terminar.', 'error'); return; }
+
+            const titulo = galEl('galeria-titulo').value.trim();
+            const dataEvento = galEl('galeria-data').value;
+            const publicado = galEl('galeria-publicado').checked;
+            if (!titulo || !dataEvento) { toast('Preencha o título e a data do evento.', 'error'); return; }
+            if (publicado && !galFotos.length) {
+                toast('Envie ao menos uma foto para publicar (ou desmarque "Publicar no site" para salvar como rascunho).', 'error');
+                return;
+            }
+
+            const editId = galEl('galeria-edit-id').value;
+            const dados = {
+                titulo,
+                dataEvento,
+                local: galEl('galeria-local').value.trim(),
+                descricao: galEl('galeria-descricao').value.trim(),
+                publicado,
+                fotos: galFotos.map(f => ({ id: f.id, w: f.w, h: f.h, alt: (f.alt || '').trim() })),
+                capa: galCapa || galFotos[0]?.id || '',
+                totalFotos: galFotos.length
+            };
+
+            const btn = galEl('btn-submit-galeria');
+            btn.disabled = true;
+            galEl('galeria-submit-label').textContent = 'Salvando…';
+            try {
+                if (editId) {
+                    await updateDoc(doc(db, 'galeria', editId), { ...dados, updatedAt: serverTimestamp() });
+                    toast('Álbum atualizado!', 'success');
+                } else {
+                    await addDoc(collection(db, 'galeria'), { ...dados, createdAt: serverTimestamp() });
+                    toast(publicado ? 'Álbum publicado!' : 'Rascunho salvo!', 'success');
+                }
+                galLimparForm();
+                await loadGaleria();
+            } catch (err) {
+                console.error('[AkanniHUB] Galeria — erro ao salvar:', err);
+                toast(err.code === 'permission-denied'
+                    ? 'Sem permissão para salvar. Confira se as regras do Firestore (v1.10.0) foram publicadas.'
+                    : 'Erro ao salvar o álbum. Tente novamente.', 'error');
+                galSubmitState();
+            }
+        });
+
+        // ── Lista de álbuns ──
+        async function loadGaleria() {
+            const wrap = galEl('galeria-list-wrap');
+            if (!wrap) return;
+            try {
+                const snap = await getDocs(collection(db, 'galeria'));
+                galAlbuns = {};
+                snap.forEach(d => { galAlbuns[d.id] = d.data(); });
+                const ids = Object.keys(galAlbuns).sort((a, b) => String(galAlbuns[b].dataEvento).localeCompare(String(galAlbuns[a].dataEvento)));
+
+                if (!ids.length) {
+                    wrap.innerHTML = `<div class="empty-state"><i class="fas fa-images"></i><p>Nenhum álbum cadastrado.</p></div>`;
+                    return;
+                }
+
+                const lista = document.createElement('div');
+                lista.className = 'news-admin-list';
+                ids.forEach(id => {
+                    const a = galAlbuns[id];
+                    const total = (a.fotos || []).length;
+                    const item = document.createElement('div');
+                    item.className = 'news-admin-item';
+                    item.innerHTML = `
+                        ${a.capa
+                            ? `<img src="${escHtml(galThumb(a.capa, 160))}" alt="" style="width:80px;height:60px;object-fit:cover;border-radius:8px;background:var(--gray-light);flex-shrink:0;">`
+                            : `<div style="width:80px;height:60px;border-radius:8px;background:var(--gray-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--gray);"><i class="fas fa-image"></i></div>`}
+                        <div class="news-admin-body">
+                            <div class="news-admin-title">${escHtml(a.titulo)}</div>
+                            <div class="news-admin-meta">
+                                <span class="galeria-badge ${a.publicado ? 'on' : 'off'}">${a.publicado ? 'Publicado' : 'Rascunho'}</span>
+                                <span><i class="fas fa-calendar"></i> ${escHtml(galData(a.dataEvento))}</span>
+                                <span><i class="fas fa-images"></i> ${total} foto${total === 1 ? '' : 's'}</span>
+                                ${a.local ? `<span><i class="fas fa-location-dot"></i> ${escHtml(a.local)}</span>` : ''}
+                            </div>
+                        </div>
+                        <div style="display:flex;gap:6px;flex-shrink:0;align-items:flex-start;">
+                            <button class="btn btn-outline btn-sm" data-gal="editar" data-id="${id}" title="Editar" aria-label="Editar o álbum ${escHtml(a.titulo)}"><i class="fas fa-pen"></i></button>
+                            <button class="btn btn-outline btn-sm" data-gal="visibilidade" data-id="${id}" title="${a.publicado ? 'Despublicar (virar rascunho)' : 'Publicar'}" aria-label="${a.publicado ? 'Despublicar' : 'Publicar'} o álbum ${escHtml(a.titulo)}"><i class="fas ${a.publicado ? 'fa-eye-slash' : 'fa-eye'}"></i></button>
+                            <button class="btn btn-danger btn-sm" data-gal="excluir" data-id="${id}" title="Excluir" aria-label="Excluir o álbum ${escHtml(a.titulo)}"><i class="fas fa-trash"></i></button>
+                        </div>`;
+                    lista.appendChild(item);
+                });
+                wrap.innerHTML = '';
+                wrap.appendChild(lista);
+            } catch (err) {
+                console.error('[AkanniHUB] Galeria — erro ao carregar:', err);
+                wrap.innerHTML = `<div class="empty-state"><i class="fas fa-circle-exclamation"></i><p>Não foi possível carregar os álbuns.</p></div>`;
+                toast('Erro ao carregar a galeria.', 'error');
+            }
+        }
+
+        galEl('galeria-list-wrap')?.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-gal]');
+            if (!btn) return;
+            const id = btn.dataset.id;
+            const a = galAlbuns[id];
+            if (!a) return;
+
+            if (btn.dataset.gal === 'editar') { window.editGaleria(id); return; }
+
+            if (btn.dataset.gal === 'visibilidade') {
+                const novo = !a.publicado;
+                if (novo && !(a.fotos || []).length) { toast('Este álbum não tem fotos: adicione ao menos uma para publicar.', 'error'); return; }
+                updateDoc(doc(db, 'galeria', id), { publicado: novo, updatedAt: serverTimestamp() })
+                    .then(() => { toast(novo ? 'Álbum publicado.' : 'Álbum despublicado (rascunho).', 'success'); return loadGaleria(); })
+                    .catch(err => { console.error(err); toast('Erro ao alterar a visibilidade do álbum.', 'error'); });
+                return;
+            }
+
+            if (btn.dataset.gal === 'excluir') {
+                confirmDelete(
+                    `Excluir o álbum "${a.titulo}"? As fotos deixam de aparecer no site, mas os arquivos continuam no Cloudinary (apague por lá se precisar remover de vez).`,
+                    async () => {
+                        try {
+                            await deleteDoc(doc(db, 'galeria', id));
+                            if (galEl('galeria-edit-id').value === id) galLimparForm();
+                            toast('Álbum excluído.', 'success');
+                            await loadGaleria();
+                        } catch (err) {
+                            console.error(err);
+                            toast('Erro ao excluir o álbum.', 'error');
+                        }
+                    });
+            }
+        });
+
+        galRenderFotos();
+        galSubmitState();
 
         // ══════════════════════════════════════════════════════════════
         //  SUPORTE TÉCNICO — formulário de chamado enviado por e-mail
