@@ -4,11 +4,13 @@
    e exibe as últimas notícias dentro do <aside class="cbmse-feed">,
    alternando a fonte por abas.
 
-   Robustez: serviços gratuitos de conversão RSS→JSON / proxy CORS
-   (rss2json, allorigins, codetabs) não têm SLA e podem ficar
-   indisponíveis ou com cota estourada sem aviso. Por isso o widget
-   tenta vários provedores em sequência e, se todos falharem, exibe
-   a última versão que carregou com sucesso (guardada no navegador).
+   Fonte principal: /api/feed (Worker do próprio site, com cache).
+   Reserva: serviços gratuitos de conversão RSS→JSON / proxy CORS
+   (allorigins, codetabs, rss2json), que não têm SLA. Se tudo falhar,
+   exibe a última versão que carregou com sucesso (guardada no navegador).
+
+   Segurança: o conteúdo do feed é externo e NUNCA é inserido como HTML.
+   Títulos entram como texto (textContent) e só links http(s) são aceitos.
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -83,8 +85,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return items;
     }
 
-    async function fetchFeed(rssUrl) {
+    async function fetchFromOwnWorker(sourceKey) {
+        const response = await fetch(`/api/feed?source=${encodeURIComponent(sourceKey)}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data.items) || !data.items.length) throw new Error('Resposta inválida');
+        return data.items;
+    }
+
+    async function fetchFeed(sourceKey, rssUrl) {
         let lastError;
+        try {
+            return await fetchFromOwnWorker(sourceKey);
+        } catch (err) {
+            lastError = err; // Worker indisponível: tenta os provedores de reserva
+        }
         for (const provider of PROVIDERS) {
             try {
                 return await fetchFromProvider(provider, rssUrl);
@@ -112,6 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Aceita somente http(s): bloqueia javascript:, data: e afins vindos do feed externo.
+    function safeHttpUrl(value) {
+        try {
+            const url = new URL(String(value || '').trim());
+            return url.protocol === 'https:' || url.protocol === 'http:' ? url.href : '';
+        } catch {
+            return '';
+        }
+    }
+
     function renderSkeleton() {
         listEl.innerHTML = `
             <div class="cbmse-feed-skeleton"></div>
@@ -129,22 +154,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const fragment = document.createDocumentFragment();
 
         items.slice(0, MAX_ITEMS).forEach((item) => {
+            const href = safeHttpUrl(item.link);
+            const titleText = String(item.title || '').replace(/\s+/g, ' ').trim();
+            if (!href || !titleText) return; // ignora itens sem link http(s) válido ou sem título
+
             const pubDate = new Date(item.pubDate);
             const formattedDate = Number.isNaN(pubDate.getTime())
                 ? ''
                 : pubDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
             const link = document.createElement('a');
-            link.href = item.link;
+            link.href = href;
             link.target = '_blank';
-            link.rel = 'noopener';
+            link.rel = 'noopener noreferrer';
             link.className = 'cbmse-feed-item';
-            link.innerHTML = `
-                <span class="cbmse-feed-item-title">${item.title}</span>
-                ${formattedDate ? `<span class="cbmse-feed-item-date"><i class="fas fa-calendar" aria-hidden="true"></i> ${formattedDate}</span>` : ''}
-            `;
+
+            const title = document.createElement('span');
+            title.className = 'cbmse-feed-item-title';
+            title.textContent = titleText; // texto puro: nunca interpretado como HTML
+            link.appendChild(title);
+
+            if (formattedDate) {
+                const date = document.createElement('span');
+                date.className = 'cbmse-feed-item-date';
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-calendar';
+                icon.setAttribute('aria-hidden', 'true');
+                date.append(icon, ` ${formattedDate}`);
+                link.appendChild(date);
+            }
             fragment.appendChild(link);
         });
+
+        if (!fragment.childNodes.length) {
+            listEl.innerHTML = '<p class="cbmse-feed-empty">Nenhuma notícia encontrada no momento.</p>';
+            return;
+        }
 
         listEl.innerHTML = '';
         listEl.appendChild(fragment);
@@ -187,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSkeleton();
 
         try {
-            const items = await fetchFeed(source.rssUrl);
+            const items = await fetchFeed(sourceKey, source.rssUrl);
             memoryCache[sourceKey] = items;
             writeCache(sourceKey, items);
             renderItems(items);

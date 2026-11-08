@@ -28,8 +28,9 @@ class Chatbot {
 
     // ── Caminho relativo para links internos ──────────────────
     _href(path) {
-        const isSubpage = window.location.pathname.includes('/pages/');
-        return isSubpage ? `../${path}` : path;
+        // Caminho absoluto a partir da raiz do site: funciona em qualquer profundidade
+        // de URL (inclusive na página 404, que é servida no endereço que foi digitado).
+        return `/${path}`;
     }
 
     // ── Inicialização ─────────────────────────────────────────
@@ -447,7 +448,7 @@ class Chatbot {
     handleContatoWhatsApp() {
         this.addMessage('Ótimo! Vou abrir o WhatsApp da Fundação para você. 📲');
         setTimeout(() => {
-            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579998556740', true);
+            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579999078311', true);
         }, 400);
         setTimeout(() => {
             this.addMessage('Nosso time responde em horário comercial. 🕘');
