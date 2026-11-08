@@ -11,8 +11,8 @@
     <meta name="apple-mobile-web-app-title" content="AkanniHub" />
     <link rel="manifest" href="assets/akanni/site.webmanifest" />
     <title>AkanniHub · FF193</title>
-    <meta name="description"
-        content="Portal de transparência da Fundação Fênix 193. Acesse prestações de contas, relatórios, estatutos, certidões e demais documentos institucionais.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Painel administrativo da Fundação Fênix 193 (acesso restrito).">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -3195,7 +3195,7 @@
                     applyAccessControl();
                     showApp(user);
                 } catch (e) {
-                    console.error('[FF193] Erro ao verificar permissões:', e.message);
+                    console.error('[Fênix193] Erro ao verificar permissões:', e.message);
                     showLoginError('Erro ao verificar permissões. Tente novamente.');
                     await signOut(auth);
                 }
@@ -5282,7 +5282,7 @@
                     prefill();
                     updateCounter();
                 } catch (err) {
-                    console.error('[FF193] Suporte — falha no envio:', err);
+                    console.error('[Fênix193] Suporte — falha no envio:', err);
 
                     // Plano B: abrir a mensagem no app de e-mail da pessoa
                     const body = Object.entries(fields).map(([k, v]) => `${k}: ${v}`).join('\n\n');

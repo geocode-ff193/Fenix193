@@ -1,0 +1,32 @@
+{
+  // Configuração de deploy da Fundação Fênix 193 no Cloudflare Workers.
+  // Site estático (assets) + um Worker pequeno (worker/index.js) para 3 rotas.
+  "$schema": "node_modules/wrangler/config-schema.json",
+
+  // ATENÇÃO: precisa ser IGUAL ao nome do Worker no painel do Cloudflare ("fenix193").
+  "name": "fenix193",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-01",
+
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+
+    // URLs sem .html e sem barra final; 404.html para endereços inexistentes.
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page",
+
+    // Só estas rotas passam primeiro pelo Worker. Todo o resto continua sendo arquivo estático.
+    "run_worker_first": ["/api/*", "/sitemap-noticias.xml", "/pages/noticia"],
+  },
+
+  // Valores públicos (a chave web do Firebase já aparece no código do site).
+  "vars": {
+    "SITE_ORIGIN": "https://fenix193.org.br",
+    "FIREBASE_PROJECT_ID": "fundacaofenix193",
+    "FIREBASE_API_KEY": "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+  },
+
+  // Logs do Worker no painel (Workers → fenix193 → Observability).
+  "observability": { "enabled": true },
+}

@@ -1,0 +1,27 @@
+# Cabeçalhos HTTP do site (Cloudflare). Substitui a seção "headers" do vercel.json.
+# Observação: quando mais de uma regra casa com a mesma URL e define o mesmo cabeçalho,
+# o Cloudflare junta os valores. Por isso as regras de Cache-Control abaixo não se sobrepõem.
+
+# Segurança: todas as páginas
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# O painel administrativo não deve aparecer em buscadores
+/akannihub
+  X-Robots-Tag: noindex, nofollow
+
+# CSS e JS: sempre revalidar (os arquivos não têm hash no nome, então não use cache longo)
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Imagens, ícones e faixas de audiodescrição: cache de 7 dias
+/assets/img/*
+  Cache-Control: public, max-age=604800
+/assets/ui/*
+  Cache-Control: public, max-age=604800
+/assets/data/*
+  Cache-Control: public, max-age=3600

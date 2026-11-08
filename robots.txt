@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://ff193.vercel.app/sitemap.xml
+Sitemap: https://fenix193.org.br/sitemap.xml
+Sitemap: https://fenix193.org.br/sitemap-noticias.xml

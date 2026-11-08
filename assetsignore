@@ -1,0 +1,12 @@
+# Arquivos que NÃO devem ser publicados no site (sintaxe igual ao .gitignore)
+.github
+.git
+worker
+node_modules
+package.json
+package-lock.json
+README.md
+firestore.rules
+wrangler.jsonc
+.assetsignore
+vercel.json

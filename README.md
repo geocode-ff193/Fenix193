@@ -2,11 +2,11 @@
 
 <img src="assets/img/ff193_transp.webp" width="80" alt="Fundação Fênix 193 logo" />
 
-# Fundação Fênix 193 — Ecossistema Digital
+# Fundação Fênix193 — Ecossistema Digital
 
 **`v1.5.0`** · Outubro 2026 · Produção estável
 
-[![Deploy](https://img.shields.io/badge/deploy-Vercel-000?style=flat-square&logo=vercel)](https://ff193.vercel.app)
+[![Deploy](https://img.shields.io/badge/deploy-Cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=fff)](https://fenix193.org.br)
 [![Firebase](https://img.shields.io/badge/backend-Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=000)](https://firebase.google.com)
 [![Stack](https://img.shields.io/badge/stack-Vanilla%20JS-F7DF1E?style=flat-square&logo=javascript&logoColor=000)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License](https://img.shields.io/badge/license-Privado-red?style=flat-square)](#-créditos)
@@ -43,7 +43,7 @@
 
 Sistema web institucional desenvolvido por **GeoCODE Programmer (Geovani Santos)** para a **Fundação Fênix 193** — entidade privada sem fins lucrativos com sede em Aracaju/SE, criada para apoiar o Corpo de Bombeiros Militar de Sergipe (CBMSE) e as ações de Proteção e Defesa Civil.
 
-O projeto é composto por dois produtos integrados via Firebase, ambos em stack vanilla sem build tools, com deploy contínuo na Vercel.
+O projeto é composto por dois produtos integrados via Firebase, ambos em stack vanilla sem build tools, com deploy contínuo no Cloudflare (Workers), a partir da branch `main` deste repositório.
 
 > **Filosofia de desenvolvimento:** zero dependências de framework, zero processo de build, CSS modular com design tokens, Firebase SDK v9 via CDN ESM — máxima performance e manutenção acessível ao time técnico.
 
@@ -99,12 +99,17 @@ Ciclo de atualização com 7 melhorias no site e no painel, mais ajustes de acab
 
 | Item | Configuração |
 | ------ | ------------- |
-| Hosting | Vercel |
-| Roteamento | `cleanUrls: true`, `trailingSlash: false`, 404 customizado |
-| Cache assets | `max-age=31536000, immutable` |
-| Cache HTML | `max-age=0, must-revalidate` |
-| Headers de segurança | `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy` |
-| Domínio | `ff193.vercel.app` |
+| Hosting | Cloudflare Workers (assets estáticos, deploy contínuo via GitHub) |
+| Configuração | `wrangler.jsonc` (deploy e Worker), `_headers` (cabeçalhos e cache), `.assetsignore` (arquivos não publicados) |
+| Worker | `worker/index.js`: só atende `/api/feed`, `/pages/noticia` e `/sitemap-noticias.xml`; o resto do site é estático |
+| Roteamento | `html_handling: drop-trailing-slash` (URLs sem `.html` e sem barra final) e `not_found_handling: 404-page` (usa o `404.html`) |
+| Cache HTML | Padrão do Cloudflare Workers (revalida a cada acesso) |
+| Cache CSS/JS | `max-age=0, must-revalidate` (os arquivos não têm hash no nome) |
+| Cache imagens e ícones | `max-age=604800` (7 dias); faixas de audiodescrição: 1 hora |
+| Headers de segurança | `X-Content-Type-Options`, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy`; `X-Robots-Tag: noindex, nofollow` no AkanniHub |
+| Domínio | `fenix193.org.br`, registrado no Registro.br com DNS no Cloudflare |
+
+> O site foi migrado da Vercel para o Cloudflare em novembro de 2026. O antigo `vercel.json` foi removido.
 
 ---
 
@@ -326,7 +331,7 @@ Página de resultados dedicada em `/pesquisa` (arquivo `pesquisa.html`, na raiz)
 | `assets/js/pesquisa.js` | Lógica da página de resultados |
 | `assets/css/pesquisa.css` | Estilos da página de resultados |
 
-> A leitura do texto das páginas usa `fetch`, então a busca completa exige o site servido por HTTP (Vercel ou servidor local), e não aberto por `file://`.
+> A leitura do texto das páginas usa `fetch`, então a busca completa exige o site servido por HTTP (Cloudflare ou servidor local, por exemplo `npx wrangler dev`), e não aberto por `file://`.
 
 ---
 
@@ -575,13 +580,17 @@ Assistente virtual flutuante presente na home e nas subpáginas.
 ## 📁 Estrutura de Arquivos
 
 ```
-ff193/
+Fenix193/
 ├── index.html                         # Página inicial (home)
 ├── pesquisa.html                      # Página de resultados da pesquisa global
 ├── 404.html                           # Página de erro personalizada
 ├── akannihub.html                     # Painel administrativo (autenticado)
 ├── firestore.rules                    # Regras de segurança Firestore v1.9.0
-├── vercel.json                        # Configuração de deploy, cache e headers
+├── wrangler.jsonc                     # Configuração de deploy no Cloudflare Workers
+├── _headers                           # Cabeçalhos HTTP e regras de cache (Cloudflare)
+├── worker/
+│   └── index.js                       # Worker: feed do CBMSE, SEO das notícias e sitemap de notícias
+├── .assetsignore                      # Arquivos que não são publicados no site
 ├── site.webmanifest                   # PWA manifest
 ├── sitemap.xml                        # Mapa do site para SEO
 ├── robots.txt                         # Diretivas para crawlers
@@ -597,6 +606,7 @@ ff193/
 │   ├── noticias.html
 │   ├── noticia.html                   # Leitura de uma notícia
 │   ├── transparencia.html
+│   ├── galeria.html                   # Galeria de fotos
 │   └── fale-conosco.html              # Formulário de contato (75 municípios de SE)
 │
 ├── assets/
@@ -622,7 +632,7 @@ ff193/
 │   │   ├── acessibilidade.js          # Painel de acessibilidade (auto-injetado)
 │   │   ├── back-to-top.js             # Botão "Voltar ao topo" (auto-injetado)
 │   │   ├── media-player.js            # Player de vídeo com audiodescrição
-│   │   ├── cbmse-feed.js              # Widget "Segurança & Defesa Civil"
+│   │   ├── cbmse-feed.js              # Widget "Segurança & Defesa Civil" (usa /api/feed do Worker)
 │   │   └── chatbot.js                 # Assistente virtual LuminIA
 │   │
 │   ├── data/                          # Faixas de audiodescrição (.json)
@@ -642,7 +652,7 @@ ff193/
 
 - Projeto Firebase `fundacaofenix193` configurado (Auth + Firestore + Analytics)
 - Conta Cloudinary com upload preset `ffenix193` (unsigned) e cloud name `darq3foje`
-- Conta Vercel com repositório vinculado
+- Conta Cloudflare com o domínio `fenix193.org.br` e o Worker `fenix193` vinculado ao repositório GitHub
 - Acesso às caixas de e-mail de destino (para ativar o FormSubmit — veja abaixo)
 
 ### Variáveis de configuração
@@ -660,18 +670,40 @@ Todas as configurações estão inline nos arquivos (sem `.env`):
 ### Deploy
 
 ```bash
-# Via painel Vercel (recomendado):
-# 1. Conectar repositório GitHub
-# 2. Framework Preset: Other
-# 3. Build Command: (vazio)
-# 4. Output Directory: . (raiz)
-# 5. Deploy
+# Deploy contínuo no Cloudflare (recomendado):
+# 1. Workers e Pages → conectar o repositório GitHub ao Worker "fenix193"
+#    (o nome deve ser igual ao campo "name" do wrangler.jsonc)
+# 2. Build command: (vazio) — não há processo de build
+# 3. Deploy command: npx wrangler deploy
+# 4. Cada push na branch main publica o site automaticamente
+# 5. Domínio: Worker → Settings → Domains & Routes → fenix193.org.br e www.fenix193.org.br
+
+# Pré-visualização local:
+npx wrangler dev
+
+# Observação: o Worker usa as variáveis públicas de wrangler.jsonc ("vars").
+# Teste local das rotas dinâmicas: http://localhost:8787/api/feed?source=cbmse
+
+# Deploy manual (se necessário):
+npx wrangler deploy
 
 # Publicar regras do Firestore (v1.9.0):
 npm install -g firebase-tools
 firebase login
 firebase deploy --only firestore:rules
 ```
+
+### Worker (rotas dinâmicas)
+
+O site é estático, mas três endereços passam primeiro pelo Worker (`run_worker_first` no `wrangler.jsonc`):
+
+| Rota | O que faz |
+| --- | --- |
+| `/api/feed?source=cbmse` ou `defesacivil` | Lê o RSS do CBMSE ou da Defesa Civil, converte para JSON e guarda em cache por alguns minutos. Só aceita as duas fontes da lista. |
+| `/pages/noticia?id=ID` | Devolve a página da notícia com título, descrição, `canonical`, Open Graph e JSON-LD (`NewsArticle`) já preenchidos, lendo o documento no Firestore. Se algo falhar, entrega a página estática normal. |
+| `/sitemap-noticias.xml` | Sitemap com as notícias publicadas (até 500, mais recentes primeiro). |
+
+O widget "Segurança & Defesa Civil" usa `/api/feed` e só recorre aos proxies públicos antigos se o Worker estiver fora do ar. Títulos do feed entram como texto (nunca como HTML) e somente links `http(s)` são aceitos.
 
 ### Checklist pós-deploy da v1.5.0
 
@@ -680,6 +712,7 @@ firebase deploy --only firestore:rules
 3. **Preencher os números de impacto** em *AkanniHub → Edição → Números*. Até lá a home mostra "—".
 4. **Substituir os links das redes sociais** (hoje `#`, marcados com `TODO` no header) pelas URLs oficiais.
 5. Conferir o **telefone** e o **e-mail** exibidos na página Fale Conosco e na seção de contato da home.
+6. Conferir que `fenix193.org.br` e `www.fenix193.org.br` estão em **Firebase → Authentication → Settings → Authorized domains** e, se as chaves de API tiverem restrição por referenciador, no Google Cloud Console.
 
 ### Adicionar um novo admin
 
@@ -716,7 +749,7 @@ v1.5.0
 | `v0.5.0` | Subpáginas institucionais, dropdown nav, footer completo |
 | `v0.8.0` | AkanniHub v1 (contatos, transparência, notícias), Firestore Rules v1.0 |
 | `v1.0.0` | Módulo de eventos, chatbot LuminIA, busca global, hero news feed |
-| `v1.1.0` | Firestore Rules v1.2.0, LGPD/cookies, headers de segurança no Vercel |
+| `v1.1.0` | Firestore Rules v1.2.0, LGPD/cookies, headers de segurança na hospedagem (Vercel, na época) |
 | `v1.2.0` | GitHub Issues template, carrossel de apoiadores marquee, PWA manifest |
 | `v1.3.0` | README profissional, consolidação e auditoria da base de código |
 | `v1.4.0` | Componente de Acessibilidade Audiovisual (WCAG 2.1 AA / eMAG), correção de bug de banner (CSS crítico x assíncrono) |
@@ -757,7 +790,7 @@ O projeto usa CSS crítico inline (renderização instantânea) + `pages.css` ca
 | ------ | --------- |
 | **Redes sociais** | Os quatro links do header estão como `#` (e o rodapé como `?`). Falta informar as URLs oficiais |
 | **Telefone** | A página Fale Conosco e a seção de contato da home ainda exibem `(79) XXXX-XXXX` |
-| **E-mail da Fundação** | O rodapé exibe `contato@fenix193.org.br`, enquanto a seção de contato e o Fale Conosco usam `contato@fundacaofenix193.org.br`. Padronizar e ajustar a constante `FOUNDATION_EMAIL` |
+| **E-mail da Fundação** | O rodapé exibe `contato@fenix193.org.br`, enquanto a seção de contato e o Fale Conosco usam `contato@fundacaofenix193.org.br`. Padronizar e ajustar a constante `FOUNDATION_EMAIL`. Atenção: o domínio `fenix193.org.br` ainda não recebe e-mail (os registros MX e SPF padrão do Cloudflare bloqueiam). Para usar endereços `@fenix193.org.br`, configurar o **Cloudflare Email Routing** |
 | **Barra de busca duplicada na home** | Hero e header têm campo de pesquisa. Para manter só o do header, remova o bloco `#hero-search` do `index.html` (o `search.js` ignora o hero quando ele não existe) |
 | **Menu mobile nas subpáginas** | O script de menu inline das subpáginas não trava a rolagem nem fecha o menu ao clicar num link, ao contrário do `script.js` da home. Candidato a unificação |
 | **Notícias na busca** | A pesquisa cobre as 30 notícias mais recentes (limite herdado do `search.js` original; ajustável em `search-core.js`) |
@@ -800,7 +833,7 @@ Etapa natural de um projeto em desenvolvimento: a estrutura e o funcionamento da
 
 #### `v1.6.1` — Notificações por E-mail com Mais Controle
 
-- O envio atual usa o FormSubmit (sem servidor). Migrar para uma **Vercel Serverless Function** ou integração com **EmailJS / SendGrid** daria controle de remetente, modelo do e-mail e registro de envios, além de notificar os admins a cada nova mensagem no Fale Conosco.
+- O envio atual usa o FormSubmit (sem servidor). Migrar para um **Cloudflare Worker** (função serverless) ou integração com **EmailJS / SendGrid** daria controle de remetente, modelo do e-mail e registro de envios, além de notificar os admins a cada nova mensagem no Fale Conosco.
 
 #### `v1.7.0` — Módulo de Voluntários no AkanniHub
 
@@ -836,10 +869,10 @@ Etapa natural de um projeto em desenvolvimento: a estrutura e o funcionamento da
 - Toggle no header com persistência em `localStorage`.
 - Os design tokens já estão centralizados em `style.css`, tornando esta evolução de baixa complexidade.
 
-#### `v1.9.1` — Variáveis de Configuração em Ambiente Vercel
+#### `v1.9.1` — Variáveis de Configuração em Ambiente Cloudflare
 
-- Mover credenciais do Cloudinary para variáveis de ambiente Vercel.
-- Criar um endpoint Vercel Function mínimo para servir as credenciais ao frontend sem expô-las no código-fonte.
+- Mover credenciais do Cloudinary para variáveis de ambiente (secrets) do Worker no Cloudflare.
+- Criar um Worker mínimo para servir as credenciais ao frontend sem expô-las no código-fonte.
 
 ---
 
@@ -874,7 +907,7 @@ Etapa natural de um projeto em desenvolvimento: a estrutura e o funcionamento da
 | **Portfólio** | [eusougeovani.vercel.app](https://eusougeovani.vercel.app) |
 | **Suporte técnico** | (79) 9 8866-3905 |
 | **Cliente** | Fundação Fênix 193 — Aracaju/SE |
-| **Site** | [ff193.vercel.app](https://ff193.vercel.app) |
+| **Site** | [fenix193.org.br](https://fenix193.org.br) |
 
 *Desenvolvido com ☕ por GeoCODE Programmer — 2025 / 2026*
 
