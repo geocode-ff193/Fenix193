@@ -300,11 +300,11 @@
 
 <body>
     <header id="main-header">
-    
+
         <!-- ===== HEADER--TOP ===== -->
         <div class="header--top">
             <div class="container header-top-inner">
-    
+
                 <!-- Logo -->
                 <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                     <div class="logo-icon" aria-hidden="true">
@@ -317,7 +317,7 @@
                         <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
-    
+
                 <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
                 <form class="header-search header-search--top" role="search" action="../pesquisa.html" method="get">
                     <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
@@ -326,7 +326,7 @@
                         <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
                 </form>
-    
+
                 <!-- AkanniHUB + Redes sociais (desktop) -->
                 <div class="header-top-actions">
                     <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -345,7 +345,7 @@
                                     class="fab fa-youtube" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
-    
+
                 <!-- Hambúrguer (mobile) -->
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
@@ -354,28 +354,28 @@
                 </button>
             </div>
         </div>
-    
+
         <!-- ===== HEADER--MAIN ===== -->
         <div class="header--main">
             <div class="container">
                 <nav id="nav-menu" aria-label="Navegação principal">
                     <ul id="menu" role="list">
-    
+
                         <!-- Pesquisa (somente no menu mobile) -->
                         <li class="menu-mobile-search">
                             <form class="header-search header-search--menu" role="search" action="../pesquisa.html"
                                 method="get">
-                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
-                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
-                                    required>
+                                <input type="search" name="q" class="header-search-input"
+                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
+                                    spellcheck="false" minlength="2" required>
                                 <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                                     <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </li>
-    
+
                         <li><a href="../index.html">Início</a></li>
-    
+
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -396,7 +396,7 @@
                                     </a></li>
                             </ul>
                         </li>
-    
+
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
@@ -420,13 +420,13 @@
                                     </a></li>
                             </ul>
                         </li>
-    
+
                         <li><a href="transparencia.html">Transparência</a></li>
                         <li><a href="../index.html#stats">Impacto</a></li>
                         <li><a href="noticias.html">Notícias</a></li>
                         <li><a href="fale-conosco.html">Contato</a></li>
                         <li><a href="../index.html#como-ajudar">Colabore</a></li>
-    
+
                         <!-- AkanniHUB + Redes (somente no menu mobile) -->
                         <li class="menu-mobile-extras">
                             <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -496,7 +496,7 @@
                                 <div class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
                                 <div>
                                     <strong>E-mail</strong>
-                                    <span>contato@fundacaofenix193.org.br</span>
+                                    <span>contato@fenix193.org.br</span>
                                 </div>
                             </li>
                         </ul>
@@ -934,7 +934,7 @@
         (function () {
             'use strict';
 
-            const FOUNDATION_EMAIL = 'contato@fundacaofenix193.org.br';      // ← destino das mensagens
+            const FOUNDATION_EMAIL = 'contato@fenix193.org.br';      // ← destino das mensagens
             const ENDPOINT = 'https://formsubmit.co/ajax/' + FOUNDATION_EMAIL;
             const ANON_EMAIL = 'anonimo@anonimo.invalid';        // exigido pelas regras do Firestore
             const COOLDOWN_MS = 30000;                           // intervalo mínimo entre envios
