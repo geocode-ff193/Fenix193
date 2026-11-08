@@ -181,6 +181,15 @@ function buildDescription(corpo) {
     return clean.slice(0, 157).replace(/\s+\S*$/, '') + '…';
 }
 
+// Imagem de compartilhamento: JPG de até 1200 px (WhatsApp e Facebook ignoram arquivos muito pesados).
+function ogImage(url) {
+    const u = String(url || '');
+    if (!/^https:\/\//i.test(u)) return '';
+    const m = u.match(/^(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.+)$/i);
+    if (!m || /^[a-z]{1,3}_[^/]*\//i.test(m[2])) return u;
+    return `${m[1]}f_jpg,q_auto,c_limit,w_1200/${m[2]}`;
+}
+
 async function handleNoticia(request, env, url) {
     const assetRes = await env.ASSETS.fetch(request);
     const id = url.searchParams.get('id');
@@ -193,7 +202,7 @@ async function handleNoticia(request, env, url) {
     const canonical = `${origin}/pages/noticia?id=${encodeURIComponent(id)}`;
     const title = `${news.titulo} · Fundação Fênix 193`;
     const desc = buildDescription(news.corpo) || 'Leia esta notícia da Fundação Fênix 193.';
-    const image = /^https:\/\//i.test(news.imagemUrl) ? news.imagemUrl : '';
+    const image = ogImage(news.imagemUrl);
 
     const jsonLd = {
         '@context': 'https://schema.org',
