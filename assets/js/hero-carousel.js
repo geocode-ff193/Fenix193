@@ -31,6 +31,7 @@ import {
     orderBy,
     limit
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import { cld, cldSrcset } from './img-utils.js';
 
 const FIREBASE_CONFIG = {
     apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
@@ -69,8 +70,11 @@ function formatDate(ts) {
 function buildNewsSlide(id, n) {
     const href = `pages/noticia.html?id=${encodeURIComponent(id)}`;
     const date = formatDate(n.createdAt);
+    // A foto só é baixada quando o slide está perto de aparecer (ver warm/loadSlideImage):
+    // no celular, 3 fotos grandes competindo com o 1º slide atrasavam o LCP.
+    const srcset = cldSrcset(n.imagemUrl, [640, 1024, 1600]);
     const bg = n.imagemUrl
-        ? `<div class="hero-slide-bg"><img src="${esc(n.imagemUrl)}" alt="" decoding="async" fetchpriority="low"></div>`
+        ? `<div class="hero-slide-bg"><img data-src="${esc(cld(n.imagemUrl, 1024))}"${srcset ? ` data-srcset="${esc(srcset)}" sizes="100vw"` : ''} alt="" decoding="async"></div>`
         : `<div class="hero-slide-bg hero-slide-bg--placeholder" aria-hidden="true"><i class="fas fa-fire-flame-curved"></i></div>`;
     const summary = excerpt(n.corpo);
 
@@ -96,6 +100,23 @@ function buildNewsSlide(id, n) {
             </div>
         </div>`;
     return slide;
+}
+
+/* ── Carregamento tardio das fotos dos slides ─────────────── */
+function loadSlideImage(slide) {
+    const img = slide && slide.querySelector('img[data-src]');
+    if (!img) return;
+    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src');
+    img.removeAttribute('data-srcset');
+}
+
+// Executa depois que a página terminou de carregar e o navegador está ocioso.
+function afterLoad(fn) {
+    const run = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 3000 }) : setTimeout(fn, 1500));
+    if (document.readyState === 'complete') run();
+    else window.addEventListener('load', run, { once: true });
 }
 
 /* ── Carrossel ───────────────────────────────────────────── */
@@ -149,8 +170,12 @@ function startCarousel() {
         if (isRunning()) timer = setTimeout(() => goTo(current + 1), interval);
     }
 
+    function warm(i) { loadSlideImage(slides[(i + slides.length) % slides.length]); }
+
     function goTo(index) {
         current = (index + slides.length) % slides.length;
+        warm(current);          // garante a foto do slide que vai aparecer
+        warm(current + 1);      // e já adianta a do próximo
         syncUi();
         schedule();
     }
@@ -197,6 +222,7 @@ function startCarousel() {
 
     syncUi();
     schedule();
+    afterLoad(() => warm(1));   // 2º slide: só depois que a página carregou
 }
 
 /* ── Início ──────────────────────────────────────────────── */

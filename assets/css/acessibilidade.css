@@ -594,3 +594,8 @@ html {
   min-height: 1.4em;
   border-top: 1px solid #333;
 }
+
+/* Destino do link "Pular para o conteúdo principal": recebe foco por script, sem contorno */
+#main-content:focus {
+  outline: none;
+}

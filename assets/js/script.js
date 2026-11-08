@@ -23,6 +23,7 @@ import {
     getAnalytics,
     setAnalyticsCollectionEnabled
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+import { cld } from "./img-utils.js";
 
 // ── Configuração Firebase ─────────────────────────────────────
 // Substitua pelos dados reais do seu projeto Firebase
@@ -140,6 +141,16 @@ document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
 
         li.classList.toggle('open', !isOpen);
         trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+});
+
+// Teclado: o trigger do menu tem role="button"; Enter e Espaço equivalem ao clique
+document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+    trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            trigger.click();
+        }
     });
 });
 
@@ -420,7 +431,7 @@ document.addEventListener('keydown', (e) => {
                 card.innerHTML = `
                     <div style="overflow:hidden;">
                         ${n.imagemUrl
-                        ? `<img class="news-home-img" src="${escHtml(n.imagemUrl)}" alt="${escHtml(n.titulo)}" loading="lazy">`
+                        ? `<img class="news-home-img" src="${escHtml(cld(n.imagemUrl, 700))}" alt="${escHtml(n.titulo)}" loading="lazy" decoding="async">`
                         : `<div class="news-home-img-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`}
                     </div>
                     <div class="news-home-body">
@@ -564,7 +575,7 @@ document.addEventListener('keydown', (e) => {
                 card.href = `pages/noticia.html?id=${d.id}`;
                 card.setAttribute('aria-label', `Ler: ${esc(n.titulo)}`);
                 const thumb = n.imagemUrl
-                    ? `<img class="hero-news-mini-thumb" src="${esc(n.imagemUrl)}" alt="" loading="lazy">`
+                    ? `<img class="hero-news-mini-thumb" src="${esc(cld(n.imagemUrl, 320))}" alt="" loading="lazy" decoding="async">`
                     : `<div class="hero-news-mini-placeholder" aria-hidden="true"><i class="fas fa-fire-flame-curved"></i></div>`;
                 card.innerHTML = `
                     ${thumb}
