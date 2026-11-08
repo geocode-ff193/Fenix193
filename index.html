@@ -474,7 +474,8 @@
       },
       "sameAs": [
         "https://www.instagram.com/fundacaofenix193/",
-        "https://www.facebook.com/fundacaofenix193"
+        "https://www.facebook.com/fundacaofenix193",
+          "https://www.youtube.com/@FundacaoFenix193"
       ]
     },
     {
@@ -537,8 +538,9 @@
                                     aria-hidden="true"></i></a></li>
                         <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
                                 aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
-                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
+                                rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
+                                    aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
 
@@ -574,20 +576,20 @@
 
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
-                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
                                 Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#quem-somos" role="menuitem">
+                            <ul class="dropdown-menu">
+                                <li><a href="#quem-somos">
                                         <i class="fas fa-landmark"></i> Quem Somos
                                     </a></li>
-                                <li><a href="pages/nossa-historia.html" role="menuitem">
+                                <li><a href="pages/nossa-historia.html">
                                         <i class="fas fa-book-open"></i> Nossa História
                                     </a></li>
-                                <li><a href="pages/missao-valores.html" role="menuitem">
+                                <li><a href="pages/missao-valores.html">
                                         <i class="fas fa-bullseye"></i> Missão e Valores
                                     </a></li>
-                                <li><a href="pages/equipe.html" role="menuitem">
+                                <li><a href="pages/equipe.html">
                                         <i class="fas fa-users"></i> Equipe
                                     </a></li>
                             </ul>
@@ -595,23 +597,23 @@
 
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
-                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
                                 Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="pages/projetos.html" role="menuitem">
+                            <ul class="dropdown-menu">
+                                <li><a href="pages/projetos.html">
                                         <i class="fas fa-clipboard-list"></i> Projetos
                                     </a></li>
-                                <li><a href="pages/capacitacao.html" role="menuitem">
+                                <li><a href="pages/capacitacao.html">
                                         <i class="fas fa-graduation-cap"></i> Capacitação
                                     </a></li>
-                                <li><a href="pages/eventos.html" role="menuitem">
+                                <li><a href="pages/eventos.html">
                                         <i class="fas fa-calendar-days"></i> Eventos
                                     </a></li>
-                                <li><a href="pages/galeria.html" role="menuitem">
+                                <li><a href="pages/galeria.html">
                                         <i class="fas fa-images"></i> Galeria
                                     </a></li>
-                                <li><a href="pages/parcerias.html" role="menuitem">
+                                <li><a href="pages/parcerias.html">
                                         <i class="fas fa-handshake"></i> Parcerias
                                     </a></li>
                             </ul>
@@ -639,8 +641,9 @@
                                 <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
                                         aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                                 </li>
-                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
-                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
+                                        rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
+                                            aria-hidden="true"></i></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -649,7 +652,7 @@
         </div>
     </header>
 
-    <main>
+    <main tabindex="-1" id="main-content">
         <section id="hero" class="hero-carousel" aria-roledescription="carrossel" aria-label="Destaques da Fundação"
             data-autoplay="7000">
             <div class="hero-slides" id="hero-slides">
@@ -704,7 +707,7 @@
                                 <i class="fas fa-book-open"></i> Nossa História Completa
                             </button></a>
                     </div>
-                    <div class="qs-visual" aria-label="Galeria de imagens">
+                    <div role="group" class="qs-visual" aria-label="Galeria de imagens">
                         <div class="qs-carousel" role="region" aria-label="Carrossel de imagens">
                             <div class="qs-carousel-track">
                                 <div class="qs-slide active">
@@ -986,7 +989,7 @@
                                 <i class="fas fa-star" aria-hidden="true"></i> Instituidores
                             </span>
                         </div>
-                        <div class="apoiadores-track-wrap" aria-label="Carrossel de instituidores">
+                        <div role="group" class="apoiadores-track-wrap" aria-label="Carrossel de instituidores">
                             <div class="apoiadores-track" id="track-instituidores">
                                 <a href="https://www.ilbj.org.br/">
                                     <div class="apoiador-card">
@@ -1017,7 +1020,7 @@
                                 <i class="fas fa-heart" aria-hidden="true"></i> Apoiadores &amp; Doadores
                             </span>
                         </div>
-                        <div class="apoiadores-track-wrap apoiadores-track-wrap--rtl"
+                        <div role="group" class="apoiadores-track-wrap apoiadores-track-wrap--rtl"
                             aria-label="Carrossel de apoiadores e doadores">
                             <div class="apoiadores-track apoiadores-track--rtl" id="track-apoiadores">
                                 <div class="empty-state" style="padding:20px;"><span class="spinner"></span></div>
@@ -1155,7 +1158,8 @@
                             target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
-                        <a href="?" class="footer-social-btn" aria-label="YouTube">
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn"
+                            aria-label="YouTube">
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -1200,7 +1204,7 @@
                 <p class="footer-copy">
                     &copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
                     reservados.
-                    &mdash; Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café"
+                    &mdash; Desenvolvido com <i role="img" class="fa-solid fa-mug-hot" aria-label="café"
                         style="color:var(--red)"></i>
                     por
                     <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a>
