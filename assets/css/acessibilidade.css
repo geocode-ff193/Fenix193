@@ -597,5 +597,5 @@ html {
 
 /* Destino do link "Pular para o conteúdo principal": recebe foco por script, sem contorno */
 #main-content:focus {
-  outline: none;
+    outline: none;
 }
