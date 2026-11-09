@@ -18,16 +18,17 @@
     <meta property="og:site_name" content="Fundação Fênix 193">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Fundação Fênix 193 · Apoio ao Corpo de Bombeiros de Sergipe">
-    <meta property="og:description"
-        content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta property="og:description" content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <meta property="og:url" content="https://fenix193.org.br/">
-    <meta property="og:image" content="https://fenix193.org.br/assets/img/bomb_02.webp">
+    <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Fundação Fênix 193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fundação Fênix 193 · Apoio ao Corpo de Bombeiros de Sergipe">
-    <meta name="twitter:description"
-        content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
-    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/bomb_02.webp">
+    <meta name="twitter:description" content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="assets/ui/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
@@ -38,10 +39,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-    <!-- LCP: imagem de fundo do #hero (assets/img/bomb_02.webp, definida via CSS background).
+    <!-- LCP: imagem de fundo do 1º slide (bomb_02.webp no computador; bomb_02-mobile.webp até 768px, definidas via CSS).
          Como é carregada via CSS e não via <img>, o navegador só a descobre depois de
          baixar e parsear o style.css. O preload força a busca em paralelo, junto ao HTML. -->
-    <link rel="preload" as="image" href="assets/img/bomb_02.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/bomb_02-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/bomb_02.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <!-- Fontes: mantidas com display=swap (já configurado) para não bloquear o LCP de texto -->
     <link
@@ -436,7 +438,7 @@
         "width": 512,
         "height": 512
       },
-      "image": "https://fenix193.org.br/assets/img/bomb_02.webp",
+      "image": "https://fenix193.org.br/assets/img/og-image.jpg",
       "description": "Entidade privada sem fins lucrativos, com sede em Aracaju/SE, que apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil.",
       "email": "contato@fenix193.org.br",
       "telephone": "+5579999078311",
@@ -495,11 +497,11 @@
 
 <body>
     <header id="main-header">
-
+    
         <!-- ===== HEADER--TOP ===== -->
         <div class="header--top">
             <div class="container header-top-inner">
-
+    
                 <!-- Logo -->
                 <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                     <div class="logo-icon" aria-hidden="true">
@@ -512,7 +514,7 @@
                         <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
-
+    
                 <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
                 <form class="header-search header-search--top" role="search" action="pesquisa.html" method="get">
                     <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
@@ -521,7 +523,7 @@
                         <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
                 </form>
-
+    
                 <!-- AkanniHUB + Redes sociais (desktop) -->
                 <div class="header-top-actions">
                     <a href="akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -530,20 +532,17 @@
                     </a>
                     <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
                     <ul class="header-social" role="list" aria-label="Redes sociais">
-                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
-                                rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
-                                rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
-                                aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
-                                rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
-                                    aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
-
+    
                 <!-- Hambúrguer (mobile) -->
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
@@ -552,28 +551,28 @@
                 </button>
             </div>
         </div>
-
+    
         <!-- ===== HEADER--MAIN ===== -->
         <div class="header--main">
             <div class="container">
                 <nav id="nav-menu" aria-label="Navegação principal">
                     <ul id="menu" role="list">
-
+    
                         <!-- Pesquisa (somente no menu mobile) -->
                         <li class="menu-mobile-search">
                             <form class="header-search header-search--menu" role="search" action="pesquisa.html"
                                 method="get">
-                                <input type="search" name="q" class="header-search-input"
-                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
-                                    spellcheck="false" minlength="2" required>
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
                                 <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                                     <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </li>
-
+    
                         <li><a href="index.html">Início</a></li>
-
+    
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
@@ -594,7 +593,7 @@
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
@@ -618,13 +617,13 @@
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <li><a href="pages/transparencia.html">Transparência</a></li>
                         <li><a href="#stats">Impacto</a></li>
                         <li><a href="pages/noticias.html">Notícias</a></li>
                         <li><a href="pages/fale-conosco.html">Contato</a></li>
                         <li><a href="#como-ajudar">Colabore</a></li>
-
+    
                         <!-- AkanniHUB + Redes (somente no menu mobile) -->
                         <li class="menu-mobile-extras">
                             <a href="akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -632,18 +631,14 @@
                                 <span class="header-hub-label">AkanniHUB</span>
                             </a>
                             <ul class="header-social" role="list" aria-label="Redes sociais">
-                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
-                                        aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                                </li>
-                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
-                                        rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
-                                            aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -656,15 +651,14 @@
         <section id="hero" class="hero-carousel" aria-roledescription="carrossel" aria-label="Destaques da Fundação"
             data-autoplay="7000">
             <div class="hero-slides" id="hero-slides">
-
+        
                 <!-- Slide 1 · apresentação -->
                 <div class="hero-slide hero-slide--intro is-active" role="group" aria-roledescription="slide"
                     aria-label="Apresentação">
                     <div class="container">
                         <div class="hero-grid">
                             <div class="hero-img">
-                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380"
-                                    height="380">
+                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380" height="380">
                             </div>
                             <div class="hero-text">
                                 <h1>Apoiar quem arrisca sua vida para salvar vidas é proteger a sociedade.</h1>
@@ -675,10 +669,10 @@
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- Slides de notícia entram aqui (hero-carousel.js) -->
             </div>
-
+        
             <div class="hero-overlay"></div>
             <div class="hero-scroll-hint" aria-hidden="true">
                 <i class="fas fa-chevron-down"></i>
@@ -1114,8 +1108,7 @@
                     <h4 class="footer-col-title">Navegação</h4>
                     <ul class="footer-nav-grid">
                         <li><a href="index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a></li>
-                        <li><a href="pages/galeria.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
-                                Galeria</a>
+                        <li><a href="pages/galeria.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Galeria</a>
                         </li>
                         <li><a href="pages/nossa-historia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Nossa História</a></li>
@@ -1146,20 +1139,16 @@
                 <div class="footer-social-col">
                     <h4 class="footer-col-title">Siga-nos</h4>
                     <div class="footer-social-links">
-                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn"
-                            aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn"
-                            aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook-f" aria-hidden="true"></i>
                         </a>
-                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp"
-                            target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn"
-                            aria-label="YouTube">
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn" aria-label="YouTube">
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>

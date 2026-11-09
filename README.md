@@ -633,6 +633,7 @@ Fenix193/
 │   │   ├── back-to-top.js             # Botão "Voltar ao topo" (auto-injetado)
 │   │   ├── media-player.js            # Player de vídeo com audiodescrição
 │   │   ├── cbmse-feed.js              # Widget "Segurança & Defesa Civil" (usa /api/feed do Worker)
+│   │   ├── img-utils.js               # Otimização de imagens do Cloudinary (f_auto, q_auto, largura)
 │   │   └── chatbot.js                 # Assistente virtual LuminIA
 │   │
 │   ├── data/                          # Faixas de audiodescrição (.json)
@@ -693,12 +694,13 @@ firebase login
 firebase deploy --only firestore:rules
 ```
 
+
 ### Worker (rotas dinâmicas)
 
 O site é estático, mas três endereços passam primeiro pelo Worker (`run_worker_first` no `wrangler.jsonc`):
 
 | Rota | O que faz |
-| --- | --- |
+|---|---|
 | `/api/feed?source=cbmse` ou `defesacivil` | Lê o RSS do CBMSE ou da Defesa Civil, converte para JSON e guarda em cache por alguns minutos. Só aceita as duas fontes da lista. |
 | `/pages/noticia?id=ID` | Devolve a página da notícia com título, descrição, `canonical`, Open Graph e JSON-LD (`NewsArticle`) já preenchidos, lendo o documento no Firestore. Se algo falhar, entrega a página estática normal. |
 | `/sitemap-noticias.xml` | Sitemap com as notícias publicadas (até 500, mais recentes primeiro). |
