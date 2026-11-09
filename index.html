@@ -45,6 +45,13 @@
     <link rel="preload" as="image" href="assets/img/bomb_02-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
     <link rel="preload" as="image" href="assets/img/bomb_02.webp" media="(min-width: 769px)" fetchpriority="high">
 
+    <!-- Banner de cookies: script leve, independente do Firebase (aparece sem esperar os módulos). -->
+    <script defer src="assets/js/cookie-banner.js"></script>
+    <!-- Módulos buscados em paralelo (evita a fila script.js → firebase-app → firestore). -->
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js">
+    <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js">
+    <link rel="modulepreload" href="assets/js/img-utils.js">
+
     <!-- Fontes: mantidas com display=swap (já configurado) para não bloquear o LCP de texto -->
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
