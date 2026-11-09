@@ -78,6 +78,15 @@
         url('../img/bomb_02.webp') center/cover no-repeat;
 }
 
+/* Celular: versão menor da foto (720 px, ~80 KB) — é o elemento do LCP da home */
+@media (max-width: 768px) {
+    .hero-slide--intro {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, 0.55) 0%, rgba(225, 34, 23, 0.33) 100%),
+            url('../img/bomb_02-mobile.webp') center/cover no-repeat;
+    }
+}
+
 .hero-slide--intro::before {
     content: '';
     position: absolute;
