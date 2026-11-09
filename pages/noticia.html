@@ -18,15 +18,16 @@
     <meta property="og:site_name" content="Fundação Fênix 193">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Notícia · Fundação Fênix 193">
-    <meta property="og:description"
-        content="Leia esta notícia da Fundação Fênix 193, em apoio ao Corpo de Bombeiros Militar de Sergipe.">
-    <meta property="og:image" content="https://fenix193.org.br/assets/img/bomb_02.webp">
+    <meta property="og:description" content="Leia esta notícia da Fundação Fênix 193, em apoio ao Corpo de Bombeiros Militar de Sergipe.">
+    <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Fundação Fênix 193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Notícia · Fundação Fênix 193">
-    <meta name="twitter:description"
-        content="Leia esta notícia da Fundação Fênix 193, em apoio ao Corpo de Bombeiros Militar de Sergipe.">
-    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/bomb_02.webp">
+    <meta name="twitter:description" content="Leia esta notícia da Fundação Fênix 193, em apoio ao Corpo de Bombeiros Militar de Sergipe.">
+    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <link rel="manifest" href="../site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="../assets/ui/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../assets/ui/favicon.svg" />
@@ -305,6 +306,7 @@
                 url('../assets/img/bomb_07.webp') center/cover no-repeat;
             padding: 60px 0 48px;
         }
+
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -319,11 +321,11 @@
 
 <body>
     <header id="main-header">
-
+    
         <!-- ===== HEADER--TOP ===== -->
         <div class="header--top">
             <div class="container header-top-inner">
-
+    
                 <!-- Logo -->
                 <a href="../index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                     <div class="logo-icon" aria-hidden="true">
@@ -336,7 +338,7 @@
                         <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
-
+    
                 <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
                 <form class="header-search header-search--top" role="search" action="../pesquisa.html" method="get">
                     <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
@@ -345,7 +347,7 @@
                         <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
                 </form>
-
+    
                 <!-- AkanniHUB + Redes sociais (desktop) -->
                 <div class="header-top-actions">
                     <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -354,19 +356,17 @@
                     </a>
                     <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
                     <ul class="header-social" role="list" aria-label="Redes sociais">
-                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
-                                rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
-                                rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
-                                aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
                                     class="fab fa-youtube" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
-
+    
                 <!-- Hambúrguer (mobile) -->
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
@@ -375,79 +375,79 @@
                 </button>
             </div>
         </div>
-
+    
         <!-- ===== HEADER--MAIN ===== -->
         <div class="header--main">
             <div class="container">
                 <nav id="nav-menu" aria-label="Navegação principal">
                     <ul id="menu" role="list">
-
+    
                         <!-- Pesquisa (somente no menu mobile) -->
                         <li class="menu-mobile-search">
                             <form class="header-search header-search--menu" role="search" action="../pesquisa.html"
                                 method="get">
-                                <input type="search" name="q" class="header-search-input"
-                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
-                                    spellcheck="false" minlength="2" required>
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
                                 <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                                     <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </li>
-
+    
                         <li><a href="../index.html">Início</a></li>
-
+    
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
-                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
                                 Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="../index.html#quem-somos" role="menuitem">
+                            <ul class="dropdown-menu">
+                                <li><a href="../index.html#quem-somos">
                                         <i class="fas fa-landmark"></i> Quem Somos
                                     </a></li>
-                                <li><a href="nossa-historia.html" role="menuitem">
+                                <li><a href="nossa-historia.html">
                                         <i class="fas fa-book-open"></i> Nossa História
                                     </a></li>
-                                <li><a href="missao-valores.html" role="menuitem">
+                                <li><a href="missao-valores.html">
                                         <i class="fas fa-bullseye"></i> Missão e Valores
                                     </a></li>
-                                <li><a href="equipe.html" role="menuitem">
+                                <li><a href="equipe.html">
                                         <i class="fas fa-users"></i> Equipe
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
-                            <a class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
                                 Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
                             </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="projetos.html" role="menuitem">
+                            <ul class="dropdown-menu">
+                                <li><a href="projetos.html">
                                         <i class="fas fa-clipboard-list"></i> Projetos
                                     </a></li>
-                                <li><a href="capacitacao.html" role="menuitem">
+                                <li><a href="capacitacao.html">
                                         <i class="fas fa-graduation-cap"></i> Capacitação
                                     </a></li>
-                                <li><a href="eventos.html" role="menuitem">
+                                <li><a href="eventos.html">
                                         <i class="fas fa-calendar-days"></i> Eventos
                                     </a></li>
-                                <li><a href="galeria.html" role="menuitem">
+                                <li><a href="galeria.html">
                                         <i class="fas fa-images"></i> Galeria
                                     </a></li>
-                                <li><a href="parcerias.html" role="menuitem">
+                                <li><a href="parcerias.html">
                                         <i class="fas fa-handshake"></i> Parcerias
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <li><a href="transparencia.html">Transparência</a></li>
                         <li><a href="../index.html#stats">Impacto</a></li>
                         <li><a href="noticias.html">Notícias</a></li>
                         <li><a href="fale-conosco.html">Contato</a></li>
                         <li><a href="../index.html#como-ajudar">Colabore</a></li>
-
+    
                         <!-- AkanniHUB + Redes (somente no menu mobile) -->
                         <li class="menu-mobile-extras">
                             <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -455,16 +455,13 @@
                                 <span class="header-hub-label">AkanniHUB</span>
                             </a>
                             <ul class="header-social" role="list" aria-label="Redes sociais">
-                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
-                                        aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                                </li>
-                                <li><a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
                                             class="fab fa-youtube" aria-hidden="true"></i></a></li>
                             </ul>
                         </li>
@@ -474,7 +471,7 @@
         </div>
     </header>
 
-    <main>
+    <main tabindex="-1" id="main-content">
 
         <!-- PAGE HERO -->
         <section class="page-hero page-hero--noticias" aria-label="Notícia">
@@ -503,7 +500,7 @@
                     <h3>Notícia não encontrada</h3>
                     <p>O link pode estar incorreto ou a notícia pode ter sido removida.</p>
                     <p style="margin-top:18px;"><a href="noticias.html" class="news-article-back">
-                            <i class="fas fa-arrow-left"></i> Voltar para Notícias</a></p>
+                        <i class="fas fa-arrow-left"></i> Voltar para Notícias</a></p>
                 </div>
 
                 <div id="article-content" style="display:none;">
@@ -519,10 +516,8 @@
                             <div class="nm-corpo" id="art-corpo"></div>
                             <div class="nm-share">
                                 <span>Compartilhar:</span>
-                                <button class="nm-share-btn" id="btn-share-wa"><i class="fab fa-whatsapp"></i>
-                                    WhatsApp</button>
-                                <button class="nm-share-btn" id="btn-copy-link"><i class="fas fa-link"></i> Copiar
-                                    link</button>
+                                <button class="nm-share-btn" id="btn-share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                                <button class="nm-share-btn" id="btn-copy-link"><i class="fas fa-link"></i> Copiar link</button>
                             </div>
                         </div>
                     </article>
@@ -540,8 +535,7 @@
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
                     <a href="../index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
-                        <img src="../assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36"
-                            loading="lazy">
+                        <img src="../assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36" loading="lazy">
                         <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
                     <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
@@ -587,19 +581,16 @@
                 <div class="footer-social-col">
                     <h4 class="footer-col-title">Siga-nos</h4>
                     <div class="footer-social-links">
-                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn"
-                            aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn"
-                            aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook-f" aria-hidden="true"></i>
                         </a>
-                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp"
-                            target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
-                        <a href="?" class="footer-social-btn" aria-label="YouTube">
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn" aria-label="YouTube">
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -644,7 +635,7 @@
                 <p class="footer-copy">
                     &copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
                     reservados.
-                    &mdash; Desenvolvido com <i class="fa-solid fa-mug-hot" aria-label="café"
+                    &mdash; Desenvolvido com <i role="img" class="fa-solid fa-mug-hot" aria-label="café"
                         style="color:var(--red)"></i>
                     por
                     <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a>
@@ -670,6 +661,7 @@
     <!-- ══ FIREBASE + LOGIC ══ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { cld } from '../assets/js/img-utils.js';
         import { getFirestore, doc, getDoc }
             from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
@@ -740,8 +732,8 @@
             upsert('meta[name="twitter:title"]', mkMeta('name', 'twitter:title'), 'content', tituloPagina);
             upsert('meta[name="twitter:description"]', mkMeta('name', 'twitter:description'), 'content', resumo);
             if (data.imagemUrl) {
-                upsert('meta[property="og:image"]', mkMeta('property', 'og:image'), 'content', data.imagemUrl);
-                upsert('meta[name="twitter:image"]', mkMeta('name', 'twitter:image'), 'content', data.imagemUrl);
+                upsert('meta[property="og:image"]', mkMeta('property', 'og:image'), 'content', cld(data.imagemUrl, 1200, { format: 'jpg' }));
+                upsert('meta[name="twitter:image"]', mkMeta('name', 'twitter:image'), 'content', cld(data.imagemUrl, 1200, { format: 'jpg' }));
             }
 
             // Breadcrumb com o título da matéria
@@ -749,7 +741,7 @@
                 `<i class="fas fa-chevron-right"></i><span>${escHtml(data.titulo)}</span>`);
 
             document.getElementById('art-img-container').innerHTML = data.imagemUrl
-                ? `<img class="nm-hero-img" src="${escHtml(data.imagemUrl)}" alt="${escHtml(data.titulo)}">`
+                ? `<img class="nm-hero-img" src="${escHtml(cld(data.imagemUrl, 1200))}" alt="${escHtml(data.titulo)}" decoding="async">`
                 : `<div class="nm-hero-placeholder"><i class="fas fa-fire-flame-curved"></i></div>`;
 
             document.getElementById('art-meta').innerHTML = `
@@ -845,8 +837,7 @@
             <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
         </div>
         <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
-            <span class="chatbot-toggle-face"><img src="../assets/img/luminia.webp" alt="" width="38"
-                    height="38"></span>
+            <span class="chatbot-toggle-face"><img src="../assets/img/luminia.webp" alt="" width="38" height="38"></span>
             <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
             <span class="chatbot-badge">1</span>
         </button>
