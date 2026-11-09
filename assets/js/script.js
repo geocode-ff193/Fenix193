@@ -19,10 +19,6 @@ import {
     orderBy,
     limit
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
-import {
-    getAnalytics,
-    setAnalyticsCollectionEnabled
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
 import { cld } from "./img-utils.js";
 
 // ── Configuração Firebase ─────────────────────────────────────
@@ -45,56 +41,37 @@ const db = getFirestore(firebaseApp);
    Caso recuse, nenhum dado analítico é coletado.
    ──────────────────────────────────────────────────────────── */
 const COOKIE_KEY = 'ff193_cookie_consent';
+const ANALYTICS_URL = 'https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js';
+let analyticsApi = null;   // só existe depois que o usuário aceitar
 
-function initAnalytics() {
+// O SDK de Analytics só é baixado se o usuário aceitar (tira peso do carregamento da página).
+async function initAnalytics() {
     try {
-        const analyticsInstance = getAnalytics(firebaseApp);
-        setAnalyticsCollectionEnabled(analyticsInstance, true);
+        analyticsApi = analyticsApi || await import(ANALYTICS_URL);
+        const instance = analyticsApi.getAnalytics(firebaseApp);
+        analyticsApi.setAnalyticsCollectionEnabled(instance, true);
     } catch (e) {
         console.warn('[FF193] Analytics não pôde ser iniciado:', e.message);
     }
 }
 
 function disableAnalytics() {
+    // Sem consentimento o SDK nem chega a ser carregado; se já estava ativo nesta visita, desliga a coleta.
+    if (!analyticsApi) return;
     try {
-        // Garante coleta desativada caso já exista instância
-        const analyticsInstance = getAnalytics(firebaseApp);
-        setAnalyticsCollectionEnabled(analyticsInstance, false);
+        analyticsApi.setAnalyticsCollectionEnabled(analyticsApi.getAnalytics(firebaseApp), false);
     } catch (_) { /* instância não existe, seguro ignorar */ }
 }
 
-(function initCookieBanner() {
-    const banner = document.getElementById('cookie-banner');
-    const btnAccept = document.getElementById('cookie-accept');
-    const btnDecline = document.getElementById('cookie-decline');
-    if (!banner || !btnAccept || !btnDecline) return;
+// O banner em si é exibido por cookie-banner.js (sem esperar o Firebase). Aqui só se aplica a escolha.
+(function initCookieConsent() {
+    let consent = null;
+    try { consent = localStorage.getItem(COOKIE_KEY); } catch (_) { /* armazenamento bloqueado */ }
+    if (consent === 'accepted') initAnalytics();
 
-    const consent = localStorage.getItem(COOKIE_KEY);
-
-    if (consent === 'accepted') {
-        // Usuário já aceitou anteriormente → ativa analytics e oculta banner
-        initAnalytics();
-        return;
-    }
-
-    // Sem consentimento ou recusado anteriormente: exibe banner e bloqueia analytics
-    disableAnalytics();
-    banner.removeAttribute('hidden');
-
-    btnAccept.addEventListener('click', () => {
-        localStorage.setItem(COOKIE_KEY, 'accepted');
-        banner.setAttribute('hidden', '');
-        initAnalytics();
-    });
-
-    btnDecline.addEventListener('click', () => {
-        // NÃO persiste nada no localStorage → banner reaparece a cada visita
-        // Remove chave se existia de sessão anterior
-        localStorage.removeItem(COOKIE_KEY);
-        banner.setAttribute('hidden', '');
-        disableAnalytics();
-        // Informa no console para fins de auditoria
-        console.info('[FF193] Usuário recusou cookies — coleta de dados desativada.');
+    window.addEventListener('ff193:cookie-consent', (e) => {
+        if (e.detail === 'accepted') initAnalytics();
+        else disableAnalytics();
     });
 })();
 
