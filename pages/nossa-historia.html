@@ -38,7 +38,8 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
-    <link rel="preload" as="image" href="../assets/img/bomb_01.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="../assets/img/hero-historia-m.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="../assets/img/hero-historia.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -302,7 +303,14 @@
         .page-hero {
             background:
                 linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-                url('../assets/img/bomb_01.webp') center/cover no-repeat;
+                url('../assets/img/hero-historia.webp') center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .page-hero {
+                background:
+                    linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                    url('../assets/img/hero-historia-m.webp') center/cover no-repeat;
+            }
         }
 
     </style>

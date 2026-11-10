@@ -10,35 +10,153 @@ GERAL
     overflow: hidden;
 }
 
-/* ── Variantes institucional ── */
-.page-hero--historia,
-.page-hero--missao,
-.page-hero--equipe,
+/* ── Fundo do hero de cada página ──
+   Uma foto por página. Computador: faixa larga (hero-<página>.webp).
+   Celular (até 768 px): recorte mais alto (hero-<página>-m.webp), que mostra melhor o assunto da foto. */
+.page-hero--historia {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-historia.webp') center/cover no-repeat;
+}
+
+.page-hero--missao {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-missao.webp') center/cover no-repeat;
+}
+
+.page-hero--equipe {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-equipe.webp') center/cover no-repeat;
+}
+
 .page-hero--transparencia {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb_01.webp') center/cover no-repeat;
+        url('../img/hero-transparencia.webp') center/cover no-repeat;
 }
 
-/* ── Variantes atuação ── */
-.page-hero--capacitacao,
-.page-hero--eventos,
-.page-hero--parcerias,
+.page-hero--capacitacao {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-capacitacao.webp') center/cover no-repeat;
+}
+
+.page-hero--eventos {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-eventos.webp') center/cover no-repeat;
+}
+
+.page-hero--parcerias {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-parcerias.webp') center/cover no-repeat;
+}
+
 .page-hero--projetos {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb_02.webp') center/cover no-repeat;
+        url('../img/hero-projetos.webp') center/cover no-repeat;
 }
 
-/* ── Variante notícias ──
-   Faltava esta regra: sem ela, a imagem definida no CSS crítico inline
-   de noticias.html (bomb_07.webp) era sobrescrita pela regra genérica
-   .page-hero (sem imagem) assim que este arquivo terminava de carregar,
-   fazendo o banner "piscar e sumir" após ~1s. */
+.page-hero--contato {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-contato.webp') center/cover no-repeat;
+}
+
+.page-hero--galeria {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-galeria.webp') center/cover no-repeat;
+}
+
+.page-hero--pesquisa {
+    background:
+        linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+        url('../img/hero-pesquisa.webp') center/cover no-repeat;
+}
+
 .page-hero--noticias {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/bomb_07.webp') center/cover no-repeat;
+        url('../img/hero-noticias.webp') center/cover no-repeat;
+}
+
+@media (max-width: 768px) {
+    .page-hero--historia {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-historia-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--missao {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-missao-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--equipe {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-equipe-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--transparencia {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-transparencia-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--capacitacao {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-capacitacao-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--eventos {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-eventos-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--parcerias {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-parcerias-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--projetos {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-projetos-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--contato {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-contato-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--galeria {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-galeria-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--pesquisa {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-pesquisa-m.webp') center/cover no-repeat;
+    }
+
+    .page-hero--noticias {
+        background:
+            linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+            url('../img/hero-noticias-m.webp') center/cover no-repeat;
+    }
 }
 
 .page-hero::after {
