@@ -33,22 +33,38 @@
     <meta name="description"
         content="Conheça os projetos da Fundação Fênix 193: Bombeiro Mirim, SOS Abelhas, Apoio Operacional, cursos de capacitação e muito mais.">
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
     <link rel="preload" as="image" href="../assets/img/hero-projetos-m.webp" media="(max-width: 768px)" fetchpriority="high">
     <link rel="preload" as="image" href="../assets/img/hero-projetos.webp" media="(min-width: 769px)" fetchpriority="high">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-500.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2" crossorigin>
 
     <!-- ===================== CRITICAL CSS (inline) =====================
          Header/nav + banner interno (.page-hero) — o suficiente para renderizar
          a primeira dobra sem esperar o style.css/pages.css completos. -->
     <style>
+        /* ── Fontes hospedadas no próprio site (Barlow e Barlow Condensed, subconjunto latin) ──
+           Substituem o Google Fonts: uma requisição externa a menos no caminho crítico. */
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2'); }
+
         :root {
             --red: #E12217;
             --red-dark: #872020;

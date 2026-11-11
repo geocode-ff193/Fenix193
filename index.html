@@ -35,8 +35,6 @@
     <link rel="shortcut icon" href="assets/ui/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP: imagem de fundo do 1º slide (bomb_02.webp no computador; bomb_02-mobile.webp até 768px, definidas via CSS).
@@ -53,14 +51,32 @@
     <link rel="modulepreload" href="assets/js/img-utils.js">
 
     <!-- Fontes: mantidas com display=swap (já configurado) para não bloquear o LCP de texto -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-500.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2" crossorigin>
 
     <!-- ===================== CRITICAL CSS (inline) =====================
          Estilos mínimos para renderizar header + hero (primeira dobra) sem
          esperar pelo download do style.css completo (~60KB). -->
     <style>
+        /* ── Fontes hospedadas no próprio site (Barlow e Barlow Condensed, subconjunto latin) ──
+           Substituem o Google Fonts: uma requisição externa a menos no caminho crítico. */
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2'); }
+
         :root {
             --red: #E12217;
             --red-dark: #872020;
@@ -512,7 +528,7 @@
                 <!-- Logo -->
                 <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
                     <div class="logo-icon" aria-hidden="true">
-                        <img src="assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
+                        <img src="assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
                     </div>
                     <div class="logo-text">
                         <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
@@ -665,10 +681,7 @@
                     <div class="container">
                         <div class="hero-grid">
                             <div class="hero-img">
-                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380" height="380"
-                        srcset="assets/img/ff193_transp-420.webp 420w, assets/img/ff193_transp.webp 800w"
-                        sizes="(max-width: 768px) min(210px, 54vw), clamp(220px, 27vw, 400px)"
-                        fetchpriority="high" decoding="async">
+                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380" height="380">
                             </div>
                             <div class="hero-text">
                                 <h1>Apoiar quem arrisca sua vida para salvar vidas é proteger a sociedade.</h1>
@@ -1103,7 +1116,7 @@
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
-                        <img src="assets/img/ff193_transp-128.webp" alt="Logo Fênix 193" width="36" height="36"
+                        <img src="assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36"
                             loading="lazy">
                         <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
