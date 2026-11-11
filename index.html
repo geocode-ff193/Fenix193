@@ -35,7 +35,6 @@
     <link rel="shortcut icon" href="assets/ui/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP: imagem de fundo do 1º slide (bomb_02.webp no computador; bomb_02-mobile.webp até 768px, definidas via CSS).
          Como é carregada via CSS e não via <img>, o navegador só a descobre depois de
@@ -431,7 +430,9 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dropdown.css">
     <link rel="stylesheet" href="assets/css/chatbot.css">
@@ -603,16 +604,16 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#quem-somos">
-                                        <i class="fas fa-landmark"></i> Quem Somos
+                                        Quem Somos
                                     </a></li>
                                 <li><a href="pages/nossa-historia.html">
-                                        <i class="fas fa-book-open"></i> Nossa História
+                                        Nossa História
                                     </a></li>
                                 <li><a href="pages/missao-valores.html">
-                                        <i class="fas fa-bullseye"></i> Missão e Valores
+                                        Missão e Valores
                                     </a></li>
                                 <li><a href="pages/equipe.html">
-                                        <i class="fas fa-users"></i> Equipe
+                                        Equipe
                                     </a></li>
                             </ul>
                         </li>
@@ -624,19 +625,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="pages/projetos.html">
-                                        <i class="fas fa-clipboard-list"></i> Projetos
+                                        Projetos
                                     </a></li>
                                 <li><a href="pages/capacitacao.html">
-                                        <i class="fas fa-graduation-cap"></i> Capacitação
+                                        Capacitação
                                     </a></li>
                                 <li><a href="pages/eventos.html">
-                                        <i class="fas fa-calendar-days"></i> Eventos
+                                        Eventos
                                     </a></li>
                                 <li><a href="pages/galeria.html">
-                                        <i class="fas fa-images"></i> Galeria
+                                        Galeria
                                     </a></li>
                                 <li><a href="pages/parcerias.html">
-                                        <i class="fas fa-handshake"></i> Parcerias
+                                        Parcerias
                                     </a></li>
                             </ul>
                         </li>

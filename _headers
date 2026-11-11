@@ -29,3 +29,7 @@
 # Fontes (arquivos com versão no nome, v13): podem ficar em cache por 1 ano
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Font Awesome 6.5.0 (versão fixa no caminho): cache de 1 ano
+/assets/vendor/*
+  Cache-Control: public, max-age=31536000, immutable

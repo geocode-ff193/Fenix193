@@ -82,20 +82,8 @@
     white-space: nowrap;
 }
 
-.dropdown-menu li a i {
-    color: var(--red);
-    width: 16px;
-    text-align: center;
-    font-size: .85rem;
-    flex-shrink: 0;
-}
-
 .dropdown-menu li a:hover {
     background: rgba(225, 34, 23, .06);
-    color: var(--red);
-}
-
-.dropdown-menu li a:hover i {
     color: var(--red);
 }
 

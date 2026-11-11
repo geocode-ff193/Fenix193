@@ -33,7 +33,6 @@
     <meta name="description"
         content="Portal de transparência da Fundação Fênix 193. Acesse prestações de contas, relatórios, estatutos, certidões e demais documentos institucionais.">
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
     <link rel="preload" as="image" href="../assets/img/hero-transparencia-m.webp" media="(max-width: 768px)" fetchpriority="high">
@@ -331,7 +330,9 @@
 
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/dropdown.css">
     <link rel="stylesheet" href="../assets/css/pages.css">
@@ -426,16 +427,16 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="../index.html#quem-somos">
-                                        <i class="fas fa-landmark"></i> Quem Somos
+                                        Quem Somos
                                     </a></li>
                                 <li><a href="nossa-historia.html">
-                                        <i class="fas fa-book-open"></i> Nossa História
+                                        Nossa História
                                     </a></li>
                                 <li><a href="missao-valores.html">
-                                        <i class="fas fa-bullseye"></i> Missão e Valores
+                                        Missão e Valores
                                     </a></li>
                                 <li><a href="equipe.html">
-                                        <i class="fas fa-users"></i> Equipe
+                                        Equipe
                                     </a></li>
                             </ul>
                         </li>
@@ -447,19 +448,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="projetos.html">
-                                        <i class="fas fa-clipboard-list"></i> Projetos
+                                        Projetos
                                     </a></li>
                                 <li><a href="capacitacao.html">
-                                        <i class="fas fa-graduation-cap"></i> Capacitação
+                                        Capacitação
                                     </a></li>
                                 <li><a href="eventos.html">
-                                        <i class="fas fa-calendar-days"></i> Eventos
+                                        Eventos
                                     </a></li>
                                 <li><a href="galeria.html">
-                                        <i class="fas fa-images"></i> Galeria
+                                        Galeria
                                     </a></li>
                                 <li><a href="parcerias.html">
-                                        <i class="fas fa-handshake"></i> Parcerias
+                                        Parcerias
                                     </a></li>
                             </ul>
                         </li>
