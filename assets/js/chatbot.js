@@ -1,5 +1,5 @@
 /* =============================================================
-   CHATBOT FLUTUANTE — LuminIA · Guia de Ajuda Fundação Fênix 193
+   CHATBOT FLUTUANTE — LuminIA · Guia de Ajuda Fundação Fênix193
    ============================================================= */
 
 class Chatbot {
@@ -249,7 +249,7 @@ class Chatbot {
     // ══════════════════════════════════════════════════════════
     handleSobre() {
         this.addMessage([
-            '<strong>Sobre a Fundação Fênix 193 🔥</strong>',
+            '<strong>Sobre a Fundação Fênix193 🔥</strong>',
             'Somos uma organização sem fins lucrativos que apoia o <strong>Corpo de Bombeiros Militar de Sergipe (CBMSE)</strong> e as ações de <strong>Proteção e Defesa Civil</strong>.',
             'O que você quer saber?'
         ]);
@@ -266,7 +266,7 @@ class Chatbot {
     handleQuemSomos() {
         this.addMessage([
             '<strong>Quem Somos 🏛️</strong>',
-            'A Fundação Fênix 193 é uma entidade privada sem fins lucrativos, com sede em Aracaju/SE, criada para fortalecer as atividades do CBMSE e da Defesa Civil.',
+            'A Fundação Fênix193 é uma entidade privada sem fins lucrativos, com sede em Aracaju/SE, criada para fortalecer as atividades do CBMSE e da Defesa Civil.',
             'Atuamos captando recursos, promovendo capacitações, realizando eventos e firmando parcerias estratégicas em prol da segurança pública sergipana.',
         ]);
         setTimeout(() => this.addLinkMessage('Ver seção Quem Somos', 'fas fa-arrow-right', this._href('index.html#quem-somos')), 500);
@@ -276,7 +276,7 @@ class Chatbot {
     handleHistoria() {
         this.addMessage([
             '<strong>Nossa História 📖</strong>',
-            'A Fundação Fênix 193 nasceu da necessidade de criar um elo sólido entre a sociedade civil e o Corpo de Bombeiros Militar de Sergipe.',
+            'A Fundação Fênix193 nasceu da necessidade de criar um elo sólido entre a sociedade civil e o Corpo de Bombeiros Militar de Sergipe.',
             'Ao longo dos anos, construímos uma trajetória de compromisso com a segurança, a solidariedade e o desenvolvimento institucional.',
         ]);
         setTimeout(() => this.addLinkMessage('Ler nossa história completa', 'fas fa-book-open', this._href('pages/nossa-historia.html')), 500);
@@ -298,7 +298,7 @@ class Chatbot {
         this.addMessage([
             '<strong>Nossa Equipe 👥</strong>',
             'A Fundação é gerida por um time dedicado de diretores, colaboradores e voluntários comprometidos com a missão institucional.',
-            'Conheça os membros que fazem a Fênix 193 acontecer:',
+            'Conheça os membros que fazem a Fênix193 acontecer:',
         ]);
         setTimeout(() => this.addLinkMessage('Conhecer a equipe', 'fas fa-users', this._href('pages/equipe.html')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
@@ -310,7 +310,7 @@ class Chatbot {
     handleAtuacao() {
         this.addMessage([
             '<strong>Projetos e Atuação 🚒</strong>',
-            'A Fênix 193 atua em projetos, capacitações, eventos e parcerias para fortalecer o CBMSE e a Defesa Civil.',
+            'A Fênix193 atua em projetos, capacitações, eventos e parcerias para fortalecer o CBMSE e a Defesa Civil.',
         ]);
         setTimeout(() => {
             this.showOptions([
@@ -346,7 +346,7 @@ class Chatbot {
     handleEventos() {
         this.addMessage([
             '<strong>Eventos 📅</strong>',
-            'A Fundação Fênix 193 organiza e apoia eventos de sensibilização, arrecadação e integração com a sociedade sergipana.',
+            'A Fundação Fênix193 organiza e apoia eventos de sensibilização, arrecadação e integração com a sociedade sergipana.',
             'Fique por dentro dos próximos eventos e participe!',
         ]);
         setTimeout(() => this.addLinkMessage('Ver agenda de eventos', 'fas fa-calendar-days', this._href('pages/eventos.html')), 500);
@@ -369,7 +369,7 @@ class Chatbot {
     handleComoAjudar() {
         this.addMessage([
             '<strong>Como Colaborar 💛</strong>',
-            'Você pode apoiar a Fênix 193 de diferentes formas:',
+            'Você pode apoiar a Fênix193 de diferentes formas:',
         ]);
         setTimeout(() => {
             this.showOptions([
@@ -465,7 +465,7 @@ class Chatbot {
     handleContatoRedes() {
         this.addMessage([
             '<strong>Redes Sociais 📣</strong>',
-            'Siga a Fundação Fênix 193 nas redes sociais e fique por dentro de tudo que acontece:',
+            'Siga a Fundação Fênix193 nas redes sociais e fique por dentro de tudo que acontece:',
         ]);
         setTimeout(() => {
             this.addLinkMessage('Instagram', 'fab fa-instagram', 'https://instagram.com/fundacaofenix193', true);
@@ -473,7 +473,11 @@ class Chatbot {
         setTimeout(() => {
             this.addLinkMessage('Facebook', 'fab fa-facebook', 'https://facebook.com/fundacaofenix193', true);
         }, 700);
-        setTimeout(() => this.showBackToMenuOptions(), 1400);
+        setTimeout(() => {
+            this.addMessage(['Gostou do nosso trabalho? Sua avaliação no Google ajuda mais pessoas a conhecerem a Fundação:']);
+            this.addLinkMessage('Avaliar no Google', 'fas fa-star', 'https://g.page/r/CSs-dW7-kpUVEBM/review', true);
+        }, 1000);
+        setTimeout(() => this.showBackToMenuOptions(), 2000);
     }
 
     // ══════════════════════════════════════════════════════════
@@ -549,5 +553,5 @@ class Chatbot {
 // ===== INICIALIZAR CHATBOT =====
 document.addEventListener('DOMContentLoaded', () => {
     new Chatbot();
-    console.log('🤖 LuminIA — Guia de Ajuda da Fundação Fênix 193 inicializada!');
+    console.log('🤖 LuminIA — Guia de Ajuda da Fundação Fênix193 inicializada!');
 });

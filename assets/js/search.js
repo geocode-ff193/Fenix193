@@ -306,4 +306,4 @@ function initHeroSearch() {
 /* Inicializa assim que o módulo é avaliado (DOM já pronto em módulos ES) */
 initHeroSearch();
 
-console.log('%c🔥 Fundação Fênix 193 — Pesquisa iniciada', 'color:#FF6F00;font-weight:bold;font-size:13px');
+console.log('%c🔥 Fundação Fênix193 — Pesquisa iniciada', 'color:#FF6F00;font-weight:bold;font-size:13px');

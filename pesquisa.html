@@ -8,12 +8,12 @@
     <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
     <link rel="shortcut icon" href="assets/ui/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Fênix 193" />
+    <meta name="apple-mobile-web-app-title" content="Fênix193" />
     <link rel="manifest" href="site.webmanifest" />
-    <title>Pesquisa · Fundação Fênix 193</title>
+    <title>Pesquisa · Fundação Fênix193</title>
     <meta name="robots" content="noindex, follow">
     <meta name="description"
-        content="Pesquise em todo o site da Fundação Fênix 193: páginas, notícias, projetos, capacitações, eventos e documentos de transparência.">
+        content="Pesquise em todo o site da Fundação Fênix193: páginas, notícias, projetos, capacitações, eventos e documentos de transparência.">
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
@@ -309,6 +309,16 @@
                     url('assets/img/hero-pesquisa-m.webp') center/cover no-repeat;
             }
         }
+    
+        /* Link "Avalie-nos no Google" (rodapé) e destaque na página Fale Conosco */
+        .footer-review-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 16px;
+            border: 1.5px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; font-size: .85rem;
+            font-weight: 600; text-decoration: none; transition: background .25s ease, border-color .25s ease, color .25s ease; }
+        .footer-review-link i { color: var(--amber, #F8BA25); transition: color .25s ease; }
+        .footer-review-link:hover, .footer-review-link:focus-visible { background: var(--amber, #F8BA25);
+            border-color: var(--amber, #F8BA25); color: #1f2120; }
+        .footer-review-link:hover i, .footer-review-link:focus-visible i { color: #1f2120; }
+        .contact-review-link { font-weight: 700; text-decoration: underline; color: inherit; }
     </style>
 
     <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
@@ -332,7 +342,7 @@
             <div class="container header-top-inner">
     
                 <!-- Logo -->
-                <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <a href="index.html" class="logo-area" aria-label="Fundação Fênix193 - Início">
                     <div class="logo-icon" aria-hidden="true">
                         <img src="assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
                     </div>
@@ -486,7 +496,7 @@
                 </nav>
                 <div class="page-hero-bar"></div>
                 <h1>Pesquisa</h1>
-                <p id="sr-hero-sub">Encontre páginas, notícias, projetos, eventos e documentos da Fundação Fênix 193.
+                <p id="sr-hero-sub">Encontre páginas, notícias, projetos, eventos e documentos da Fundação Fênix193.
                 </p>
             </div>
         </section>
@@ -526,8 +536,8 @@
             <div class="container footer-grid">
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
-                        <img src="assets/img/ff193_transp-128.webp" alt="Logo Fênix 193" width="36" height="36"
+                    <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
+                        <img src="assets/img/ff193_transp-128.webp" alt="Logo Fênix193" width="36" height="36"
                             loading="lazy">
                         <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
@@ -587,6 +597,10 @@
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
+                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
+                        <i class="fas fa-star" aria-hidden="true"></i> Avalie-nos no Google
+                    </a>
                 </div>
 
                 <!-- COLUNA 4 · Fale Conosco -->
@@ -626,7 +640,7 @@
 
                 <!-- Esquerda: copyright + créditos -->
                 <p class="footer-copy">
-                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix193</strong>. Todos os direitos
                     reservados.
                     &mdash; Desenvolvido com <i role="img" class="fa-solid fa-mug-hot" aria-label="café"
                         style="color:var(--red)"></i>
@@ -745,7 +759,7 @@
                         <img src="assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
                     </div>
                     <div class="message-content">
-                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix 193. Posso tirar dúvidas,
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix193. Posso tirar dúvidas,
                             ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
                             começamos?</p>
                     </div>

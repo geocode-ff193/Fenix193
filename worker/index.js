@@ -1,5 +1,5 @@
 /**
- * WORKER — Fundação Fênix 193 (Cloudflare Workers)
+ * WORKER — Fundação Fênix193 (Cloudflare Workers)
  *
  * O site continua sendo servido como arquivos estáticos (assets). Este Worker só
  * entra em 3 rotas, definidas em "run_worker_first" no wrangler.jsonc:
@@ -200,8 +200,8 @@ async function handleNoticia(request, env, url) {
 
   const origin = env.SITE_ORIGIN;
   const canonical = `${origin}/pages/noticia?id=${encodeURIComponent(id)}`;
-  const title = `${news.titulo} · Fundação Fênix 193`;
-  const desc = buildDescription(news.corpo) || 'Leia esta notícia da Fundação Fênix 193.';
+  const title = `${news.titulo} · Fundação Fênix193`;
+  const desc = buildDescription(news.corpo) || 'Leia esta notícia da Fundação Fênix193.';
   const image = ogImage(news.imagemUrl);
 
   const jsonLd = {
@@ -214,11 +214,11 @@ async function handleNoticia(request, env, url) {
     author: [
       news.autor && !news.autor.includes('@')
         ? { '@type': 'Person', name: news.autor }
-        : { '@type': 'Organization', name: 'Fundação Fênix 193' },
+        : { '@type': 'Organization', name: 'Fundação Fênix193' },
     ],
     publisher: {
       '@type': 'Organization',
-      name: 'Fundação Fênix 193',
+      name: 'Fundação Fênix193',
       logo: { '@type': 'ImageObject', url: `${origin}/assets/ui/web-app-manifest-512x512.png` },
     },
   };

@@ -109,7 +109,7 @@ const els = {
     crumb: $('gal-breadcrumb')
 };
 const state = { album: null, photos: [], shown: PHOTOS_PER_PAGE };
-const BASE_TITLE = 'Galeria · Fundação Fênix 193';
+const BASE_TITLE = 'Galeria · Fundação Fênix193';
 
 function readUrl() {
     const p = new URLSearchParams(location.search);
@@ -152,7 +152,7 @@ function showState({ icon, title, text, retry, back }) {
 async function showList(year) {
     setHero({
         title: 'Galeria',
-        sub: 'Momentos de ações, eventos e projetos da Fundação Fênix 193.',
+        sub: 'Momentos de ações, eventos e projetos da Fundação Fênix193.',
         crumbs: [{ label: 'Início', href: '../index.html' }, { label: 'Galeria' }]
     });
     document.title = BASE_TITLE;

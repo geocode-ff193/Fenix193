@@ -60,7 +60,7 @@ export const STATIC_INDEX = [
         category: 'Página',
         icon: 'fa-house',
         link: 'index.html',
-        keywords: 'início home principal fundação fênix 193 bombeiros sergipe'
+        keywords: 'início home principal fundação fênix 193 fênix193 fenix193 bombeiros sergipe'
     },
     {
         title: 'Quem Somos',

@@ -169,7 +169,7 @@ async function run(q, { push = false } = {}) {
     state.q = q.slice(0, MAX_QUERY).trim();
     state.shown = PAGE_SIZE;
     syncInputs(state.q);
-    document.title = state.q ? `Pesquisa: ${state.q} · Fundação Fênix 193` : 'Pesquisa · Fundação Fênix 193';
+    document.title = state.q ? `Pesquisa: ${state.q} · Fundação Fênix193` : 'Pesquisa · Fundação Fênix193';
     writeUrl(push);
 
     if (!state.q) {

@@ -7,27 +7,27 @@
     <meta name="author" content="GeoCODE Programmer · Geovani Santos">
     <meta name="theme-color" content="#313332">
     <meta name="description"
-        content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+        content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <meta name="apple-mobile-web-app-title" content="Fênix193" />
-    <title>Fundação Fênix 193 · Apoio ao Corpo de Bombeiros de Sergipe</title>
+    <title>Fundação Fênix193 · Apoio ao Corpo de Bombeiros de Sergipe</title>
 
     <!-- SEO · Open Graph · Twitter -->
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://fenix193.org.br/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Fundação Fênix 193">
+    <meta property="og:site_name" content="Fundação Fênix193">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Fundação Fênix 193 · Apoio ao Corpo de Bombeiros de Sergipe">
-    <meta property="og:description" content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta property="og:title" content="Fundação Fênix193 · Apoio ao Corpo de Bombeiros de Sergipe">
+    <meta property="og:description" content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <meta property="og:url" content="https://fenix193.org.br/">
     <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Fundação Fênix 193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
+    <meta property="og:image:alt" content="Fundação Fênix193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Fundação Fênix 193 · Apoio ao Corpo de Bombeiros de Sergipe">
-    <meta name="twitter:description" content="A Fundação Fênix 193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta name="twitter:title" content="Fundação Fênix193 · Apoio ao Corpo de Bombeiros de Sergipe">
+    <meta name="twitter:description" content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <link rel="manifest" href="site.webmanifest" />
     <link rel="icon" type="image/x-icon" href="assets/ui/favicon-96x96.png" sizes="96x96" />
@@ -428,6 +428,16 @@
                 font-size: 1.7rem;
             }
         }
+    
+        /* Link "Avalie-nos no Google" (rodapé) e destaque na página Fale Conosco */
+        .footer-review-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 16px;
+            border: 1.5px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; font-size: .85rem;
+            font-weight: 600; text-decoration: none; transition: background .25s ease, border-color .25s ease, color .25s ease; }
+        .footer-review-link i { color: var(--amber, #F8BA25); transition: color .25s ease; }
+        .footer-review-link:hover, .footer-review-link:focus-visible { background: var(--amber, #F8BA25);
+            border-color: var(--amber, #F8BA25); color: #1f2120; }
+        .footer-review-link:hover i, .footer-review-link:focus-visible i { color: #1f2120; }
+        .contact-review-link { font-weight: 700; text-decoration: underline; color: inherit; }
     </style>
 
     <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
@@ -449,11 +459,13 @@
     {
       "@type": "NGO",
       "@id": "https://fenix193.org.br/#organization",
-      "name": "Fundação Fênix 193",
+      "name": "Fundação Fênix193",
       "alternateName": [
-        "Fundação de Apoio ao CBMSE",
+        "Fundação Fênix 193",
+        "Fênix193",
+        "Fênix 193",
         "FF193",
-        "Fênix 193"
+        "Fundação de Apoio ao CBMSE"
       ],
       "url": "https://fenix193.org.br/",
       "logo": {
@@ -501,18 +513,25 @@
       "sameAs": [
         "https://www.instagram.com/fundacaofenix193/",
         "https://www.facebook.com/fundacaofenix193",
-          "https://www.youtube.com/@FundacaoFenix193"
+        "https://www.youtube.com/@FundacaoFenix193",
+        "https://g.page/r/CSs-dW7-kpUVEBM"
       ]
     },
     {
       "@type": "WebSite",
       "@id": "https://fenix193.org.br/#website",
       "url": "https://fenix193.org.br/",
-      "name": "Fundação Fênix 193",
+      "name": "Fundação Fênix193",
       "inLanguage": "pt-BR",
       "publisher": {
         "@id": "https://fenix193.org.br/#organization"
-      }
+      },
+      "alternateName": [
+        "Fundação Fênix 193",
+        "Fênix193",
+        "Fênix 193",
+        "FF193"
+      ]
     }
   ]
 }
@@ -527,7 +546,7 @@
             <div class="container header-top-inner">
     
                 <!-- Logo -->
-                <a href="index.html" class="logo-area" aria-label="Fundação Fênix 193 - Início">
+                <a href="index.html" class="logo-area" aria-label="Fundação Fênix193 - Início">
                     <div class="logo-icon" aria-hidden="true">
                         <img src="assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
                     </div>
@@ -682,11 +701,11 @@
                     <div class="container">
                         <div class="hero-grid">
                             <div class="hero-img">
-                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix 193" width="380" height="380">
+                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix193" width="380" height="380">
                             </div>
                             <div class="hero-text">
                                 <h1>Apoiar quem arrisca sua vida para salvar vidas é proteger a sociedade.</h1>
-                                <p>A <strong>Fundação Fênix 193</strong> fortalece a proteção da sociedade sergipana
+                                <p>A <strong>Fundação Fênix193</strong> fortalece a proteção da sociedade sergipana
                                     por meio do apoio ao trabalho do Corpo de Bombeiros Militar de Sergipe e das ações
                                     de Proteção e Defesa Civil.</p>
                             </div>
@@ -713,7 +732,7 @@
                 </div>
                 <div class="grid-2 quem-somos-grid">
                     <div class="qs-text">
-                        <p>A <strong>Fundação Fênix 193</strong> é uma organização sem fins lucrativos criada com o
+                        <p>A <strong>Fundação Fênix193</strong> é uma organização sem fins lucrativos criada com o
                             propósito de apoiar, valorizar e fortalecer as ações do Corpo de Bombeiros Militar de
                             Sergipe e da Proteção e Defesa Civil.</p>
                         <p>Atuamos promovendo iniciativas que contribuem para a melhoria da estrutura operacional,
@@ -729,9 +748,9 @@
                         <div class="qs-carousel" role="region" aria-label="Carrossel de imagens">
                             <div class="qs-carousel-track">
                                 <div class="qs-slide active">
-                                    <img src="assets/img/bomb_10.webp" alt="Fênix 193" width="800" height="600"
+                                    <img src="assets/img/bomb_10.webp" alt="Fênix193" width="800" height="600"
                                         loading="lazy">
-                                    <span class="qs-slide-label">Fênix 193</span>
+                                    <span class="qs-slide-label">Fênix193</span>
                                 </div>
                                 <div class="qs-slide">
                                     <img src="assets/img/bomb_11.webp" alt="Nossa missão" width="800" height="600"
@@ -1067,7 +1086,7 @@
                 </div>
                 <div class="grid-2 contact-grid">
                     <div class="contact-info">
-                        <p>Tem dúvidas, denúncias ou propostas? A <strong>Fundação Fênix 193</strong> ouve você.
+                        <p>Tem dúvidas, denúncias ou propostas? A <strong>Fundação Fênix193</strong> ouve você.
                             Use o formulário da página Fale Conosco: se se identificar, retornaremos em breve.
                             Denúncias podem ser enviadas sem identificação.</p>
                         <ul class="contact-list">
@@ -1116,8 +1135,8 @@
             <div class="container footer-grid">
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix 193 — Início">
-                        <img src="assets/img/ff193_transp.webp" alt="Logo Fênix 193" width="36" height="36"
+                    <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
+                        <img src="assets/img/ff193_transp.webp" alt="Logo Fênix193" width="36" height="36"
                             loading="lazy">
                         <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
@@ -1176,6 +1195,10 @@
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
+                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
+                        <i class="fas fa-star" aria-hidden="true"></i> Avalie-nos no Google
+                    </a>
                 </div>
 
                 <!-- COLUNA 4 · Fale Conosco -->
@@ -1215,7 +1238,7 @@
 
                 <!-- Esquerda: copyright + créditos -->
                 <p class="footer-copy">
-                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix 193</strong>. Todos os direitos
+                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix193</strong>. Todos os direitos
                     reservados.
                     &mdash; Desenvolvido com <i role="img" class="fa-solid fa-mug-hot" aria-label="café"
                         style="color:var(--red)"></i>
@@ -1311,7 +1334,7 @@
                         <img src="assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
                     </div>
                     <div class="message-content">
-                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix 193. Posso tirar dúvidas,
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix193. Posso tirar dúvidas,
                             ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
                             começamos?</p>
                     </div>
