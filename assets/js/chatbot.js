@@ -184,6 +184,39 @@ class Chatbot {
         });
     }
 
+    // ── Menu com NO MÁXIMO 4 botões ───────────────────────────
+    // items: opções de conteúdo. back: botão "Voltar" opcional (sempre o último).
+    // Se tudo couber em 4 botões, mostra direto. Se não, divide em páginas:
+    //   1ª página ........ 3 opções + "Mais opções"
+    //   páginas do meio .. 2 opções + "Anteriores" + "Mais opções"
+    //   última página .... opções restantes + "Anteriores" (+ "Voltar", se houver)
+    // Nenhuma opção some: todas continuam acessíveis, só que em mais de uma tela.
+    showMenu(items, back = null, page = 0) {
+        const MAX = 4;
+        if (items.length + (back ? 1 : 0) <= MAX) {
+            this.showOptions(back ? [...items, back] : items);
+            return;
+        }
+        const pages = [];
+        const rest = items.slice();
+        while (rest.length) {
+            if (!pages.length) { pages.push(rest.splice(0, 3)); continue; }
+            const lastCapacity = MAX - 1 - (back ? 1 : 0);
+            pages.push(rest.length <= lastCapacity ? rest.splice(0) : rest.splice(0, 2));
+        }
+        const i = Math.min(Math.max(page, 0), pages.length - 1);
+        const buttons = [...pages[i]];
+        if (i > 0) {
+            buttons.push({ text: 'Anteriores', icon: 'fas fa-angles-left', action: () => this.showMenu(items, back, i - 1) });
+        }
+        if (i < pages.length - 1) {
+            buttons.push({ text: 'Mais opções', icon: 'fas fa-ellipsis', action: () => this.showMenu(items, back, i + 1) });
+        } else if (back) {
+            buttons.push(back);
+        }
+        this.showOptions(buttons);
+    }
+
     // ── Processa clique numa opção ────────────────────────────
     handleOption(option) {
         this.addMessage(option.text, true);
@@ -205,6 +238,9 @@ class Chatbot {
             'transparencia': () => this.handleTransparencia(),
             'contato': () => this.handleContato(),
             'navegacao': () => this.handleNavegacao(),
+            'nav_institucional': () => this.handleNavInstitucional(),
+            'nav_atuacao': () => this.handleNavAtuacao(),
+            'nav_outros': () => this.handleNavOutros(),
             // Subcategorias — Sobre
             'quem_somos': () => this.handleQuemSomos(),
             'historia': () => this.handleHistoria(),
@@ -234,7 +270,7 @@ class Chatbot {
     //  MENU INICIAL
     // ══════════════════════════════════════════════════════════
     showInitialOptions() {
-        this.showOptions([
+        this.showMenu([
             { text: 'Sobre a Fundação', icon: 'fas fa-landmark', action: 'sobre' },
             { text: 'Projetos e atuação', icon: 'fas fa-clipboard-list', action: 'atuacao' },
             { text: 'Como colaborar', icon: 'fas fa-hand-holding-heart', action: 'como_ajudar' },
@@ -313,13 +349,12 @@ class Chatbot {
             'A Fênix193 atua em projetos, capacitações, eventos e parcerias para fortalecer o CBMSE e a Defesa Civil.',
         ]);
         setTimeout(() => {
-            this.showOptions([
+            this.showMenu([
                 { text: 'Projetos', icon: 'fas fa-clipboard-list', action: 'projetos' },
                 { text: 'Capacitação', icon: 'fas fa-graduation-cap', action: 'capacitacao' },
                 { text: 'Eventos', icon: 'fas fa-calendar-days', action: 'eventos' },
                 { text: 'Parcerias', icon: 'fas fa-handshake', action: 'parcerias' },
-                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
+            ], { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' });
         }, 800);
     }
 
@@ -486,24 +521,60 @@ class Chatbot {
     handleNavegacao() {
         this.addMessage([
             '<strong>Navegação Rápida 🧭</strong>',
-            'Posso te levar direto para qualquer página do site. Para onde vamos?',
+            'Posso te levar direto para qualquer página do site. Qual grupo você procura?',
         ]);
         setTimeout(() => {
-            this.showOptions([
-                { text: 'Início', icon: 'fas fa-house', action: () => this._irPara('Início', this._href('index.html')) },
-                { text: 'Quem Somos', icon: 'fas fa-landmark', action: () => this._irPara('Quem Somos', this._href('index.html#quem-somos')) },
-                { text: 'Nossa História', icon: 'fas fa-book-open', action: () => this._irPara('Nossa História', this._href('pages/nossa-historia.html')) },
-                { text: 'Missão e Valores', icon: 'fas fa-bullseye', action: () => this._irPara('Missão e Valores', this._href('pages/missao-valores.html')) },
-                { text: 'Nossa Equipe', icon: 'fas fa-id-badge', action: () => this._irPara('Nossa Equipe', this._href('pages/equipe.html')) },
-                { text: 'Projetos', icon: 'fas fa-clipboard-list', action: () => this._irPara('Projetos', this._href('pages/projetos.html')) },
-                { text: 'Capacitação', icon: 'fas fa-graduation-cap', action: () => this._irPara('Capacitação', this._href('pages/capacitacao.html')) },
-                { text: 'Eventos', icon: 'fas fa-calendar-days', action: () => this._irPara('Eventos', this._href('pages/eventos.html')) },
-                { text: 'Parcerias', icon: 'fas fa-handshake', action: () => this._irPara('Parcerias', this._href('pages/parcerias.html')) },
-                { text: 'Transparência', icon: 'fas fa-file-shield', action: () => this._irPara('Transparência', this._href('pages/transparencia.html')) },
-                { text: 'Notícias', icon: 'fas fa-newspaper', action: () => this._irPara('Notícias', this._href('pages/noticias.html')) },
-                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' },
-            ]);
+            this.showMenu([
+                { text: 'Institucional', icon: 'fas fa-landmark', action: 'nav_institucional' },
+                { text: 'Projetos e atuação', icon: 'fas fa-clipboard-list', action: 'nav_atuacao' },
+                { text: 'Transparência e contato', icon: 'fas fa-file-shield', action: 'nav_outros' },
+            ], { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'back' });
         }, 700);
+    }
+
+    // Cada grupo lista as páginas; o botão "Voltar" retorna à escolha do grupo.
+    _paginas(itens) {
+        setTimeout(() => {
+            this.showMenu(
+                itens.map(([nome, icone, caminho]) => ({
+                    text: nome,
+                    icon: icone,
+                    action: () => this._irPara(nome, this._href(caminho)),
+                })),
+                { text: 'Voltar', icon: 'fas fa-arrow-left', action: 'navegacao' }
+            );
+        }, 500);
+    }
+
+    handleNavInstitucional() {
+        this.addMessage('Qual página institucional você quer abrir?');
+        this._paginas([
+            ['Início', 'fas fa-house', 'index.html'],
+            ['Quem Somos', 'fas fa-landmark', 'index.html#quem-somos'],
+            ['Nossa História', 'fas fa-book-open', 'pages/nossa-historia.html'],
+            ['Missão e Valores', 'fas fa-bullseye', 'pages/missao-valores.html'],
+            ['Nossa Equipe', 'fas fa-id-badge', 'pages/equipe.html'],
+        ]);
+    }
+
+    handleNavAtuacao() {
+        this.addMessage('Qual página sobre nossa atuação você quer abrir?');
+        this._paginas([
+            ['Projetos', 'fas fa-clipboard-list', 'pages/projetos.html'],
+            ['Capacitação', 'fas fa-graduation-cap', 'pages/capacitacao.html'],
+            ['Eventos', 'fas fa-calendar-days', 'pages/eventos.html'],
+            ['Parcerias', 'fas fa-handshake', 'pages/parcerias.html'],
+            ['Galeria', 'fas fa-images', 'pages/galeria.html'],
+        ]);
+    }
+
+    handleNavOutros() {
+        this.addMessage('Qual destas páginas você quer abrir?');
+        this._paginas([
+            ['Transparência', 'fas fa-file-shield', 'pages/transparencia.html'],
+            ['Notícias', 'fas fa-newspaper', 'pages/noticias.html'],
+            ['Fale Conosco', 'fas fa-envelope', 'pages/fale-conosco.html'],
+        ]);
     }
 
     // ── Atalho: confirma a escolha e entrega o link da página ─

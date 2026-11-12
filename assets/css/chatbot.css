@@ -469,8 +469,7 @@
     background: var(--white);
     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     border-top: 1.5px solid var(--gray-light);
-    max-height: 210px;
-    overflow-y: auto;
+    /* Os menus têm no máximo 4 botões (ver showMenu em chatbot.js): sem limite de altura nem rolagem */
 }
 
 .chatbot-footer::-webkit-scrollbar {
