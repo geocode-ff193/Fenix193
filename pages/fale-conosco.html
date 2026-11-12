@@ -19,7 +19,8 @@
     <meta property="og:site_name" content="Fundação Fênix193">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Fale Conosco em Aracaju/SE · Fundação Fênix193">
-    <meta property="og:description" content="Fale com a Fundação Fênix193: dúvidas, sugestões, parcerias ou denúncias (inclusive anônimas). Atendemos todos os municípios de Sergipe.">
+    <meta property="og:description"
+        content="Fale com a Fundação Fênix193: dúvidas, sugestões, parcerias ou denúncias (inclusive anônimas). Atendemos todos os municípios de Sergipe.">
     <meta property="og:url" content="https://fenix193.org.br/pages/fale-conosco">
     <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -28,20 +29,24 @@
     <meta property="og:image:alt" content="Fundação Fênix193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fale Conosco em Aracaju/SE · Fundação Fênix193">
-    <meta name="twitter:description" content="Fale com a Fundação Fênix193: dúvidas, sugestões, parcerias ou denúncias (inclusive anônimas). Atendemos todos os municípios de Sergipe.">
+    <meta name="twitter:description"
+        content="Fale com a Fundação Fênix193: dúvidas, sugestões, parcerias ou denúncias (inclusive anônimas). Atendemos todos os municípios de Sergipe.">
     <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <meta name="description"
         content="Fale com a Fundação Fênix193: dúvidas, sugestões, parcerias ou denúncias (inclusive anônimas). Atendemos todos os municípios de Sergipe.">
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
-    <link rel="preload" as="image" href="../assets/img/hero-contato-m.webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="../assets/img/hero-contato.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="../assets/img/hero-contato-m.webp" media="(max-width: 768px)"
+        fetchpriority="high">
+    <link rel="preload" as="image" href="../assets/img/hero-contato.webp" media="(min-width: 769px)"
+        fetchpriority="high">
 
     <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-500.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2"
+        crossorigin>
 
     <!-- ===================== CRITICAL CSS (inline) =====================
          Header/nav + banner interno (.page-hero) — o suficiente para renderizar
@@ -49,20 +54,61 @@
     <style>
         /* ── Fontes hospedadas no próprio site (Barlow e Barlow Condensed, subconjunto latin) ──
            Substituem o Google Fonts: uma requisição externa a menos no caminho crítico. */
-        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2'); }
-        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2'); }
-        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2'); }
-        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2'); }
-        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
-            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2'); }
-        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
-            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2'); }
-        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
-            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2'); }
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Barlow';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Barlow Condensed';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Barlow Condensed';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Barlow Condensed';
+            font-style: normal;
+            font-weight: 800;
+            font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2');
+        }
 
         :root {
             --red: #E12217;
@@ -320,6 +366,7 @@
                 linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
                 url('../assets/img/hero-contato.webp') center/cover no-repeat;
         }
+
         @media (max-width: 768px) {
             .page-hero {
                 background:
@@ -327,20 +374,50 @@
                     url('../assets/img/hero-contato-m.webp') center/cover no-repeat;
             }
         }
-    
+
         /* Link "Avalie-nos no Google" (rodapé) e destaque na página Fale Conosco */
-        .footer-review-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 16px;
-            border: 1.5px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; font-size: .85rem;
-            font-weight: 600; text-decoration: none; transition: background .25s ease, border-color .25s ease, color .25s ease; }
-        .footer-review-link i { color: var(--amber, #F8BA25); transition: color .25s ease; }
-        .footer-review-link:hover, .footer-review-link:focus-visible { background: var(--amber, #F8BA25);
-            border-color: var(--amber, #F8BA25); color: #1f2120; }
-        .footer-review-link:hover i, .footer-review-link:focus-visible i { color: #1f2120; }
-        .contact-review-link { font-weight: 700; text-decoration: underline; color: inherit; }
+        .footer-review-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 9px 16px;
+            border: 1.5px solid rgba(255, 255, 255, .35);
+            border-radius: 999px;
+            color: #fff;
+            font-size: .85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background .25s ease, border-color .25s ease, color .25s ease;
+        }
+
+        .footer-review-link i {
+            color: var(--amber, #F8BA25);
+            transition: color .25s ease;
+        }
+
+        .footer-review-link:hover,
+        .footer-review-link:focus-visible {
+            background: var(--amber, #F8BA25);
+            border-color: var(--amber, #F8BA25);
+            color: #1f2120;
+        }
+
+        .footer-review-link:hover i,
+        .footer-review-link:focus-visible i {
+            color: #1f2120;
+        }
+
+        .contact-review-link {
+            font-weight: 700;
+            text-decoration: underline;
+            color: inherit;
+        }
     </style>
 
     <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
-    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2"
+        crossorigin>
     <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/dropdown.css">
@@ -375,11 +452,11 @@
 
 <body>
     <header id="main-header">
-    
+
         <!-- ===== HEADER--TOP ===== -->
         <div class="header--top">
             <div class="container header-top-inner">
-    
+
                 <!-- Logo -->
                 <a href="../index.html" class="logo-area" aria-label="Fundação Fênix193 - Início">
                     <div class="logo-icon" aria-hidden="true">
@@ -392,7 +469,7 @@
                         <img src="../assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
-    
+
                 <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
                 <form class="header-search header-search--top" role="search" action="../pesquisa.html" method="get">
                     <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
@@ -401,7 +478,7 @@
                         <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
                 </form>
-    
+
                 <!-- AkanniHUB + Redes sociais (desktop) -->
                 <div class="header-top-actions">
                     <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -410,17 +487,20 @@
                     </a>
                     <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
                     <ul class="header-social" role="list" aria-label="Redes sociais">
-                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
-                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
-                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
-                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
-                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
+                                rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
+                                    aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
+                                rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
+                                    aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
+                                aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
+                                rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
+                                    aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
-    
+
                 <!-- Hambúrguer (mobile) -->
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
@@ -429,28 +509,28 @@
                 </button>
             </div>
         </div>
-    
+
         <!-- ===== HEADER--MAIN ===== -->
         <div class="header--main">
             <div class="container">
                 <nav id="nav-menu" aria-label="Navegação principal">
                     <ul id="menu" role="list">
-    
+
                         <!-- Pesquisa (somente no menu mobile) -->
                         <li class="menu-mobile-search">
                             <form class="header-search header-search--menu" role="search" action="../pesquisa.html"
                                 method="get">
-                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
-                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
-                                    required>
+                                <input type="search" name="q" class="header-search-input"
+                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
+                                    spellcheck="false" minlength="2" required>
                                 <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                                     <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </li>
-    
+
                         <li><a href="../index.html">Início</a></li>
-    
+
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
@@ -471,7 +551,7 @@
                                     </a></li>
                             </ul>
                         </li>
-    
+
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
@@ -495,13 +575,13 @@
                                     </a></li>
                             </ul>
                         </li>
-    
+
                         <li><a href="transparencia.html">Transparência</a></li>
                         <li><a href="../index.html#stats">Impacto</a></li>
                         <li><a href="noticias.html">Notícias</a></li>
                         <li><a href="fale-conosco.html">Contato</a></li>
                         <li><a href="../index.html#como-ajudar">Colabore</a></li>
-    
+
                         <!-- AkanniHUB + Redes (somente no menu mobile) -->
                         <li class="menu-mobile-extras">
                             <a href="../akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
@@ -509,14 +589,18 @@
                                 <span class="header-hub-label">AkanniHUB</span>
                             </a>
                             <ul class="header-social" role="list" aria-label="Redes sociais">
-                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
-                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
-                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
-                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
-                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
+                                        rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
+                                        rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
+                                            aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer"
+                                        aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                </li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
+                                        rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
+                                            aria-hidden="true"></i></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -586,12 +670,15 @@
                             <p><strong>Emergência?</strong> Ligue <strong>193</strong> (Corpo de Bombeiros). Este
                                 formulário não atende ocorrências em andamento.</p>
                         </div>
-                <div class="contact-notice">
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <p><strong>Gostou do nosso trabalho?</strong> Sua avaliação no Google ajuda mais pessoas a conhecerem a Fundação.
-                        <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="contact-review-link" target="_blank" rel="noopener noreferrer"
-                            aria-label="Avalie no Google (abre em nova aba)">Avalie no Google</a></p>
-                </div>
+                        <div class="contact-notice">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <p><strong>Gostou do nosso trabalho?</strong> Sua avaliação no Google ajuda mais pessoas a
+                                conhecerem a Fundação.
+                                <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="contact-review-link"
+                                    target="_blank" rel="noopener noreferrer"
+                                    aria-label="Avalie no Google (abre em nova aba)">Avalie no Google</a>
+                            </p>
+                        </div>
                     </aside>
 
                     <!-- ===== COLUNA DIREITA · Formulário ===== -->
@@ -813,21 +900,25 @@
                 <div class="footer-social-col">
                     <h4 class="footer-col-title">Siga-nos</h4>
                     <div class="footer-social-links">
-                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn"
+                            aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn"
+                            aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook-f" aria-hidden="true"></i>
                         </a>
-                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp"
+                            target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn" aria-label="YouTube">
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn"
+                            aria-label="YouTube">
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank" rel="noopener noreferrer"
-                        aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
+                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
                         <i class="fas fa-star" aria-hidden="true"></i> Avalie-nos no Google
                     </a>
                 </div>
@@ -842,7 +933,7 @@
                         </li>
                         <li>
                             <i class="fas fa-phone" aria-hidden="true"></i>
-                            <a href="tel:+5579999078311">+55 (79) 99907-8311</a>
+                            <a href="tel:+5579999940193">+55 (79) 99994-0193</a>
                         </li>
                         <li>
                             <i class="fas fa-location-dot" aria-hidden="true"></i>
