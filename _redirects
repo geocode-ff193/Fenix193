@@ -1,0 +1,56 @@
+# =============================================================
+# Fundação Fênix193 · Redirecionamentos (Cloudflare)
+# Formato: /origem  /destino  código
+# URLs antigas (/pages/*.html) -> nova estrutura em subpastas.
+# Cada página tem duas linhas: com .html e sem .html, porque o
+# Cloudflare remove a extensão e o visitante pode chegar por
+# qualquer uma das duas formas.
+# =============================================================
+
+# --- Raiz ---
+/index.html                      /                                          301
+
+# --- Institucional ---
+/pages/nossa-historia.html       /pages/institucional/nossa-historia        301
+/pages/nossa-historia            /pages/institucional/nossa-historia        301
+/pages/missao-valores.html       /pages/institucional/missao-valores        301
+/pages/missao-valores            /pages/institucional/missao-valores        301
+/pages/equipe.html               /pages/institucional/equipe                301
+/pages/equipe                    /pages/institucional/equipe                301
+
+# --- Atuação ---
+/pages/projetos.html             /pages/atuacao/projetos/                   301
+/pages/projetos                  /pages/atuacao/projetos/                   301
+/pages/capacitacao.html          /pages/atuacao/capacitacao                 301
+/pages/capacitacao               /pages/atuacao/capacitacao                 301
+/pages/eventos.html              /pages/atuacao/eventos                     301
+/pages/eventos                   /pages/atuacao/eventos                     301
+/pages/galeria.html              /pages/atuacao/galeria                     301
+/pages/galeria                   /pages/atuacao/galeria                     301
+/pages/parcerias.html            /pages/atuacao/parcerias                   301
+/pages/parcerias                 /pages/atuacao/parcerias                   301
+
+# --- Transparência ---
+/pages/transparencia.html        /pages/transparencia/                      301
+/pages/transparencia             /pages/transparencia/                      301
+
+# --- Notícias ---
+/pages/noticias.html             /pages/noticias/                           301
+/pages/noticias                  /pages/noticias/                           301
+
+# --- Contato ---
+/pages/fale-conosco.html         /pages/contato/fale-conosco                301
+/pages/fale-conosco              /pages/contato/fale-conosco                301
+
+# --- Atalhos amigáveis (302 = temporário, pode mudar sem prejudicar o SEO) ---
+/doar                            /pages/colabore/doar                       302
+/doacao                          /pages/colabore/doar                       302
+/voluntario                      /pages/colabore/seja-voluntario            302
+/parceiro                        /pages/colabore/seja-parceiro              302
+/transparencia                   /pages/transparencia/                      302
+/denuncia                        /pages/transparencia/integridade           302
+/lgpd                            /pages/transparencia/lgpd                  302
+/privacidade                     /pages/legal/politica-privacidade          302
+/termos                          /pages/legal/termos-de-uso                 302
+/cookies                         /pages/legal/politica-de-cookies           302
+/acessibilidade                  /pages/legal/acessibilidade                302
