@@ -38,12 +38,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
 
-    <!-- LCP: imagem de fundo do 1º slide (bomb_02.webp no computador; bomb_02-mobile.webp até 768px, definidas via CSS).
+    <!-- LCP: imagem de fundo do 1º slide (bomb_30.webp no computador; bomb_30-mobile.webp até 768px, definidas via CSS).
          Como é carregada via CSS e não via <img>, o navegador só a descobre depois de
          baixar e parsear o style.css. O preload força a busca em paralelo, junto ao HTML. -->
-    <link rel="preload" as="image" href="assets/img/bomb_02-mobile.webp" media="(max-width: 768px)"
+    <link rel="preload" as="image" href="assets/img/bomb_30-mobile.webp" media="(max-width: 768px)"
         fetchpriority="high">
-    <link rel="preload" as="image" href="assets/img/bomb_02.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/img/bomb_30.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <!-- Banner de cookies: script leve, independente do Firebase (aparece sem esperar os módulos). -->
     <script defer src="assets/js/cookie-banner.js"></script>
@@ -306,7 +306,7 @@
             min-height: 94vh;
             background:
                 linear-gradient(135deg, rgba(49, 51, 50, 0.55) 0%, rgba(225, 34, 23, 0.33) 100%),
-                url('assets/img/bomb_02.webp') center/cover no-repeat;
+                url('assets/img/bomb_30.webp') center/cover no-repeat;
             display: flex;
             align-items: center;
             overflow: hidden;
