@@ -483,7 +483,7 @@ class Chatbot {
     handleContatoWhatsApp() {
         this.addMessage('Ótimo! Vou abrir o WhatsApp da Fundação para você. 📲');
         setTimeout(() => {
-            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579999078311', true);
+            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579999940193', true);
         }, 400);
         setTimeout(() => {
             this.addMessage('Nosso time responde em horário comercial. 🕘');
