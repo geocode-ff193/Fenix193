@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FFFFFF">
     <link rel="icon" type="image/png" href="assets/akanni/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="assets/akanni/favicon.svg" />
     <link rel="shortcut icon" href="assets/akanni/favicon.ico" />
@@ -12,7 +13,7 @@
     <link rel="manifest" href="assets/akanni/site.webmanifest" />
     <title>AkanniHub · FF193</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="description" content="Painel administrativo da Fundação Fênix 193 (acesso restrito).">
+    <meta name="description" content="Painel administrativo da Fundação Fênix193 (acesso restrito).">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600&display=swap"
@@ -1754,6 +1755,1339 @@
                 padding: 18px 16px;
             }
         }
+
+        /* =====================================================================
+   AKANNIHUB — TEMA MODERNO (v2)
+   Camada de redesign aplicada por cima da folha original.
+   Mantém todas as classes/IDs usados pelo JavaScript.
+   ===================================================================== */
+        :root {
+            --red-ink: #B91C12;
+            --off-white: #F5F4F1;
+            --gray-light: #E6E3DC;
+            --text: #2A2C2B;
+            --text-muted: #5E625F;
+            --border: rgba(42, 44, 43, .09);
+            --radius: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 22px;
+            --shadow-sm: 0 1px 2px rgba(20, 22, 21, .04), 0 2px 8px rgba(20, 22, 21, .05);
+            --shadow-md: 0 4px 12px rgba(20, 22, 21, .06), 0 12px 32px rgba(20, 22, 21, .08);
+            --shadow-lg: 0 8px 24px rgba(20, 22, 21, .10), 0 28px 64px rgba(20, 22, 21, .16);
+            --grad-brand: linear-gradient(135deg, #E12217 0%, #F27613 100%);
+            --ring: 0 0 0 4px rgba(225, 34, 23, .12);
+            --sidebar-w: 268px;
+            --header-h: 68px;
+            --bottom-nav-h: 66px;
+            --ease: cubic-bezier(.2, .7, .2, 1);
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background: var(--off-white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            text-transform: none;
+            letter-spacing: .005em;
+            line-height: 1.15;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ── Transições gerais ── */
+        .btn,
+        .sidebar-link,
+        .subtab-btn,
+        .stat-card,
+        .panel,
+        .news-admin-item,
+        .transp-item,
+        .form-input,
+        .form-select,
+        .form-textarea {
+            transition: all .22s var(--ease);
+        }
+
+        /* =====================================================================
+   LOGIN
+   ===================================================================== */
+        #login-screen {
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 0;
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            background: var(--off-white);
+        }
+
+        .login-hero {
+            position: relative;
+            flex: 1.15;
+            display: flex;
+            align-items: flex-end;
+            padding: 64px;
+            overflow: hidden;
+            color: var(--white);
+            background:
+                linear-gradient(165deg, rgba(30, 31, 31, .90) 0%, rgba(135, 32, 32, .86) 100%),
+                url('assets/img/bomb_15.webp') center/cover no-repeat;
+        }
+
+        .login-hero::before {
+            content: '';
+            position: absolute;
+            width: 620px;
+            height: 620px;
+            right: -180px;
+            top: -200px;
+            background: radial-gradient(circle, rgba(242, 118, 19, .55) 0%, rgba(242, 118, 19, 0) 65%);
+            pointer-events: none;
+        }
+
+        .login-hero::after {
+            content: '';
+            position: absolute;
+            width: 460px;
+            height: 460px;
+            left: -160px;
+            bottom: -180px;
+            background: radial-gradient(circle, rgba(248, 186, 37, .22) 0%, rgba(248, 186, 37, 0) 65%);
+            pointer-events: none;
+        }
+
+        .login-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+        }
+
+        .login-hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.3rem, 4vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .login-hero-title em {
+            font-style: normal;
+            background: linear-gradient(90deg, var(--amber), var(--fire));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .login-hero-text {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .78);
+            margin-bottom: 30px;
+        }
+
+        .login-hero-points {
+            display: grid;
+            gap: 12px;
+            list-style: none;
+        }
+
+        .login-hero-points li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .95rem;
+            color: rgba(255, 255, 255, .9);
+        }
+
+        .login-hero-points i {
+            width: 34px;
+            height: 34px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .85rem;
+            color: var(--amber);
+            background: rgba(255, 255, 255, .09);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 10px;
+        }
+
+        .login-panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            background:
+                radial-gradient(900px 500px at 100% 0%, rgba(248, 186, 37, .10), transparent 60%),
+                var(--off-white);
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 36px;
+            text-align: left;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .login-logo {
+            justify-content: flex-start;
+            margin-bottom: 28px;
+        }
+
+        .login-logo img {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+        }
+
+        .login-logo-title {
+            font-size: 1.15rem;
+        }
+
+        .login-logo-sub {
+            font-size: .66rem;
+            letter-spacing: .14em;
+        }
+
+        .login-card h2 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .login-card>p {
+            font-size: .94rem;
+            margin-bottom: 28px;
+        }
+
+        .login-email-form {
+            gap: 16px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap .form-input {
+            padding-right: 48px;
+        }
+
+        .pw-toggle {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .pw-toggle:hover {
+            color: var(--navy);
+            background: var(--off-white);
+        }
+
+        .login-divider {
+            margin: 22px 0;
+        }
+
+        .btn-google {
+            padding: 13px 20px;
+            border-radius: 12px;
+            box-shadow: none;
+            border: 1.5px solid var(--gray-light);
+        }
+
+        .btn-google:hover {
+            background: var(--off-white);
+            border-color: var(--navy-light);
+            box-shadow: none;
+        }
+
+        #login-error {
+            border-radius: 12px;
+        }
+
+        .login-back-link {
+            width: 100%;
+            margin-top: 24px;
+        }
+
+        /* =====================================================================
+   TOPBAR
+   ===================================================================== */
+        .app-topbar {
+            height: var(--header-h);
+            padding: 0 28px;
+            background: rgba(255, 255, 255, .82);
+            -webkit-backdrop-filter: saturate(180%) blur(16px);
+            backdrop-filter: saturate(180%) blur(16px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: none;
+        }
+
+        .app-topbar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 2px;
+            background: var(--grad-brand);
+            opacity: .9;
+        }
+
+        .topbar-brand {
+            gap: 12px;
+        }
+
+        .topbar-brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+        }
+
+        .topbar-brand-title {
+            color: var(--navy);
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: .03em;
+        }
+
+        .topbar-brand-sub {
+            color: var(--red-ink);
+            font-weight: 700;
+        }
+
+        .topbar-badge {
+            padding: 4px 12px;
+            font-size: .66rem;
+            color: #8A5A00;
+            background: rgba(248, 186, 37, .18);
+            border: 1px solid rgba(248, 186, 37, .45);
+        }
+
+        .topbar-user {
+            gap: 12px;
+        }
+
+        .topbar-avatar {
+            border: 2px solid var(--white);
+            box-shadow: 0 0 0 2px rgba(225, 34, 23, .25);
+        }
+
+        .topbar-username {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        #btn-sidebar-toggle {
+            width: 42px;
+            height: 42px;
+            padding: 0 !important;
+            border-radius: 12px;
+            align-items: center;
+            justify-content: center;
+            background: var(--off-white);
+            border: 1px solid var(--border);
+        }
+
+        #btn-sidebar-toggle i {
+            color: var(--navy) !important;
+            font-size: 1rem !important;
+        }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 14px;
+            border-radius: 11px;
+            color: var(--text-muted);
+            background: var(--white);
+            border: 1px solid var(--border);
+        }
+
+        .btn-logout:hover {
+            color: var(--red-ink);
+            background: rgba(225, 34, 23, .06);
+            border-color: rgba(225, 34, 23, .3);
+        }
+
+        /* =====================================================================
+   SIDEBAR
+   ===================================================================== */
+        .app-sidebar {
+            width: var(--sidebar-w);
+            padding: 22px 14px;
+            background: var(--white);
+            border-right: 1px solid var(--border);
+            box-shadow: none;
+            overscroll-behavior: contain;
+        }
+
+        .sidebar-nav {
+            margin-bottom: 22px;
+        }
+
+        .sidebar-section-label {
+            padding: 0 14px 8px;
+            font-size: .66rem;
+            letter-spacing: .16em;
+            color: #8B918D;
+        }
+
+        .sidebar-link {
+            gap: 12px;
+            margin-bottom: 2px;
+            padding: 11px 14px;
+            font-size: .93rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-left: 0;
+            border-radius: 12px;
+        }
+
+        .sidebar-link i {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .88rem;
+            color: var(--text-muted);
+            background: var(--off-white);
+            border-radius: 10px;
+        }
+
+        .sidebar-link:hover {
+            color: var(--navy);
+            background: var(--off-white);
+        }
+
+        .sidebar-link:hover i {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-link.active {
+            color: var(--red-ink);
+            font-weight: 600;
+            background: rgba(225, 34, 23, .07);
+            border-left: 0;
+        }
+
+        .sidebar-link.active i {
+            color: var(--white);
+            background: var(--grad-brand);
+            box-shadow: 0 4px 12px rgba(225, 34, 23, .3);
+        }
+
+        .sidebar-badge {
+            min-width: 22px;
+            padding: 2px 7px;
+            text-align: center;
+            font-size: .66rem;
+            background: var(--grad-brand);
+        }
+
+        /* =====================================================================
+   CONTEÚDO
+   ===================================================================== */
+        .app-main {
+            margin-left: var(--sidebar-w);
+            min-width: 0;
+            max-width: none;
+            padding: 32px 40px 48px;
+        }
+
+        .app-main>section {
+            max-width: 1240px;
+            margin-inline: auto;
+        }
+
+        .app-section.active {
+            animation: sectionIn .38s var(--ease);
+        }
+
+        @keyframes sectionIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+            padding-bottom: 0;
+            border-bottom: 0;
+        }
+
+        .page-header-title {
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .page-header-sub {
+            margin-top: 6px;
+            font-size: .95rem;
+        }
+
+        /* Hero do dashboard */
+        .dash-hero {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 30px 32px;
+            color: var(--white);
+            background: linear-gradient(135deg, #2B2D2C 0%, #872020 100%);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dash-hero::before {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            right: -90px;
+            top: -150px;
+            background: radial-gradient(circle, rgba(242, 118, 19, .5), transparent 65%);
+            pointer-events: none;
+        }
+
+        .dash-hero>* {
+            position: relative;
+        }
+
+        .dash-hero-kicker {
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--amber);
+        }
+
+        .dash-hero-title {
+            margin: 6px 0 6px;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+        }
+
+        .dash-hero p {
+            color: rgba(255, 255, 255, .75);
+            font-size: .95rem;
+        }
+
+        .dash-hero-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            font-size: .85rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .16);
+            border-radius: 999px;
+            backdrop-filter: blur(6px);
+        }
+
+        /* Sub-abas */
+        .subtab-nav {
+            display: inline-flex;
+            gap: 4px;
+            padding: 5px;
+            margin-bottom: 26px;
+            max-width: 100%;
+            overflow-x: auto;
+            scrollbar-width: none;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .subtab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .subtab-btn {
+            padding: 9px 18px;
+            border: 0;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .subtab-btn:hover {
+            color: var(--navy);
+            background: var(--off-white);
+            border: 0;
+        }
+
+        .subtab-btn.active {
+            color: var(--white);
+            background: var(--grad-brand);
+            box-shadow: 0 4px 12px rgba(225, 34, 23, .28);
+        }
+
+        /* Grids */
+        .form-list-grid {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+            gap: 24px;
+        }
+
+        .dashboard-stats {
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        /* Stat cards */
+        .stat-card {
+            padding: 22px;
+            gap: 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            font-size: 1.25rem;
+        }
+
+        .stat-card-icon.red {
+            background: linear-gradient(135deg, rgba(225, 34, 23, .14), rgba(242, 118, 19, .14));
+        }
+
+        .stat-card-val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -.01em;
+        }
+
+        .stat-card-label {
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+        }
+
+        /* Painéis */
+        .panel {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .panel-header {
+            padding: 18px 24px;
+            background: linear-gradient(180deg, #fff, #FBFAF8);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .panel-title {
+            font-size: 1.08rem;
+            font-weight: 700;
+            gap: 10px;
+        }
+
+        .panel-title i {
+            width: 30px;
+            height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .82rem;
+            color: var(--red-ink);
+            background: rgba(225, 34, 23, .08);
+            border-radius: 9px;
+        }
+
+        .panel-body {
+            padding: 24px;
+        }
+
+        /* Tabela */
+        .data-table th {
+            padding: 12px 16px;
+            font-size: .68rem;
+            letter-spacing: .12em;
+            background: #FBFAF8;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 15px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .data-table tr:hover td {
+            background: #FBFAF8;
+        }
+
+        /* Botões */
+        .btn {
+            padding: 11px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .btn-sm {
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background: var(--grad-brand);
+            box-shadow: 0 4px 14px rgba(225, 34, 23, .28);
+        }
+
+        .btn-primary:hover {
+            background: var(--grad-brand);
+            filter: brightness(1.06);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(225, 34, 23, .34);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: var(--white);
+            border: 1.5px solid var(--gray-light);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--navy-light);
+            background: var(--off-white);
+        }
+
+        .btn-danger {
+            border-color: rgba(225, 34, 23, .25);
+        }
+
+        .btn-ghost {
+            border-radius: 10px;
+        }
+
+        .btn-green {
+            background: #16A34A;
+        }
+
+        .btn-amber {
+            background: #D97706;
+        }
+
+        /* Formulários */
+        .form-grid {
+            gap: 18px;
+        }
+
+        .form-label {
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            color: var(--navy);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            min-height: 46px;
+            padding: 12px 14px;
+            border: 1.5px solid var(--gray-light);
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--text);
+        }
+
+        .form-textarea {
+            min-height: 140px;
+            line-height: 1.55;
+        }
+
+        .form-input:hover,
+        .form-select:hover,
+        .form-textarea:hover {
+            border-color: #CFCBC2;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--red);
+            background: var(--white);
+            box-shadow: var(--ring);
+        }
+
+        .form-hint {
+            font-size: .78rem;
+        }
+
+        /* Upload */
+        .upload-zone {
+            padding: 32px 20px;
+            border: 2px dashed #D6D2C8;
+            border-radius: 16px;
+            background: #FBFAF8;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--red);
+            background: rgba(225, 34, 23, .04);
+        }
+
+        .upload-zone i {
+            display: block;
+            font-size: 1.9rem;
+            color: var(--red);
+            opacity: .8;
+        }
+
+        #img-preview,
+        #apoiador-img-preview {
+            display: none;
+            width: 100%;
+            max-height: 200px;
+            margin-top: 14px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .upload-progress {
+            height: 6px;
+            border-radius: 6px;
+        }
+
+        /* Tags / listas */
+        .tag {
+            padding: 4px 11px;
+        }
+
+        .transp-item,
+        .news-admin-item {
+            padding: 14px 16px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+        }
+
+        .transp-item:hover,
+        .news-admin-item:hover {
+            border-color: #D6D2C8;
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-1px);
+        }
+
+        .transp-item>i {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(225, 34, 23, .08);
+            border-radius: 11px;
+        }
+
+        .news-admin-list,
+        .transp-list {
+            gap: 10px;
+        }
+
+        .news-admin-thumb,
+        .news-admin-thumb-placeholder {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+        }
+
+        .news-admin-thumb-placeholder {
+            background: linear-gradient(135deg, var(--navy-mid), var(--red-dark));
+        }
+
+        .news-admin-title {
+            font-size: 1.02rem;
+            font-weight: 700;
+            text-transform: none;
+        }
+
+        .empty-state {
+            padding: 52px 24px;
+        }
+
+        .empty-state i {
+            font-size: 2.4rem;
+            opacity: .22;
+        }
+
+        /* Prévia de Números, Galeria e Suporte herdam os tokens — ajustes finos */
+        .numeros-preview-item {
+            border-radius: 18px;
+            background: linear-gradient(135deg, #2B2D2C 0%, #872020 100%);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .galeria-foto {
+            border-radius: 14px;
+            border: 1.5px solid var(--border);
+        }
+
+        .galeria-foto-img {
+            border-radius: 10px;
+        }
+
+        .support-status {
+            border-radius: 14px;
+        }
+
+        /* Modais */
+        .modal-overlay {
+            background: rgba(20, 22, 21, .55);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+        }
+
+        .modal {
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(16px) scale(.98);
+            transition: transform .28s var(--ease);
+        }
+
+        .modal-overlay.open .modal {
+            transform: none;
+        }
+
+        .modal-title {
+            font-weight: 800;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .modal-close:hover {
+            background: var(--off-white);
+        }
+
+        #confirm-modal .modal-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            background: rgba(225, 34, 23, .1);
+            border-radius: 50%;
+        }
+
+        /* Toasts */
+        .toast {
+            padding: 14px 18px;
+            border-radius: 14px;
+            background: rgba(42, 44, 43, .96);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .toast.success {
+            background: #166534;
+        }
+
+        /* Bottom navigation (somente mobile) */
+        .bottom-nav {
+            display: none;
+        }
+
+        /* =====================================================================
+   RESPONSIVO
+   ===================================================================== */
+        @media (max-width: 1100px) {
+            :root {
+                --sidebar-w: 236px;
+            }
+
+            .app-main {
+                padding: 28px 28px 40px;
+            }
+
+            .form-list-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .login-hero {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Login: hero vira faixa compacta no topo */
+            #login-screen {
+                flex-direction: column;
+            }
+
+            .login-hero {
+                flex: none;
+                align-items: center;
+                padding: 30px 24px 56px;
+            }
+
+            .login-hero-inner {
+                max-width: none;
+            }
+
+            .login-hero-title {
+                font-size: 1.9rem;
+                margin-bottom: 8px;
+            }
+
+            .login-hero-text {
+                margin-bottom: 0;
+                font-size: .95rem;
+            }
+
+            .login-hero-points {
+                display: none;
+            }
+
+            .login-panel {
+                flex: 1;
+                align-items: flex-start;
+                padding: 0 16px 28px;
+                background: var(--off-white);
+            }
+
+            .login-card {
+                position: relative;
+                z-index: 2;
+                margin-top: -36px;
+                padding: 28px 22px;
+                border-radius: 22px;
+            }
+
+            .login-card h2 {
+                font-size: 1.6rem;
+            }
+
+            /* Shell */
+            .app-topbar {
+                padding: 0 16px;
+            }
+
+            #btn-sidebar-toggle {
+                display: none !important;
+            }
+
+            .app-main {
+                margin-left: 0;
+                max-width: 100vw;
+                padding: 20px 16px calc(var(--bottom-nav-h) + 32px + env(safe-area-inset-bottom));
+            }
+
+            .logout-label {
+                display: none;
+            }
+
+            .btn-logout {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                justify-content: center;
+            }
+
+            /* Sidebar vira gaveta */
+            .app-sidebar {
+                width: min(84vw, 320px);
+                padding: 20px 14px calc(var(--bottom-nav-h) + 24px);
+                transform: translateX(-102%);
+                box-shadow: var(--shadow-lg);
+                z-index: 700;
+            }
+
+            .app-sidebar.open {
+                transform: none;
+            }
+
+            .sidebar-backdrop {
+                -webkit-backdrop-filter: blur(3px);
+                backdrop-filter: blur(3px);
+            }
+
+            /* Conteúdo */
+            .page-header {
+                margin-bottom: 20px;
+            }
+
+            .dash-hero {
+                padding: 22px 20px;
+                border-radius: 20px;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .dashboard-stats .stat-card:first-child:nth-last-child(odd) {
+                grid-column: 1 / -1;
+            }
+
+            .stat-card {
+                padding: 16px;
+                gap: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stat-card-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.05rem;
+                border-radius: 13px;
+            }
+
+            .stat-card-val {
+                font-size: 1.8rem;
+            }
+
+            .panel-header {
+                padding: 16px 18px;
+            }
+
+            .panel-body {
+                padding: 18px;
+            }
+
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .subtab-nav {
+                display: flex;
+            }
+
+            /* Inputs 16px: evita zoom no iOS */
+            .form-input,
+            .form-select,
+            .form-textarea {
+                font-size: 16px;
+            }
+
+            /* Tabela de contatos em cartões */
+            #contacts-table-wrap .data-table thead {
+                display: none;
+            }
+
+            #contacts-table-wrap .data-table,
+            #contacts-table-wrap .data-table tbody {
+                display: block;
+            }
+
+            #contacts-table-wrap .data-table tr {
+                display: grid;
+                gap: 4px;
+                padding: 16px 18px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            #contacts-table-wrap .data-table td {
+                display: block;
+                padding: 0;
+                border: 0;
+            }
+
+            #contacts-table-wrap .data-table td:last-child {
+                margin-top: 8px;
+            }
+
+            #contacts-table-wrap .data-table tr:hover td {
+                background: transparent;
+            }
+
+            /* Modais viram bottom sheet */
+            .modal-overlay {
+                align-items: flex-end;
+                padding: 0;
+            }
+
+            .modal {
+                max-width: none;
+                max-height: 92vh;
+                border-radius: 24px 24px 0 0;
+                padding: 26px 20px calc(24px + env(safe-area-inset-bottom));
+                transform: translateY(40px);
+            }
+
+            #confirm-modal .modal {
+                max-width: none;
+                padding: 32px 22px calc(24px + env(safe-area-inset-bottom));
+            }
+
+            /* Toasts acima da barra inferior */
+            #toast-container {
+                left: 16px;
+                right: 16px;
+                bottom: calc(var(--bottom-nav-h) + 14px + env(safe-area-inset-bottom));
+            }
+
+            .toast {
+                max-width: none;
+            }
+
+            /* Barra de navegação inferior */
+            .bottom-nav {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 600;
+                height: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom));
+                padding: 6px 8px env(safe-area-inset-bottom);
+                display: none;
+                align-items: stretch;
+                justify-content: space-around;
+                gap: 2px;
+                background: rgba(255, 255, 255, .88);
+                -webkit-backdrop-filter: saturate(180%) blur(18px);
+                backdrop-filter: saturate(180%) blur(18px);
+                border-top: 1px solid var(--border);
+                box-shadow: 0 -6px 24px rgba(20, 22, 21, .06);
+            }
+
+            html:has(#app-shell[style*="block"]) .bottom-nav {
+                display: flex;
+            }
+
+            .bottom-nav button {
+                position: relative;
+                flex: 1;
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3px;
+                font-size: .66rem;
+                font-weight: 600;
+                color: var(--text-muted);
+                background: transparent;
+                border: 0;
+                border-radius: 14px;
+            }
+
+            .bottom-nav button i {
+                font-size: 1.1rem;
+                transition: transform .2s var(--ease);
+            }
+
+            .bottom-nav button.active {
+                color: var(--red-ink);
+            }
+
+            .bottom-nav button.active i {
+                transform: translateY(-2px);
+            }
+
+            .bottom-nav button.active::before {
+                content: '';
+                position: absolute;
+                top: 2px;
+                width: 28px;
+                height: 3px;
+                background: var(--grad-brand);
+                border-radius: 0 0 4px 4px;
+            }
+
+            /* Botão de acessibilidade acima da barra (quando logado) */
+            html:has(#app-shell[style*="block"]) body .a11y-toggle-btn {
+                bottom: calc(var(--bottom-nav-h) + 16px + env(safe-area-inset-bottom));
+            }
+
+            html:has(#app-shell[style*="block"]) body .a11y-panel {
+                bottom: calc(var(--bottom-nav-h) + 76px + env(safe-area-inset-bottom));
+                max-height: calc(100dvh - var(--bottom-nav-h) - 110px);
+            }
+        }
+
+        @media (max-width: 400px) {
+            .topbar-brand-text {
+                display: none;
+            }
+
+            .bottom-nav button {
+                font-size: .62rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
     <link rel="stylesheet" href="assets/css/acessibilidade.css">
 </head>
@@ -1761,56 +3095,72 @@
 <body>
     <!-- ======================== LOGIN SCREEN ======================== -->
     <div id="login-screen">
-        <div class="login-card">
-            <div class="login-logo">
-                <img src="assets/akanni/favicon-96x96.png" alt="Logo Fênix 193">
-                <div class="login-logo-text">
-                    <span class="login-logo-title">AkanniHub 1.5.0</span>
-                    <span class="login-logo-sub">Painel Administrativo</span>
-                </div>
+        <aside class="login-hero" aria-hidden="true">
+            <div class="login-hero-inner">
+                <h1 class="login-hero-title">Akanni<em>HUB</em></h1>
+                <p class="login-hero-text">Painel de Gestão da Fundação Fênix193</p>
+                <ul class="login-hero-points">
+                    <li><i class="fas fa-shield-halved"></i> Acesso restrito por níveis de permissão</li>
+                    <li><i class="fas fa-bolt"></i> Atualizações refletidas no site em tempo real</li>
+                    <li><i class="fas fa-mobile-screen"></i> Responsivo no computador e no celular</li>
+                </ul>
             </div>
-            <h2>Acesso Restrito</h2>
-            <p>Área exclusiva para administradores da Fundação. Entre com email e senha ou com sua conta Google
-                autorizada.</p>
+        </aside>
+        <div class="login-panel">
+            <div class="login-card">
+                <div class="login-logo">
+                    <img src="assets/akanni/favicon-96x96.png" alt="Logo Fênix193">
+                    <div class="login-logo-text">
+                        <span class="login-logo-title">AkanniHub FF193</span>
+                        <span class="login-logo-sub">Versão 1.5.0</span>
+                    </div>
+                </div>
+                <h2>Acesso Restrito</h2>
+                <p>Área exclusiva para administradores da Fundação.</p>
 
-            <form id="form-email-login" class="login-email-form">
-                <div class="form-row" style="text-align:left;">
-                    <label class="form-label" for="login-email">Email</label>
-                    <input class="form-input" id="login-email" type="email" placeholder="seu@email.com" required
-                        autocomplete="username">
-                </div>
-                <div class="form-row" style="text-align:left;">
-                    <label class="form-label" for="login-password">Senha</label>
-                    <input class="form-input" id="login-password" type="password" placeholder="••••••••" required
-                        autocomplete="current-password">
-                </div>
-                <button type="submit" class="btn btn-primary" id="btn-email-login"
-                    style="width:100%;justify-content:center;">
-                    <i class="fas fa-right-to-bracket"></i> <span id="email-login-label">Entrar</span>
+                <form id="form-email-login" class="login-email-form">
+                    <div class="form-row" style="text-align:left;">
+                        <label class="form-label" for="login-email">Email</label>
+                        <input class="form-input" id="login-email" type="email" placeholder="seu@email.com" required
+                            autocomplete="username">
+                    </div>
+                    <div class="form-row" style="text-align:left;">
+                        <label class="form-label" for="login-password">Senha</label>
+                        <div class="input-wrap">
+                            <input class="form-input" id="login-password" type="password" placeholder="••••••••"
+                                required autocomplete="current-password">
+                            <button type="button" class="pw-toggle" id="btn-pw-toggle" aria-label="Mostrar senha"><i
+                                    class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btn-email-login"
+                        style="width:100%;justify-content:center;">
+                        <i class="fas fa-right-to-bracket"></i> <span id="email-login-label">Entrar</span>
+                    </button>
+                </form>
+
+                <div class="login-divider">ou</div>
+
+                <button id="btn-google-login" class="btn-google">
+                    <!-- Google G SVG -->
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#EA4335"
+                            d="M24 9.5c3.5 0 6.3 1.3 8.3 3.4l6.2-6.1C34.9 3.2 29.8 1 24 1 14.8 1 7 6.7 3.7 14.7l7.2 5.6C12.6 14.2 17.8 9.5 24 9.5z" />
+                        <path fill="#4285F4"
+                            d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.4-4 6.9-9.9 6.9-16.9z" />
+                        <path fill="#FBBC05"
+                            d="M10.9 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.1.8-4.6l-7.2-5.6A23.9 23.9 0 0 0 .5 24c0 3.9.9 7.5 2.6 10.8l7.8-6.2z" />
+                        <path fill="#34A853"
+                            d="M24 47c5.8 0 10.7-1.9 14.2-5.1l-7.4-5.7c-2 1.3-4.5 2.1-6.8 2.1-6.2 0-11.4-4.7-13.2-11l-7.8 6.1C7 40.3 14.8 47 24 47z" />
+                    </svg>
+                    Entrar com Google
                 </button>
-            </form>
 
-            <div class="login-divider">ou</div>
+                <div id="login-error"><i class="fas fa-shield-halved"></i> <span id="login-error-msg">Acesso não
+                        autorizado.</span></div>
 
-            <button id="btn-google-login" class="btn-google">
-                <!-- Google G SVG -->
-                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#EA4335"
-                        d="M24 9.5c3.5 0 6.3 1.3 8.3 3.4l6.2-6.1C34.9 3.2 29.8 1 24 1 14.8 1 7 6.7 3.7 14.7l7.2 5.6C12.6 14.2 17.8 9.5 24 9.5z" />
-                    <path fill="#4285F4"
-                        d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.4-4 6.9-9.9 6.9-16.9z" />
-                    <path fill="#FBBC05"
-                        d="M10.9 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.1.8-4.6l-7.2-5.6A23.9 23.9 0 0 0 .5 24c0 3.9.9 7.5 2.6 10.8l7.8-6.2z" />
-                    <path fill="#34A853"
-                        d="M24 47c5.8 0 10.7-1.9 14.2-5.1l-7.4-5.7c-2 1.3-4.5 2.1-6.8 2.1-6.2 0-11.4-4.7-13.2-11l-7.8 6.1C7 40.3 14.8 47 24 47z" />
-                </svg>
-                Entrar com Google
-            </button>
-
-            <div id="login-error"><i class="fas fa-shield-halved"></i> <span id="login-error-msg">Acesso não
-                    autorizado.</span></div>
-
-            <a href="index.html" class="login-back-link"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+                <a href="index.html" class="login-back-link"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+            </div>
         </div>
     </div>
     <!-- ======================== APP SHELL ======================== -->
@@ -1824,8 +3174,8 @@
                 <div class="topbar-brand">
                     <img src="assets/akanni/favicon-96x96.png" alt="Logo">
                     <div class="topbar-brand-text">
-                        <span class="topbar-brand-title">FUNDAÇÃO FÊNIX 193</span>
-                        <span class="topbar-brand-sub">AkanniHub 1.5.0</span>
+                        <span class="topbar-brand-title">FUNDAÇÃO FÊNIX193</span>
+                        <span class="topbar-brand-sub">AkanniHub v. 1.5.0</span>
                     </div>
                 </div>
                 <span class="topbar-badge" id="topbar-grau-badge" title="Grau de Administração"
@@ -1834,7 +3184,8 @@
             <div class="topbar-user">
                 <img id="user-avatar" class="topbar-avatar" src="" alt="Avatar" style="display:none;">
                 <span id="user-name" class="topbar-username"></span>
-                <button id="btn-logout" class="btn-logout"><i class="fas fa-right-from-bracket"></i> </button>
+                <button id="btn-logout" class="btn-logout" aria-label="Sair"><i class="fas fa-right-from-bracket"></i>
+                    <span class="logout-label">Sair</span></button>
             </div>
         </header>
 
@@ -1894,11 +3245,14 @@
 
                 <!-- ══ DASHBOARD ══ -->
                 <section id="section-dashboard" class="app-section active">
-                    <div class="page-header">
+                    <div class="dash-hero">
                         <div>
-                            <h2 class="page-header-title">Dashboard</h2>
-                            <p class="page-header-sub">Visão geral do ecossistema digital da Fundação Fênix 193</p>
+                            <span class="dash-hero-kicker">Painel administrativo</span>
+                            <h2 class="dash-hero-title" id="dash-greeting">Olá!</h2>
+                            <p>Visão geral do ecossistema digital da Fundação Fênix193</p>
                         </div>
+                        <span class="dash-hero-meta" id="dash-date"><i class="fas fa-calendar-day"></i>
+                            <span></span></span>
                     </div>
                     <div class="dashboard-stats">
                         <div class="stat-card" data-grau="4">
@@ -3063,6 +4417,57 @@
             </div>
         </div>
     </div>
+    <!-- Navegação inferior (mobile) -->
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Navegação rápida">
+        <button type="button" data-nav="dashboard" class="active"><i
+                class="fas fa-gauge-high"></i><span>Início</span></button>
+        <button type="button" data-nav="contacts" data-grau="4"><i
+                class="fas fa-envelope"></i><span>Contatos</span></button>
+        <button type="button" data-nav="news" data-grau="2"><i
+                class="fas fa-newspaper"></i><span>Notícias</span></button>
+        <button type="button" data-nav="atuacao" data-grau="5"><i
+                class="fas fa-briefcase"></i><span>Atuação</span></button>
+        <button type="button" data-nav-menu><i class="fas fa-bars"></i><span>Menu</span></button>
+    </nav>
+    <script>
+        (function () {
+            const $ = id => document.getElementById(id);
+            // Mostrar/ocultar senha
+            $('btn-pw-toggle')?.addEventListener('click', () => {
+                const i = $('login-password'), show = i.type === 'password';
+                i.type = show ? 'text' : 'password';
+                $('btn-pw-toggle').innerHTML = '<i class="fas fa-eye' + (show ? '-slash' : '') + '"></i>';
+                $('btn-pw-toggle').setAttribute('aria-label', show ? 'Ocultar senha' : 'Mostrar senha');
+            });
+            // Barra inferior: navega e abre o menu completo
+            const bn = $('bottom-nav');
+            bn?.addEventListener('click', e => {
+                const b = e.target.closest('button'); if (!b) return;
+                if (b.hasAttribute('data-nav-menu')) {
+                    $('app-sidebar').classList.toggle('open');
+                    $('sidebar-backdrop').classList.toggle('open');
+                } else window.navigate(b.dataset.nav);
+            });
+            // Sincroniza o item ativo com a sidebar e rola ao topo
+            const sync = () => {
+                const a = document.querySelector('.sidebar-link.active')?.dataset.section;
+                bn?.querySelectorAll('[data-nav]').forEach(b => b.classList.toggle('active', b.dataset.nav === a));
+            };
+            document.querySelectorAll('.sidebar-link').forEach(l => {
+                new MutationObserver(sync).observe(l, { attributes: true, attributeFilter: ['class'] });
+                l.addEventListener('click', () => window.scrollTo({ top: 0 }));
+            });
+            // Saudação + data
+            const h = new Date().getHours();
+            const g = h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
+            const un = $('user-name');
+            const setG = () => { $('dash-greeting').textContent = g + (un.textContent ? ', ' + un.textContent + '!' : '!'); };
+            new MutationObserver(setG).observe(un, { childList: true, characterData: true, subtree: true }); setG();
+            $('dash-date').lastElementChild.textContent = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' });
+            // Fecha a gaveta com Esc
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') { $('app-sidebar').classList.remove('open'); $('sidebar-backdrop').classList.remove('open'); } });
+        })();
+    </script>
     <!-- Toast container -->
     <div id="toast-container" role="status" aria-live="polite"></div>
     <!-- ══════════════════════════════════════════════════════════
@@ -3385,7 +4790,7 @@
                 <td class="td-actions">
                     <button class="btn btn-ghost btn-sm" title="Ver detalhe" onclick="viewContact('${d.id}')"><i class="fas fa-eye"></i></button>
                     <button class="btn btn-green btn-sm" title="WhatsApp" onclick="openWhatsApp('${escHtml(c.telefone || '')}','${escHtml(c.nome || '')}')"><i class="fab fa-whatsapp"></i></button>
-                    <button class="btn btn-amber btn-sm" title="E-mail" onclick="openEmail('${escHtml(c.email || '')}','${escHtml(c.assunto || 'Contato Fênix 193')}')"><i class="fas fa-envelope"></i></button>
+                    <button class="btn btn-amber btn-sm" title="E-mail" onclick="openEmail('${escHtml(c.email || '')}','${escHtml(c.assunto || 'Contato Fênix193')}')"><i class="fas fa-envelope"></i></button>
                     <button class="btn btn-danger btn-sm" title="Eliminar" onclick="deleteContact('${d.id}')"><i class="fas fa-trash"></i></button>
                 </td>`;
                     tbody.appendChild(tr);
@@ -3412,7 +4817,7 @@
         <div class="contact-detail-row"><span class="contact-detail-label">Mensagem</span><span class="contact-detail-value">${escHtml(c.mensagem)}</span></div>
         <div class="contact-detail-actions">
             <button class="btn btn-green" onclick="openWhatsApp('${escHtml(c.telefone || '')}','${escHtml(c.nome || '')}')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-            <button class="btn btn-outline" onclick="openEmail('${escHtml(c.email || '')}','${escHtml(c.assunto || 'Contato Fênix 193')}')"><i class="fas fa-envelope"></i> Responder</button>
+            <button class="btn btn-outline" onclick="openEmail('${escHtml(c.email || '')}','${escHtml(c.assunto || 'Contato Fênix193')}')"><i class="fas fa-envelope"></i> Responder</button>
         </div>`;
             openModal('contact-modal');
         };
@@ -3420,12 +4825,12 @@
         window.openWhatsApp = function (tel, nome) {
             const num = tel.replace(/\D/g, '');
             if (!num) { toast('Número de telefone não disponível.', 'error'); return; }
-            const msg = encodeURIComponent(`Olá ${nome}, sou da Fundação Fênix 193. Recebemos sua mensagem e gostaríamos de dar um retorno.`);
+            const msg = encodeURIComponent(`Olá ${nome}, sou da Fundação Fênix193. Recebemos sua mensagem e gostaríamos de dar um retorno.`);
             window.open(`https://wa.me/55${num}?text=${msg}`, '_blank');
         };
 
         window.openEmail = function (email, assunto) {
-            window.location.href = `mailto:${email}?subject=Re: ${encodeURIComponent(assunto)}&body=${encodeURIComponent('Olá,\n\nObrigado pelo contato com a Fundação Fênix 193.\n\n')}`;
+            window.location.href = `mailto:${email}?subject=Re: ${encodeURIComponent(assunto)}&body=${encodeURIComponent('Olá,\n\nObrigado pelo contato com a Fundação Fênix193.\n\n')}`;
         };
 
         window.deleteContact = function (id) {

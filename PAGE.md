@@ -14,6 +14,7 @@ fenix193/
 ├── site.webmanifest                   # PWA manifest
 ├── README.md
 ├── ad-video-institucional.json
+├── _redirects
 ├── worker/
 │   └── index.js                       # Worker: feed do CBMSE, SEO das notícias e sitemap de notícias
 │
@@ -23,7 +24,7 @@ fenix193/
 │   │   ├── nossa-historia.html
 │   │   ├── missao-valores.html
 │   │   ├── equipe.html
-│   │   └── instituidores-doadores.html
+│   │   └── instituidores.html
 │   │
 │   ├── atuacao/
 │   │   ├── projetos/
@@ -42,8 +43,6 @@ fenix193/
 │   │   ├── integridade.html           # código de conduta e canal de denúncia
 │   │   └── lgpd.html                  # encarregado (DPO) e direitos do titular
 │   │
-│   ├── impacto.html                   # números reais, com fonte e período
-│   │
 │   ├── noticias/
 │   │   ├── index.html                 # lista com filtro por categoria
 │   │   └── [data-titulo].html         # uma por notícia
@@ -61,7 +60,7 @@ fenix193/
 │   └── legal/
 │       ├── politica-privacidade.html  # no domínio da Fundação
 │       ├── termos-de-uso.html
-│       ├── politica-de-cookies.html
+│       ├── cookies.html
 │       └── acessibilidade.html        # declaração de acessibilidade
 │
 ├── akannihub.html                     # Painel administrativo (autenticado)
