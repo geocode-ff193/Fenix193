@@ -3,6 +3,7 @@
 ```text
 fenix193/
 ├── index.html                         # Página inicial (home)
+├── akannihub.html                     # Painel administrativo (autenticado)
 ├── 404.html                           # Página de erro personalizada
 ├── robots.txt                         # Diretivas para crawlers
 ├── sitemap.xml                        # Mapa do site para SEO
@@ -15,6 +16,7 @@ fenix193/
 ├── README.md
 ├── ad-video-institucional.json
 ├── _redirects
+│
 ├── worker/
 │   └── index.js                       # Worker: feed do CBMSE, SEO das notícias e sitemap de notícias
 │
@@ -63,8 +65,6 @@ fenix193/
 │       ├── cookies.html
 │       └── acessibilidade.html        # declaração de acessibilidade
 │
-├── akannihub.html                     # Painel administrativo (autenticado)
-│
 ├── data/                              # conteúdo separado do HTML
 │   ├── noticias.json
 │   ├── projetos.json
@@ -100,11 +100,11 @@ fenix193/
 │   │
 │   ├── img/
 │   │   ├── ui/                        # Favicons e ícones
+│   │   ├── parceiros/
 │   │   ├── logos/
 │   │   ├── hero/
 │   │   ├── galeria/
-│   │   ├── noticias/
-│   │   └── parceiros/
+│   │   └── equipe/
 │   ├── docs/                         # PDFs de transparência, organizados por ano
 │   │   ├── 2025/
 │   │   └── 2026/
