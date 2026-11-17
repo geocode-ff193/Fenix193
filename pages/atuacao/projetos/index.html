@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix193" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Projetos de Apoio ao CBMSE e à Defesa Civil · Fênix193</title>
+
+    <!-- SEO · Open Graph · Twitter -->
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://fenix193.org.br/pages/atuacao/projetos">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Fundação Fênix193">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Projetos de Apoio ao CBMSE e à Defesa Civil · Fênix193">
+    <meta property="og:description" content="Conheça os projetos da Fundação Fênix193: Bombeiro Mirim, SOS Abelhas, Apoio Operacional, cursos de capacitação e muito mais.">
+    <meta property="og:url" content="https://fenix193.org.br/pages/atuacao/projetos">
+    <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Fundação Fênix193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projetos de Apoio ao CBMSE e à Defesa Civil · Fênix193">
+    <meta name="twitter:description" content="Conheça os projetos da Fundação Fênix193: Bombeiro Mirim, SOS Abelhas, Apoio Operacional, cursos de capacitação e muito mais.">
+    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta name="description"
+        content="Conheça os projetos da Fundação Fênix193: Bombeiro Mirim, SOS Abelhas, Apoio Operacional, cursos de capacitação e muito mais.">
+    <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
+
+    <!-- LCP desta página: fundo do .page-hero (banner interno) -->
+    <link rel="preload" as="image" href="/assets/img/hero-projetos-m.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/hero-projetos.webp" media="(min-width: 769px)" fetchpriority="high">
+
+    <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-500.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2" crossorigin>
+
+    <!-- ===================== CRITICAL CSS (inline) =====================
+         Header/nav + banner interno (.page-hero) — o suficiente para renderizar
+         a primeira dobra sem esperar o style.css/pages.css completos. -->
+    <style>
+        /* ── Fontes hospedadas no próprio site (Barlow e Barlow Condensed, subconjunto latin) ──
+           Substituem o Google Fonts: uma requisição externa a menos no caminho crítico. */
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2'); }
+
+        :root {
+            --red: #E12217;
+            --red-dark: #872020;
+            --red-light: #ED4C43;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
+            --navy-light: #505251;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
+            --gray-light: #E8E5DE;
+            --gray: #9CA3AF;
+            --text: #313332;
+            --text-muted: #636665;
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, .18);
+            --transition: 0.3s ease;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+        #main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .04em;
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #menu a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #btn-mobile {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--amber);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+
+        /* PAGE HERO (banner interno) */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%) center/cover no-repeat;
+            background-color: var(--navy);
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('/assets/img/hero-projetos.webp') center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .page-hero {
+                background:
+                    linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                    url('/assets/img/hero-projetos-m.webp') center/cover no-repeat;
+            }
+        }
+
+    
+        /* Link "Avalie-nos no Google" (rodapé) e destaque na página Fale Conosco */
+        .footer-review-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 16px;
+            border: 1.5px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; font-size: .85rem;
+            font-weight: 600; text-decoration: none; transition: background .25s ease, border-color .25s ease, color .25s ease; }
+        .footer-review-link i { color: var(--amber, #F8BA25); transition: color .25s ease; }
+        .footer-review-link:hover, .footer-review-link:focus-visible { background: var(--amber, #F8BA25);
+            border-color: var(--amber, #F8BA25); color: #1f2120; }
+        .footer-review-link:hover i, .footer-review-link:focus-visible i { color: #1f2120; }
+        .contact-review-link { font-weight: 700; text-decoration: underline; color: inherit; }
+    </style>
+
+    <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/pages.css">
+    <link rel="stylesheet" href="/assets/css/acessibilidade.css">
+    <link rel="stylesheet" href="/assets/css/chatbot.css">
+    <link rel="stylesheet" href="/assets/css/back-to-top.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <!-- Trilha de navegação (schema.org) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://fenix193.org.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Projetos",
+      "item": "https://fenix193.org.br/pages/atuacao/projetos"
+    }
+  ]
+}
+    </script>
+</head>
+
+<body>
+    <!-- @layout:header -->
+<header id="main-header">
+    
+        <!-- ===== HEADER--TOP ===== -->
+        <div class="header--top">
+            <div class="container header-top-inner">
+    
+                <!-- Logo -->
+                <a href="/" class="logo-area" aria-label="Fundação Fênix193 - Início">
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                    </div>
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                    </div>
+                </a>
+    
+                <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
+                <form class="header-search header-search--top" role="search" action="/pesquisa" method="get">
+                    <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                        aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                    <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                </form>
+    
+                <!-- AkanniHUB + Redes sociais (desktop) -->
+                <div class="header-top-actions">
+                    <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                        <span class="header-hub-label">AkanniHUB</span>
+                    </a>
+                    <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
+                    <ul class="header-social" role="list" aria-label="Redes sociais">
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+    
+                <!-- Hambúrguer (mobile) -->
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    
+        <!-- ===== HEADER--MAIN ===== -->
+        <div class="header--main">
+            <div class="container">
+                <nav id="nav-menu" aria-label="Navegação principal">
+                    <ul id="menu" role="list">
+    
+                        <!-- Pesquisa (somente no menu mobile) -->
+                        <li class="menu-mobile-search">
+                            <form class="header-search header-search--menu" role="search" action="/pesquisa"
+                                method="get">
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
+                                <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </li>
+    
+                        <li><a href="/">Início</a></li>
+    
+                        <!-- DROPDOWN: Institucional -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
+                                Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/#quem-somos">
+                                        Quem Somos
+                                    </a></li>
+                                <li><a href="/pages/institucional/nossa-historia">
+                                        Nossa História
+                                    </a></li>
+                                <li><a href="/pages/institucional/missao-valores">
+                                        Missão e Valores
+                                    </a></li>
+                                <li><a href="/pages/institucional/equipe">
+                                        Equipe
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <!-- DROPDOWN: Atuação -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
+                                Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/atuacao/projetos" aria-current="page">
+                                        Projetos
+                                    </a></li>
+                                <li><a href="/pages/atuacao/capacitacao">
+                                        Capacitação
+                                    </a></li>
+                                <li><a href="/pages/atuacao/eventos">
+                                        Eventos
+                                    </a></li>
+                                <li><a href="/pages/atuacao/galeria">
+                                        Galeria
+                                    </a></li>
+                                <li><a href="/pages/atuacao/parcerias">
+                                        Parcerias
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <li><a href="/pages/transparencia">Transparência</a></li>
+                        <li><a href="/#stats">Impacto</a></li>
+                        <li><a href="/pages/noticias">Notícias</a></li>
+                        <li><a href="/pages/contato/fale-conosco">Contato</a></li>
+                        <li><a href="/#como-ajudar">Colabore</a></li>
+    
+                        <!-- AkanniHUB + Redes (somente no menu mobile) -->
+                        <li class="menu-mobile-extras">
+                            <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                                <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                                <span class="header-hub-label">AkanniHUB</span>
+                            </a>
+                            <ul class="header-social" role="list" aria-label="Redes sociais">
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+<!-- @/layout:header -->
+
+    <main tabindex="-1" id="main-content">
+
+        <section class="page-hero page-hero--projetos" aria-label="Projetos">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="/">Início</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Atuação</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Projetos</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Projetos</h1>
+                <p>Iniciativas concretas que traduzem nossa missão em ações reais de apoio, capacitação e proteção à
+                    comunidade sergipana.</p>
+            </div>
+        </section>
+
+        <!-- ===================== CONTEÚDO ===================== -->
+        <div class="section-padding">
+            <div class="container">
+
+                <!-- Toolbar -->
+                <div class="projects-toolbar reveal">
+                    <div class="filter-group" role="group" aria-label="Filtrar por status">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="planning">Em Planejamento</button>
+                        <button class="filter-btn" data-filter="active">Em Andamento</button>
+                        <button class="filter-btn" data-filter="deactive">Finalizados</button>
+                        <button class="filter-btn" data-filter="course">Cursos</button>
+                    </div>
+                    <p class="projects-count">
+                        Exibindo <strong id="count-visible">0</strong> de <strong id="count-total">0</strong> projetos
+                    </p>
+                </div>
+
+                <!-- Grid -->
+                <div class="projects-page-grid" id="projects-grid">
+                    <div class="empty-state" style="grid-column:1/-1;text-align:center;padding:60px 20px;">
+                        <span class="spinner"></span>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="proposta-section reveal">
+                    <h2>Tem uma Ideia de Projeto?</h2>
+                    <p>A Fundação está aberta a parcerias e propostas que fortaleçam o CBMSE e beneficiem a sociedade
+                        sergipana. Fale conosco.</p>
+                    <div class="cta-btns">
+                        <a href="/pages/contato/fale-conosco" class="btn-amber-solid">
+                            <i class="fas fa-paper-plane"></i> Entrar em Contato
+                        </a>
+                        <a href="/pages/atuacao/parcerias" class="btn-outline-white">
+                            <i class="fas fa-handshake"></i> Ser Parceiro
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ════ MODAL DETALHE ════ -->
+    <div class="modal-overlay" id="proj-modal-overlay" role="dialog" aria-modal="true"
+        aria-labelledby="modal-proj-title">
+        <div class="proj-modal">
+            <div class="proj-modal-hero" id="modal-hero">
+                <button class="proj-modal-close" id="btn-modal-close" aria-label="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="proj-modal-body">
+                <div class="proj-modal-meta" id="modal-meta"></div>
+                <h2 id="modal-proj-title"></h2>
+                <p id="modal-desc"></p>
+                <div class="proj-modal-divider"></div>
+                <div class="proj-modal-info-grid" id="modal-info-grid"></div>
+                <div class="proj-modal-cta">
+                    <a href="/pages/contato/fale-conosco" class="btn-primary">
+                        <i class="fas fa-envelope"></i> Quero Apoiar
+                    </a>
+                    <button class="btn-outline-navy" onclick="closeModal()">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== FOOTER ===================== -->
+    <!-- @layout:footer -->
+<footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <!-- COLUNA 1 · Marca -->
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Fênix193" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
+                    </a>
+                    <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
+                    <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
+                        desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: 68.745.226/0001-55</p>
+                </div>
+
+                <!-- COLUNA 2 · Navegação -->
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title">Navegação</h4>
+                    <ul class="footer-nav-grid">
+                        <li><a href="/"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a>
+                        </li>
+                        <li><a href="/pages/atuacao/galeria"><i class="fas fa-chevron-right" aria-hidden="true"></i> Galeria</a>
+                        </li>
+                        <li><a href="/pages/institucional/nossa-historia"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Nossa História</a></li>
+                        <li><a href="/pages/institucional/missao-valores"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Missão e Valores</a></li>
+                        <li><a href="/pages/institucional/equipe"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Equipe</a>
+                        </li>
+                        <li><a href="/pages/transparencia"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Transparência</a></li>
+                        <li><a href="/pages/atuacao/projetos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Projetos</a></li>
+                        <li><a href="/pages/atuacao/capacitacao"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Capacitação</a></li>
+                        <li><a href="/pages/atuacao/eventos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Eventos</a>
+                        </li>
+                        <li><a href="/pages/atuacao/parcerias"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Parcerias</a></li>
+                        <li><a href="/pages/noticias"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Notícias</a></li>
+                        <li><a href="/pages/contato/fale-conosco"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- COLUNA 3 · Redes Sociais -->
+                <div class="footer-social-col">
+                    <h4 class="footer-col-title">Siga-nos</h4>
+                    <div class="footer-social-links">
+                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn" aria-label="YouTube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
+                        <i class="fas fa-star" aria-hidden="true"></i> Avalie-nos no Google
+                    </a>
+                </div>
+
+                <!-- COLUNA 4 · Fale Conosco -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-col-title">Fale Conosco</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:contato@fenix193.org.br">contato@fenix193.org.br</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+5579999078311">+55 (79) 99907-8311</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <a href="https://share.google/aknj98wt8Moh0ghdJ">R. Honor Gregório Santos, 44 - Grageru</a>
+                        </li>
+                    </ul>
+                    <!-- Acesso rápido de administração -->
+                    <div class="footer-admin-links">
+                        <a href="/akannihub" class="footer-admin-btn">
+                            <i class="fa-solid fa-user-lock" aria-hidden="true"></i> Acesso Restrito
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=5579988663905&text=Suporte%20Tecnico%20FF193"
+                            class="footer-admin-btn">
+                            <i class="fa-solid fa-headset" aria-hidden="true"></i> Suporte Técnico
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SUB-FOOTER ── -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+
+                <!-- Esquerda: copyright + créditos -->
+                <p class="footer-copy">
+                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix193</strong>. Todos os direitos
+                    reservados.
+                    &mdash; Desenvolvido com <i role="img" class="fa-solid fa-mug-hot" aria-label="café"
+                        style="color:var(--red)"></i>
+                    por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a>
+                </p>
+
+                <!-- Direita: links legais -->
+                <nav class="footer-legal-links" aria-label="Links legais">
+                    <a href="https://eusougeovani.vercel.app/privacidade.html" target="_blank" rel="noopener">Política
+                        de
+                        Privacidade</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="https://eusougeovani.vercel.app/termos.html" target="_blank" rel="noopener">Termos de
+                        Uso</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="#cookie-banner">Cookies</a>
+                </nav>
+
+            </div>
+        </div>
+
+    </footer>
+<!-- @/layout:footer -->
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── Filtros ──────────────────────────────────────────
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const countEl = document.getElementById('count-visible');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                const cards = document.querySelectorAll('.proj-card'); // re-consulta: cards são dinâmicos
+                let visible = 0;
+
+                cards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    card.style.display = match ? '' : 'none';
+                    if (match) visible++;
+                });
+
+                countEl.textContent = visible;
+            });
+        });
+
+        // ── Modal ────────────────────────────────────────────
+        const overlay = document.getElementById('proj-modal-overlay');
+        const colorMap = { red: 'color-red', fire: 'color-fire', navy: 'color-navy', amber: 'color-amber', green: 'color-green' };
+        const statusMap = {
+            planning: '<span class="tag tag-planning"><i class="fas fa-clock"></i> Em Planejamento</span>',
+            active: '<span class="tag tag-active"><i class="fas fa-circle-check"></i> Em Andamento</span>',
+            deactive: '<span class="tag tag-deactive"><i class="fas fa-circle-xmark"></i> Finalizado</span>',
+            course: '<span class="tag tag-course"><i class="fas fa-graduation-cap"></i> Curso</span>'
+        };
+
+        window.openModal = function (card) {
+            const hero = document.getElementById('modal-hero');
+            const topEl = card.querySelector('.proj-card-top');
+            const iconEl = card.querySelector('.proj-card-icon');
+            const colorClass = [...topEl.classList].find(c => c.startsWith('color-')) || 'color-red';
+
+            hero.className = `proj-modal-hero ${colorClass}`;
+            hero.innerHTML = `
+                <i class="${[...iconEl.classList].join(' ')}" style="font-size:4.5rem;position:relative;z-index:1;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))"></i>
+                <button class="proj-modal-close" onclick="closeModal()" aria-label="Fechar"><i class="fas fa-times"></i></button>`;
+
+            document.getElementById('modal-proj-title').textContent = card.dataset.title;
+            document.getElementById('modal-desc').textContent = card.dataset.desc;
+            document.getElementById('modal-meta').innerHTML = statusMap[card.dataset.status] || '';
+
+            document.getElementById('modal-info-grid').innerHTML = `
+                <div class="proj-info-item">
+                    <div class="proj-info-label">Área</div>
+                    <div class="proj-info-value">${card.dataset.area}</div>
+                </div>
+                <div class="proj-info-item">
+                    <div class="proj-info-label">Público-alvo</div>
+                    <div class="proj-info-value">${card.dataset.publico}</div>
+                </div>
+                <div class="proj-info-item" style="grid-column:1/-1;">
+                    <div class="proj-info-label">Objetivo Principal</div>
+                    <div class="proj-info-value">${card.dataset.objetivo}</div>
+                </div>`;
+
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeModal = function () {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // ── Dropdowns ────────────────────────────────────────
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+    <script defer src="/assets/js/acessibilidade.js"></script>
+    <script defer src="/assets/js/media-player.js"></script>
+    <script defer src="/assets/js/back-to-top.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        /* ── Config Firebase ─────────────────────────────────────── */
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJXiMyq4ncZb4neX5Rur71-l6adRZ7v3M",
+            authDomain: "fundacaofenix193.firebaseapp.com",
+            projectId: "fundacaofenix193",
+            storageBucket: "fundacaofenix193.firebasestorage.app",
+            messagingSenderId: "263835472373",
+            appId: "1:263835472373:web:492921e00e51a1e74750bc"
+        };
+
+        const db = getFirestore(initializeApp(firebaseConfig));
+
+        /* ── Helpers ─────────────────────────────────────────────── */
+        function escHtml(s) {
+            return String(s || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function escAttr(s) {
+            return escHtml(s).replace(/"/g, '&quot;');
+        }
+
+        const STATUS_MAP = {
+            planning: { color: 'color-navy', tagClass: 'tag-planning', label: 'Em Planejamento' },
+            active: { color: 'color-fire', tagClass: 'tag-active', label: 'Em Andamento' },
+            deactive: { color: 'color-red', tagClass: 'tag-deactive', label: 'Finalizado' },
+            course: { color: 'color-green', tagClass: 'tag-course', label: 'Curso' },
+        };
+
+        /* ── Constrói um card de projeto ──────────────────────────── */
+        function buildProjCard(p) {
+            const s = STATUS_MAP[p.status] || STATUS_MAP.planning;
+            return `
+            <article class="proj-card reveal" data-category="${escAttr(p.status)}" data-title="${escAttr(p.titulo)}"
+                data-desc="${escAttr(p.descricao)}" data-area="${escAttr(p.area)}" data-status="${escAttr(p.status)}"
+                data-publico="${escAttr(p.publico)}" data-objetivo="${escAttr(p.objetivo)}">
+                <div class="proj-card-top ${s.color}">
+                    <i class="${escAttr(p.icone || 'fas fa-clipboard-list')} proj-card-icon"></i>
+                </div>
+                <div class="proj-card-body">
+                    <span class="tag ${s.tagClass}"><i class="fas fa-clock"></i> ${s.label}</span>
+                    <h3>${escHtml(p.titulo)}</h3>
+                    <p>${escHtml(p.descricao)}</p>
+                    <button class="btn-proj-saiba" onclick="openModal(this.closest('.proj-card'))">
+                        Saiba mais <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="proj-card-footer">
+                    <span class="proj-card-area"><i class="fas fa-tag"></i> ${escHtml(p.tags || p.area)}</span>
+                </div>
+            </article>`;
+        }
+
+        function applyReveal(container) {
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.06 });
+            container.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+        }
+
+        /* ── Função principal ────────────────────────────────────── */
+        async function loadProjetosPublic() {
+            const grid = document.getElementById('projects-grid');
+            const countVisible = document.getElementById('count-visible');
+            const countTotal = document.getElementById('count-total');
+
+            try {
+                const q = query(collection(db, 'projetos'), orderBy('createdAt', 'desc'));
+                const snap = await getDocs(q);
+
+                if (snap.empty) {
+                    grid.innerHTML = `
+                    <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+                        <i class="fas fa-clipboard-list" style="font-size:2rem;opacity:.2;display:block;margin-bottom:12px;"></i>
+                        <p style="color:var(--text-muted);">Nenhum projeto publicado no momento.</p>
+                    </div>`;
+                    countVisible.textContent = '0';
+                    countTotal.textContent = '0';
+                    return;
+                }
+
+                grid.innerHTML = snap.docs.map(d => buildProjCard(d.data())).join('');
+                applyReveal(grid);
+                countVisible.textContent = snap.size;
+                countTotal.textContent = snap.size;
+
+            } catch (err) {
+                grid.innerHTML = `
+                <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+                    <i class="fas fa-triangle-exclamation" style="font-size:2rem;color:var(--red);display:block;margin-bottom:12px;"></i>
+                    <p>Não foi possível carregar os projetos: ${escHtml(err.message)}</p>
+                </div>`;
+                console.error('[FF193] Projetos:', err);
+            }
+        }
+
+        loadProjetosPublic();
+    </script>
+
+    <!-- ===== CHATBOT FLUTUANTE ===== -->
+    <div class="chatbot-container">
+        <div class="chatbot-teaser" id="chatbotTeaser">
+            <button class="chatbot-teaser-dismiss" id="chatbotTeaserDismiss" aria-label="Dispensar">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
+            <span class="chatbot-toggle-face"><img src="/assets/img/luminia.webp" alt="" width="38" height="38"></span>
+            <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="/assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                </div>
+                <div class="chatbot-info">
+                    <h4>LuminIA</h4>
+                    <p class="chatbot-status">
+                        <span class="status-dot"></span>Online
+                    </p>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot-message">
+                    <div class="message-avatar">
+                        <img src="/assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix193. Posso tirar dúvidas,
+                            ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
+                            começamos?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer" id="chatbotFooter">
+                <div class="chatbot-options" id="chatbotOptions"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" defer src="/assets/js/chatbot.js"></script>
+</body>
+
+</html>

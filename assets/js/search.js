@@ -20,7 +20,7 @@ import {
     highlightHtml
 } from './search-core.js';
 
-const RESULTS_PAGE = 'pesquisa.html';
+const RESULTS_PAGE = '/pesquisa';
 
 function goToResults(q) {
     window.location.href = `${RESULTS_PAGE}?q=${encodeURIComponent(q)}`;

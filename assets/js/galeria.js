@@ -153,7 +153,7 @@ async function showList(year) {
     setHero({
         title: 'Galeria',
         sub: 'Momentos de ações, eventos e projetos da Fundação Fênix193.',
-        crumbs: [{ label: 'Início', href: '../index.html' }, { label: 'Galeria' }]
+        crumbs: [{ label: 'Início', href: '/' }, { label: 'Galeria' }]
     });
     document.title = BASE_TITLE;
     showSkeleton('list');
@@ -205,7 +205,7 @@ async function showList(year) {
 /* ── Tela 2 · álbum ──────────────────────────────────────── */
 async function showAlbum(id, fotoFromUrl) {
     showSkeleton('album');
-    setHero({ title: 'Galeria', sub: 'Carregando álbum…', crumbs: [{ label: 'Início', href: '../index.html' }, { label: 'Galeria', href: listUrl(), nav: true }] });
+    setHero({ title: 'Galeria', sub: 'Carregando álbum…', crumbs: [{ label: 'Início', href: '/' }, { label: 'Galeria', href: listUrl(), nav: true }] });
 
     let album;
     try {
@@ -216,7 +216,7 @@ async function showAlbum(id, fotoFromUrl) {
         return;
     }
     if (!album) {
-        setHero({ title: 'Álbum não encontrado', sub: 'O álbum pode ter sido removido ou ainda não foi publicado.', crumbs: [{ label: 'Início', href: '../index.html' }, { label: 'Galeria', href: listUrl(), nav: true }, { label: 'Não encontrado' }] });
+        setHero({ title: 'Álbum não encontrado', sub: 'O álbum pode ter sido removido ou ainda não foi publicado.', crumbs: [{ label: 'Início', href: '/' }, { label: 'Galeria', href: listUrl(), nav: true }, { label: 'Não encontrado' }] });
         document.title = 'Álbum não encontrado · ' + BASE_TITLE;
         showState({ icon: 'fa-face-frown', title: 'Álbum não encontrado', text: 'Confira o endereço ou volte para a lista de álbuns.', back: true });
         return;
@@ -230,7 +230,7 @@ async function showAlbum(id, fotoFromUrl) {
     setHero({
         title: album.titulo,
         sub: meta,
-        crumbs: [{ label: 'Início', href: '../index.html' }, { label: 'Galeria', href: listUrl(), nav: true }, { label: album.titulo }]
+        crumbs: [{ label: 'Início', href: '/' }, { label: 'Galeria', href: listUrl(), nav: true }, { label: album.titulo }]
     });
     document.title = `${album.titulo} · ${BASE_TITLE}`;
     renderAlbumBody();

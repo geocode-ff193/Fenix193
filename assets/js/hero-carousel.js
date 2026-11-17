@@ -68,7 +68,7 @@ function formatDate(ts) {
 
 /* ── Slide de notícia ────────────────────────────────────── */
 function buildNewsSlide(id, n) {
-    const href = `pages/noticia.html?id=${encodeURIComponent(id)}`;
+    const href = `/pages/noticia?id=${encodeURIComponent(id)}`;
     const date = formatDate(n.createdAt);
     // A foto só é baixada quando o slide está perto de aparecer (ver warm/loadSlideImage):
     // no celular, 3 fotos grandes competindo com o 1º slide atrasavam o LCP.
@@ -95,7 +95,7 @@ function buildNewsSlide(id, n) {
                 ${summary ? `<p class="hero-news-excerpt">${esc(summary)}</p>` : ''}
                 <div class="hero-news-actions">
                     <a class="hero-btn hero-btn--primary" href="${href}">Ler notícia <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-                    <a class="hero-btn hero-btn--ghost" href="pages/noticias.html">Ver todas as notícias</a>
+                    <a class="hero-btn hero-btn--ghost" href="/pages/noticias">Ver todas as notícias</a>
                 </div>
             </div>
         </div>`;

@@ -1,0 +1,150 @@
+<header id="main-header">
+    
+        <!-- ===== HEADER--TOP ===== -->
+        <div class="header--top">
+            <div class="container header-top-inner">
+    
+                <!-- Logo -->
+                <a href="/" class="logo-area" aria-label="Fundação Fênix193 - Início">
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                    </div>
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                    </div>
+                </a>
+    
+                <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
+                <form class="header-search header-search--top" role="search" action="/pesquisa" method="get">
+                    <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                        aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                    <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                </form>
+    
+                <!-- AkanniHUB + Redes sociais (desktop) -->
+                <div class="header-top-actions">
+                    <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                        <span class="header-hub-label">AkanniHUB</span>
+                    </a>
+                    <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
+                    <ul class="header-social" role="list" aria-label="Redes sociais">
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+    
+                <!-- Hambúrguer (mobile) -->
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    
+        <!-- ===== HEADER--MAIN ===== -->
+        <div class="header--main">
+            <div class="container">
+                <nav id="nav-menu" aria-label="Navegação principal">
+                    <ul id="menu" role="list">
+    
+                        <!-- Pesquisa (somente no menu mobile) -->
+                        <li class="menu-mobile-search">
+                            <form class="header-search header-search--menu" role="search" action="/pesquisa"
+                                method="get">
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
+                                <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </li>
+    
+                        <li><a href="/">Início</a></li>
+    
+                        <!-- DROPDOWN: Institucional -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
+                                Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/#quem-somos">
+                                        Quem Somos
+                                    </a></li>
+                                <li><a href="/pages/institucional/nossa-historia">
+                                        Nossa História
+                                    </a></li>
+                                <li><a href="/pages/institucional/missao-valores">
+                                        Missão e Valores
+                                    </a></li>
+                                <li><a href="/pages/institucional/equipe">
+                                        Equipe
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <!-- DROPDOWN: Atuação -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
+                                Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/atuacao/projetos">
+                                        Projetos
+                                    </a></li>
+                                <li><a href="/pages/atuacao/capacitacao">
+                                        Capacitação
+                                    </a></li>
+                                <li><a href="/pages/atuacao/eventos">
+                                        Eventos
+                                    </a></li>
+                                <li><a href="/pages/atuacao/galeria">
+                                        Galeria
+                                    </a></li>
+                                <li><a href="/pages/atuacao/parcerias">
+                                        Parcerias
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <li><a href="/pages/transparencia">Transparência</a></li>
+                        <li><a href="/#stats">Impacto</a></li>
+                        <li><a href="/pages/noticias">Notícias</a></li>
+                        <li><a href="/pages/contato/fale-conosco">Contato</a></li>
+                        <li><a href="/#como-ajudar">Colabore</a></li>
+    
+                        <!-- AkanniHUB + Redes (somente no menu mobile) -->
+                        <li class="menu-mobile-extras">
+                            <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                                <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                                <span class="header-hub-label">AkanniHUB</span>
+                            </a>
+                            <ul class="header-social" role="list" aria-label="Redes sociais">
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>

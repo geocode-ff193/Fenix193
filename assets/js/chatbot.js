@@ -14,9 +14,7 @@ class Chatbot {
         this.teaserDismiss = document.getElementById('chatbotTeaserDismiss');
 
         // Detecta se estamos numa subpágina (pages/) para ajustar o caminho do avatar
-        this.avatarPath = window.location.pathname.includes('/pages/')
-            ? '../assets/img/luminia.webp'
-            : 'assets/img/luminia.webp';
+        this.avatarPath = '/assets/img/luminia.webp';
 
         if (!this.toggle || !this.box || !this.close || !this.body || !this.options) {
             console.error('[LuminIA] Elementos do chatbot não encontrados.');
@@ -305,7 +303,7 @@ class Chatbot {
             'A Fundação Fênix193 é uma entidade privada sem fins lucrativos, com sede em Aracaju/SE, criada para fortalecer as atividades do CBMSE e da Defesa Civil.',
             'Atuamos captando recursos, promovendo capacitações, realizando eventos e firmando parcerias estratégicas em prol da segurança pública sergipana.',
         ]);
-        setTimeout(() => this.addLinkMessage('Ver seção Quem Somos', 'fas fa-arrow-right', this._href('index.html#quem-somos')), 500);
+        setTimeout(() => this.addLinkMessage('Ver seção Quem Somos', 'fas fa-arrow-right', this._href('#quem-somos')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -315,7 +313,7 @@ class Chatbot {
             'A Fundação Fênix193 nasceu da necessidade de criar um elo sólido entre a sociedade civil e o Corpo de Bombeiros Militar de Sergipe.',
             'Ao longo dos anos, construímos uma trajetória de compromisso com a segurança, a solidariedade e o desenvolvimento institucional.',
         ]);
-        setTimeout(() => this.addLinkMessage('Ler nossa história completa', 'fas fa-book-open', this._href('pages/nossa-historia.html')), 500);
+        setTimeout(() => this.addLinkMessage('Ler nossa história completa', 'fas fa-book-open', this._href('pages/institucional/nossa-historia')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -326,7 +324,7 @@ class Chatbot {
             '<strong>Visão:</strong> Ser referência no apoio às instituições de segurança pública em Sergipe.',
             '<strong>Valores:</strong> Transparência, Solidariedade, Comprometimento, Inovação e Respeito à vida.',
         ]);
-        setTimeout(() => this.addLinkMessage('Ver missão e valores completos', 'fas fa-bullseye', this._href('pages/missao-valores.html')), 500);
+        setTimeout(() => this.addLinkMessage('Ver missão e valores completos', 'fas fa-bullseye', this._href('pages/institucional/missao-valores')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -336,7 +334,7 @@ class Chatbot {
             'A Fundação é gerida por um time dedicado de diretores, colaboradores e voluntários comprometidos com a missão institucional.',
             'Conheça os membros que fazem a Fênix193 acontecer:',
         ]);
-        setTimeout(() => this.addLinkMessage('Conhecer a equipe', 'fas fa-users', this._href('pages/equipe.html')), 500);
+        setTimeout(() => this.addLinkMessage('Conhecer a equipe', 'fas fa-users', this._href('pages/institucional/equipe')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -364,7 +362,7 @@ class Chatbot {
             'A Fundação desenvolve projetos voltados ao aparelhamento do CBMSE, à prevenção de acidentes e à promoção da cultura de segurança em Sergipe.',
             'Cada projeto é pensado para gerar impacto real na proteção da população sergipana.',
         ]);
-        setTimeout(() => this.addLinkMessage('Ver todos os projetos', 'fas fa-clipboard-list', this._href('pages/projetos.html')), 500);
+        setTimeout(() => this.addLinkMessage('Ver todos os projetos', 'fas fa-clipboard-list', this._href('pages/atuacao/projetos')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -374,7 +372,7 @@ class Chatbot {
             'Promovemos cursos, oficinas e treinamentos voltados tanto para bombeiros militares quanto para a população civil.',
             'As ações de capacitação incluem primeiros socorros, combate a incêndio, salvamento e proteção em situações de risco.',
         ]);
-        setTimeout(() => this.addLinkMessage('Ver programas de capacitação', 'fas fa-graduation-cap', this._href('pages/capacitacao.html')), 500);
+        setTimeout(() => this.addLinkMessage('Ver programas de capacitação', 'fas fa-graduation-cap', this._href('pages/atuacao/capacitacao')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -384,7 +382,7 @@ class Chatbot {
             'A Fundação Fênix193 organiza e apoia eventos de sensibilização, arrecadação e integração com a sociedade sergipana.',
             'Fique por dentro dos próximos eventos e participe!',
         ]);
-        setTimeout(() => this.addLinkMessage('Ver agenda de eventos', 'fas fa-calendar-days', this._href('pages/eventos.html')), 500);
+        setTimeout(() => this.addLinkMessage('Ver agenda de eventos', 'fas fa-calendar-days', this._href('pages/atuacao/eventos')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -394,7 +392,7 @@ class Chatbot {
             'Contamos com parceiros estratégicos — empresas, entidades e órgãos públicos — que acreditam na missão da Fundação.',
             'Juntos, ampliamos nosso impacto e alcançamos mais pessoas em Sergipe.',
         ]);
-        setTimeout(() => this.addLinkMessage('Conhecer nossos parceiros', 'fas fa-handshake', this._href('pages/parcerias.html')), 500);
+        setTimeout(() => this.addLinkMessage('Conhecer nossos parceiros', 'fas fa-handshake', this._href('pages/atuacao/parcerias')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -458,7 +456,7 @@ class Chatbot {
             '<strong>Transparência 📂</strong>',
             'Acesse relatórios, demonstrativos financeiros, atas e documentos institucionais:',
         ]);
-        setTimeout(() => this.addLinkMessage('Página de Transparência', 'fas fa-file-shield', this._href('pages/transparencia.html')), 400);
+        setTimeout(() => this.addLinkMessage('Página de Transparência', 'fas fa-file-shield', this._href('pages/transparencia')), 400);
         setTimeout(() => {
             this.addMessage('Não encontrou o documento? Fale conosco.');
             this._contatoRapido();
@@ -483,7 +481,7 @@ class Chatbot {
     handleContatoWhatsApp() {
         this.addMessage('Ótimo! Vou abrir o WhatsApp da Fundação para você. 📲');
         setTimeout(() => {
-            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579999940193', true);
+            this.addLinkMessage('Abrir WhatsApp da Fundação', 'fab fa-whatsapp', 'https://wa.me/5579999078311', true);
         }, 400);
         setTimeout(() => {
             this.addMessage('Nosso time responde em horário comercial. 🕘');
@@ -493,7 +491,7 @@ class Chatbot {
 
     handleContatoForm() {
         this.addMessage('Você pode enviar uma mensagem diretamente pelo formulário na seção de Contato da página inicial.');
-        setTimeout(() => this.addLinkMessage('Ir para o Formulário de Contato', 'fas fa-paper-plane', this._href('pages/fale-conosco.html')), 400);
+        setTimeout(() => this.addLinkMessage('Ir para o Formulário de Contato', 'fas fa-paper-plane', this._href('pages/contato/fale-conosco')), 400);
         setTimeout(() => this.showBackToMenuOptions(), 1200);
     }
 
@@ -549,31 +547,31 @@ class Chatbot {
     handleNavInstitucional() {
         this.addMessage('Qual página institucional você quer abrir?');
         this._paginas([
-            ['Início', 'fas fa-house', 'index.html'],
-            ['Quem Somos', 'fas fa-landmark', 'index.html#quem-somos'],
-            ['Nossa História', 'fas fa-book-open', 'pages/nossa-historia.html'],
-            ['Missão e Valores', 'fas fa-bullseye', 'pages/missao-valores.html'],
-            ['Nossa Equipe', 'fas fa-id-badge', 'pages/equipe.html'],
+            ['Início', 'fas fa-house', ''],
+            ['Quem Somos', 'fas fa-landmark', '#quem-somos'],
+            ['Nossa História', 'fas fa-book-open', 'pages/institucional/nossa-historia'],
+            ['Missão e Valores', 'fas fa-bullseye', 'pages/institucional/missao-valores'],
+            ['Nossa Equipe', 'fas fa-id-badge', 'pages/institucional/equipe'],
         ]);
     }
 
     handleNavAtuacao() {
         this.addMessage('Qual página sobre nossa atuação você quer abrir?');
         this._paginas([
-            ['Projetos', 'fas fa-clipboard-list', 'pages/projetos.html'],
-            ['Capacitação', 'fas fa-graduation-cap', 'pages/capacitacao.html'],
-            ['Eventos', 'fas fa-calendar-days', 'pages/eventos.html'],
-            ['Parcerias', 'fas fa-handshake', 'pages/parcerias.html'],
-            ['Galeria', 'fas fa-images', 'pages/galeria.html'],
+            ['Projetos', 'fas fa-clipboard-list', 'pages/atuacao/projetos'],
+            ['Capacitação', 'fas fa-graduation-cap', 'pages/atuacao/capacitacao'],
+            ['Eventos', 'fas fa-calendar-days', 'pages/atuacao/eventos'],
+            ['Parcerias', 'fas fa-handshake', 'pages/atuacao/parcerias'],
+            ['Galeria', 'fas fa-images', 'pages/atuacao/galeria'],
         ]);
     }
 
     handleNavOutros() {
         this.addMessage('Qual destas páginas você quer abrir?');
         this._paginas([
-            ['Transparência', 'fas fa-file-shield', 'pages/transparencia.html'],
-            ['Notícias', 'fas fa-newspaper', 'pages/noticias.html'],
-            ['Fale Conosco', 'fas fa-envelope', 'pages/fale-conosco.html'],
+            ['Transparência', 'fas fa-file-shield', 'pages/transparencia'],
+            ['Notícias', 'fas fa-newspaper', 'pages/noticias'],
+            ['Fale Conosco', 'fas fa-envelope', 'pages/contato/fale-conosco'],
         ]);
     }
 

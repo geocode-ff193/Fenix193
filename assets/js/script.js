@@ -295,7 +295,7 @@ document.addEventListener('keydown', (e) => {
                 <span class="tag ${s.tagClass}">${s.label}</span>
                 <h4>${escHtml(p.titulo)}</h4>
                 <p>${escHtml(p.descricao)}</p>
-                <a href="pages/projetos.html" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                <a href="/pages/atuacao/projetos" class="project-link">Saiba mais <i class="fas fa-arrow-right"></i></a>
             </div>`;
         return card;
     }
@@ -403,7 +403,7 @@ document.addEventListener('keydown', (e) => {
                 const n = d.data();
                 const card = document.createElement('a');
                 card.className = 'news-home-card';
-                card.href = `pages/noticia.html?id=${d.id}`;
+                card.href = `/pages/noticia?id=${d.id}`;
                 card.setAttribute('aria-label', `Ler notícia: ${escHtml(n.titulo)}`);
                 card.innerHTML = `
                     <div style="overflow:hidden;">
@@ -549,7 +549,7 @@ document.addEventListener('keydown', (e) => {
                 const n = d.data();
                 const card = document.createElement('a');
                 card.className = 'hero-news-mini-card';
-                card.href = `pages/noticia.html?id=${d.id}`;
+                card.href = `/pages/noticia?id=${d.id}`;
                 card.setAttribute('aria-label', `Ler: ${esc(n.titulo)}`);
                 const thumb = n.imagemUrl
                     ? `<img class="hero-news-mini-thumb" src="${esc(cld(n.imagemUrl, 320))}" alt="" loading="lazy" decoding="async">`

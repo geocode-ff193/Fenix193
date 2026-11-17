@@ -71,12 +71,12 @@ function showSkeleton() {
 }
 
 const SUGGESTIONS = [
-    { label: 'Notícias', link: 'pages/noticias.html', icon: 'fa-newspaper' },
-    { label: 'Projetos', link: 'pages/projetos.html', icon: 'fa-clipboard-list' },
-    { label: 'Transparência', link: 'pages/transparencia.html', icon: 'fa-folder-open' },
-    { label: 'Capacitação', link: 'pages/capacitacao.html', icon: 'fa-graduation-cap' },
-    { label: 'Eventos', link: 'pages/eventos.html', icon: 'fa-calendar-days' },
-    { label: 'Fale Conosco', link: 'pages/fale-conosco.html', icon: 'fa-envelope' }
+    { label: 'Notícias', link: '/pages/noticias', icon: 'fa-newspaper' },
+    { label: 'Projetos', link: '/pages/atuacao/projetos', icon: 'fa-clipboard-list' },
+    { label: 'Transparência', link: '/pages/transparencia', icon: 'fa-folder-open' },
+    { label: 'Capacitação', link: '/pages/atuacao/capacitacao', icon: 'fa-graduation-cap' },
+    { label: 'Eventos', link: '/pages/atuacao/eventos', icon: 'fa-calendar-days' },
+    { label: 'Fale Conosco', link: '/pages/contato/fale-conosco', icon: 'fa-envelope' }
 ];
 
 function suggestionsHtml() {

@@ -51,7 +51,7 @@ export const STATIC_INDEX = [
         sub: 'Álbuns de eventos e ações',
         category: 'Atuação',
         icon: 'fa-images',
-        link: 'pages/galeria.html',
+        link: '/pages/atuacao/galeria',
         keywords: 'galeria fotos fotografias imagens albuns album registros eventos acoes momentos',
     },
     {
@@ -59,7 +59,7 @@ export const STATIC_INDEX = [
         sub: 'Página principal da Fundação',
         category: 'Página',
         icon: 'fa-house',
-        link: 'index.html',
+        link: '/',
         keywords: 'início home principal fundação fênix 193 fênix193 fenix193 bombeiros sergipe'
     },
     {
@@ -67,7 +67,7 @@ export const STATIC_INDEX = [
         sub: 'Apresentação institucional',
         category: 'Página',
         icon: 'fa-landmark',
-        link: 'index.html#quem-somos',
+        link: '/#quem-somos',
         keywords: 'quem somos organização fundação sem fins lucrativos apoio cbmse sergipe missão'
     },
     {
@@ -75,7 +75,7 @@ export const STATIC_INDEX = [
         sub: 'Trajetória da Fundação',
         category: 'Página',
         icon: 'fa-book-open',
-        link: 'pages/nossa-historia.html',
+        link: '/pages/institucional/nossa-historia',
         keywords: 'história trajetória fundação criação origem sergipe bombeiros militares linha do tempo'
     },
     {
@@ -83,7 +83,7 @@ export const STATIC_INDEX = [
         sub: 'Propósito e princípios',
         category: 'Página',
         icon: 'fa-bullseye',
-        link: 'pages/missao-valores.html',
+        link: '/pages/institucional/missao-valores',
         keywords: 'missão visão valores compromisso ética integridade responsabilidade social princípios'
     },
     {
@@ -91,7 +91,7 @@ export const STATIC_INDEX = [
         sub: 'Membros dos conselhos',
         category: 'Página',
         icon: 'fa-users',
-        link: 'pages/equipe.html',
+        link: '/pages/institucional/equipe',
         keywords: 'equipe conselho membros diretoria presidente curadores fiscal executivo estrutura organizacional'
     },
     {
@@ -99,7 +99,7 @@ export const STATIC_INDEX = [
         sub: 'Portal de documentos públicos',
         category: 'Documento',
         icon: 'fa-folder-open',
-        link: 'pages/transparencia.html',
+        link: '/pages/transparencia',
         keywords: 'transparência documentos prestação contas relatórios certidões estatuto atas contratos editais portal'
     },
     {
@@ -107,7 +107,7 @@ export const STATIC_INDEX = [
         sub: 'Iniciativas e programas',
         category: 'Atuação',
         icon: 'fa-clipboard-list',
-        link: 'pages/projetos.html',
+        link: '/pages/atuacao/projetos',
         keywords: 'projetos bombeiro mirim apoio operacional sos abelhas defesa civil primeiros socorros iniciativas programas'
     },
     {
@@ -115,7 +115,7 @@ export const STATIC_INDEX = [
         sub: 'Cursos e treinamentos',
         category: 'Atuação',
         icon: 'fa-graduation-cap',
-        link: 'pages/capacitacao.html',
+        link: '/pages/atuacao/capacitacao',
         keywords: 'capacitação cursos treinamentos primeiros socorros brigada incêndio instrutor certificação in company'
     },
     {
@@ -123,7 +123,7 @@ export const STATIC_INDEX = [
         sub: 'Ações e atividades',
         category: 'Atuação',
         icon: 'fa-calendar-days',
-        link: 'pages/eventos.html',
+        link: '/pages/atuacao/eventos',
         keywords: 'eventos ações sociais cerimônias atividades simulado calendário programação próximos'
     },
     {
@@ -131,7 +131,7 @@ export const STATIC_INDEX = [
         sub: 'Empresas parceiras',
         category: 'Atuação',
         icon: 'fa-handshake',
-        link: 'pages/parcerias.html',
+        link: '/pages/atuacao/parcerias',
         keywords: 'parcerias empresas parceiros patrocinadores apoio institucional voluntariado como ser parceiro'
     },
     {
@@ -139,7 +139,7 @@ export const STATIC_INDEX = [
         sub: 'Últimas publicações',
         category: 'Página',
         icon: 'fa-newspaper',
-        link: 'pages/noticias.html',
+        link: '/pages/noticias',
         keywords: 'notícias acontecimentos novidades últimas publicações informações blog'
     },
     {
@@ -147,7 +147,7 @@ export const STATIC_INDEX = [
         sub: 'Doações e voluntariado',
         category: 'Contato',
         icon: 'fa-hand-holding-heart',
-        link: 'index.html#como-ajudar',
+        link: '/#como-ajudar',
         keywords: 'doação voluntariado parcerias ajudar colaborar contribuir pix transferência como ajudar'
     },
     {
@@ -155,7 +155,7 @@ export const STATIC_INDEX = [
         sub: 'Formulário, município e endereço',
         category: 'Contato',
         icon: 'fa-envelope',
-        link: 'pages/fale-conosco.html',
+        link: '/pages/contato/fale-conosco',
         keywords: 'contato fale conosco endereço email telefone formulário mensagem denúncia'
     },
     {
@@ -163,7 +163,7 @@ export const STATIC_INDEX = [
         sub: 'Documentos financeiros',
         category: 'Documento',
         icon: 'fa-file-invoice',
-        link: 'pages/transparencia.html',
+        link: '/pages/transparencia',
         keywords: 'prestação de contas finanças financeiro orçamento receita despesa balanço'
     },
     {
@@ -171,7 +171,7 @@ export const STATIC_INDEX = [
         sub: 'Documentação institucional',
         category: 'Documento',
         icon: 'fa-scroll',
-        link: 'pages/transparencia.html',
+        link: '/pages/transparencia',
         keywords: 'estatuto social regimento fundação normas regras documentos institucionais constituição'
     },
     {
@@ -179,7 +179,7 @@ export const STATIC_INDEX = [
         sub: 'Regularidade e certificados',
         category: 'Documento',
         icon: 'fa-certificate',
-        link: 'pages/transparencia.html',
+        link: '/pages/transparencia',
         keywords: 'certidões certificados documentação regularidade fiscal negativa débitos'
     },
 ];
@@ -331,7 +331,7 @@ async function doLoadCache() {
                 sub: data.autor ? `Por ${data.autor}` : '',
                 category: 'Notícia',
                 icon: 'fa-newspaper',
-                link: `pages/noticia.html?id=${d.id}`,
+                link: `/pages/noticia?id=${d.id}`,
                 body: data.corpo || '',
                 date, timestamp: date ? date.getTime() : 0,
                 keywords: normalize(`${data.titulo} ${data.autor} ${data.corpo || ''}`)
@@ -347,7 +347,7 @@ async function doLoadCache() {
                 sub: data.categoria || '',
                 category: 'Documento',
                 icon: getCatIcon(data.categoria),
-                link: data.link || 'pages/transparencia.html',
+                link: data.link || '/pages/transparencia',
                 external: !!data.link,
                 body: data.categoria || '',
                 date, timestamp: date ? date.getTime() : 0,
@@ -363,7 +363,7 @@ async function doLoadCache() {
                 sub: data.area || 'Projeto',
                 category: 'Atuação',
                 icon: 'fa-clipboard-list',
-                link: 'pages/projetos.html',
+                link: '/pages/atuacao/projetos',
                 body: [data.area, data.publico, data.objetivo, data.descricao].filter(Boolean).join('. '),
                 keywords: normalize(`${data.titulo} ${data.area} ${data.publico} ${data.objetivo} ${data.descricao} ${data.tags || ''}`)
             };
@@ -377,7 +377,7 @@ async function doLoadCache() {
                 sub: data.nivel ? `Curso · ${data.nivel}` : 'Curso',
                 category: 'Atuação',
                 icon: 'fa-graduation-cap',
-                link: 'pages/capacitacao.html',
+                link: '/pages/atuacao/capacitacao',
                 body: [data.descricao, (data.modulos || []).join(', ')].filter(Boolean).join('. '),
                 keywords: normalize(`${data.titulo} ${data.descricao} ${data.nivel} ${(data.modulos || []).join(' ')} ${(data.tags || []).join(' ')}`)
             };
@@ -391,7 +391,7 @@ async function doLoadCache() {
                 sub: data.local || 'Evento',
                 category: 'Atuação',
                 icon: 'fa-calendar-days',
-                link: 'pages/eventos.html',
+                link: '/pages/atuacao/eventos',
                 body: [data.local, data.descricao].filter(Boolean).join('. '),
                 keywords: normalize(`${data.titulo} ${data.local} ${data.descricao}`)
             };
@@ -405,7 +405,7 @@ async function doLoadCache() {
                 sub: data.tag || 'Nossa História',
                 category: 'Atuação',
                 icon: 'fa-timeline',
-                link: 'pages/nossa-historia.html',
+                link: '/pages/institucional/nossa-historia',
                 body: data.descricao || '',
                 keywords: normalize(`${data.ano} ${data.tag} ${data.titulo} ${data.descricao}`)
             };
@@ -419,7 +419,7 @@ async function doLoadCache() {
                 sub: 'Apoiador & Parceiro',
                 category: 'Atuação',
                 icon: 'fa-handshake',
-                link: 'pages/parcerias.html',
+                link: '/pages/atuacao/parcerias',
                 body: '',
                 keywords: normalize(`${data.nome}`)
             };
@@ -436,7 +436,7 @@ async function doLoadCache() {
                 sub: [date ? date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '', data.local, `${total} foto${total === 1 ? '' : 's'}`].filter(Boolean).join(' · '),
                 category: 'Atuação',
                 icon: 'fa-images',
-                link: `pages/galeria.html?album=${d.id}`,
+                link: `/pages/atuacao/galeria?album=${d.id}`,
                 body: [data.local, data.descricao].filter(Boolean).join('. '),
                 date, timestamp: date ? date.getTime() : 0,
                 keywords: normalize(`${data.titulo} ${data.local} ${data.descricao} galeria fotos`)
@@ -460,17 +460,17 @@ async function doLoadCache() {
    da seção quando ela existir. Cache na sessão (30 min).
    ═══════════════════════════════════════════════════════════ */
 const PAGE_SOURCES = [
-    { path: 'index.html', name: 'Página inicial', category: 'Página', icon: 'fa-house' },
-    { path: 'pages/nossa-historia.html', name: 'Nossa História', category: 'Página', icon: 'fa-book-open' },
-    { path: 'pages/missao-valores.html', name: 'Missão e Valores', category: 'Página', icon: 'fa-bullseye' },
-    { path: 'pages/equipe.html', name: 'Equipe', category: 'Página', icon: 'fa-users' },
-    { path: 'pages/transparencia.html', name: 'Transparência', category: 'Documento', icon: 'fa-folder-open' },
-    { path: 'pages/projetos.html', name: 'Projetos', category: 'Atuação', icon: 'fa-clipboard-list' },
-    { path: 'pages/capacitacao.html', name: 'Capacitação', category: 'Atuação', icon: 'fa-graduation-cap' },
-    { path: 'pages/eventos.html', name: 'Eventos', category: 'Atuação', icon: 'fa-calendar-days' },
-    { path: 'pages/parcerias.html', name: 'Parcerias', category: 'Atuação', icon: 'fa-handshake' },
-    { path: 'pages/noticias.html', name: 'Notícias', category: 'Página', icon: 'fa-newspaper' },
-    { path: 'pages/fale-conosco.html', name: 'Fale Conosco', category: 'Contato', icon: 'fa-envelope' },
+    { path: '/', name: 'Página inicial', category: 'Página', icon: 'fa-house' },
+    { path: '/pages/institucional/nossa-historia', name: 'Nossa História', category: 'Página', icon: 'fa-book-open' },
+    { path: '/pages/institucional/missao-valores', name: 'Missão e Valores', category: 'Página', icon: 'fa-bullseye' },
+    { path: '/pages/institucional/equipe', name: 'Equipe', category: 'Página', icon: 'fa-users' },
+    { path: '/pages/transparencia', name: 'Transparência', category: 'Documento', icon: 'fa-folder-open' },
+    { path: '/pages/atuacao/projetos', name: 'Projetos', category: 'Atuação', icon: 'fa-clipboard-list' },
+    { path: '/pages/atuacao/capacitacao', name: 'Capacitação', category: 'Atuação', icon: 'fa-graduation-cap' },
+    { path: '/pages/atuacao/eventos', name: 'Eventos', category: 'Atuação', icon: 'fa-calendar-days' },
+    { path: '/pages/atuacao/parcerias', name: 'Parcerias', category: 'Atuação', icon: 'fa-handshake' },
+    { path: '/pages/noticias', name: 'Notícias', category: 'Página', icon: 'fa-newspaper' },
+    { path: '/pages/contato/fale-conosco', name: 'Fale Conosco', category: 'Contato', icon: 'fa-envelope' },
 ];
 const PAGE_INDEX_KEY = 'ff193_page_index_v1';
 const PAGE_INDEX_TTL = 30 * 60 * 1000;
