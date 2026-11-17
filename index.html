@@ -18,8 +18,7 @@
     <meta property="og:site_name" content="Fundação Fênix193">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Fundação Fênix193 · Apoio ao Corpo de Bombeiros de Sergipe">
-    <meta property="og:description"
-        content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta property="og:description" content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <meta property="og:url" content="https://fenix193.org.br/">
     <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
@@ -28,36 +27,33 @@
     <meta property="og:image:alt" content="Fundação Fênix193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fundação Fênix193 · Apoio ao Corpo de Bombeiros de Sergipe">
-    <meta name="twitter:description"
-        content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
+    <meta name="twitter:description" content="A Fundação Fênix193 apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.">
     <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="icon" type="image/x-icon" href="assets/ui/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="assets/ui/favicon.svg" />
-    <link rel="shortcut icon" href="assets/ui/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/ui/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/x-icon" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
 
     <!-- LCP: imagem de fundo do 1º slide (bomb_30.webp no computador; bomb_30-mobile.webp até 768px, definidas via CSS).
          Como é carregada via CSS e não via <img>, o navegador só a descobre depois de
          baixar e parsear o style.css. O preload força a busca em paralelo, junto ao HTML. -->
-    <link rel="preload" as="image" href="assets/img/bomb_30-mobile.webp" media="(max-width: 768px)"
-        fetchpriority="high">
-    <link rel="preload" as="image" href="assets/img/bomb_30.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/bomb_30-mobile.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/bomb_30.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <!-- Banner de cookies: script leve, independente do Firebase (aparece sem esperar os módulos). -->
-    <script defer src="assets/js/cookie-banner.js"></script>
+    <script defer src="/assets/js/cookie-banner.js"></script>
     <!-- Módulos buscados em paralelo (evita a fila script.js → firebase-app → firestore). -->
     <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js">
     <link rel="modulepreload" href="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js">
-    <link rel="modulepreload" href="assets/js/img-utils.js">
+    <link rel="modulepreload" href="/assets/js/img-utils.js">
 
     <!-- Fontes: mantidas com display=swap (já configurado) para não bloquear o LCP de texto -->
     <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-500.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2"
-        crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2" crossorigin>
 
     <!-- ===================== CRITICAL CSS (inline) =====================
          Estilos mínimos para renderizar header + hero (primeira dobra) sem
@@ -65,61 +61,20 @@
     <style>
         /* ── Fontes hospedadas no próprio site (Barlow e Barlow Condensed, subconjunto latin) ──
            Substituem o Google Fonts: uma requisição externa a menos no caminho crítico. */
-        @font-face {
-            font-family: 'Barlow';
-            font-style: normal;
-            font-weight: 300;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Barlow';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Barlow';
-            font-style: normal;
-            font-weight: 500;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Barlow';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Barlow Condensed';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Barlow Condensed';
-            font-style: normal;
-            font-weight: 700;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2');
-        }
-
-        @font-face {
-            font-family: 'Barlow Condensed';
-            font-style: normal;
-            font-weight: 800;
-            font-display: swap;
-            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2');
-        }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2'); }
 
         :root {
             --red: #E12217;
@@ -306,7 +261,7 @@
             min-height: 94vh;
             background:
                 linear-gradient(135deg, rgba(49, 51, 50, 0.55) 0%, rgba(225, 34, 23, 0.33) 100%),
-                url('assets/img/bomb_30.webp') center/cover no-repeat;
+                url('/assets/img/bomb_30.webp') center/cover no-repeat;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -473,59 +428,29 @@
                 font-size: 1.7rem;
             }
         }
-
+    
         /* Link "Avalie-nos no Google" (rodapé) e destaque na página Fale Conosco */
-        .footer-review-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            padding: 9px 16px;
-            border: 1.5px solid rgba(255, 255, 255, .35);
-            border-radius: 999px;
-            color: #fff;
-            font-size: .85rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background .25s ease, border-color .25s ease, color .25s ease;
-        }
-
-        .footer-review-link i {
-            color: var(--amber, #F8BA25);
-            transition: color .25s ease;
-        }
-
-        .footer-review-link:hover,
-        .footer-review-link:focus-visible {
-            background: var(--amber, #F8BA25);
-            border-color: var(--amber, #F8BA25);
-            color: #1f2120;
-        }
-
-        .footer-review-link:hover i,
-        .footer-review-link:focus-visible i {
-            color: #1f2120;
-        }
-
-        .contact-review-link {
-            font-weight: 700;
-            text-decoration: underline;
-            color: inherit;
-        }
+        .footer-review-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 16px;
+            border: 1.5px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; font-size: .85rem;
+            font-weight: 600; text-decoration: none; transition: background .25s ease, border-color .25s ease, color .25s ease; }
+        .footer-review-link i { color: var(--amber, #F8BA25); transition: color .25s ease; }
+        .footer-review-link:hover, .footer-review-link:focus-visible { background: var(--amber, #F8BA25);
+            border-color: var(--amber, #F8BA25); color: #1f2120; }
+        .footer-review-link:hover i, .footer-review-link:focus-visible i { color: #1f2120; }
+        .contact-review-link { font-weight: 700; text-decoration: underline; color: inherit; }
     </style>
 
     <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
-    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2"
-        crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2" crossorigin>
     <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/dropdown.css">
-    <link rel="stylesheet" href="assets/css/chatbot.css">
-    <link rel="stylesheet" href="assets/css/cbmse-feed.css">
-    <link rel="stylesheet" href="assets/css/acessibilidade.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/back-to-top.css">
-    <link rel="stylesheet" href="assets/css/hero-carousel.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/chatbot.css">
+    <link rel="stylesheet" href="/assets/css/cbmse-feed.css">
+    <link rel="stylesheet" href="/assets/css/acessibilidade.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/back-to-top.css">
+    <link rel="stylesheet" href="/assets/css/hero-carousel.css">
     <!-- Dados estruturados (schema.org) -->
     <script type="application/ld+json">
 {
@@ -552,7 +477,7 @@
       "image": "https://fenix193.org.br/assets/img/og-image.jpg",
       "description": "Entidade privada sem fins lucrativos, com sede em Aracaju/SE, que apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil.",
       "email": "contato@fenix193.org.br",
-      "telephone": "+5579999940193",
+      "telephone": "+5579999078311",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rua Honor Gregório Santos, 44 - Grageru",
@@ -580,7 +505,7 @@
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "telephone": "+5579999940193",
+        "telephone": "+5579999078311",
         "email": "contato@fenix193.org.br",
         "areaServed": "BR-SE",
         "availableLanguage": "pt-BR"
@@ -627,56 +552,54 @@
 </head>
 
 <body>
-    <header id="main-header">
-
+    <!-- @layout:header -->
+<header id="main-header">
+    
         <!-- ===== HEADER--TOP ===== -->
         <div class="header--top">
             <div class="container header-top-inner">
-
+    
                 <!-- Logo -->
-                <a href="index.html" class="logo-area" aria-label="Fundação Fênix193 - Início">
+                <a href="/" aria-current="page" class="logo-area" aria-label="Fundação Fênix193 - Início">
                     <div class="logo-icon" aria-hidden="true">
-                        <img src="assets/img/ff193_transp.webp" alt="Logo Transparente" width="45" height="45">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
                     </div>
                     <div class="logo-text">
                         <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
                     </div>
                     <div class="logo-icon" aria-hidden="true">
-                        <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
-
+    
                 <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
-                <form class="header-search header-search--top" role="search" action="pesquisa.html" method="get">
+                <form class="header-search header-search--top" role="search" action="/pesquisa" method="get">
                     <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
                         aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
                     <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                         <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                     </button>
                 </form>
-
+    
                 <!-- AkanniHUB + Redes sociais (desktop) -->
                 <div class="header-top-actions">
-                    <a href="akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                    <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
                         <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
                         <span class="header-hub-label">AkanniHUB</span>
                     </a>
                     <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
                     <ul class="header-social" role="list" aria-label="Redes sociais">
-                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
-                                rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
-                                rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
-                                    aria-hidden="true"></i></a></li>
-                        <li><a href="https://wa.me/5579999940193" target="_blank" rel="noopener noreferrer"
-                                aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
-                                rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
-                                    aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
-
+    
                 <!-- Hambúrguer (mobile) -->
                 <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
                     <span class="hamburger-bar"></span>
@@ -685,98 +608,94 @@
                 </button>
             </div>
         </div>
-
+    
         <!-- ===== HEADER--MAIN ===== -->
         <div class="header--main">
             <div class="container">
                 <nav id="nav-menu" aria-label="Navegação principal">
                     <ul id="menu" role="list">
-
+    
                         <!-- Pesquisa (somente no menu mobile) -->
                         <li class="menu-mobile-search">
-                            <form class="header-search header-search--menu" role="search" action="pesquisa.html"
+                            <form class="header-search header-search--menu" role="search" action="/pesquisa"
                                 method="get">
-                                <input type="search" name="q" class="header-search-input"
-                                    placeholder="Pesquisar no site…" aria-label="Pesquisar no site" autocomplete="off"
-                                    spellcheck="false" minlength="2" required>
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
                                 <button type="submit" class="header-search-btn" aria-label="Pesquisar">
                                     <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
                                 </button>
                             </form>
                         </li>
-
-                        <li><a href="index.html">Início</a></li>
-
+    
+                        <li><a href="/">Início</a></li>
+    
                         <!-- DROPDOWN: Institucional -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
                                 Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#quem-somos">
+                                <li><a href="/#quem-somos">
                                         Quem Somos
                                     </a></li>
-                                <li><a href="pages/nossa-historia.html">
+                                <li><a href="/pages/institucional/nossa-historia">
                                         Nossa História
                                     </a></li>
-                                <li><a href="pages/missao-valores.html">
+                                <li><a href="/pages/institucional/missao-valores">
                                         Missão e Valores
                                     </a></li>
-                                <li><a href="pages/equipe.html">
+                                <li><a href="/pages/institucional/equipe">
                                         Equipe
                                     </a></li>
                             </ul>
                         </li>
-
+    
                         <!-- DROPDOWN: Atuação -->
                         <li class="has-dropdown">
                             <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
                                 Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="pages/projetos.html">
+                                <li><a href="/pages/atuacao/projetos">
                                         Projetos
                                     </a></li>
-                                <li><a href="pages/capacitacao.html">
+                                <li><a href="/pages/atuacao/capacitacao">
                                         Capacitação
                                     </a></li>
-                                <li><a href="pages/eventos.html">
+                                <li><a href="/pages/atuacao/eventos">
                                         Eventos
                                     </a></li>
-                                <li><a href="pages/galeria.html">
+                                <li><a href="/pages/atuacao/galeria">
                                         Galeria
                                     </a></li>
-                                <li><a href="pages/parcerias.html">
+                                <li><a href="/pages/atuacao/parcerias">
                                         Parcerias
                                     </a></li>
                             </ul>
                         </li>
-
-                        <li><a href="pages/transparencia.html">Transparência</a></li>
-                        <li><a href="#stats">Impacto</a></li>
-                        <li><a href="pages/noticias.html">Notícias</a></li>
-                        <li><a href="pages/fale-conosco.html">Contato</a></li>
-                        <li><a href="#como-ajudar">Colabore</a></li>
-
+    
+                        <li><a href="/pages/transparencia">Transparência</a></li>
+                        <li><a href="/#stats">Impacto</a></li>
+                        <li><a href="/pages/noticias">Notícias</a></li>
+                        <li><a href="/pages/contato/fale-conosco">Contato</a></li>
+                        <li><a href="/#como-ajudar">Colabore</a></li>
+    
                         <!-- AkanniHUB + Redes (somente no menu mobile) -->
                         <li class="menu-mobile-extras">
-                            <a href="akannihub.html" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                            <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
                                 <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
                                 <span class="header-hub-label">AkanniHUB</span>
                             </a>
                             <ul class="header-social" role="list" aria-label="Redes sociais">
-                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank"
-                                        rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"
-                                            aria-hidden="true"></i></a></li>
-                                <li><a href="https://wa.me/5579999940193" target="_blank" rel="noopener noreferrer"
-                                        aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                                </li>
-                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank"
-                                        rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"
-                                            aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -784,20 +703,23 @@
             </div>
         </div>
     </header>
+<!-- @/layout:header -->
 
     <main tabindex="-1" id="main-content">
         <section id="hero" class="hero-carousel" aria-roledescription="carrossel" aria-label="Destaques da Fundação"
             data-autoplay="7000">
             <div class="hero-slides" id="hero-slides">
-
+        
                 <!-- Slide 1 · apresentação -->
                 <div class="hero-slide hero-slide--intro is-active" role="group" aria-roledescription="slide"
                     aria-label="Apresentação">
                     <div class="container">
                         <div class="hero-grid">
                             <div class="hero-img">
-                                <img src="assets/img/ff193_transp.webp" alt="Logo Fundação Fênix193" width="380"
-                                    height="380">
+                                <img src="/assets/img/ff193_transp.webp" alt="Logo Fundação Fênix193" width="380" height="380"
+                                srcset="/assets/img/ff193_transp-420.webp 420w, /assets/img/ff193_transp.webp 800w"
+                                sizes="(max-width: 768px) min(210px, 54vw), clamp(220px, 27vw, 400px)"
+                                fetchpriority="high" decoding="async">
                             </div>
                             <div class="hero-text">
                                 <h1>Apoiar quem arrisca sua vida para salvar vidas é proteger a sociedade.</h1>
@@ -808,10 +730,10 @@
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- Slides de notícia entram aqui (hero-carousel.js) -->
             </div>
-
+        
             <div class="hero-overlay"></div>
             <div class="hero-scroll-hint" aria-hidden="true">
                 <i class="fas fa-chevron-down"></i>
@@ -833,10 +755,10 @@
                             Sergipe e da Proteção e Defesa Civil.</p>
                         <p>Atuamos promovendo iniciativas que contribuem para a melhoria da estrutura operacional,
                             qualificação profissional e desenvolvimento de projetos sociais que impactam diretamente a
-                            sociedade sergipana.</p>
+                            comunidade sergipana.</p>
                         <p><strong>Nosso compromisso é com a proteção da vida, com a sociedade e com aqueles que dedicam
                                 suas vidas a salvar outras.</strong></p>
-                        <a href="pages/nossa-historia.html"><button class="btn-outline toggle-diretoria-btn">
+                        <a href="/pages/institucional/nossa-historia"><button class="btn-outline toggle-diretoria-btn">
                                 <i class="fas fa-book-open"></i> Nossa História Completa
                             </button></a>
                     </div>
@@ -844,22 +766,22 @@
                         <div class="qs-carousel" role="region" aria-label="Carrossel de imagens">
                             <div class="qs-carousel-track">
                                 <div class="qs-slide active">
-                                    <img src="assets/img/bomb_10.webp" alt="Fênix193" width="800" height="600"
+                                    <img src="/assets/img/bomb_10.webp" alt="Fênix193" width="800" height="600"
                                         loading="lazy">
                                     <span class="qs-slide-label">Fênix193</span>
                                 </div>
                                 <div class="qs-slide">
-                                    <img src="assets/img/bomb_11.webp" alt="Nossa missão" width="800" height="600"
+                                    <img src="/assets/img/bomb_11.webp" alt="Nossa missão" width="800" height="600"
                                         loading="lazy">
                                     <span class="qs-slide-label">Nossa missão</span>
                                 </div>
                                 <div class="qs-slide">
-                                    <img src="assets/img/bomb_12.webp" alt="Proteção de vidas" width="800" height="600"
+                                    <img src="/assets/img/bomb_12.webp" alt="Proteção de vidas" width="800" height="600"
                                         loading="lazy">
                                     <span class="qs-slide-label">Proteção de vidas</span>
                                 </div>
                                 <div class="qs-slide">
-                                    <img src="assets/img/bomb_13.webp" alt="CBMSE · Sergipe" width="800" height="600"
+                                    <img src="/assets/img/bomb_13.webp" alt="CBMSE · Sergipe" width="800" height="600"
                                         loading="lazy">
                                     <span class="qs-slide-label">CBMSE · Sergipe</span>
                                 </div>
@@ -1008,7 +930,7 @@
                             <li><i class="fas fa-check"></i> Boleto bancário</li>
                             <li><i class="fas fa-check"></i> Transferência TED/DOC</li>
                         </ul>
-                        <a href="pages/fale-conosco.html?assunto=doacao" class="btn-help">Fazer Doação</a>
+                        <a href="/pages/contato/fale-conosco?assunto=doacao" class="btn-help">Fazer Doação</a>
                     </div>
                     <div class="help-card">
                         <div class="help-icon"><i class="fas fa-handshake"></i></div>
@@ -1020,7 +942,7 @@
                             <li><i class="fas fa-check"></i> Doação de equipamentos</li>
                             <li><i class="fas fa-check"></i> Apoio institucional</li>
                         </ul>
-                        <a href="pages/fale-conosco.html?assunto=parceria" class="btn-help">Ser Parceiro</a>
+                        <a href="/pages/contato/fale-conosco?assunto=parceria" class="btn-help">Ser Parceiro</a>
                     </div>
                     <div class="help-card">
                         <div class="help-icon"><i class="fas fa-people-carry-box"></i></div>
@@ -1032,7 +954,7 @@
                             <li><i class="fas fa-check"></i> Suporte administrativo</li>
                             <li><i class="fas fa-check"></i> Comunicação e marketing</li>
                         </ul>
-                        <a href="pages/fale-conosco.html?assunto=voluntariado" class="btn-help">Ser Voluntário</a>
+                        <a href="/pages/contato/fale-conosco?assunto=voluntariado" class="btn-help">Ser Voluntário</a>
                     </div>
                 </div>
             </div>
@@ -1054,7 +976,7 @@
                             <div class="news-home-skeleton"></div>
                         </div>
                         <div style="text-align:center;margin-top:36px;">
-                            <a href="pages/noticias.html" class="btn-outline-sm">
+                            <a href="/pages/noticias" class="btn-outline-sm">
                                 <i class="fas fa-newspaper"></i> Ver todas as notícias
                             </a>
                         </div>
@@ -1065,7 +987,7 @@
                         aria-label="Boletim de notícias oficiais: CBMSE e Defesa Civil de Sergipe">
                         <div class="cbmse-feed-header">
                             <span class="cbmse-feed-icon" id="cbmse-feed-icon" aria-hidden="true">
-                                <img id="cbmse-feed-icon-img" src="assets/img/cbmse.webp" alt="" width="42" height="42"
+                                <img id="cbmse-feed-icon-img" src="/assets/img/cbmse.webp" alt="" width="42" height="42"
                                     loading="lazy">
                             </span>
                             <div>
@@ -1076,13 +998,13 @@
                         <div class="cbmse-feed-tabs" role="tablist" aria-label="Escolher fonte das notícias">
                             <button type="button" class="cbmse-feed-tab active" role="tab" aria-selected="true"
                                 data-source="cbmse">
-                                <img src="assets/img/cbmse.webp" alt="" class="cbmse-feed-tab-logo" aria-hidden="true"
+                                <img src="/assets/img/cbmse.webp" alt="" class="cbmse-feed-tab-logo" aria-hidden="true"
                                     width="16" height="16" loading="lazy">
                                 CBMSE
                             </button>
                             <button type="button" class="cbmse-feed-tab" role="tab" aria-selected="false"
                                 data-source="defesacivil">
-                                <img src="assets/img/dcse.webp" alt="" class="cbmse-feed-tab-logo" aria-hidden="true"
+                                <img src="/assets/img/dcse.webp" alt="" class="cbmse-feed-tab-logo" aria-hidden="true"
                                     width="16" height="16" loading="lazy">
                                 Defesa Civil
                             </button>
@@ -1106,11 +1028,11 @@
         <section class="section-padding apoiadores-section reveal" aria-label="Instituidores e Apoiadores">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-label">Quem Faz Parte Desta História</span>
-                    <h2>Instituidores &amp; Doadores</h2>
+                    <span class="section-label">Quem Nos Apoia</span>
+                    <h2>Instituidores &amp; Apoiadores</h2>
                     <div class="section-bar"></div>
-                    <p class="apoiadores-desc">Organizações que tornaram nossa missão possível e acreditaram na
-                        proteção da sociedade sergipana por meio da <strong>Fundação Fênix193</strong>.</p>
+                    <p class="apoiadores-desc">Pessoas e organizações que tornam nossa missão possível e acreditam na
+                        proteção da sociedade sergipana.</p>
                 </div>
 
                 <div class="apoiadores-columns">
@@ -1119,7 +1041,7 @@
                     <div class="apoiadores-group">
                         <div class="apoiadores-group-header">
                             <span class="apoiadores-group-badge instituidores-badge">
-                                Instituidores
+                                <i class="fas fa-star" aria-hidden="true"></i> Instituidores
                             </span>
                         </div>
                         <div role="group" class="apoiadores-track-wrap" aria-label="Carrossel de instituidores">
@@ -1127,7 +1049,7 @@
                                 <a href="https://www.ilbj.org.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoILBJ.webp" alt="ILBJ" width="60" height="60"
+                                            <img src="/assets/img/logoILBJ.webp" alt="ILBJ" width="60" height="60"
                                                 loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Inst. Luciano Barreto Jr.</span>
@@ -1136,7 +1058,7 @@
                                 <a href="https://redeprimavera.com.br/">
                                     <div class="apoiador-card">
                                         <div class="apoiador-img-wrap">
-                                            <img src="assets/img/logoPRIMAVERA.webp" alt="Rede Primavera" width="60"
+                                            <img src="/assets/img/logoPRIMAVERA.webp" alt="Rede Primavera" width="60"
                                                 height="60" loading="lazy">
                                         </div>
                                         <span class="apoiador-name">Rede Primavera</span>
@@ -1150,7 +1072,7 @@
                     <div class="apoiadores-group">
                         <div class="apoiadores-group-header">
                             <span class="apoiadores-group-badge apoiadores-badge">
-                                Doadores
+                                <i class="fas fa-heart" aria-hidden="true"></i> Apoiadores &amp; Doadores
                             </span>
                         </div>
                         <div role="group" class="apoiadores-track-wrap apoiadores-track-wrap--rtl"
@@ -1161,6 +1083,13 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="apoiadores-cta">
+                    <p>Quer fazer parte deste grupo?</p>
+                    <a href="/pages/contato/fale-conosco?assunto=parceria" class="btn-outline">
+                        <i class="fas fa-handshake"></i> Torne-se um Apoiador
+                    </a>
                 </div>
             </div>
         </section>
@@ -1191,14 +1120,14 @@
                                 <div class="contact-icon"><i class="fas fa-phone"></i></div>
                                 <div>
                                     <strong>Telefone</strong>
-                                    <span>(79) 99994-0193<br>Seg à Sex: 8h às 18h</span>
+                                    <span>(79) 99907-8311<br>Seg à Sex: 8h às 18h</span>
                                 </div>
                             </li>
                             <li>
                                 <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                                 <div>
                                     <strong>E-mail</strong>
-                                    <span>contato@fenix193.org.br</span>
+                                    <span>contato@fundacaofenix193.org.br<br>geocode.ff193@gmail.com</span>
                                 </div>
                             </li>
                         </ul>
@@ -1209,7 +1138,7 @@
                         <h3>Prefere escrever para a gente?</h3>
                         <p>Na página Fale Conosco você escolhe o seu município e o assunto, e pode enviar sua
                             mensagem sem se identificar.</p>
-                        <a href="pages/fale-conosco.html" class="btn-primary btn-submit">
+                        <a href="/pages/contato/fale-conosco" class="btn-primary btn-submit">
                             <i class="fas fa-paper-plane" aria-hidden="true"></i> Ir para o Fale Conosco
                         </a>
                     </div>
@@ -1219,15 +1148,15 @@
     </main>
 
     <!-- ===================== FOOTER ===================== -->
-    <footer class="site-footer" role="contentinfo">
+    <!-- @layout:footer -->
+<footer class="site-footer" role="contentinfo">
         <div class="footer-top">
             <div class="container footer-grid">
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
-                        <img src="assets/img/ff193_transp.webp" alt="Logo Fênix193" width="36" height="36"
-                            loading="lazy">
-                        <img src="assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
+                    <a href="/" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Fênix193" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
                     <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
                     <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
@@ -1239,31 +1168,31 @@
                 <div class="footer-nav-col">
                     <h4 class="footer-col-title">Navegação</h4>
                     <ul class="footer-nav-grid">
-                        <li><a href="index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a></li>
-                        <li><a href="pages/galeria.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
-                                Galeria</a>
+                        <li><a href="/"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a>
                         </li>
-                        <li><a href="pages/nossa-historia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/atuacao/galeria"><i class="fas fa-chevron-right" aria-hidden="true"></i> Galeria</a>
+                        </li>
+                        <li><a href="/pages/institucional/nossa-historia"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Nossa História</a></li>
-                        <li><a href="pages/missao-valores.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/institucional/missao-valores"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Missão e Valores</a></li>
-                        <li><a href="pages/equipe.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/institucional/equipe"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Equipe</a>
                         </li>
-                        <li><a href="pages/transparencia.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/transparencia"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Transparência</a></li>
-                        <li><a href="pages/projetos.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/atuacao/projetos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Projetos</a></li>
-                        <li><a href="pages/capacitacao.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/atuacao/capacitacao"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Capacitação</a></li>
-                        <li><a href="pages/eventos.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/atuacao/eventos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Eventos</a>
                         </li>
-                        <li><a href="pages/parcerias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/atuacao/parcerias"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Parcerias</a></li>
-                        <li><a href="pages/noticias.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/noticias"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Notícias</a></li>
-                        <li><a href="pages/fale-conosco.html"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <li><a href="/pages/contato/fale-conosco"><i class="fas fa-chevron-right" aria-hidden="true"></i>
                                 Contato</a></li>
                     </ul>
                 </div>
@@ -1272,25 +1201,21 @@
                 <div class="footer-social-col">
                     <h4 class="footer-col-title">Siga-nos</h4>
                     <div class="footer-social-links">
-                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn"
-                            aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-instagram" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn"
-                            aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook-f" aria-hidden="true"></i>
                         </a>
-                        <a href="https://wa.me/5579999940193" class="footer-social-btn" aria-label="WhatsApp"
-                            target="_blank" rel="noopener noreferrer">
+                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         </a>
-                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn"
-                            aria-label="YouTube">
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn" aria-label="YouTube">
                             <i class="fab fa-youtube" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank"
-                        rel="noopener noreferrer" aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
+                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
                         <i class="fas fa-star" aria-hidden="true"></i> Avalie-nos no Google
                     </a>
                 </div>
@@ -1305,7 +1230,7 @@
                         </li>
                         <li>
                             <i class="fas fa-phone" aria-hidden="true"></i>
-                            <a href="tel:+5579999940193">+55 (79) 99994-0193</a>
+                            <a href="tel:+5579999078311">+55 (79) 99907-8311</a>
                         </li>
                         <li>
                             <i class="fas fa-location-dot" aria-hidden="true"></i>
@@ -1314,7 +1239,7 @@
                     </ul>
                     <!-- Acesso rápido de administração -->
                     <div class="footer-admin-links">
-                        <a href="akannihub.html" class="footer-admin-btn">
+                        <a href="/akannihub" class="footer-admin-btn">
                             <i class="fa-solid fa-user-lock" aria-hidden="true"></i> Acesso Restrito
                         </a>
                         <a href="https://api.whatsapp.com/send?phone=5579988663905&text=Suporte%20Tecnico%20FF193"
@@ -1356,6 +1281,7 @@
         </div>
 
     </footer>
+<!-- @/layout:footer -->
 
     <!-- ===================== BANNER DE COOKIES (LGPD) ===================== -->
     <div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-banner-title"
@@ -1376,7 +1302,7 @@
                         class="cookie-link">Política de
                         Privacidade</a>
                     e nossos
-                    <a href="https://eusougeovani.vercel.app/termos.html" target="_blank" rel="noopener"
+                    <a href="https://instagram.com/geovanikeeper" target="_blank" rel="noopener"
                         class="cookie-link">Termos de Uso</a>.
                     Ao <strong>Recusar</strong>, nenhum dado analítico será coletado.
                 </p>
@@ -1403,14 +1329,14 @@
             <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
         </div>
         <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
-            <span class="chatbot-toggle-face"><img src="assets/img/luminia.webp" alt="" width="38" height="38"></span>
+            <span class="chatbot-toggle-face"><img src="/assets/img/luminia.webp" alt="" width="38" height="38"></span>
             <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
             <span class="chatbot-badge">1</span>
         </button>
         <div class="chatbot-box" id="chatbotBox">
             <div class="chatbot-header">
                 <div class="chatbot-avatar">
-                    <img src="assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                    <img src="/assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
                 </div>
                 <div class="chatbot-info">
                     <h4>LuminIA</h4>
@@ -1425,7 +1351,7 @@
             <div class="chatbot-body" id="chatbotBody">
                 <div class="chatbot-message bot-message">
                     <div class="message-avatar">
-                        <img src="assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
                     </div>
                     <div class="message-content">
                         <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix193. Posso tirar dúvidas,
@@ -1483,11 +1409,11 @@
     </script>
     <!-- type="module" já é tratado como defer nativamente pelos navegadores;
          o atributo defer é mantido de forma explícita por clareza/compatibilidade. -->
-    <script type="module" defer src="assets/js/script.js"></script>
-    <script type="module" defer src="assets/js/hero-carousel.js"></script>
-    <script type="module" defer src="assets/js/search.js"></script>
-    <script type="module" defer src="assets/js/chatbot.js"></script>
-    <script type="module" defer src="assets/js/cbmse-feed.js"></script>
+    <script type="module" defer src="/assets/js/script.js"></script>
+    <script type="module" defer src="/assets/js/hero-carousel.js"></script>
+    <script type="module" defer src="/assets/js/search.js"></script>
+    <script type="module" defer src="/assets/js/chatbot.js"></script>
+    <script type="module" defer src="/assets/js/cbmse-feed.js"></script>
     <script>
         (function () {
             const track = document.querySelector('.qs-carousel-track');
@@ -1530,9 +1456,9 @@
             startAuto();
         })();
     </script>
-    <script defer src="assets/js/acessibilidade.js"></script>
-    <script defer src="assets/js/back-to-top.js"></script>
-    <script defer src="assets/js/media-player.js"></script>
+    <script defer src="/assets/js/acessibilidade.js"></script>
+    <script defer src="/assets/js/back-to-top.js"></script>
+    <script defer src="/assets/js/media-player.js"></script>
 </body>
 
 </html>
