@@ -182,6 +182,38 @@ export const STATIC_INDEX = [
         link: '/pages/transparencia',
         keywords: 'certidões certificados documentação regularidade fiscal negativa débitos'
     },
+    {
+        title: 'Política de Privacidade',
+        sub: 'LGPD e proteção de dados',
+        category: 'Documento',
+        icon: 'fa-user-shield',
+        link: '/pages/legal/politica-privacidade',
+        keywords: 'privacidade política lgpd dados pessoais proteção de dados direitos do titular consentimento'
+    },
+    {
+        title: 'Termos de Uso',
+        sub: 'Regras de uso do site',
+        category: 'Documento',
+        icon: 'fa-file-contract',
+        link: '/pages/legal/termos-de-uso',
+        keywords: 'termos de uso regras condições site responsabilidade propriedade intelectual foro'
+    },
+    {
+        title: 'Política de Cookies',
+        sub: 'Cookies e armazenamento local',
+        category: 'Documento',
+        icon: 'fa-cookie-bite',
+        link: '/pages/legal/cookies',
+        keywords: 'cookies política de cookies consentimento estatísticas analytics armazenamento local'
+    },
+    {
+        title: 'Declaração de Acessibilidade',
+        sub: 'Recursos e como relatar problemas',
+        category: 'Documento',
+        icon: 'fa-universal-access',
+        link: '/pages/legal/acessibilidade',
+        keywords: 'acessibilidade libras vlibras contraste teclado leitor de tela audiodescrição wcag emag'
+    }
 ];
 
 /* ── Categorias exibidas nos filtros da página de resultados ─ */

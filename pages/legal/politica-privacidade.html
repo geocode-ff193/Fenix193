@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Fênix193" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Política de Privacidade · Fundação Fênix193</title>
+
+    <!-- SEO · Open Graph · Twitter -->
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://fenix193.org.br/pages/legal/politica-privacidade">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Fundação Fênix193">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Política de Privacidade · Fundação Fênix193">
+    <meta property="og:description" content="Saiba quais dados pessoais a Fundação Fênix193 coleta no site, para quê usa, com quem compartilha e como exercer seus direitos pela LGPD.">
+    <meta property="og:url" content="https://fenix193.org.br/pages/legal/politica-privacidade">
+    <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Fundação Fênix193 — apoio ao Corpo de Bombeiros Militar de Sergipe">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Política de Privacidade · Fundação Fênix193">
+    <meta name="twitter:description" content="Saiba quais dados pessoais a Fundação Fênix193 coleta no site, para quê usa, com quem compartilha e como exercer seus direitos pela LGPD.">
+    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta name="description"
+        content="Saiba quais dados pessoais a Fundação Fênix193 coleta no site, para quê usa, com quem compartilha e como exercer seus direitos pela LGPD.">
+    <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
+
+    <!-- LCP desta página: fundo do .page-hero (banner interno) -->
+    <link rel="preload" as="image" href="/assets/img/hero-privacidade-m.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/hero-privacidade.webp" media="(min-width: 769px)" fetchpriority="high">
+
+    <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-500.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-condensed-v13-latin-700.woff2" crossorigin>
+
+    <!-- ===================== CRITICAL CSS (inline) =====================
+         Header/nav + banner interno (.page-hero) — o suficiente para renderizar
+         a primeira dobra sem esperar o style.css/pages.css completos. -->
+    <style>
+        /* ── Fontes hospedadas no próprio site (Barlow e Barlow Condensed, subconjunto latin) ──
+           Substituem o Google Fonts: uma requisição externa a menos no caminho crítico. */
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 300; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-300.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-regular.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-500.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-600.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-700.woff2') format('woff2'); }
+        @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+            src: url('/assets/fonts/barlow-condensed-v13-latin-800.woff2') format('woff2'); }
+
+        :root {
+            --red: #E12217;
+            --red-dark: #872020;
+            --red-light: #ED4C43;
+            --fire: #F27613;
+            --amber: #F8BA25;
+            --navy: #313332;
+            --navy-mid: #404241;
+            --navy-light: #505251;
+            --white: #FFFFFF;
+            --off-white: #F4F3F0;
+            --gray-light: #E8E5DE;
+            --gray: #9CA3AF;
+            --text: #313332;
+            --text-muted: #636665;
+            --radius: 6px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+            --shadow-md: 0 6px 24px rgba(0, 0, 0, .12);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, .18);
+            --transition: 0.3s ease;
+            --font-display: 'Barlow Condensed', sans-serif;
+            --font-body: 'Barlow', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            line-height: 1.65;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            line-height: 1.15;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* HEADER */
+        #main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, .3);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            gap: 20px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy);
+            letter-spacing: .04em;
+        }
+
+        #menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        #menu a {
+            font-size: .875rem;
+            font-weight: 500;
+            color: var(--navy);
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .btn-cta-nav {
+            background: var(--red) !important;
+            color: var(--white) !important;
+            border-radius: var(--radius) !important;
+            padding: 8px 16px !important;
+            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        #btn-mobile {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger-bar {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--amber);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        #btn-mobile.open .hamburger-bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+
+        /* PAGE HERO (banner interno) */
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%) center/cover no-repeat;
+            background-color: var(--navy);
+            padding: 56px 0 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 0, 0, .03) 3px, rgba(0, 0, 0, .03) 4px);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, .4);
+        }
+
+        .page-hero p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, .75);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .page-hero-bar {
+            width: 52px;
+            height: 4px;
+            background: var(--red);
+            border-radius: 2px;
+            margin-bottom: 18px;
+        }
+
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .8rem;
+            color: rgba(255, 255, 255, .5);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .page-breadcrumb a {
+            color: var(--amber);
+            transition: var(--transition);
+        }
+
+        .page-breadcrumb a:hover {
+            color: var(--white);
+        }
+
+        .page-breadcrumb i {
+            font-size: .65rem;
+        }
+
+        .page-hero {
+            background:
+                linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                url('/assets/img/hero-privacidade.webp') center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .page-hero {
+                background:
+                    linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
+                    url('/assets/img/hero-privacidade-m.webp') center/cover no-repeat;
+            }
+        }
+
+    
+        /* Link "Avalie-nos no Google" (rodapé) e destaque na página Fale Conosco */
+        .footer-review-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 9px 16px;
+            border: 1.5px solid rgba(255, 255, 255, .35); border-radius: 999px; color: #fff; font-size: .85rem;
+            font-weight: 600; text-decoration: none; transition: background .25s ease, border-color .25s ease, color .25s ease; }
+        .footer-review-link i { color: var(--amber, #F8BA25); transition: color .25s ease; }
+        .footer-review-link:hover, .footer-review-link:focus-visible { background: var(--amber, #F8BA25);
+            border-color: var(--amber, #F8BA25); color: #1f2120; }
+        .footer-review-link:hover i, .footer-review-link:focus-visible i { color: #1f2120; }
+        .contact-review-link { font-weight: 700; text-decoration: underline; color: inherit; }
+    </style>
+
+    <!-- Font Awesome 6.5.0 hospedado no próprio site; o arquivo de ícones sólidos é carregado já no início -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/vendor/fontawesome/webfonts/fa-solid-900.woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/dropdown.css">
+    <link rel="stylesheet" href="/assets/css/pages.css">
+    <link rel="stylesheet" href="/assets/css/acessibilidade.css">
+    <link rel="stylesheet" href="/assets/css/chatbot.css">
+    <link rel="stylesheet" href="/assets/css/back-to-top.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <!-- Trilha de navegação (schema.org) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://fenix193.org.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Política de Privacidade",
+      "item": "https://fenix193.org.br/pages/legal/politica-privacidade"
+    }
+  ]
+}
+    </script>
+</head>
+
+<body>
+    <!-- @layout:header -->
+<header id="main-header">
+    
+        <!-- ===== HEADER--TOP ===== -->
+        <div class="header--top">
+            <div class="container header-top-inner">
+    
+                <!-- Logo -->
+                <a href="/" class="logo-area" aria-label="Fundação Fênix193 - Início">
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
+                    </div>
+                    <div class="logo-icon" aria-hidden="true">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                    </div>
+                </a>
+    
+                <!-- Pesquisa (desktop) · a página de resultados é criada no Passo 7 -->
+                <form class="header-search header-search--top" role="search" action="/pesquisa" method="get">
+                    <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                        aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2" required>
+                    <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                        <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    </button>
+                </form>
+    
+                <!-- AkanniHUB + Redes sociais (desktop) -->
+                <div class="header-top-actions">
+                    <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                        <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                        <span class="header-hub-label">AkanniHUB</span>
+                    </a>
+                    <!-- TODO: trocar "#" pelas URLs oficiais das redes da Fundação -->
+                    <ul class="header-social" role="list" aria-label="Redes sociais">
+                        <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                    class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                    class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                    class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+    
+                <!-- Hambúrguer (mobile) -->
+                <button id="btn-mobile" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+    
+        <!-- ===== HEADER--MAIN ===== -->
+        <div class="header--main">
+            <div class="container">
+                <nav id="nav-menu" aria-label="Navegação principal">
+                    <ul id="menu" role="list">
+    
+                        <!-- Pesquisa (somente no menu mobile) -->
+                        <li class="menu-mobile-search">
+                            <form class="header-search header-search--menu" role="search" action="/pesquisa"
+                                method="get">
+                                <input type="search" name="q" class="header-search-input" placeholder="Pesquisar no site…"
+                                    aria-label="Pesquisar no site" autocomplete="off" spellcheck="false" minlength="2"
+                                    required>
+                                <button type="submit" class="header-search-btn" aria-label="Pesquisar">
+                                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </li>
+    
+                        <li><a href="/">Início</a></li>
+    
+                        <!-- DROPDOWN: Institucional -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
+                                Institucional <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/#quem-somos">
+                                        Quem Somos
+                                    </a></li>
+                                <li><a href="/pages/institucional/nossa-historia">
+                                        Nossa História
+                                    </a></li>
+                                <li><a href="/pages/institucional/missao-valores">
+                                        Missão e Valores
+                                    </a></li>
+                                <li><a href="/pages/institucional/equipe">
+                                        Equipe
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <!-- DROPDOWN: Atuação -->
+                        <li class="has-dropdown">
+                            <a class="dropdown-trigger" role="button" tabindex="0" aria-expanded="false">
+                                Atuação <i class="fas fa-chevron-down dropdown-arrow"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pages/atuacao/projetos">
+                                        Projetos
+                                    </a></li>
+                                <li><a href="/pages/atuacao/capacitacao">
+                                        Capacitação
+                                    </a></li>
+                                <li><a href="/pages/atuacao/eventos">
+                                        Eventos
+                                    </a></li>
+                                <li><a href="/pages/atuacao/galeria">
+                                        Galeria
+                                    </a></li>
+                                <li><a href="/pages/atuacao/parcerias">
+                                        Parcerias
+                                    </a></li>
+                            </ul>
+                        </li>
+    
+                        <li><a href="/pages/transparencia">Transparência</a></li>
+                        <li><a href="/#stats">Impacto</a></li>
+                        <li><a href="/pages/noticias">Notícias</a></li>
+                        <li><a href="/pages/contato/fale-conosco">Contato</a></li>
+                        <li><a href="/#como-ajudar">Colabore</a></li>
+    
+                        <!-- AkanniHUB + Redes (somente no menu mobile) -->
+                        <li class="menu-mobile-extras">
+                            <a href="/akannihub" class="header-hub-btn" aria-label="Acessar o AkanniHUB">
+                                <i class="fa-solid fa-user-lock" aria-hidden="true"></i>
+                                <span class="header-hub-label">AkanniHUB</span>
+                            </a>
+                            <ul class="header-social" role="list" aria-label="Redes sociais">
+                                <li><a href="https://www.instagram.com/fundacaofenix193/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                            class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.facebook.com/fundacaofenix193" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
+                                            class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                                <li><a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i
+                                            class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.youtube.com/@FundacaoFenix193" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i
+                                            class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+<!-- @/layout:header -->
+
+    <main tabindex="-1" id="main-content">
+        <section class="page-hero page-hero--privacidade" aria-label="Política de Privacidade">
+            <div class="container page-hero-content">
+                <nav class="page-breadcrumb" aria-label="Localização">
+                    <a href="/">Início</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <span>Política de Privacidade</span>
+                </nav>
+                <div class="page-hero-bar"></div>
+                <h1>Política de Privacidade</h1>
+                <p>Como a Fundação Fênix193 trata seus dados pessoais, de forma simples e transparente, conforme a LGPD.</p>
+            </div>
+        </section>
+
+        <div class="section-padding">
+            <div class="container legal-layout">
+                <nav class="legal-toc" aria-label="Neste documento">
+                    <h2>Neste documento</h2>
+                    <ol><li><a href="#controlador">1. Quem é o controlador dos seus dados</a></li><li><a href="#dados">2. Quais dados tratamos e para quê</a></li><li><a href="#compartilhamento">3. Com quem compartilhamos</a></li><li><a href="#internacional">4. Transferência para outros países</a></li><li><a href="#guarda">5. Por quanto tempo guardamos os dados</a></li><li><a href="#direitos">6. Seus direitos</a></li><li><a href="#seguranca">7. Segurança</a></li><li><a href="#criancas">8. Crianças e adolescentes</a></li><li><a href="#links">9. Links para outros sites</a></li><li><a href="#alteracoes">10. Alterações desta política</a></li><li><a href="#contato">11. Fale com a gente</a></li></ol>
+                </nav>
+                <article class="legal-doc">
+                    <p class="legal-meta">
+                        <span><i class="fas fa-calendar-check" aria-hidden="true"></i>Última atualização: 17 de novembro de 2026</span>
+                        <span><i class="fas fa-building" aria-hidden="true"></i>Fundação Fênix193 · CNPJ 68.745.226/0001-55</span>
+                    </p>
+                    <div class="legal-callout" role="note">
+                        <i class="fas fa-circle-info" aria-hidden="true"></i>
+                        <div><p><strong>Em resumo</strong></p><ul><li>Coletamos só o que é necessário para responder você.</li><li>No Fale Conosco você pode enviar sua mensagem <strong>sem se identificar</strong>.</li><li>Estatísticas de uso só funcionam <strong>se você aceitar</strong> os cookies.</li><li>Não vendemos nem alugamos dados pessoais.</li><li>Você pode pedir acesso, correção ou eliminação dos seus dados a qualquer momento.</li></ul></div>
+                    </div>
+            <section id="controlador" class="legal-section" aria-labelledby="t-controlador">
+                <h2 id="t-controlador">1. Quem é o controlador dos seus dados</h2>
+<p>A <strong>Fundação Fênix193</strong>, pessoa jurídica de direito privado sem fins lucrativos, inscrita no CNPJ nº 68.745.226/0001-55, com sede na Rua Honor Gregório Santos, 44, Grageru, Aracaju/SE, CEP 49027-130, é a controladora dos dados pessoais tratados neste site (<strong>fenix193.org.br</strong>), nos termos da Lei Geral de Proteção de Dados Pessoais (LGPD, Lei nº 13.709/2018).</p>
+<ul>
+  <li>E-mail: <a href="mailto:contato@fenix193.org.br">contato@fenix193.org.br</a></li>
+  <li>WhatsApp: <a href="https://wa.me/5579999078311" target="_blank" rel="noopener noreferrer">(79) 99907-8311</a></li>
+</ul>
+            </section>
+
+            <section id="dados" class="legal-section" aria-labelledby="t-dados">
+                <h2 id="t-dados">2. Quais dados tratamos e para quê</h2>
+<p>Tratamos apenas os dados necessários para cada finalidade, conforme a tabela abaixo.</p>
+<div class="legal-table-wrap" tabindex="0" role="region" aria-label="Tabela de dados tratados">
+<table class="legal-table">
+  <thead><tr><th scope="col">Situação</th><th scope="col">Dados</th><th scope="col">Finalidade</th><th scope="col">Base legal (LGPD)</th></tr></thead>
+  <tbody>
+    <tr><td>Fale Conosco, com identificação</td><td>Nome, e-mail, telefone (opcional), município, assunto e mensagem</td><td>Receber e responder sua dúvida, sugestão, solicitação ou denúncia</td><td>Consentimento (art. 7º, I)</td></tr>
+    <tr><td>Fale Conosco, sem identificação</td><td>Município, assunto e mensagem. Não pedimos nome, e-mail nem telefone</td><td>Receber relatos e denúncias de quem prefere não se identificar</td><td>Não há dado pessoal solicitado</td></tr>
+    <tr><td>Acesso ao site</td><td>Endereço IP, data e hora, páginas acessadas, navegador e dispositivo (registros técnicos)</td><td>Segurança, prevenção a abusos e funcionamento do site</td><td>Legítimo interesse (art. 7º, IX)</td></tr>
+    <tr><td>Estatísticas de uso (somente se você aceitar)</td><td>Identificadores online, páginas visitadas, tempo de visita, tipo de dispositivo e localização aproximada</td><td>Entender o que interessa ao público e melhorar o site</td><td>Consentimento (art. 7º, I)</td></tr>
+    <tr><td>Preferências no seu navegador</td><td>Tamanho de fonte, contraste e outras escolhas de acessibilidade; sua escolha sobre cookies</td><td>Lembrar suas escolhas nas próximas visitas</td><td>Ficam só no seu aparelho; não são enviadas à Fundação</td></tr>
+  </tbody>
+</table>
+</div>
+<h3>Outros recursos do site</h3>
+<ul>
+  <li><strong>Assistente virtual (LuminIA):</strong> funciona por menus de opções, no seu navegador. Suas escolhas não são gravadas nem enviadas.</li>
+  <li><strong>Pesquisa no site:</strong> é feita no seu navegador. Os termos digitados não são armazenados por nós.</li>
+  <li><strong>Dados sensíveis:</strong> não pedimos dados pessoais sensíveis (como saúde, religião ou opinião política). Evite incluí-los na mensagem, e também dados de terceiros que não sejam necessários.</li>
+</ul>
+            </section>
+
+            <section id="compartilhamento" class="legal-section" aria-labelledby="t-compartilhamento">
+                <h2 id="t-compartilhamento">3. Com quem compartilhamos</h2>
+<p>Para o site funcionar, usamos empresas e serviços que processam dados em nosso nome. Eles só podem usar os dados para a finalidade contratada.</p>
+<div class="legal-table-wrap" tabindex="0" role="region" aria-label="Tabela de serviços de terceiros">
+<table class="legal-table">
+  <thead><tr><th scope="col">Serviço</th><th scope="col">Para que usamos</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Cloudflare</strong></td><td>Hospedagem do site, entrega de conteúdo, segurança e encaminhamento do e-mail institucional</td></tr>
+    <tr><td><strong>Google (Firebase)</strong></td><td>Banco de dados que guarda as mensagens do Fale Conosco e o conteúdo publicado (notícias e projetos). Se você aceitar os cookies, também as estatísticas de uso (Firebase Analytics / Google Analytics)</td></tr>
+    <tr><td><strong>FormSubmit</strong></td><td>Serviço que encaminha por e-mail à Fundação o conteúdo enviado pelo formulário</td></tr>
+    <tr><td><strong>Cloudinary</strong></td><td>Armazenamento e entrega das imagens de notícias e da galeria</td></tr>
+    <tr><td><strong>VLibras (Governo Federal)</strong></td><td>Tradução do conteúdo para Libras na página inicial. Carrega arquivos de vlibras.gov.br</td></tr>
+    <tr><td><strong>Google Fonts</strong></td><td>Somente se você ativar a opção &ldquo;Fonte legível&rdquo; no painel de acessibilidade, o navegador baixa a fonte Atkinson Hyperlegible do Google</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Se o nosso servidor de notícias estiver indisponível, o navegador pode consultar serviços públicos de leitura de feeds (AllOrigins, CodeTabs e RSS2JSON) para exibir as últimas notícias do CBMSE e da Defesa Civil. Nesse caso, esses serviços recebem o endereço IP de quem acessa.</p>
+<p>Ao usar esses serviços, o seu endereço IP é visto pelo prestador. <strong>Não vendemos nem alugamos dados pessoais.</strong> Podemos compartilhá-los com autoridades quando houver obrigação legal ou ordem judicial.</p>
+            </section>
+
+            <section id="internacional" class="legal-section" aria-labelledby="t-internacional">
+                <h2 id="t-internacional">4. Transferência para outros países</h2>
+<p>Alguns dos serviços acima têm servidores fora do Brasil, inclusive nos Estados Unidos. Nesses casos, buscamos prestadores que ofereçam garantias contratuais e de segurança compatíveis com a LGPD (art. 33).</p>
+            </section>
+
+            <section id="guarda" class="legal-section" aria-labelledby="t-guarda">
+                <h2 id="t-guarda">5. Por quanto tempo guardamos os dados</h2>
+<ul>
+  <li><strong>Mensagens do Fale Conosco:</strong> pelo tempo necessário para atender sua solicitação e cumprir obrigações legais ou proteger direitos da Fundação. Depois, são eliminadas ou anonimizadas.</li>
+  <li><strong>Estatísticas de uso:</strong> pelo prazo configurado no serviço de análise.</li>
+  <li><strong>Registros técnicos de acesso:</strong> pelo período limitado em que o provedor de hospedagem os mantém.</li>
+</ul>
+            </section>
+
+            <section id="direitos" class="legal-section" aria-labelledby="t-direitos">
+                <h2 id="t-direitos">6. Seus direitos</h2>
+<p>Pela LGPD (art. 18), você pode pedir à Fundação:</p>
+<ul>
+  <li>confirmação de que tratamos seus dados e acesso a eles;</li>
+  <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+  <li>anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desacordo com a lei;</li>
+  <li>portabilidade dos dados, quando aplicável;</li>
+  <li>informação sobre com quem compartilhamos seus dados;</li>
+  <li>eliminação dos dados tratados com base no seu consentimento;</li>
+  <li>revogação do consentimento, a qualquer momento (por exemplo, recusando os cookies de estatística).</li>
+</ul>
+<p><strong>Como pedir:</strong> envie um e-mail para <a href="mailto:contato@fenix193.org.br?subject=LGPD">contato@fenix193.org.br</a> com o assunto &ldquo;LGPD&rdquo;, informando o que deseja. Podemos pedir informações para confirmar sua identidade. A resposta completa é dada em até 15 dias (art. 19). Se não ficar satisfeito, você pode registrar reclamação na <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">Autoridade Nacional de Proteção de Dados (ANPD)</a>.</p>
+            </section>
+
+            <section id="seguranca" class="legal-section" aria-labelledby="t-seguranca">
+                <h2 id="t-seguranca">7. Segurança</h2>
+<p>Usamos conexão segura (HTTPS), regras de acesso ao banco de dados e painel administrativo com autenticação e acesso restrito a pessoas autorizadas. Nenhum sistema é totalmente imune a falhas; se ocorrer um incidente que possa causar risco ou dano relevante, comunicaremos os afetados e a ANPD, conforme a lei.</p>
+            </section>
+
+            <section id="criancas" class="legal-section" aria-labelledby="t-criancas">
+                <h2 id="t-criancas">8. Crianças e adolescentes</h2>
+<p>O site não é voltado a crianças. Se você tiver menos de 18 anos, peça orientação a um responsável antes de enviar dados. O tratamento de dados de crianças depende do consentimento específico de um dos pais ou responsável legal (art. 14).</p>
+            </section>
+
+            <section id="links" class="legal-section" aria-labelledby="t-links">
+                <h2 id="t-links">9. Links para outros sites</h2>
+<p>O site tem links para páginas de terceiros, como Instagram, Facebook, YouTube, WhatsApp, Google Maps e o Perfil da Empresa no Google. Esses sites têm suas próprias políticas de privacidade, e a Fundação não é responsável por elas.</p>
+            </section>
+
+            <section id="alteracoes" class="legal-section" aria-labelledby="t-alteracoes">
+                <h2 id="t-alteracoes">10. Alterações desta política</h2>
+<p>Podemos atualizar esta política para refletir mudanças no site ou na lei. A data da última atualização aparece no topo desta página.</p>
+            </section>
+
+            <section id="contato" class="legal-section" aria-labelledby="t-contato">
+                <h2 id="t-contato">11. Fale com a gente</h2>
+<p>Dúvidas sobre privacidade? Escreva para <a href="mailto:contato@fenix193.org.br">contato@fenix193.org.br</a> ou use a página <a href="/pages/contato/fale-conosco">Fale Conosco</a>. Veja também a <a href="/pages/legal/cookies">Política de Cookies</a> e os <a href="/pages/legal/termos-de-uso">Termos de Uso</a>.</p>
+            </section>
+
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <!-- @layout:footer -->
+<footer class="site-footer" role="contentinfo">
+        <div class="footer-top">
+            <div class="container footer-grid">
+                <!-- COLUNA 1 · Marca -->
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
+                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Fênix193" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
+                    </a>
+                    <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
+                    <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
+                        desde nossa fundação.</p>
+                    <p class="footer-cnpj">CNPJ: 68.745.226/0001-55</p>
+                </div>
+
+                <!-- COLUNA 2 · Navegação -->
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title">Navegação</h4>
+                    <ul class="footer-nav-grid">
+                        <li><a href="/"><i class="fas fa-chevron-right" aria-hidden="true"></i> Início</a>
+                        </li>
+                        <li><a href="/pages/atuacao/galeria"><i class="fas fa-chevron-right" aria-hidden="true"></i> Galeria</a>
+                        </li>
+                        <li><a href="/pages/institucional/nossa-historia"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Nossa História</a></li>
+                        <li><a href="/pages/institucional/missao-valores"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Missão e Valores</a></li>
+                        <li><a href="/pages/institucional/equipe"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Equipe</a>
+                        </li>
+                        <li><a href="/pages/transparencia"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Transparência</a></li>
+                        <li><a href="/pages/atuacao/projetos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Projetos</a></li>
+                        <li><a href="/pages/atuacao/capacitacao"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Capacitação</a></li>
+                        <li><a href="/pages/atuacao/eventos"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Eventos</a>
+                        </li>
+                        <li><a href="/pages/atuacao/parcerias"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Parcerias</a></li>
+                        <li><a href="/pages/noticias"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Notícias</a></li>
+                        <li><a href="/pages/contato/fale-conosco"><i class="fas fa-chevron-right" aria-hidden="true"></i>
+                                Contato</a></li>
+                    </ul>
+                </div>
+
+                <!-- COLUNA 3 · Redes Sociais -->
+                <div class="footer-social-col">
+                    <h4 class="footer-col-title">Siga-nos</h4>
+                    <div class="footer-social-links">
+                        <a href="https://www.instagram.com/fundacaofenix193/" class="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.facebook.com/fundacaofenix193" class="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://wa.me/5579999078311" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@FundacaoFenix193" class="footer-social-btn" aria-label="YouTube">
+                            <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <a href="https://g.page/r/CSs-dW7-kpUVEBM/review" class="footer-review-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="Avaliar a Fundação Fênix193 no Google (abre em nova aba)">
+                        <i class="fas fa-star" aria-hidden="true"></i> Avalie-nos no Google
+                    </a>
+                </div>
+
+                <!-- COLUNA 4 · Fale Conosco -->
+                <div class="footer-contact-col">
+                    <h4 class="footer-col-title">Fale Conosco</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:contato@fenix193.org.br">contato@fenix193.org.br</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+5579999078311">+55 (79) 99907-8311</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <a href="https://share.google/aknj98wt8Moh0ghdJ">R. Honor Gregório Santos, 44 - Grageru</a>
+                        </li>
+                    </ul>
+                    <!-- Acesso rápido de administração -->
+                    <div class="footer-admin-links">
+                        <a href="/akannihub" class="footer-admin-btn">
+                            <i class="fa-solid fa-user-lock" aria-hidden="true"></i> Acesso Restrito
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=5579988663905&text=Suporte%20Tecnico%20FF193"
+                            class="footer-admin-btn">
+                            <i class="fa-solid fa-headset" aria-hidden="true"></i> Suporte Técnico
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── SUB-FOOTER ── -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+
+                <!-- Esquerda: copyright + créditos -->
+                <p class="footer-copy">
+                    &copy; <span id="footer-year"></span> <strong>Fundação Fênix193</strong>. Todos os direitos
+                    reservados.
+                    &mdash; Desenvolvido com <i role="img" class="fa-solid fa-mug-hot" aria-label="café"
+                        style="color:var(--red)"></i>
+                    por
+                    <a href="https://eusougeovani.vercel.app" target="_blank" rel="noopener">GeoCODE Programmer</a>
+                </p>
+
+                <!-- Direita: links legais -->
+                <nav class="footer-legal-links" aria-label="Links legais">
+                    <a href="/pages/legal/politica-privacidade">Política de Privacidade</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="/pages/legal/termos-de-uso">Termos de Uso</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="/pages/legal/cookies">Cookies</a>
+                    <span class="footer-legal-sep" aria-hidden="true">|</span>
+                    <a href="/pages/legal/acessibilidade">Acessibilidade</a>
+                </nav>
+
+            </div>
+        </div>
+
+    </footer>
+<!-- @/layout:footer -->
+
+    <script>
+        document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-header').style.boxShadow =
+                window.scrollY > 40 ? '0 4px 24px rgba(0,0,0,.4)' : '0 2px 16px rgba(0,0,0,.3)';
+        }, { passive: true });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        const btnMobile = document.getElementById('btn-mobile');
+        const menu = document.getElementById('menu');
+
+        btnMobile.addEventListener('click', () => {
+            const open = menu.classList.toggle('active');
+            btnMobile.classList.toggle('open', open);
+            btnMobile.setAttribute('aria-expanded', String(open));
+        });
+
+        document.querySelectorAll('.dropdown-trigger').forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth > 768) return;
+                e.preventDefault();
+                const li = trigger.closest('.has-dropdown');
+                const isOpen = li.classList.contains('open');
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    if (el !== li) {
+                        el.classList.remove('open');
+                        el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                li.classList.toggle('open', !isOpen);
+                trigger.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.has-dropdown')) {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => {
+                    el.classList.remove('open');
+                    el.querySelector('.dropdown-trigger').setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.has-dropdown.open').forEach(el => el.classList.remove('open'));
+            }
+        });
+    </script>
+
+    <script defer src="/assets/js/acessibilidade.js"></script>
+    <script defer src="/assets/js/media-player.js"></script>
+    <script defer src="/assets/js/back-to-top.js"></script>
+
+    <!-- ===== CHATBOT FLUTUANTE ===== -->
+    <div class="chatbot-container">
+        <div class="chatbot-teaser" id="chatbotTeaser">
+            <button class="chatbot-teaser-dismiss" id="chatbotTeaserDismiss" aria-label="Dispensar">
+                <i class="fas fa-xmark"></i>
+            </button>
+            <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
+            <span class="chatbot-toggle-face"><img src="/assets/img/luminia.webp" alt="" width="38" height="38"></span>
+            <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <div class="chatbot-box" id="chatbotBox">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <img src="/assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                </div>
+                <div class="chatbot-info">
+                    <h4>LuminIA</h4>
+                    <p class="chatbot-status">
+                        <span class="status-dot"></span>Online
+                    </p>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot-message">
+                    <div class="message-avatar">
+                        <img src="/assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix193. Posso tirar dúvidas,
+                            ajudar a resolver problemas e te levar direto pra onde você precisa. Por onde
+                            começamos?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-footer" id="chatbotFooter">
+                <div class="chatbot-options" id="chatbotOptions"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" defer src="/assets/js/chatbot.js"></script>
+</body>
+
+</html>
