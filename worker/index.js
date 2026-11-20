@@ -219,7 +219,7 @@ async function handleNoticia(request, env, url) {
     publisher: {
       '@type': 'Organization',
       name: 'Fundação Fênix193',
-      logo: { '@type': 'ImageObject', url: `${origin}/assets/ui/web-app-manifest-512x512.png` },
+      logo: { '@type': 'ImageObject', url: `${origin}/assets/img/ui/web-app-manifest-512x512.png` },
     },
   };
   if (news.createdAt) {

@@ -21,7 +21,7 @@
 # Imagens, ícones e faixas de audiodescrição: cache de 7 dias
 /assets/img/*
   Cache-Control: public, max-age=604800
-/assets/ui/*
+/assets/img/ui/*
   Cache-Control: public, max-age=604800
 /assets/data/*
   Cache-Control: public, max-age=3600
