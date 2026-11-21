@@ -69,7 +69,15 @@ fenix193/
 │   ├── noticias.json
 │   ├── projetos.json
 │   ├── impacto.json
+│   ├── imprensa.json
 │   └── apoiadores.json
+│
+├── partials/
+│   ├── footer.html
+│   └── header.html
+│
+├── scripts/
+│   └── layout.mjs
 │
 ├── assets/
 │   ├── css/
@@ -84,6 +92,8 @@ fenix193/
 │   │   ├── back-to-top.css            # Botão "Voltar ao topo"
 │   │   ├── cbmse-feed.css             # Widget "Segurança & Defesa Civil"
 │   │   ├── chatbot.css                # Chatbot flutuante LuminIA
+│   │   ├── galeria.css
+│   │   ├── hero-carousel.css
 │   │   └── 404.css                    # Animação da página de erro
 │   │
 │   ├── js/
@@ -96,6 +106,9 @@ fenix193/
 │   │   ├── media-player.js            # Player de vídeo com audiodescrição
 │   │   ├── cbmse-feed.js              # Widget "Segurança & Defesa Civil" (usa /api/feed do Worker)
 │   │   ├── img-utils.js               # Otimização de imagens do Cloudinary (f_auto, q_auto, largura)
+│   │   ├── cookie-banner.js
+│   │   ├── galeria.js
+│   │   ├── hero-carousel.js
 │   │   └── chatbot.js                 # Assistente virtual LuminIA
 │   │
 │   ├── img/
