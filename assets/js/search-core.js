@@ -213,6 +213,14 @@ export const STATIC_INDEX = [
         icon: 'fa-universal-access',
         link: '/pages/legal/acessibilidade',
         keywords: 'acessibilidade libras vlibras contraste teclado leitor de tela audiodescrição wcag emag'
+    },
+    {
+        title: 'Imprensa',
+        sub: 'Contato, ficha técnica e logotipos para jornalistas',
+        category: 'Contato',
+        icon: 'fa-microphone-lines',
+        link: '/pages/contato/imprensa',
+        keywords: 'imprensa jornalistas assessoria comunicação press kit logotipo logo fotos release nota à imprensa entrevista'
     }
 ];
 

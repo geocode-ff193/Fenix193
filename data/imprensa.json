@@ -1,0 +1,40 @@
+{
+  "_instrucoes": [
+    "Edite SOMENTE este arquivo para atualizar a página Imprensa (/pages/contato/imprensa). Não é preciso mexer no HTML.",
+    "contato: quem atende a imprensa. Deixe 'nome' vazio para mostrar apenas o setor. 'whatsapp' leva só números, com o 55 na frente.",
+    "sobre: parágrafo institucional que os jornalistas podem copiar.",
+    "logos: coloque o arquivo em assets/img/logos/ e liste aqui. 'arquivo' é o que a pessoa baixa; 'previa' é uma imagem leve para a vitrine.",
+    "fotos: coloque os arquivos em assets/img/galeria/ e liste aqui (arquivo, previa, legenda, credito). Só publique fotos com autorização de uso.",
+    "notas: notas à imprensa e releases (titulo, data no formato AAAA-MM-DD, resumo, link).",
+    "Mantenha o JSON válido: aspas duplas e vírgula entre os itens, sem vírgula depois do último."
+  ],
+  "atualizadoEm": "2026-11-19",
+  "contato": {
+    "titulo": "Assessoria de Comunicação",
+    "nome": "",
+    "email": "contato@fenix193.org.br",
+    "whatsapp": "5579999078311",
+    "horario": "Segunda a sexta, das 8h às 18h"
+  },
+  "sobre": "A Fundação Fênix193 é uma entidade sem fins lucrativos, com sede em Aracaju (SE), que apoia o Corpo de Bombeiros Militar de Sergipe e a Proteção e Defesa Civil, promovendo a segurança e o bem-estar da sociedade sergipana.",
+  "logos": [
+    {
+      "nome": "Logotipo com fundo transparente",
+      "descricao": "Para fundos coloridos, escuros e sobre imagens. PNG de alta resolução (2048 × 2048 px).",
+      "arquivo": "/assets/img/logos/fenix193-logo-transparente.png",
+      "previa": "/assets/img/logos/fenix193-logo-transparente-previa.webp",
+      "formato": "PNG",
+      "fundo": "xadrez"
+    },
+    {
+      "nome": "Logotipo com fundo branco",
+      "descricao": "Para documentos e materiais impressos em fundo claro. PNG (1200 × 1200 px).",
+      "arquivo": "/assets/img/logos/fenix193-logo-fundo-branco.png",
+      "previa": "/assets/img/logos/fenix193-logo-fundo-branco-previa.webp",
+      "formato": "PNG",
+      "fundo": "branco"
+    }
+  ],
+  "fotos": [],
+  "notas": []
+}

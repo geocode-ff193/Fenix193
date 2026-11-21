@@ -572,6 +572,7 @@ class Chatbot {
             ['Transparência', 'fas fa-file-shield', 'pages/transparencia'],
             ['Notícias', 'fas fa-newspaper', 'pages/noticias'],
             ['Fale Conosco', 'fas fa-envelope', 'pages/contato/fale-conosco'],
+            ['Imprensa', 'fas fa-microphone-lines', 'pages/contato/imprensa'],
         ]);
     }
 
