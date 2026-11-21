@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/assets/ui/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/assets/ui/favicon.svg" />
-    <link rel="shortcut icon" href="/assets/ui/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/ui/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/assets/img/ui/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/img/ui/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/img/ui/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/ui/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Fênix193" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>Missão, Visão e Valores · Fundação Fênix193</title>
@@ -21,7 +21,7 @@
     <meta property="og:title" content="Missão, Visão e Valores · Fundação Fênix193">
     <meta property="og:description" content="Conheça a missão, visão e os valores que orientam cada ação da Fundação Fênix193 no apoio ao Corpo de Bombeiros Militar de Sergipe.">
     <meta property="og:url" content="https://fenix193.org.br/pages/institucional/missao-valores">
-    <meta property="og:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta property="og:image" content="https://fenix193.org.br/assets/img/logos/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -29,14 +29,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Missão, Visão e Valores · Fundação Fênix193">
     <meta name="twitter:description" content="Conheça a missão, visão e os valores que orientam cada ação da Fundação Fênix193 no apoio ao Corpo de Bombeiros Militar de Sergipe.">
-    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/og-image.jpg">
+    <meta name="twitter:image" content="https://fenix193.org.br/assets/img/logos/og-image.jpg">
     <meta name="description"
         content="Conheça a missão, visão e os valores que orientam cada ação da Fundação Fênix193 no apoio ao Corpo de Bombeiros Militar de Sergipe.">
     <!-- ===================== PERFORMANCE: PRECONNECT / PRELOAD ===================== -->
 
     <!-- LCP desta página: fundo do .page-hero (banner interno) -->
-    <link rel="preload" as="image" href="/assets/img/hero-missao-m.webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/assets/img/hero-missao.webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/hero/hero-missao-m.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/assets/img/hero/hero-missao.webp" media="(min-width: 769px)" fetchpriority="high">
 
     <!-- Fontes do próprio site: as 3 mais usadas na primeira tela são carregadas já no início -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/barlow-v13-latin-regular.woff2" crossorigin>
@@ -318,13 +318,13 @@
         .page-hero {
             background:
                 linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-                url('/assets/img/hero-missao.webp') center/cover no-repeat;
+                url('/assets/img/hero/hero-missao.webp') center/cover no-repeat;
         }
         @media (max-width: 768px) {
             .page-hero {
                 background:
                     linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-                    url('/assets/img/hero-missao-m.webp') center/cover no-repeat;
+                    url('/assets/img/hero/hero-missao-m.webp') center/cover no-repeat;
             }
         }
 
@@ -384,13 +384,13 @@
                 <!-- Logo -->
                 <a href="/" class="logo-area" aria-label="Fundação Fênix193 - Início">
                     <div class="logo-icon" aria-hidden="true">
-                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
+                        <img src="/assets/img/logos/ff193_transp-128.webp" alt="Logo Transparente" width="45" height="45">
                     </div>
                     <div class="logo-text">
                         <span class="logo-title">FUNDAÇÃO DE APOIO AO CBMSE</span>
                     </div>
                     <div class="logo-icon" aria-hidden="true">
-                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
+                        <img src="/assets/img/logos/cbmse.webp" alt="Logo CBMSE" width="45" height="45">
                     </div>
                 </a>
     
@@ -647,7 +647,7 @@
                         <a href="/pages/atuacao/projetos" class="btn-white-solid">
                             <i class="fas fa-clipboard-list"></i> Ver Projetos
                         </a>
-                        <a href="/transparencia" class="btn-outline-white">
+                        <a href="/pages/transparencia" class="btn-outline-white">
                             <i class="fas fa-folder-open"></i> Portal de Transparência
                         </a>
                     </div>
@@ -666,8 +666,8 @@
                 <!-- COLUNA 1 · Marca -->
                 <div class="footer-brand">
                     <a href="/" class="footer-logo-area" aria-label="Fundação Fênix193 — Início">
-                        <img src="/assets/img/ff193_transp-128.webp" alt="Logo Fênix193" width="36" height="36" loading="lazy">
-                        <img src="/assets/img/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/logos/ff193_transp-128.webp" alt="Logo Fênix193" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/logos/cbmse.webp" alt="Logo CBMSE" width="36" height="36" loading="lazy">
                     </a>
                     <p class="footer-brand-name">FUNDAÇÃO DE APOIO AO CBMSE</p>
                     <p class="footer-brand-tagline">Apoiando o Corpo de Bombeiros Militar de Sergipe e protegendo vidas
@@ -864,14 +864,14 @@
             <p>👋 Precisa de ajuda? Posso te guiar pelo site!</p>
         </div>
         <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir assistente virtual">
-            <span class="chatbot-toggle-face"><img src="/assets/img/luminia.webp" alt="" width="38" height="38"></span>
+            <span class="chatbot-toggle-face"><img src="/assets/img/logos/luminia.webp" alt="" width="38" height="38"></span>
             <span class="chatbot-toggle-close"><i class="fas fa-xmark"></i></span>
             <span class="chatbot-badge">1</span>
         </button>
         <div class="chatbot-box" id="chatbotBox">
             <div class="chatbot-header">
                 <div class="chatbot-avatar">
-                    <img src="/assets/img/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
+                    <img src="/assets/img/logos/luminia.webp" alt="LuminIA" width="44" height="44" loading="lazy">
                 </div>
                 <div class="chatbot-info">
                     <h4>LuminIA</h4>
@@ -886,7 +886,7 @@
             <div class="chatbot-body" id="chatbotBody">
                 <div class="chatbot-message bot-message">
                     <div class="message-avatar">
-                        <img src="/assets/img/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
+                        <img src="/assets/img/logos/luminia.webp" alt="Bot" width="36" height="36" loading="lazy">
                     </div>
                     <div class="message-content">
                         <p>Olá! 👋 Sou a LuminIA, sua guia pelo site da Fundação Fênix193. Posso tirar dúvidas,

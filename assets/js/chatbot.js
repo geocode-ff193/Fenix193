@@ -14,7 +14,7 @@ class Chatbot {
         this.teaserDismiss = document.getElementById('chatbotTeaserDismiss');
 
         // Detecta se estamos numa subpágina (pages/) para ajustar o caminho do avatar
-        this.avatarPath = '/assets/img/luminia.webp';
+        this.avatarPath = '/assets/img/logos/luminia.webp';
 
         if (!this.toggle || !this.box || !this.close || !this.body || !this.options) {
             console.error('[LuminIA] Elementos do chatbot não encontrados.');

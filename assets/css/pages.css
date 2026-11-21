@@ -16,146 +16,146 @@ GERAL
 .page-hero--historia {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-historia.webp') center/cover no-repeat;
+        url('../img/hero/hero-historia.webp') center/cover no-repeat;
 }
 
 .page-hero--missao {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-missao.webp') center/cover no-repeat;
+        url('../img/hero/hero-missao.webp') center/cover no-repeat;
 }
 
 .page-hero--equipe {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-equipe.webp') center/cover no-repeat;
+        url('../img/hero/hero-equipe.webp') center/cover no-repeat;
 }
 
 .page-hero--transparencia {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-transparencia.webp') center/cover no-repeat;
+        url('../img/hero/hero-transparencia.webp') center/cover no-repeat;
 }
 
 .page-hero--capacitacao {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-capacitacao.webp') center/cover no-repeat;
+        url('../img/hero/hero-capacitacao.webp') center/cover no-repeat;
 }
 
 .page-hero--eventos {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-eventos.webp') center/cover no-repeat;
+        url('../img/hero/hero-eventos.webp') center/cover no-repeat;
 }
 
 .page-hero--parcerias {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-parcerias.webp') center/cover no-repeat;
+        url('../img/hero/hero-parcerias.webp') center/cover no-repeat;
 }
 
 .page-hero--projetos {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-projetos.webp') center/cover no-repeat;
+        url('../img/hero/hero-projetos.webp') center/cover no-repeat;
 }
 
 .page-hero--contato {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-contato.webp') center/cover no-repeat;
+        url('../img/hero/hero-contato.webp') center/cover no-repeat;
 }
 
 .page-hero--galeria {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-galeria.webp') center/cover no-repeat;
+        url('../img/hero/hero-galeria.webp') center/cover no-repeat;
 }
 
 .page-hero--pesquisa {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-pesquisa.webp') center/cover no-repeat;
+        url('../img/hero/hero-pesquisa.webp') center/cover no-repeat;
 }
 
 .page-hero--noticias {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-noticias.webp') center/cover no-repeat;
+        url('../img/hero/hero-noticias.webp') center/cover no-repeat;
 }
 
 @media (max-width: 768px) {
     .page-hero--historia {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-historia-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-historia-m.webp') center/cover no-repeat;
     }
 
     .page-hero--missao {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-missao-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-missao-m.webp') center/cover no-repeat;
     }
 
     .page-hero--equipe {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-equipe-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-equipe-m.webp') center/cover no-repeat;
     }
 
     .page-hero--transparencia {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-transparencia-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-transparencia-m.webp') center/cover no-repeat;
     }
 
     .page-hero--capacitacao {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-capacitacao-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-capacitacao-m.webp') center/cover no-repeat;
     }
 
     .page-hero--eventos {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-eventos-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-eventos-m.webp') center/cover no-repeat;
     }
 
     .page-hero--parcerias {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-parcerias-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-parcerias-m.webp') center/cover no-repeat;
     }
 
     .page-hero--projetos {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-projetos-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-projetos-m.webp') center/cover no-repeat;
     }
 
     .page-hero--contato {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-contato-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-contato-m.webp') center/cover no-repeat;
     }
 
     .page-hero--galeria {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-galeria-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-galeria-m.webp') center/cover no-repeat;
     }
 
     .page-hero--pesquisa {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-pesquisa-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-pesquisa-m.webp') center/cover no-repeat;
     }
 
     .page-hero--noticias {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-noticias-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-noticias-m.webp') center/cover no-repeat;
     }
 }
 
@@ -3236,50 +3236,50 @@ RESPONSIVIDADE
 .page-hero--privacidade {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-privacidade.webp') center/cover no-repeat;
+        url('../img/hero/hero-privacidade.webp') center/cover no-repeat;
 }
 
 .page-hero--termos {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-termos.webp') center/cover no-repeat;
+        url('../img/hero/hero-termos.webp') center/cover no-repeat;
 }
 
 .page-hero--cookies {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-cookies.webp') center/cover no-repeat;
+        url('../img/hero/hero-cookies.webp') center/cover no-repeat;
 }
 
 .page-hero--acessibilidade {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-acessibilidade.webp') center/cover no-repeat;
+        url('../img/hero/hero-acessibilidade.webp') center/cover no-repeat;
 }
 
 @media (max-width: 768px) {
     .page-hero--privacidade {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-privacidade-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-privacidade-m.webp') center/cover no-repeat;
     }
 
     .page-hero--termos {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-termos-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-termos-m.webp') center/cover no-repeat;
     }
 
     .page-hero--cookies {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-cookies-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-cookies-m.webp') center/cover no-repeat;
     }
 
     .page-hero--acessibilidade {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-acessibilidade-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-acessibilidade-m.webp') center/cover no-repeat;
     }
 }
 
@@ -3332,14 +3332,14 @@ RESPONSIVIDADE
 .page-hero--imprensa {
     background:
         linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-        url('../img/hero-imprensa.webp') center/cover no-repeat;
+        url('../img/hero/hero-imprensa.webp') center/cover no-repeat;
 }
 
 @media (max-width: 768px) {
     .page-hero--imprensa {
         background:
             linear-gradient(135deg, rgba(49, 51, 50, .95) 0%, rgba(135, 32, 32, .75) 100%),
-            url('../img/hero-imprensa-m.webp') center/cover no-repeat;
+            url('../img/hero/hero-imprensa-m.webp') center/cover no-repeat;
     }
 }
 
