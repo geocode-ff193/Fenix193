@@ -18,13 +18,9 @@
 /assets/js/*
   Cache-Control: public, max-age=0, must-revalidate
 
-# Imagens, ícones e faixas de audiodescrição: cache de 7 dias
+# Imagens e ícones (inclui as subpastas de assets/img): cache de 7 dias
 /assets/img/*
   Cache-Control: public, max-age=604800
-/assets/img/ui/*
-  Cache-Control: public, max-age=604800
-/assets/data/*
-  Cache-Control: public, max-age=3600
 
 # Fontes (arquivos com versão no nome, v13): podem ficar em cache por 1 ano
 /assets/fonts/*
