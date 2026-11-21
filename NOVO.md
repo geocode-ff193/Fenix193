@@ -99,12 +99,52 @@ fenix193/
 │   │   └── chatbot.js                 # Assistente virtual LuminIA
 │   │
 │   ├── img/
-│   │   ├── ui/                        # Favicons e ícones
+│   │   ├── ui/
+│   │   │   ├── apple-touch-icon.png
+│   │   │   ├── favicon-96x96.png
+│   │   │   ├── favicon.ico
+│   │   │   ├── favicon.svg
+│   │   │   ├── web-app-manifest-192x192.png
+│   │   │   └── web-app-manifest-512x512.png
 │   │   ├── parceiros/
+│   │   │   ├── logoILBJ.webp
+│   │   │   ├── logoPRIMAVERA.webp
+│   │   │   ├── logoSHOPJARDINS.webp
+│   │   │   └── logoUNIT.webp
 │   │   ├── logos/
+│   │   │   ├── akanniFenix.png
+│   │   │   ├── cbmse.webp
+│   │   │   ├── dcse.webp
+│   │   │   ├── fenix193-logo-fundo-branco-previa.webp
+│   │   │   ├── fenix193-logo-fundo-branco-previa.png
+│   │   │   ├── fenix193-logo-transparente-previa.webp
+│   │   │   ├── fenix193-logo-transparente.png
+│   │   │   ├── ff193_transp-128.webp
+│   │   │   ├── ff193_transp-420.webp
+│   │   │   ├── ff193_transp.webp
+│   │   │   ├── ff193.webp
+│   │   │   ├── luminia.webp
+│   │   │   └── og-image.jpg
 │   │   ├── hero/
+│   │   │   ├── hero-[nome-da-pagina]-m.webp
+│   │   │   └── hero-[nome-da-pagina].webp
 │   │   ├── galeria/
+│   │   │   ├── bomb_[N° de 00 até 99].webp
+│   │   │   └── bomb_[N° de 00 até 99]-mobile.webp
 │   │   └── equipe/
+│   │   │   ├── carlosmagno.webp
+│   │   │   ├── edivaldocelestino.webp
+│   │   │   ├── gilfranmateus.webp
+│   │   │   ├── joseraimundo.webp
+│   │   │   ├── josuebezerra.webp
+│   │   │   ├── katarinaaragao.webp
+│   │   │   ├── laudemydias.webp
+│   │   │   ├── luizhenrique.webp
+│   │   │   ├── mariobitencourt.webp
+│   │   │   ├── reginaldomoura.webp
+│   │   │   ├── robertobastos.webp
+│   │   │   ├── valtemirovicente.webp
+│   │   │   └── vaterjoviano.webp
 │   ├── docs/                         # PDFs de transparência, organizados por ano
 │   │   ├── 2025/
 │   │   └── 2026/
