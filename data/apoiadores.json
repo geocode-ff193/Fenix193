@@ -1,0 +1,47 @@
+{
+  "_instrucoes": [
+    "Edite SOMENTE este arquivo para atualizar as organizações exibidas no site (página Instituidores e, nas próximas etapas, a home e a página Parcerias).",
+    "categoria: use \"instituidor\" (organizações que tornaram possível o surgimento da Fundação) ou \"apoiador\" (as que vieram depois).",
+    "logo: coloque a imagem em assets/img/parceiros/ (quadrada, de preferência 512 x 512 px, formato webp) e informe o caminho aqui.",
+    "link: endereço do site da organização, começando com https://",
+    "A ordem dos itens neste arquivo é a ordem em que aparecem na página.",
+    "Mantenha o JSON válido: aspas duplas e vírgula entre os itens, sem vírgula depois do último."
+  ],
+  "atualizadoEm": "2026-11-21",
+  "categorias": {
+    "instituidor": {
+      "titulo": "Instituidores",
+      "descricao": "Organizações que tornaram possível o surgimento da Fundação Fênix193."
+    },
+    "apoiador": {
+      "titulo": "Apoiadores",
+      "descricao": "Organizações que passaram a apoiar a Fundação depois de sua criação."
+    }
+  },
+  "itens": [
+    {
+      "nome": "Instituto Luciano Barreto Júnior",
+      "categoria": "instituidor",
+      "logo": "/assets/img/parceiros/logoILBJ.webp",
+      "link": "https://www.ilbj.org.br/"
+    },
+    {
+      "nome": "Rede Primavera",
+      "categoria": "instituidor",
+      "logo": "/assets/img/parceiros/logoPRIMAVERA.webp",
+      "link": "https://redeprimavera.com.br/"
+    },
+    {
+      "nome": "Shopping Jardins",
+      "categoria": "apoiador",
+      "logo": "/assets/img/parceiros/logoSHOPJARDINS.webp",
+      "link": "https://shoppingjardins.com.br/"
+    },
+    {
+      "nome": "Universidade Tiradentes",
+      "categoria": "apoiador",
+      "logo": "/assets/img/parceiros/logoUNIT.webp",
+      "link": "https://www.unit.br/"
+    }
+  ]
+}

@@ -221,6 +221,14 @@ export const STATIC_INDEX = [
         icon: 'fa-microphone-lines',
         link: '/pages/contato/imprensa',
         keywords: 'imprensa jornalistas assessoria comunicação press kit logotipo logo fotos release nota à imprensa entrevista'
+    },
+    {
+        title: 'Instituidores',
+        sub: 'Organizações instituidoras e apoiadoras',
+        category: 'Página',
+        icon: 'fa-building-columns',
+        link: '/pages/institucional/instituidores',
+        keywords: 'instituidores apoiadores fundadores organizações instituto luciano barreto júnior ilbj rede primavera shopping jardins universidade tiradentes unit'
     }
 ];
 

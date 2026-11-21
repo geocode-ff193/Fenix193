@@ -45,6 +45,7 @@
 /pages/fale-conosco              /pages/contato/fale-conosco                301
 
 # --- Atalhos amigáveis (302 = temporário). Ficam sem efeito até a página de destino existir ---
+/instituidores                   /pages/institucional/instituidores         302
 /imprensa                        /pages/contato/imprensa                    302
 /doar                            /pages/colabore/doar                       302
 /doacao                          /pages/colabore/doar                       302

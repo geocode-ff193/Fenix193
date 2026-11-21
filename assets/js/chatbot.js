@@ -552,6 +552,7 @@ class Chatbot {
             ['Nossa História', 'fas fa-book-open', 'pages/institucional/nossa-historia'],
             ['Missão e Valores', 'fas fa-bullseye', 'pages/institucional/missao-valores'],
             ['Nossa Equipe', 'fas fa-id-badge', 'pages/institucional/equipe'],
+            ['Instituidores', 'fas fa-building-columns', 'pages/institucional/instituidores'],
         ]);
     }
 
