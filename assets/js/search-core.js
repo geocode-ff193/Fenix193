@@ -67,7 +67,7 @@ export const STATIC_INDEX = [
         sub: 'Apresentação institucional',
         category: 'Página',
         icon: 'fa-landmark',
-        link: '/#quem-somos',
+        link: '/pages/institucional/quem-somos',
         keywords: 'quem somos organização fundação sem fins lucrativos apoio cbmse sergipe missão'
     },
     {

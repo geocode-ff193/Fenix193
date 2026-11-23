@@ -303,7 +303,7 @@ class Chatbot {
             'A Fundação Fênix193 é uma entidade privada sem fins lucrativos, com sede em Aracaju/SE, criada para fortalecer as atividades do CBMSE e da Defesa Civil.',
             'Atuamos captando recursos, promovendo capacitações, realizando eventos e firmando parcerias estratégicas em prol da segurança pública sergipana.',
         ]);
-        setTimeout(() => this.addLinkMessage('Ver seção Quem Somos', 'fas fa-arrow-right', this._href('#quem-somos')), 500);
+        setTimeout(() => this.addLinkMessage('Abrir a página Quem Somos', 'fas fa-arrow-right', this._href('pages/institucional/quem-somos')), 500);
         setTimeout(() => this.showBackToMenuOptions(), 1500);
     }
 
@@ -548,7 +548,7 @@ class Chatbot {
         this.addMessage('Qual página institucional você quer abrir?');
         this._paginas([
             ['Início', 'fas fa-house', ''],
-            ['Quem Somos', 'fas fa-landmark', '#quem-somos'],
+            ['Quem Somos', 'fas fa-landmark', 'pages/institucional/quem-somos'],
             ['Nossa História', 'fas fa-book-open', 'pages/institucional/nossa-historia'],
             ['Missão e Valores', 'fas fa-bullseye', 'pages/institucional/missao-valores'],
             ['Nossa Equipe', 'fas fa-id-badge', 'pages/institucional/equipe'],
